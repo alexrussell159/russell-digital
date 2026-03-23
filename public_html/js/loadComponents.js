@@ -57,5 +57,3 @@ loadComponent("site-header", "/components/header.html").then(() => {
     });
   }
 });
-
-loadComponent("site-footer", "/components/footer.html");
