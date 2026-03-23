@@ -1,7 +1,15 @@
 async function loadComponent(id, file) {
-  const res = await fetch(file);
-  const html = await res.text();
-  document.getElementById(id).innerHTML = html;
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  try {
+    const res = await fetch(file);
+    if (!res.ok) throw new Error(`Failed to load ${file}: ${res.status}`);
+    const html = await res.text();
+    target.innerHTML = html;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 loadComponent("site-footer", "/components/footer.html");
