@@ -13,7 +13,14 @@
   --text: #0f0f0e;
   --muted: #6b6a65;
   --accent: #1a56f0;
+
+  --white: #ffffff;
+  --max-w: 1280px;
   --radius: 14px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 4px 28px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04);
+
   --nav-h: 68px;
   --header-pad-v: 14px;
 }
