@@ -3,59 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Russell Digital – SEO Agency</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
+
 <body>
 
   <header id="site-header"></header>
 
   <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-badge">Trusted by 400+ growing brands</div>
 
-        <h1 class="hero-title">
-          Rank higher.<br>
-          <span>Grow faster.</span><br>
-          Own your market.
-        </h1>
+    <!-- ✅ USE YOUR EXISTING HERO SYSTEM -->
+    <section class="hero-teaser">
 
-        <p class="hero-sub">
-          Data-driven SEO strategies that turn organic traffic into measurable revenue — no guesswork, just results.
-        </p>
+      <div class="badge">Trusted by 400+ growing brands</div>
 
-        <div class="hero-actions">
-          <a href="#" class="btn-primary">Get a Free Audit →</a>
-          <a href="#" class="btn-outline">View Case Studies</a>
-        </div>
+      <h1 class="hero-title">
+        Rank higher.<br>
+        <em>Grow faster.</em><br>
+        Own your market.
+      </h1>
 
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="stat-value">4.2×</div>
-            <div class="stat-label">avg. traffic growth</div>
-          </div>
-          <div class="hero-stat">
-            <div class="stat-value">400+</div>
-            <div class="stat-label">brands scaled</div>
-          </div>
-          <div class="hero-stat">
-            <div class="stat-value">93%</div>
-            <div class="stat-label">client retention</div>
-          </div>
-          <div class="hero-stat">
-            <div class="stat-value">11yr</div>
-            <div class="stat-label">in the game</div>
-          </div>
-        </div>
+      <p class="hero-sub">
+        Data-driven SEO strategies that turn organic traffic into measurable revenue — no guesswork, just results.
+      </p>
+
+      <!-- BUTTONS (re-using your btn-primary) -->
+      <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn-primary">
+          Get a Free Audit <span class="arrow">→</span>
+        </a>
+
+        <a href="#" class="btn-ghost">
+          View Case Studies
+        </a>
       </div>
+
+      <!-- SIMPLE STATS (since CSS doesn't define hero-stats) -->
+      <div style="margin-top:40px; display:flex; gap:40px; justify-content:center; flex-wrap:wrap;">
+
+        <div>
+          <div style="font-weight:700; font-size:24px;">4.2×</div>
+          <div style="font-size:13px; color:var(--muted);">avg. traffic growth</div>
+        </div>
+
+        <div>
+          <div style="font-weight:700; font-size:24px;">400+</div>
+          <div style="font-size:13px; color:var(--muted);">brands scaled</div>
+        </div>
+
+        <div>
+          <div style="font-weight:700; font-size:24px;">93%</div>
+          <div style="font-size:13px; color:var(--muted);">client retention</div>
+        </div>
+
+        <div>
+          <div style="font-weight:700; font-size:24px;">11yr</div>
+          <div style="font-size:13px; color:var(--muted);">in the game</div>
+        </div>
+
+      </div>
+
     </section>
+
   </main>
 
   <footer id="site-footer"></footer>
 
   <script src="/js/loadComponents.js"></script>
+
 </body>
 </html>
