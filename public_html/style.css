@@ -1,1 +1,137 @@
+/* HEADER */
+<header>
+  <div class="nav-wrap">
 
+    <a href="/" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/>
+          <path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/>
+          <circle cx="17.5" cy="5.5" r="1" fill="white"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Russell Digital</span>
+        <span class="logo-tagline">SEO Agency</span>
+      </div>
+    </a>
+
+    <nav class="desktop-nav">
+      <div class="nav-item">
+        <button class="nav-link">
+          Services
+          <svg class="chev" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="dropdown">
+          <a href="#"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Site audits & crawl fixes</small></div></a>
+          <a href="#"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial plans</small></div></a>
+          <a href="#"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
+          <a href="#"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
+        </div>
+      </div>
+
+      <a href="#" class="nav-link">Case Studies</a>
+      <a href="#" class="nav-link">Knowledge Base</a>
+
+      <div class="nav-item">
+        <button class="nav-link">
+          Resources
+          <svg class="chev" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="dropdown">
+          <a href="#"><div class="drop-icon">📚</div><div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
+          <a href="#"><div class="drop-icon">🛠️</div><div class="drop-label"><strong>Free Tools</strong><small>Analyzers & calculators</small></div></a>
+          <a href="#"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+      <a href="#" class="nav-link">Pricing</a>
+    </nav>
+
+    <div class="cta-group">
+      <a href="#" class="btn-ghost desktop-only">Sign in</a>
+      <a href="#" class="btn-primary desktop-cta">
+        Get a Free Audit <span class="arrow">→</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation">
+
+    <div class="drawer-header">
+      <a href="/" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/>
+            <path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/>
+            <circle cx="17.5" cy="5.5" r="1" fill="white"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">Russell Digital</span>
+          <span class="logo-tagline">SEO Agency</span>
+        </div>
+      </a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
+    </div>
+
+    <div class="drawer-body">
+      <button class="m-link" data-accordion="services">
+        Services
+        <svg viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="m-sub" id="services">
+        <div class="m-sub-inner">
+          <a href="#" class="m-sub-link"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Site audits & crawl fixes</small></div></a>
+          <a href="#" class="m-sub-link"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial plans</small></div></a>
+          <a href="#" class="m-sub-link"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
+          <a href="#" class="m-sub-link"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
+        </div>
+      </div>
+
+      <a href="#" class="m-link">Case Studies</a>
+      <a href="#" class="m-link">Knowledge Base</a>
+
+      <button class="m-link" data-accordion="resources">
+        Resources
+        <svg viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="m-sub" id="resources">
+        <div class="m-sub-inner">
+          <a href="#" class="m-sub-link"><div class="drop-icon">📚</div><div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
+          <a href="#" class="m-sub-link"><div class="drop-icon">🛠️</div><div class="drop-label"><strong>Free Tools</strong><small>Analyzers & calculators</small></div></a>
+          <a href="#" class="m-sub-link"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
+        </div>
+      </div>
+
+      <div class="m-divider"></div>
+      <a href="#" class="m-link">Pricing</a>
+    </div>
+
+    <div class="drawer-footer">
+      <a href="#" class="btn-primary">Get a Free Audit <span class="arrow">→</span></a>
+      <a href="#" class="btn-ghost">Sign in</a>
+    </div>
+
+  </div>
+</div>
