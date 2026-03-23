@@ -4,6 +4,8 @@ async function loadComponent(id, file) {
   document.getElementById(id).innerHTML = html;
 }
 
+loadComponent("site-footer", "/components/footer.html");
+
 loadComponent("site-header", "/components/header.html").then(() => {
   const hamburger = document.getElementById("hamburger");
   const drawer = document.getElementById("mobileDrawer");
