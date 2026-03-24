@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Russell Digital – SEO Agency | Rank Higher. Grow Faster.</title>
+  <meta name="description" content="Russell Digital is a performance SEO agency that turns organic search into your #1 revenue channel. Get a free audit today." />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --white: #ffffff;
+      --dark: #0a0a09;
+      --text: #0f0f0e;
+      --muted: #6b6a65;
+      --muted2: #9b9a95;
+      --surface: rgba(255,255,255,0.88);
+      --border: rgba(0,0,0,0.08);
+      --border2: rgba(0,0,0,0.06);
+      --accent: #1a56f0;
+      --accent-dark: #0d40c6;
+      --accent-light: rgba(26,86,240,0.10);
+      --accent-glow: rgba(26,86,240,0.22);
+      --green: #16a34a;
+      --green-light: rgba(22,163,74,0.10);
+      --radius: 16px;
+      --nav-h: 68px;
+      --header-pad-v: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body { padding-top: calc(var(--nav-h) + var(--header-pad-v) + 20px); }
+
+    /* ══════════════════════════
+       HEADER
+    ══════════════════════════ */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      height: calc(var(--nav-h) + var(--header-pad-v) + 4px);
+      padding: var(--header-pad-v) 1.5rem 0;
+      pointer-events: none;
+    }
+
+    .nav-wrap {
+      pointer-events: all;
+      max-width: 1280px;
+      margin: 0 auto;
+      height: var(--nav-h);
+      background: var(--surface);
+      backdrop-filter: blur(20px) saturate(170%);
+      -webkit-backdrop-filter: blur(20px) saturate(170%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      box-shadow: 0 4px 28px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04);
+      animation: slideDown 0.55s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo */
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .logo-mark {
+      width: 36px; height: 36px; background: var(--accent); border-radius: 11px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(26,86,240,0.30);
+    }
+    .logo-mark svg { width: 22px; height: 22px; overflow: visible; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1; gap: 1px; }
+    .logo-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.03em; color: var(--text); }
+    .logo-tagline { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+
+    /* Desktop Nav */
+    .desktop-nav { display: flex; align-items: center; gap: 2px; }
+    .nav-item { position: relative; }
+    .nav-link {
+      font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500;
+      color: var(--muted); text-decoration: none; padding: 8px 14px; border-radius: 10px;
+      transition: color 0.15s, background 0.15s; display: flex; align-items: center;
+      gap: 5px; white-space: nowrap; cursor: pointer; background: transparent; border: none; line-height: 1;
+    }
+    .nav-link:hover, .nav-item:hover > .nav-link { color: var(--text); background: rgba(0,0,0,0.05); }
+    .nav-link .chev { width: 12px; height: 12px; flex-shrink: 0; opacity: 0.45; transition: transform 0.22s cubic-bezier(.22,1,.36,1), opacity 0.15s; }
+    .nav-item:hover > .nav-link .chev { transform: rotate(180deg); opacity: 0.75; }
+    .nav-item::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 14px; display: none; }
+    .nav-item:hover::after { display: block; }
+
+    .dropdown {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%) translateY(5px); min-width: 240px;
+      background: #fff; border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.11), 0 2px 8px rgba(0,0,0,0.05);
+      padding: 7px; opacity: 0; pointer-events: none;
+      transition: opacity 0.16s, transform 0.22s cubic-bezier(.22,1,.36,1);
+    }
+    .nav-item:hover > .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown a { display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px; font-size: 0.845rem; color: var(--muted); text-decoration: none; transition: background 0.14s, color 0.14s; }
+    .dropdown a:hover { background: #f5f4f0; color: var(--text); }
+    .drop-icon { width: 32px; height: 32px; border-radius: 9px; background: #f0f0eb; display: grid; place-items: center; flex-shrink: 0; font-size: 0.9rem; }
+    .drop-label { line-height: 1.25; }
+    .drop-label strong { display: block; font-weight: 500; color: var(--text); font-size: 0.845rem; }
+    .drop-label small { font-size: 0.735rem; color: var(--muted); font-weight: 300; }
+    .nav-divider { width: 1px; height: 20px; background: var(--border); margin: 0 6px; flex-shrink: 0; }
+
+    /* CTA group */
+    .cta-group { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .btn-ghost { font-size: 0.875rem; font-weight: 500; color: var(--muted); background: transparent; border: none; cursor: pointer; padding: 8px 13px; border-radius: 10px; transition: color 0.15s, background 0.15s; font-family: 'DM Sans', sans-serif; text-decoration: none; white-space: nowrap; }
+    .btn-ghost:hover { background: rgba(0,0,0,0.05); color: var(--text); }
+    .btn-primary {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.845rem;
+      letter-spacing: -0.01em; background: var(--accent); color: #fff; border: none;
+      border-radius: 12px; padding: 10px 20px; cursor: pointer; display: inline-flex;
+      align-items: center; gap: 8px; transition: transform 0.16s, box-shadow 0.16s, background 0.16s;
+      text-decoration: none; white-space: nowrap; box-shadow: 0 2px 10px rgba(26,86,240,0.28);
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,86,240,0.36); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary .arrow { width: 19px; height: 19px; background: rgba(255,255,255,0.18); border-radius: 6px; display: grid; place-items: center; font-size: 0.72rem; }
+
+    /* Hamburger */
+    .hamburger { display: none; flex-direction: column; justify-content: center; align-items: flex-end; gap: 5px; cursor: pointer; padding: 7px 8px; border-radius: 10px; background: transparent; border: 1px solid var(--border); width: 40px; height: 40px; transition: background 0.15s; }
+    .hamburger:hover { background: rgba(0,0,0,0.05); }
+    .hamburger span { display: block; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.28s cubic-bezier(.22,1,.36,1), opacity 0.2s, width 0.2s; transform-origin: center; }
+    .hamburger span:nth-child(1) { width: 18px; }
+    .hamburger span:nth-child(2) { width: 13px; }
+    .hamburger span:nth-child(3) { width: 18px; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 18px; }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 18px; }
+
+    /* Mobile Drawer */
+    .mobile-drawer { display: none; position: fixed; inset: 0; z-index: 600; pointer-events: none; }
+    .drawer-overlay { position: absolute; inset: 0; background: rgba(15,15,14,0.40); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.26s; }
+    .drawer-panel { position: absolute; top: 0; right: 0; width: min(340px, 92vw); height: 100%; background: #fff; box-shadow: -12px 0 48px rgba(0,0,0,0.11); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.32s cubic-bezier(.22,1,.36,1); overflow-y: auto; }
+    .mobile-drawer.open { pointer-events: all; }
+    .mobile-drawer.open .drawer-overlay { opacity: 1; }
+    .mobile-drawer.open .drawer-panel { transform: translateX(0); }
+    .drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 20px 16px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .drawer-close { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--border); background: transparent; cursor: pointer; display: grid; place-items: center; font-size: 1rem; color: var(--muted); transition: background 0.14s, color 0.14s; }
+    .drawer-close:hover { background: #f5f4f0; color: var(--text); }
+    .drawer-body { padding: 12px 12px 16px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .m-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 12px; font-size: 0.95rem; font-weight: 500; color: var(--text); text-decoration: none; transition: background 0.14s; cursor: pointer; background: transparent; border: none; font-family: 'DM Sans', sans-serif; width: 100%; text-align: left; }
+    .m-link:hover { background: #f5f4f0; }
+    .m-link svg { width: 14px; height: 14px; color: var(--muted); transition: transform 0.22s cubic-bezier(.22,1,.36,1); flex-shrink: 0; }
+    .m-link.expanded svg { transform: rotate(180deg); }
+    .m-sub { overflow: hidden; max-height: 0; transition: max-height 0.32s cubic-bezier(.22,1,.36,1); }
+    .m-sub.open { max-height: 500px; }
+    .m-sub-inner { padding: 4px 0 8px 12px; display: flex; flex-direction: column; gap: 2px; }
+    .m-sub-link { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; font-size: 0.855rem; color: var(--muted); text-decoration: none; transition: background 0.14s, color 0.14s; }
+    .m-sub-link:hover { background: #f5f4f0; color: var(--text); }
+    .m-sub-link .drop-icon { width: 28px; height: 28px; font-size: 0.8rem; }
+    .m-divider { height: 1px; background: var(--border); margin: 8px 4px; }
+    .drawer-footer { padding: 0 12px 32px; display: flex; flex-direction: column; gap: 8px; }
+    .drawer-footer .btn-primary { justify-content: center; padding: 13px; font-size: 0.9rem; border-radius: 14px; }
+    .drawer-footer .btn-ghost { text-align: center; display: flex; align-items: center; justify-content: center; padding: 12px; border-radius: 14px; border: 1px solid var(--border); }
+
+    /* ══════════════════════════
+       SHARED LAYOUT
+    ══════════════════════════ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 96px 0; }
+
+    .section-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent-light); color: var(--accent);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 5px 13px; border-radius: 99px;
+      border: 1px solid rgba(26,86,240,0.15); margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.035em; line-height: 1.05;
+      color: var(--text); margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1.05rem; font-weight: 300; color: var(--muted); line-height: 1.65;
+    }
+
+    /* ══════════════════════════
+       HERO
+    ══════════════════════════ */
+    #hero {
+      padding: 80px 0 96px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative grid */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(26,86,240,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,86,240,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
+    }
+
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+      display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center;
+    }
+
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 99px; padding: 6px 14px 6px 6px;
+      margin-bottom: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .hero-pill-dot {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--green-light); color: var(--green);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 99px;
+    }
+
+    .hero-pill-dot::before {
+      content: ''; width: 6px; height: 6px; background: var(--green);
+      border-radius: 50%; animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.4; transform:scale(0.7); }
+    }
+
+    .hero-pill-text { font-size: 0.83rem; color: var(--muted); font-weight: 400; }
+
+    .hero-h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(3rem, 5.5vw, 4.8rem);
+      letter-spacing: -0.045em; line-height: 1.0;
+      color: var(--text); margin-bottom: 22px;
+    }
+
+    .hero-h1 em { font-style: normal; color: var(--accent); }
+    .hero-h1 .underline-wrap { position: relative; display: inline-block; }
+    .hero-h1 .underline-wrap::after {
+      content: '';
+      position: absolute; left: 0; bottom: -4px; right: 0; height: 4px;
+      background: var(--accent); border-radius: 2px; opacity: 0.3;
+    }
+
+    .hero-sub-text {
+      font-size: 1.1rem; font-weight: 300; color: var(--muted);
+      line-height: 1.7; max-width: 480px; margin-bottom: 36px;
+    }
+
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+    .btn-hero {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+      letter-spacing: -0.01em; background: var(--accent); color: #fff;
+      border: none; border-radius: 14px; padding: 15px 28px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: transform 0.16s, box-shadow 0.16s, background 0.16s;
+      text-decoration: none; box-shadow: 0 4px 20px rgba(26,86,240,0.35);
+    }
+    .btn-hero:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(26,86,240,0.42); }
+    .btn-hero:active { transform: translateY(0); }
+    .btn-hero .arrow-box { width: 22px; height: 22px; background: rgba(255,255,255,0.2); border-radius: 7px; display: grid; place-items: center; font-size: 0.8rem; }
+
+    .btn-secondary {
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem;
+      color: var(--text); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: gap 0.2s;
+    }
+    .btn-secondary:hover { gap: 12px; }
+    .btn-secondary .play-icon { width: 38px; height: 38px; background: #fff; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-size: 0.75rem; }
+
+    .hero-social-proof {
+      margin-top: 44px; display: flex; align-items: center; gap: 16px;
+    }
+
+    .avatar-stack { display: flex; }
+    .avatar-stack .av {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 2px solid var(--bg);
+      background: var(--accent); display: grid; place-items: center;
+      font-size: 0.7rem; font-weight: 700; color: #fff;
+      margin-left: -8px; transition: transform 0.15s;
+    }
+    .avatar-stack .av:first-child { margin-left: 0; }
+    .avatar-stack .av:nth-child(2) { background: #0d40c6; }
+    .avatar-stack .av:nth-child(3) { background: #1e40af; }
+    .avatar-stack .av:nth-child(4) { background: #3b82f6; }
+
+    .proof-text { font-size: 0.83rem; color: var(--muted); line-height: 1.4; }
+    .proof-text strong { color: var(--text); font-weight: 600; }
+
+    /* Hero card (right) */
+    .hero-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 24px;
+      padding: 28px; box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+      position: relative; overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: ''; position: absolute;
+      top: -40px; right: -40px; width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(26,86,240,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .card-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card-label::before { content: ''; display: block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s ease infinite; }
+
+    .metric-row {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .metric-big {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.8rem;
+      letter-spacing: -0.04em; color: var(--text); line-height: 1;
+    }
+
+    .metric-delta {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--green-light); color: var(--green);
+      font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 99px;
+    }
+
+    /* Mini bar chart */
+    .bar-chart { display: flex; align-items: flex-end; gap: 5px; height: 72px; margin-bottom: 20px; }
+    .bar {
+      flex: 1; border-radius: 4px 4px 0 0;
+      background: var(--accent-light); position: relative; overflow: hidden;
+      transition: background 0.2s;
+    }
+    .bar:hover { background: rgba(26,86,240,0.18); }
+    .bar .fill { position: absolute; bottom: 0; left: 0; right: 0; background: var(--accent); border-radius: 4px 4px 0 0; transition: height 0.6s cubic-bezier(.22,1,.36,1); }
+    .bar:last-child .fill { background: var(--accent); }
+    .bar.highlight .fill { background: var(--accent); opacity: 1; }
+
+    .bar-labels { display: flex; gap: 5px; margin-bottom: 20px; }
+    .bar-labels span { flex: 1; text-align: center; font-size: 0.62rem; color: var(--muted2); }
+
+    .card-divider { height: 1px; background: var(--border2); margin: 4px 0 20px; }
+
+    .mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .mini-stat { background: var(--bg); border-radius: 12px; padding: 14px; }
+    .mini-stat .ms-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; letter-spacing: -0.03em; color: var(--text); }
+    .mini-stat .ms-label { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+    .mini-stat .ms-delta { font-size: 0.72rem; font-weight: 600; color: var(--green); }
+
+    /* ══════════════════════════
+       LOGOS / TRUST BAR
+    ══════════════════════════ */
+    #trust {
+      padding: 0 0 80px;
+      background: var(--bg);
+    }
+
+    .trust-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .trust-label {
+      text-align: center; font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted2);
+      margin-bottom: 28px;
+    }
+
+    .logo-strip {
+      display: flex; align-items: center; justify-content: center;
+      gap: 48px; flex-wrap: wrap;
+    }
+
+    .logo-chip {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem;
+      letter-spacing: -0.03em; color: var(--muted2);
+      transition: color 0.2s;
+    }
+    .logo-chip:hover { color: var(--text); }
+
+    /* ══════════════════════════
+       RESULTS / STATS
+    ══════════════════════════ */
+    #results {
+      background: var(--dark);
+      padding: 96px 0;
+      position: relative; overflow: hidden;
+    }
+
+    #results::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(26,86,240,0.18) 0%, transparent 70%);
+    }
+
+    .results-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; }
+
+    .results-top {
+      text-align: center; margin-bottom: 64px;
+    }
+
+    .results-top .section-badge { background: rgba(26,86,240,0.15); border-color: rgba(26,86,240,0.3); }
+
+    .results-top .section-title { color: #fff; }
+    .results-top .section-sub { color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto; }
+
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+      background: rgba(255,255,255,0.06); border-radius: 20px;
+      overflow: hidden; border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.03); padding: 40px 32px;
+      transition: background 0.2s;
+    }
+    .stat-card:hover { background: rgba(26,86,240,0.08); }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2.4rem, 4vw, 3.2rem); letter-spacing: -0.04em;
+      color: #fff; line-height: 1; margin-bottom: 8px;
+    }
+    .stat-num span { color: var(--accent); }
+
+    .stat-desc { font-size: 0.9rem; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.5; }
+
+    /* ══════════════════════════
+       SERVICES
+    ══════════════════════════ */
+    #services { background: var(--bg); }
+
+    .services-header { max-width: 600px; margin-bottom: 56px; }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+
+    .service-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 20px;
+      padding: 32px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.09); border-color: rgba(26,86,240,0.2); }
+    .service-card.featured { background: var(--accent); border-color: var(--accent); }
+    .service-card.featured:hover { box-shadow: 0 16px 48px rgba(26,86,240,0.35); }
+
+    .service-icon {
+      width: 48px; height: 48px; border-radius: 13px;
+      background: var(--bg); display: grid; place-items: center;
+      font-size: 1.3rem; margin-bottom: 20px;
+    }
+    .service-card.featured .service-icon { background: rgba(255,255,255,0.18); }
+
+    .service-name {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem;
+      letter-spacing: -0.025em; color: var(--text); margin-bottom: 10px;
+    }
+    .service-card.featured .service-name { color: #fff; }
+
+    .service-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+    .service-card.featured .service-desc { color: rgba(255,255,255,0.7); }
+
+    .service-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.85rem; font-weight: 500; color: var(--accent);
+      text-decoration: none; margin-top: 20px;
+      transition: gap 0.2s;
+    }
+    .service-card.featured .service-link { color: rgba(255,255,255,0.85); }
+    .service-link:hover { gap: 10px; }
+
+    /* ══════════════════════════
+       PROCESS
+    ══════════════════════════ */
+    #process { background: #fff; }
+
+    .process-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+
+    .process-steps { display: flex; flex-direction: column; gap: 4px; }
+
+    .step {
+      display: flex; gap: 20px; padding: 22px;
+      border-radius: 16px; cursor: pointer;
+      transition: background 0.2s; position: relative;
+    }
+    .step:hover, .step.active { background: var(--bg); }
+
+    .step-num {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--bg); display: grid; place-items: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.8rem;
+      color: var(--muted2); flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .step.active .step-num, .step:hover .step-num { background: var(--accent); color: #fff; }
+
+    .step-body {}
+    .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: -0.02em; color: var(--text); margin-bottom: 6px; }
+    .step-text { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+    .process-visual {
+      background: var(--bg); border-radius: 24px; padding: 36px;
+      border: 1px solid var(--border);
+    }
+
+    .visual-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted2); margin-bottom: 24px; }
+
+    .keyword-rows { display: flex; flex-direction: column; gap: 10px; }
+    .kw-row { display: flex; align-items: center; gap: 12px; }
+    .kw-label { font-size: 0.8rem; color: var(--text); width: 130px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .kw-bar-track { flex: 1; height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
+    .kw-bar-fill { height: 100%; background: var(--accent); border-radius: 99px; }
+    .kw-pos {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem;
+      width: 28px; text-align: right;
+    }
+    .kw-pos.good { color: var(--green); }
+    .kw-pos.mid { color: var(--accent); }
+    .kw-pos.low { color: var(--muted2); }
+
+    /* ══════════════════════════
+       CASE STUDY / RESULTS TICKER
+    ══════════════════════════ */
+    #cases { background: var(--bg); }
+
+    .cases-header { text-align: center; margin-bottom: 56px; }
+    .cases-header .section-sub { max-width: 480px; margin: 0 auto; }
+
+    .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .case-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 20px;
+      overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .case-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.09); }
+
+    .case-top {
+      padding: 28px 28px 24px;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .case-industry {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted2); margin-bottom: 12px;
+    }
+
+    .case-client { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.025em; color: var(--text); margin-bottom: 10px; }
+    .case-desc { font-size: 0.845rem; color: var(--muted); line-height: 1.6; }
+
+    .case-metrics {
+      padding: 20px 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+
+    .cm { }
+    .cm-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; letter-spacing: -0.04em; color: var(--accent); }
+    .cm-label { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    /* ══════════════════════════
+       TESTIMONIALS
+    ══════════════════════════ */
+    #testimonials { background: #fff; }
+
+    .testi-header { text-align: center; margin-bottom: 56px; }
+
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .testi-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 20px;
+      padding: 28px; position: relative;
+    }
+
+    .quote-mark {
+      font-family: 'Syne', sans-serif; font-size: 4rem; line-height: 1;
+      color: var(--accent); opacity: 0.15; position: absolute; top: 16px; right: 24px;
+    }
+
+    .stars { color: #f59e0b; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 14px; }
+
+    .testi-text { font-size: 0.925rem; color: var(--text); line-height: 1.7; font-weight: 300; margin-bottom: 20px; }
+
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-av {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--accent); display: grid; place-items: center;
+      font-size: 0.8rem; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 600; font-size: 0.875rem; color: var(--text); }
+    .testi-role { font-size: 0.75rem; color: var(--muted); }
+
+    /* ══════════════════════════
+       PRICING
+    ══════════════════════════ */
+    #pricing { background: var(--bg); }
+    .pricing-header { text-align: center; margin-bottom: 56px; }
+    .pricing-header .section-sub { max-width: 440px; margin: 0 auto; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+
+    .plan-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 24px;
+      padding: 32px; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .plan-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+    .plan-card.popular {
+      background: var(--accent); border-color: var(--accent);
+      transform: scale(1.02);
+    }
+    .plan-card.popular:hover { transform: scale(1.02) translateY(-4px); box-shadow: 0 20px 50px rgba(26,86,240,0.4); }
+
+    .plan-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px;
+      border-radius: 99px; margin-bottom: 16px;
+      background: rgba(255,255,255,0.2); color: #fff;
+    }
+    .plan-card:not(.popular) .plan-tag { background: var(--accent-light); color: var(--accent); }
+
+    .plan-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; color: var(--text); margin-bottom: 6px; }
+    .plan-card.popular .plan-name { color: #fff; }
+
+    .plan-desc { font-size: 0.845rem; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+    .plan-card.popular .plan-desc { color: rgba(255,255,255,0.65); }
+
+    .plan-price { margin-bottom: 28px; }
+    .plan-amount {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.4rem;
+      letter-spacing: -0.04em; color: var(--text); line-height: 1;
+    }
+    .plan-card.popular .plan-amount { color: #fff; }
+    .plan-amount sup { font-size: 1.2rem; vertical-align: super; }
+    .plan-period { font-size: 0.8rem; color: var(--muted); }
+    .plan-card.popular .plan-period { color: rgba(255,255,255,0.55); }
+
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; color: var(--text); }
+    .plan-card.popular .plan-features li { color: rgba(255,255,255,0.85); }
+    .plan-features li::before { content: '✓'; width: 18px; height: 18px; background: var(--green-light); color: var(--green); border-radius: 5px; display: grid; place-items: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+    .plan-card.popular .plan-features li::before { background: rgba(255,255,255,0.2); color: #fff; }
+
+    .plan-cta {
+      display: block; width: 100%; padding: 13px;
+      border-radius: 12px; font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 0.9rem; letter-spacing: -0.01em;
+      text-align: center; text-decoration: none; cursor: pointer;
+      border: none; transition: background 0.16s, transform 0.16s, box-shadow 0.16s;
+      background: var(--bg); color: var(--text);
+    }
+    .plan-cta:hover { background: #eae9e4; transform: translateY(-1px); }
+    .plan-card.popular .plan-cta {
+      background: #fff; color: var(--accent);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .plan-card.popular .plan-cta:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.16); }
+
+    /* ══════════════════════════
+       FAQ
+    ══════════════════════════ */
+    #faq { background: #fff; }
+
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-header { text-align: center; margin-bottom: 48px; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border); padding: 22px 0;
+    }
+
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; gap: 16px;
+    }
+
+    .faq-q-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: -0.02em; color: var(--text); }
+    .faq-icon { width: 28px; height: 28px; border-radius: 8px; background: var(--bg); display: grid; place-items: center; flex-shrink: 0; font-size: 1rem; color: var(--muted); transition: background 0.15s, transform 0.22s cubic-bezier(.22,1,.36,1); }
+    .faq-item.open .faq-icon { background: var(--accent); color: #fff; transform: rotate(45deg); }
+
+    .faq-a { font-size: 0.9rem; color: var(--muted); line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(.22,1,.36,1), padding 0.3s; }
+    .faq-item.open .faq-a { max-height: 200px; padding-top: 14px; }
+
+    /* ══════════════════════════
+       CTA SECTION
+    ══════════════════════════ */
+    #cta-section {
+      background: var(--dark);
+      padding: 96px 0;
+      position: relative; overflow: hidden;
+    }
+
+    #cta-section::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(26,86,240,0.20) 0%, transparent 70%);
+    }
+
+    .cta-inner {
+      max-width: 720px; margin: 0 auto; padding: 0 1.5rem;
+      text-align: center; position: relative;
+    }
+
+    .cta-title {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: -0.04em; line-height: 1.05;
+      color: #fff; margin-bottom: 18px;
+    }
+    .cta-title em { font-style: normal; color: var(--accent); }
+
+    .cta-sub { font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.65; margin-bottom: 40px; }
+
+    /* Audit Form */
+    .audit-form {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 32px;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; text-transform: uppercase; }
+    .form-group input {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; padding: 12px 14px; color: #fff; font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif; transition: border-color 0.15s, background 0.15s;
+      outline: none;
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.25); }
+    .form-group input:focus { border-color: var(--accent); background: rgba(26,86,240,0.08); }
+
+    .form-full { margin-bottom: 16px; }
+    .form-full input { width: 100%; }
+
+    .form-submit {
+      width: 100%; padding: 15px;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+      letter-spacing: -0.01em; background: var(--accent); color: #fff;
+      border: none; border-radius: 12px; cursor: pointer;
+      transition: background 0.16s, transform 0.16s, box-shadow 0.16s;
+      box-shadow: 0 4px 20px rgba(26,86,240,0.4);
+    }
+    .form-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(26,86,240,0.5); }
+    .form-submit:active { transform: translateY(0); }
+
+    .form-note { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 12px; text-align: center; }
+
+    /* ══════════════════════════
+       FOOTER
+    ══════════════════════════ */
+    footer {
+      background: var(--dark); border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 56px 0 32px;
+    }
+
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand .logo-name { color: #fff; }
+    .footer-brand .logo-tagline { color: rgba(255,255,255,0.4); }
+    .footer-desc { font-size: 0.845rem; color: rgba(255,255,255,0.35); line-height: 1.65; margin-top: 14px; max-width: 260px; }
+
+    .footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: -0.01em; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 0.845rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
+    .footer-col a:hover { color: rgba(255,255,255,0.75); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.2); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.5); }
+
+    /* ══════════════════════════
+       SCROLL REVEAL
+    ══════════════════════════ */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(.22,1,.36,1), transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════
+       RESPONSIVE
+    ══════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-card { max-width: 480px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .process-visual { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 64px 0; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .plan-card.popular { transform: none; }
+      .plan-card.popular:hover { transform: translateY(-4px); }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .logo-strip { gap: 28px; }
+    }
+
+    @media (max-width: 900px) {
+      .desktop-nav, .btn-ghost.desktop-only, .nav-divider { display: none !important; }
+      .btn-primary.desktop-cta { display: none !important; }
+      .hamburger { display: flex; }
+      .mobile-drawer { display: block; }
+      header { padding: var(--header-pad-v) 1rem 0; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-wrap { padding: 0 1rem; }
+      .hero-h1 { font-size: 2.6rem; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     HEADER
+══════════════════════════════════ -->
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 22 22" fill="none">
+          <rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/>
+          <path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/>
+          <circle cx="17.5" cy="5.5" r="1" fill="white"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Russell Digital</span>
+        <span class="logo-tagline">SEO Agency</span>
+      </div>
+    </a>
+
+    <nav class="desktop-nav">
+      <div class="nav-item">
+        <button class="nav-link">Services <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dropdown">
+          <a href="#services"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Site audits & crawl fixes</small></div></a>
+          <a href="#services"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial plans</small></div></a>
+          <a href="#services"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
+          <a href="#services"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
+        </div>
+      </div>
+      <a href="#cases" class="nav-link">Case Studies</a>
+      <a href="#process" class="nav-link">How It Works</a>
+      <div class="nav-item">
+        <button class="nav-link">Resources <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dropdown">
+          <a href="#"><div class="drop-icon">📚</div><div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
+          <a href="#"><div class="drop-icon">🛠️</div><div class="drop-label"><strong>Free Tools</strong><small>Analyzers & calculators</small></div></a>
+          <a href="#"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
+        </div>
+      </div>
+      <div class="nav-divider"></div>
+      <a href="#pricing" class="nav-link">Pricing</a>
+    </nav>
+
+    <div class="cta-group">
+      <a href="#" class="btn-ghost desktop-only">Sign in</a>
+      <a href="#cta-section" class="btn-primary desktop-cta">Get a Free Audit <span class="arrow">→</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true">
+    <div class="drawer-header">
+      <a href="#" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/><path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/><circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/><circle cx="17.5" cy="5.5" r="1" fill="white"/></svg>
+        </div>
+        <div class="logo-text"><span class="logo-name">Russell Digital</span><span class="logo-tagline">SEO Agency</span></div>
+      </a>
+      <button class="drawer-close" id="drawerClose">✕</button>
+    </div>
+    <div class="drawer-body">
+      <button class="m-link" data-accordion="m-services">Services <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="m-sub" id="m-services">
+        <div class="m-sub-inner">
+          <a href="#services" class="m-sub-link"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Audits & crawl fixes</small></div></a>
+          <a href="#services" class="m-sub-link"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial</small></div></a>
+          <a href="#services" class="m-sub-link"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
+          <a href="#services" class="m-sub-link"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citations</small></div></a>
+        </div>
+      </div>
+      <a href="#cases" class="m-link">Case Studies</a>
+      <a href="#process" class="m-link">How It Works</a>
+      <a href="#pricing" class="m-link">Pricing</a>
+      <div class="m-divider"></div>
+    </div>
+    <div class="drawer-footer">
+      <a href="#cta-section" class="btn-primary">Get a Free Audit <span class="arrow">→</span></a>
+      <a href="#" class="btn-ghost">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-pill reveal">
+        <span class="hero-pill-dot">Live</span>
+        <span class="hero-pill-text">400+ brands ranking on page 1</span>
+      </div>
+      <h1 class="hero-h1 reveal" style="transition-delay:0.08s">
+        Turn organic<br>search into your<br><em>top revenue</em><br>channel.
+      </h1>
+      <p class="hero-sub-text reveal" style="transition-delay:0.14s">
+        Russell Digital is a performance SEO agency that builds sustainable search presence — the kind that compounds month over month and doesn't vanish when ad budgets do.
+      </p>
+      <div class="hero-actions reveal" style="transition-delay:0.2s">
+        <a href="#cta-section" class="btn-hero">Get Your Free Audit <span class="arrow-box">→</span></a>
+        <a href="#process" class="btn-secondary"><span class="play-icon">▶</span> See how it works</a>
+      </div>
+      <div class="hero-social-proof reveal" style="transition-delay:0.26s">
+        <div class="avatar-stack">
+          <div class="av">JM</div>
+          <div class="av">SR</div>
+          <div class="av">AK</div>
+          <div class="av">+</div>
+        </div>
+        <div class="proof-text">
+          <strong>97% of clients</strong> see page-1 rankings<br>within 90 days of onboarding.
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card reveal" style="transition-delay:0.18s">
+      <div class="card-label">Organic Traffic — Live Dashboard</div>
+      <div class="metric-row">
+        <div class="metric-big">184K</div>
+        <div class="metric-delta">↑ 312% YoY</div>
+      </div>
+      <div class="bar-chart" id="barChart"></div>
+      <div class="bar-labels">
+        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+      </div>
+      <div class="card-divider"></div>
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="ms-val">2,847</div>
+          <div class="ms-label">Keywords ranking</div>
+          <div class="ms-delta">↑ 94 this week</div>
+        </div>
+        <div class="mini-stat">
+          <div class="ms-val">$62K</div>
+          <div class="ms-label">Traffic value / mo</div>
+          <div class="ms-delta">↑ 41% vs last mo</div>
+        </div>
+        <div class="mini-stat">
+          <div class="ms-val">4.8×</div>
+          <div class="ms-label">Average ROI</div>
+          <div class="ms-delta">↑ from 2.1× at start</div>
+        </div>
+        <div class="mini-stat">
+          <div class="ms-val">68</div>
+          <div class="ms-label">DA score</div>
+          <div class="ms-delta">↑ from 31</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     TRUST / LOGO BAR
+══════════════════════════════════ -->
+<section id="trust">
+  <div class="trust-inner">
+    <p class="trust-label">Trusted by fast-growing brands across industries</p>
+    <div class="logo-strip reveal">
+      <span class="logo-chip">Meridian</span>
+      <span class="logo-chip">Foxline</span>
+      <span class="logo-chip">Kasparo</span>
+      <span class="logo-chip">Altivex</span>
+      <span class="logo-chip">Novexa</span>
+      <span class="logo-chip">Stratum</span>
+      <span class="logo-chip">Clermont</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     RESULTS / STATS
+══════════════════════════════════ -->
+<section id="results">
+  <div class="results-inner">
+    <div class="results-top">
+      <div class="section-badge">Proven results</div>
+      <h2 class="section-title reveal">Numbers that matter</h2>
+      <p class="section-sub reveal">We measure success in revenue, not vanity metrics. Here's what our clients actually see.</p>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-num"><span>312</span>%</div>
+        <div class="stat-desc">Average organic traffic increase in the first 12 months</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num"><span>4.8</span>×</div>
+        <div class="stat-desc">Average ROI on SEO investment across all client accounts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num"><span>90</span>d</div>
+        <div class="stat-desc">Typical time to first page-1 ranking for target keywords</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num"><span>97</span>%</div>
+        <div class="stat-desc">Client retention rate after the first year of partnership</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SERVICES
+══════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-badge">What we do</div>
+      <h2 class="section-title reveal">Every facet of SEO,<br>done properly.</h2>
+      <p class="section-sub reveal">We don't dabble. Each service is run by a specialist who lives and breathes that discipline.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🔍</div>
+        <div class="service-name">Technical SEO</div>
+        <p class="service-desc">Crawlability, Core Web Vitals, structured data, log file analysis — we fix the foundations that hold most sites back without them knowing it.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card featured reveal" style="transition-delay:0.08s">
+        <div class="service-icon">✍️</div>
+        <div class="service-name">Content Strategy</div>
+        <p class="service-desc">Keyword research, topical authority mapping, content briefs and production — we build content that ranks and converts, not just fills pages.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.16s">
+        <div class="service-icon">🔗</div>
+        <div class="service-name">Link Building</div>
+        <p class="service-desc">White-hat digital PR, editorial outreach, broken-link building — we earn links from sites Google actually trusts, not bulk directories.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.08s">
+        <div class="service-icon">📍</div>
+        <div class="service-name">Local SEO</div>
+        <p class="service-desc">Google Business Profile optimisation, citation building, local schema and review strategy — dominate the map pack in your area.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.16s">
+        <div class="service-icon">🛒</div>
+        <div class="service-name">eCommerce SEO</div>
+        <p class="service-desc">Category architecture, faceted navigation, product page optimisation and Shopify/WooCommerce technical fixes that move revenue.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.24s">
+        <div class="service-icon">📊</div>
+        <div class="service-name">SEO Analytics</div>
+        <p class="service-desc">Custom dashboards, GA4 and GSC setup, attribution modelling — you'll always know exactly what's working and why.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PROCESS
+══════════════════════════════════ -->
+<section id="process">
+  <div class="container">
+    <div class="process-grid">
+      <div>
+        <div class="section-badge">How it works</div>
+        <h2 class="section-title reveal">From audit to<br>page 1 in 4 steps.</h2>
+        <p class="section-sub reveal" style="margin-bottom:36px">No fluff, no 6-month onboarding. We move fast and show our work every step of the way.</p>
+        <div class="process-steps">
+          <div class="step active reveal">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <div class="step-title">Free Site Audit</div>
+              <p class="step-text">We analyse your site's technical health, keyword landscape, backlink profile and competitors — then build a roadmap with a clear ROI projection.</p>
+            </div>
+          </div>
+          <div class="step reveal" style="transition-delay:0.08s">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <div class="step-title">Strategy & Quick Wins</div>
+              <p class="step-text">We prioritise the highest-impact actions first — technical fixes that unblock indexing, and content updates that capture existing demand immediately.</p>
+            </div>
+          </div>
+          <div class="step reveal" style="transition-delay:0.16s">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <div class="step-title">Content & Authority</div>
+              <p class="step-text">We build out your topical authority with original content and earn editorial links from high-DA publications in your niche.</p>
+            </div>
+          </div>
+          <div class="step reveal" style="transition-delay:0.24s">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <div class="step-title">Scale & Report</div>
+              <p class="step-text">Monthly reporting tied to revenue, not just rankings. As results compound, we reinvest into the channels delivering the highest returns.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-visual reveal">
+        <div class="visual-title">Keyword rankings — after 6 months</div>
+        <div class="keyword-rows" id="kwRows"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CASE STUDIES
+══════════════════════════════════ -->
+<section id="cases">
+  <div class="container">
+    <div class="cases-header">
+      <div class="section-badge">Case studies</div>
+      <h2 class="section-title reveal">Real clients.<br>Real results.</h2>
+      <p class="section-sub reveal">No cherry-picked outliers. These are typical outcomes for businesses who commit to the process.</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-top">
+          <div class="case-industry">SaaS · B2B</div>
+          <div class="case-client">Meridian Analytics</div>
+          <p class="case-desc">Grew organic pipeline from near zero to their #1 acquisition channel in 11 months, displacing a $40K/month PPC spend.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><div class="cm-val">+487%</div><div class="cm-label">Organic sessions</div></div>
+          <div class="cm"><div class="cm-val">214</div><div class="cm-label">Keywords on page 1</div></div>
+          <div class="cm"><div class="cm-val">$1.2M</div><div class="cm-label">Pipeline attributed</div></div>
+          <div class="cm"><div class="cm-val">11mo</div><div class="cm-label">To #1 revenue channel</div></div>
+        </div>
+      </div>
+      <div class="case-card reveal" style="transition-delay:0.08s">
+        <div class="case-top">
+          <div class="case-industry">eCommerce · Fashion</div>
+          <div class="case-client">Foxline Store</div>
+          <p class="case-desc">Fixed a catastrophic crawl budget issue causing 60% of products to be invisible to Google, then rebuilt category authority.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><div class="cm-val">+312%</div><div class="cm-label">Organic revenue</div></div>
+          <div class="cm"><div class="cm-val">8.2×</div><div class="cm-label">SEO ROI</div></div>
+          <div class="cm"><div class="cm-val">6,400</div><div class="cm-label">Products indexed</div></div>
+          <div class="cm"><div class="cm-val">90d</div><div class="cm-label">To first major result</div></div>
+        </div>
+      </div>
+      <div class="case-card reveal" style="transition-delay:0.16s">
+        <div class="case-top">
+          <div class="case-industry">Professional Services · Legal</div>
+          <div class="case-client">Kasparo Law</div>
+          <p class="case-desc">Dominated local map pack in 3 cities simultaneously, cutting cost-per-lead by 68% versus their previous paid search strategy.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><div class="cm-val">−68%</div><div class="cm-label">Cost per lead</div></div>
+          <div class="cm"><div class="cm-val">#1</div><div class="cm-label">Map pack, 3 cities</div></div>
+          <div class="cm"><div class="cm-val">+290%</div><div class="cm-label">Inbound calls</div></div>
+          <div class="cm"><div class="cm-val">4mo</div><div class="cm-label">To map pack dominance</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testi-header">
+      <div class="section-badge">What clients say</div>
+      <h2 class="section-title reveal">Don't take our word for it.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Russell Digital didn't just improve our rankings — they fundamentally changed how we think about organic growth. SEO is now our most profitable channel by a distance.</p>
+        <div class="testi-author">
+          <div class="testi-av">JM</div>
+          <div>
+            <div class="testi-name">James Morley</div>
+            <div class="testi-role">CEO, Meridian Analytics</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.08s">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">We'd tried two other agencies before. The difference with Russell Digital is the transparency — we see everything in real time and actually understand what they're doing and why.</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#0d40c6">SR</div>
+          <div>
+            <div class="testi-name">Sarah Reeves</div>
+            <div class="testi-role">Marketing Director, Foxline</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.16s">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Within 4 months we were appearing in the map pack across all three of our target cities. The inbound volume increased to the point we had to hire two new intake specialists.</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#1e40af">AK</div>
+          <div>
+            <div class="testi-name">Alex Kasparo</div>
+            <div class="testi-role">Managing Partner, Kasparo Law</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PRICING
+══════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="section-badge">Pricing</div>
+      <h2 class="section-title reveal">Simple, transparent pricing.</h2>
+      <p class="section-sub reveal">No lock-in contracts. Cancel anytime. Every plan includes a dedicated account strategist.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan-card reveal">
+        <div class="plan-tag">Starter</div>
+        <div class="plan-name">Growth</div>
+        <p class="plan-desc">For small businesses and startups building their first serious SEO presence.</p>
+        <div class="plan-price">
+          <div class="plan-amount"><sup>$</sup>1,500</div>
+          <div class="plan-period">per month</div>
+        </div>
+        <ul class="plan-features">
+          <li>Technical SEO audit & fixes</li>
+          <li>4 optimised blog posts/mo</li>
+          <li>5 backlinks per month</li>
+          <li>Monthly reporting dashboard</li>
+          <li>Dedicated strategist</li>
+        </ul>
+        <a href="#cta-section" class="plan-cta">Get started</a>
+      </div>
+      <div class="plan-card popular reveal" style="transition-delay:0.08s">
+        <div class="plan-tag">Most popular</div>
+        <div class="plan-name">Scale</div>
+        <p class="plan-desc">For growing businesses ready to make SEO their primary acquisition channel.</p>
+        <div class="plan-price">
+          <div class="plan-amount"><sup>$</sup>3,500</div>
+          <div class="plan-period">per month</div>
+        </div>
+        <ul class="plan-features">
+          <li>Everything in Growth</li>
+          <li>10 content pieces/mo</li>
+          <li>15 backlinks per month</li>
+          <li>CRO & conversion tracking</li>
+          <li>Competitor monitoring</li>
+          <li>Bi-weekly strategy calls</li>
+        </ul>
+        <a href="#cta-section" class="plan-cta">Get started</a>
+      </div>
+      <div class="plan-card reveal" style="transition-delay:0.16s">
+        <div class="plan-tag">Enterprise</div>
+        <div class="plan-name">Dominate</div>
+        <p class="plan-desc">For established brands that want category leadership across multiple markets.</p>
+        <div class="plan-price">
+          <div class="plan-amount">Custom</div>
+          <div class="plan-period">bespoke engagement</div>
+        </div>
+        <ul class="plan-features">
+          <li>Everything in Scale</li>
+          <li>Unlimited content production</li>
+          <li>Digital PR campaigns</li>
+          <li>Multi-market / multilingual</li>
+          <li>Dedicated team of 4+</li>
+          <li>Weekly executive reporting</li>
+        </ul>
+        <a href="#cta-section" class="plan-cta">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FAQ
+══════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="faq-header">
+        <div class="section-badge">FAQ</div>
+        <h2 class="section-title reveal">Questions we get asked a lot.</h2>
+      </div>
+      <div id="faqList">
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">How long does SEO take to show results?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">Most clients see meaningful movement in rankings within 60–90 days. Significant traffic and revenue impact typically takes 4–6 months. SEO is a compounding investment — the longer you run it, the better the ROI becomes. We also prioritise quick wins in the first 30 days so you see momentum immediately.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">Do you guarantee page 1 rankings?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">No — and you should be wary of any agency that does. Google's algorithm is complex and no one can guarantee positions. What we do guarantee is a transparent process, work we're proud to show you, and a clear ROI methodology. 97% of our clients see page-1 results within 90 days because of how we work, not because we made promises.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">What makes Russell Digital different from other SEO agencies?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">Three things: specialists not generalists (your account is handled by people who only do SEO, not account managers who dabble), full transparency (you see everything we do in real time), and a revenue focus (we tie every activity to pipeline and revenue, not just traffic vanity metrics).</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">Is there a minimum contract length?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">No lock-in contracts. We work on a rolling monthly basis. We do ask for at least 3 months to show meaningful results — SEO is not a one-month activity — but you're never contractually obligated to stay.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">What industries do you work with?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">We work across SaaS, eCommerce, professional services, healthcare, fintech and more. Our approach is industry-agnostic at the technical level, but we do assign strategists who have experience in your sector so the content and keyword strategy is grounded in how your buyers actually search.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CTA / AUDIT FORM
+══════════════════════════════════ -->
+<section id="cta-section">
+  <div class="cta-inner">
+    <div class="section-badge" style="background:rgba(26,86,240,0.15);border-color:rgba(26,86,240,0.3);">Free audit — no obligation</div>
+    <h2 class="cta-title reveal">Ready to own<br>your market?</h2>
+    <p class="cta-sub reveal">Fill in the form and we'll send you a full SEO audit of your site within 48 hours — completely free, no strings attached.</p>
+    <div class="audit-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your name</label>
+          <input type="text" placeholder="Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label>Work email</label>
+          <input type="email" placeholder="jane@company.com" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Company</label>
+          <input type="text" placeholder="Acme Corp" />
+        </div>
+        <div class="form-group">
+          <label>Monthly SEO budget</label>
+          <input type="text" placeholder="e.g. $2,000–$5,000" />
+        </div>
+      </div>
+      <div class="form-full">
+        <div class="form-group">
+          <label>Website URL</label>
+          <input type="url" placeholder="https://yourwebsite.com" />
+        </div>
+      </div>
+      <button class="form-submit" onclick="handleSubmit(this)">Send Me My Free Audit →</button>
+      <p class="form-note">No spam. No sales calls unless you ask for one. Audit delivered within 48 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/><path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/><circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/><circle cx="17.5" cy="5.5" r="1" fill="white"/></svg>
+          </div>
+          <div class="logo-text"><span class="logo-name">Russell Digital</span><span class="logo-tagline">SEO Agency</span></div>
+        </a>
+        <p class="footer-desc">Performance SEO that turns organic search into your most profitable growth channel.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">Technical SEO</a>
+        <a href="#">Content Strategy</a>
+        <a href="#">Link Building</a>
+        <a href="#">Local SEO</a>
+        <a href="#">eCommerce SEO</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Case Studies</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">SEO Guides</a>
+        <a href="#">Free Tools</a>
+        <a href="#">Knowledge Base</a>
+        <a href="#">Reports</a>
+        <a href="#">Free Audit</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Russell Digital Ltd. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Settings</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Bar chart ── */
+  const barData = [22, 31, 38, 45, 58, 72, 88, 100];
+  const chart = document.getElementById('barChart');
+  if (chart) {
+    barData.forEach((h, i) => {
+      const bar = document.createElement('div');
+      bar.className = 'bar' + (i === barData.length - 1 ? ' highlight' : '');
+      bar.innerHTML = `<div class="fill" style="height:0%"></div>`;
+      chart.appendChild(bar);
+      setTimeout(() => { bar.querySelector('.fill').style.height = h + '%'; }, 200 + i * 60);
+    });
+  }
+
+  /* ── Keyword rows ── */
+  const keywords = [
+    { kw: 'seo agency london', pos: 1, w: 98 },
+    { kw: 'technical seo services', pos: 2, w: 92 },
+    { kw: 'link building agency', pos: 3, w: 85 },
+    { kw: 'content strategy seo', pos: 4, w: 78 },
+    { kw: 'local seo company', pos: 5, w: 72 },
+    { kw: 'ecommerce seo agency', pos: 7, w: 60 },
+    { kw: 'seo audit service', pos: 9, w: 48 },
+  ];
+  const kwRows = document.getElementById('kwRows');
+  if (kwRows) {
+    keywords.forEach(({ kw, pos, w }) => {
+      const cls = pos <= 3 ? 'good' : pos <= 6 ? 'mid' : 'low';
+      kwRows.innerHTML += `
+        <div class="kw-row">
+          <div class="kw-label">${kw}</div>
+          <div class="kw-bar-track"><div class="kw-bar-fill" style="width:${w}%"></div></div>
+          <div class="kw-pos ${cls}">#${pos}</div>
+        </div>`;
+    });
+  }
+
+  /* ── Mobile drawer ── */
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('mobileDrawer');
+  const overlay   = document.getElementById('drawerOverlay');
+  const closeBtn  = document.getElementById('drawerClose');
+
+  const openDrawer  = () => { drawer.classList.add('open'); hamburger.classList.add('open'); document.body.style.overflow='hidden'; };
+  const closeDrawer = () => { drawer.classList.remove('open'); hamburger.classList.remove('open'); document.body.style.overflow=''; };
+
+  hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+  overlay.addEventListener('click', closeDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  document.querySelectorAll('[data-accordion]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id   = btn.dataset.accordion;
+      const sub  = document.getElementById(id);
+      const open = sub.classList.contains('open');
+      document.querySelectorAll('.m-sub').forEach(s => s.classList.remove('open'));
+      document.querySelectorAll('[data-accordion]').forEach(b => b.classList.remove('expanded'));
+      if (!open) { sub.classList.add('open'); btn.classList.add('expanded'); }
+    });
+  });
+
+  /* ── Mobile nav links close drawer ── */
+  document.querySelectorAll('.m-link[href], .m-sub-link').forEach(a => {
+    a.addEventListener('click', closeDrawer);
+  });
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ── Process steps ── */
+  document.querySelectorAll('.step').forEach(step => {
+    step.addEventListener('mouseenter', () => {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+    });
+  });
+
+  /* ── Scroll reveal ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Form submit ── */
+  function handleSubmit(btn) {
+    btn.textContent = '✓ Audit request sent! Check your inbox within 48h.';
+    btn.style.background = '#16a34a';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
