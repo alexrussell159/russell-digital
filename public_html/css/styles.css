@@ -112,7 +112,7 @@ header {
 }
 
 .logo-name {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 800;
   font-size: 1.05rem;
   letter-spacing: -0.03em;
@@ -298,7 +298,7 @@ header {
 }
 
 .btn-primary {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 0.845rem;
   letter-spacing: -0.01em;
@@ -623,7 +623,7 @@ header {
 }
 
 .hero-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 800;
   font-size: clamp(2.4rem, 7vw, 5rem);
   letter-spacing: -0.04em;
@@ -728,7 +728,7 @@ footer {
 }
 
 .cta-band-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 800;
   line-height: 0.98;
@@ -743,7 +743,7 @@ footer {
 }
 
 .btn-white {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 0.845rem;
   letter-spacing: -0.01em;
@@ -852,7 +852,7 @@ footer {
 }
 
 .footer-col-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 0.08em;
@@ -911,7 +911,7 @@ footer {
 }
 
 .newsletter-label {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   color: var(--text);
