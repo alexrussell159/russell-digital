@@ -84,8 +84,6 @@ header {
   gap: 10px;
   text-decoration: none;
   flex-shrink: 0;
-  max-width: 36px;
-  height: 36px;
 }
 
 .logo-mark {
