@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -46,11 +46,11 @@ header {
   z-index: 200;
   height: calc(var(--nav-h) + var(--header-pad-v) + 4px);
   padding: var(--header-pad-v) 1.5rem 0;
-  pointer-events: none;
+  poDM Sans-events: none;
 }
 
 .nav-wrap {
-  pointer-events: all;
+  poDM Sans-events: all;
   max-width: 1280px;
   margin: 0 auto;
   height: var(--nav-h);
@@ -112,7 +112,7 @@ header {
 }
 
 .logo-name {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 800;
   font-size: 1.05rem;
   letter-spacing: -0.03em;
@@ -149,10 +149,10 @@ header {
   align-items: center;
   gap: 5px;
   white-space: nowrap;
-  cursor: pointer;
+  cursor: poDM Sans;
   background: transparent;
   border: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   line-height: 1;
 }
 
@@ -201,19 +201,19 @@ header {
   box-shadow: 0 16px 48px rgba(0,0,0,0.11), 0 2px 8px rgba(0,0,0,0.05);
   padding: 7px;
   opacity: 0;
-  pointer-events: none;
+  poDM Sans-events: none;
   transition: opacity 0.16s, transform 0.22s cubic-bezier(.22,1,.36,1);
 }
 
 .nav-item:hover > .dropdown {
   opacity: 1;
-  pointer-events: all;
+  poDM Sans-events: all;
   transform: translateX(-50%) translateY(0);
 }
 
 .dropdown:hover {
   opacity: 1;
-  pointer-events: all;
+  poDM Sans-events: all;
   transform: translateX(-50%) translateY(0);
 }
 
@@ -283,11 +283,11 @@ header {
   color: var(--muted);
   background: transparent;
   border: none;
-  cursor: pointer;
+  cursor: poDM Sans;
   padding: 8px 13px;
   border-radius: 10px;
   transition: color 0.15s, background 0.15s;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -298,7 +298,7 @@ header {
 }
 
 .btn-primary {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: 0.845rem;
   letter-spacing: -0.01em;
@@ -307,7 +307,7 @@ header {
   border: none;
   border-radius: 12px;
   padding: 10px 20px;
-  cursor: pointer;
+  cursor: poDM Sans;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -343,7 +343,7 @@ header {
   justify-content: center;
   align-items: flex-end;
   gap: 5px;
-  cursor: pointer;
+  cursor: poDM Sans;
   padding: 7px 8px;
   border-radius: 10px;
   background: transparent;
@@ -398,7 +398,7 @@ header {
   position: fixed;
   inset: 0;
   z-index: 400;
-  pointer-events: none;
+  poDM Sans-events: none;
 }
 
 .drawer-overlay {
@@ -427,7 +427,7 @@ header {
 }
 
 .mobile-drawer.open {
-  pointer-events: all;
+  poDM Sans-events: all;
 }
 
 .mobile-drawer.open .drawer-overlay {
@@ -453,7 +453,7 @@ header {
   border-radius: 9px;
   border: 1px solid var(--border);
   background: transparent;
-  cursor: pointer;
+  cursor: poDM Sans;
   display: grid;
   place-items: center;
   font-size: 1rem;
@@ -485,10 +485,10 @@ header {
   color: var(--text);
   text-decoration: none;
   transition: background 0.14s;
-  cursor: pointer;
+  cursor: poDM Sans;
   background: transparent;
   border: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   width: 100%;
   text-align: left;
 }
@@ -728,7 +728,7 @@ footer {
 }
 
 .cta-band-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 800;
   line-height: 0.98;
@@ -743,7 +743,7 @@ footer {
 }
 
 .btn-white {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: 0.845rem;
   letter-spacing: -0.01em;
@@ -752,7 +752,7 @@ footer {
   border: none;
   border-radius: 12px;
   padding: 11px 20px;
-  cursor: pointer;
+  cursor: poDM Sans;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -777,7 +777,7 @@ footer {
 }
 
 .btn-ghost-white {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--white);
@@ -832,7 +832,7 @@ footer {
   background: transparent;
   display: grid;
   place-items: center;
-  cursor: pointer;
+  cursor: poDM Sans;
   text-decoration: none;
   color: var(--muted);
   transition: background 0.14s, border-color 0.14s, transform 0.14s;
@@ -852,7 +852,7 @@ footer {
 }
 
 .footer-col-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 0.08em;
@@ -911,7 +911,7 @@ footer {
 }
 
 .newsletter-label {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   color: var(--text);
@@ -932,7 +932,7 @@ footer {
 }
 
 .newsletter-input {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   height: 46px;
   min-width: 250px;
   border: 1px solid var(--border);
@@ -956,10 +956,10 @@ footer {
   color: var(--white);
   border-radius: 12px;
   padding: 0 18px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.88rem;
   font-weight: 600;
-  cursor: pointer;
+  cursor: poDM Sans;
   transition: transform 0.14s, opacity 0.14s;
 }
 
