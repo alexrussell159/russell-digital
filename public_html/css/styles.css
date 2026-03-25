@@ -623,7 +623,7 @@ header {
 }
 
 .hero-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 800;
   font-size: clamp(2.4rem, 7vw, 5rem);
   letter-spacing: -0.04em;
