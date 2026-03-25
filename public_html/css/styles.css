@@ -84,7 +84,7 @@ header {
   gap: 10px;
   text-decoration: none;
   flex-shrink: 0;
-  width: 36px;
+  max-width: 36px;
   height: 36px;
 }
 
