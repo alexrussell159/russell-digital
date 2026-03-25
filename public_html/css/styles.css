@@ -33,7 +33,7 @@ body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  min-height: 200vh;
+  min-height: 100vh;
   overflow-x: hidden;
   padding-top: calc(var(--nav-h) + var(--header-pad-v) + 20px);
 }
@@ -688,7 +688,7 @@ header {
    FOOTER
 ══════════════════════════════════════ */
 footer {
-  padding: 96px 1.5rem 40px;
+  padding: 64px 1.5rem 40px;
 }
 
 .footer-wrap {
