@@ -1,109 +1,543 @@
-<div class="footer-wrap">
- 
-    <div class="footer-cta-band">
-      <div class="cta-band-text">
-        <div class="cta-band-eyebrow">Ready to grow?</div>
-        <div class="cta-band-title">Let's build your<br>organic presence.</div>
+<!-- ============================================================
+     RUSSELL DIGITAL — Footer Component
+     Injected via loadComponent.js into <div id="rd-footer">
+     ============================================================ -->
+
+<style>
+  /* ── Footer shell ─────────────────────────────────────────── */
+  .site-footer {
+    background: var(--ink, #0d0d0b);
+    color: var(--white, #ffffff);
+    padding-top: 0;
+  }
+
+  /* ── CTA band ─────────────────────────────────────────────── */
+  .footer-cta {
+    background: var(--cobalt, #1246f5);
+    padding: clamp(48px, 6vw, 80px) var(--gutter, 48px);
+  }
+
+  .footer-cta-inner {
+    max-width: var(--max-w, 1320px);
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .footer-cta-text {}
+
+  .footer-cta-eyebrow {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-cta-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: rgba(255,255,255,0.40);
+  }
+
+  .footer-cta-title {
+    font-family: var(--serif, 'Instrument Serif', serif);
+    font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: var(--white, #ffffff);
+  }
+
+  .footer-cta-title em {
+    font-style: italic;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .footer-cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .footer-btn-white {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: -0.01em;
+    background: var(--white, #ffffff);
+    color: var(--cobalt, #1246f5);
+    border-radius: 12px;
+    padding: 13px 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.16s, box-shadow 0.16s;
+    white-space: nowrap;
+  }
+  .footer-btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  }
+
+  .footer-btn-arrow {
+    width: 20px;
+    height: 20px;
+    background: rgba(18,70,245,0.10);
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    font-size: 0.72rem;
+  }
+
+  .footer-btn-ghost {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.70);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.20);
+    padding: 12px 20px;
+    border-radius: 12px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .footer-btn-ghost:hover {
+    background: rgba(255,255,255,0.10);
+    color: var(--white, #ffffff);
+  }
+
+  /* ── Main footer body ─────────────────────────────────────── */
+  .footer-body {
+    max-width: var(--max-w, 1320px);
+    margin-inline: auto;
+    padding: clamp(56px, 6vw, 80px) var(--gutter, 48px) 0;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: clamp(32px, 4vw, 60px);
+  }
+
+  /* Brand column */
+  .footer-brand {}
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 20px;
+  }
+
+  .footer-logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    flex-shrink: 0;
+  }
+
+  .footer-logo-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+  }
+
+  .footer-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 2px;
+  }
+
+  .footer-logo-name {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-weight: 800;
+    font-size: 0.9375rem;
+    letter-spacing: -0.03em;
+    color: var(--white, #ffffff);
+  }
+
+  .footer-logo-tagline {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(18,70,245,0.8);
+    color: #7096ff;
+  }
+
+  .footer-desc {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    max-width: 280px;
+    margin-bottom: 28px;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 8px;
+  }
+
+  .social-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.05);
+    display: grid;
+    place-items: center;
+    color: rgba(255,255,255,0.45);
+    transition: background 0.14s, border-color 0.14s, color 0.14s, transform 0.14s;
+  }
+  .social-btn:hover {
+    background: var(--cobalt, #1246f5);
+    border-color: var(--cobalt, #1246f5);
+    color: var(--white, #ffffff);
+    transform: translateY(-2px);
+  }
+  .social-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+
+  /* Link columns */
+  .footer-col {}
+
+  .footer-col-title {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .footer-col ul li a {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    padding: 5px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.14s;
+  }
+  .footer-col ul li a:hover { color: var(--white, #ffffff); }
+
+  .link-badge {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(18,70,245,0.25);
+    color: #7096ff;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* ── Newsletter strip ─────────────────────────────────────── */
+  .footer-newsletter {
+    max-width: var(--max-w, 1320px);
+    margin-inline: auto;
+    margin-top: clamp(48px, 5vw, 64px);
+    padding: 0 var(--gutter, 48px);
+  }
+
+  .footer-newsletter-inner {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .newsletter-copy {}
+
+  .newsletter-label {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--white, #ffffff);
+    margin-bottom: 3px;
+  }
+
+  .newsletter-sub {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.40);
+    font-weight: 300;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .newsletter-input {
+    font-family: var(--sans, 'Geist', sans-serif);
+    height: 44px;
+    min-width: 240px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 0 14px;
+    font-size: 0.875rem;
+    color: var(--white, #ffffff);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .newsletter-input::placeholder { color: rgba(255,255,255,0.30); }
+  .newsletter-input:focus {
+    border-color: rgba(18,70,245,0.60);
+    box-shadow: 0 0 0 4px rgba(18,70,245,0.15);
+  }
+
+  .newsletter-btn {
+    font-family: var(--sans, 'Geist', sans-serif);
+    height: 44px;
+    background: var(--cobalt, #1246f5);
+    color: var(--white, #ffffff);
+    border-radius: 10px;
+    padding: 0 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background 0.14s, transform 0.14s;
+    white-space: nowrap;
+  }
+  .newsletter-btn:hover {
+    background: #0a34c7;
+    transform: translateY(-1px);
+  }
+
+  /* ── Bottom bar ───────────────────────────────────────────── */
+  .footer-bottom {
+    max-width: var(--max-w, 1320px);
+    margin-inline: auto;
+    padding: 28px var(--gutter, 48px) 36px;
+    margin-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.28);
+    font-weight: 300;
+  }
+
+  .footer-copy strong {
+    font-weight: 600;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .footer-legal {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-legal a {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.28);
+    font-weight: 400;
+    transition: color 0.14s;
+  }
+  .footer-legal a:hover { color: rgba(255,255,255,0.65); }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .footer-body { grid-template-columns: 1fr 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-brand .footer-desc { max-width: 100%; }
+  }
+
+  @media (max-width: 900px) {
+    .footer-cta-inner { flex-direction: column; align-items: flex-start; }
+
+    .footer-body {
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+    .footer-brand { grid-column: auto; }
+
+    .footer-newsletter-inner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-input { min-width: 0; width: 100%; }
+    .newsletter-btn { width: 100%; height: 48px; }
+  }
+
+  @media (max-width: 640px) {
+    .footer-body { grid-template-columns: 1fr; }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .footer-cta-actions { flex-direction: column; align-items: stretch; }
+    .footer-btn-white,
+    .footer-btn-ghost { justify-content: center; }
+
+    .footer-newsletter-inner { padding: 20px; }
+    .footer-newsletter { padding-inline: var(--gutter, 20px); }
+  }
+</style>
+
+<footer class="site-footer" role="contentinfo">
+
+  <!-- CTA band -->
+  <div class="footer-cta">
+    <div class="footer-cta-inner">
+      <div class="footer-cta-text">
+        <div class="footer-cta-eyebrow">Ready to grow?</div>
+        <h2 class="footer-cta-title">Own your market.<br><em>Start with a free audit.</em></h2>
       </div>
-      <div class="cta-band-actions">
-        <a href="#" class="btn-white">Get a Free Audit <span class="arrow">→</span></a>
-        <a href="#" class="btn-ghost-white">View Case Studies</a>
-      </div>
-    </div>
- 
-    <div class="footer-main">
- 
-      <div class="footer-brand">
-        <a href="https://russelldigitalads.com/" class="logo">
-          <div class="logo-mark img">
-            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="36" height="36" rx="9" fill="#1a56f0"/>
-              <rect x="9" y="8" width="3.5" height="20" rx="1.5" fill="white"/>
-              <path d="M12.5 8H19C22.5 8 25.5 11 25.5 14.5C25.5 18 22.5 21 19 21H12.5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <path d="M12.5 21L24 28" stroke="white" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="logo-text">
-            <span class="logo-name">Russell Digital</span>
-            <span class="logo-tagline">SEO Agency</span>
-          </div>
+      <div class="footer-cta-actions">
+        <a href="free-audit.html" class="footer-btn-white">
+          Get a Free Audit <span class="footer-btn-arrow">→</span>
         </a>
-        <p class="footer-desc">
-          Performance-focused SEO for brands that want sustainable traffic, better rankings, and measurable revenue growth.
-        </p>
-        <div class="footer-socials">
-          <a href="#" class="social-btn" aria-label="Twitter / X">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.77 7.74L23 22h-6.1l-4.77-6.24L6.67 22H3.56l7.24-8.28L1 2h6.25l4.31 5.71L18.9 2Z"/></svg>
-          </a>
-          <a href="#" class="social-btn" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.56a1.95 1.95 0 1 0-3.9 0 1.95 1.95 0 0 0 3.9 0ZM20 13.1c0-3.44-1.83-5.03-4.28-5.03-1.97 0-2.85 1.08-3.35 1.84V8.5H9V20h3.37v-6.39c0-1.68.32-3.31 2.4-3.31 2.05 0 2.08 1.92 2.08 3.42V20H20v-6.9Z"/></svg>
-          </a>
-          <a href="#" class="social-btn" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a2.98 2.98 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A2.98 2.98 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 2.98 2.98 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a2.98 2.98 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.4 3.7-6.4 3.7Z"/></svg>
-          </a>
-        </div>
-      </div>
- 
-      <div class="footer-col">
-        <div class="footer-col-title">Services</div>
-        <ul>
-          <li><a href="#">Technical SEO</a></li>
-          <li><a href="#">Local SEO</a></li>
-          <li><a href="#">Content Strategy</a></li>
-          <li><a href="#">E-commerce SEO</a></li>
-          <li><a href="#">Enterprise SEO</a></li>
-        </ul>
-      </div>
- 
-      <div class="footer-col">
-        <div class="footer-col-title">Company</div>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Case Studies</a></li>
-          <li><a href="#">Pricing</a></li>
-          <li><a href="#">Careers <span class="link-badge">Hiring</span></a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
- 
-      <div class="footer-col">
-        <div class="footer-col-title">Resources</div>
-        <ul>
-          <li><a href="#">SEO Guides</a></li>
-          <li><a href="#">Free Tools <span class="link-badge">New</span></a></li>
-          <li><a href="#">Reports &amp; Data</a></li>
-          <li><a href="#">Knowledge Base</a></li>
-          <li><a href="#">Blog</a></li>
-        </ul>
-      </div>
- 
-    </div>
- 
-    <div class="footer-newsletter">
-      <div>
-        <div class="newsletter-label">Stay ahead of the algorithm.</div>
-        <div class="newsletter-sub">Weekly SEO insights, no fluff.</div>
-      </div>
-      <div class="newsletter-form">
-        <input class="newsletter-input" type="email" placeholder="your@email.com" aria-label="Email address" />
-        <button class="btn-subscribe" type="submit">Subscribe</button>
+        <a href="case-studies.html" class="footer-btn-ghost">See Results</a>
       </div>
     </div>
- 
-    <div class="footer-trust">
-      <span class="trust-label">Trusted by:</span>
-      <span class="trust-badge"><span class="trust-badge-icon">⭐</span> 400+ brands</span>
-      <span class="trust-badge"><span class="trust-badge-icon">🔒</span> No lock-in contracts</span>
-      <span class="trust-badge"><span class="trust-badge-icon">📈</span> 97% retention rate</span>
-    </div>
- 
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2025 <strong>Russell Digital</strong>. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms</a>
-        <a href="#">Cookies</a>
-      </div>
-    </div>
- 
   </div>
+
+  <!-- Main grid -->
+  <div class="footer-body">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo" aria-label="Russell Digital – Home">
+        <div class="footer-logo-icon">
+          <img src="assets/russell-digital-favicon.png" alt="Russell Digital logo" width="28" height="28" />
+        </div>
+        <div class="footer-logo-text">
+          <span class="footer-logo-name">Russell Digital</span>
+          <span class="footer-logo-tagline">SEO Agency</span>
+        </div>
+      </a>
+      <p class="footer-desc">
+        Performance-driven SEO that turns organic search into your most profitable acquisition channel — no guesswork, no vanity metrics.
+      </p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.77 7.74L23 22h-6.1l-4.77-6.24L6.67 22H3.56l7.24-8.28L1 2h6.25l4.31 5.71L18.9 2Z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.56a1.95 1.95 0 1 0-3.9 0 1.95 1.95 0 0 0 3.9 0ZM20 13.1c0-3.44-1.83-5.03-4.28-5.03-1.97 0-2.85 1.08-3.35 1.84V8.5H9V20h3.37v-6.39c0-1.68.32-3.31 2.4-3.31 2.05 0 2.08 1.92 2.08 3.42V20H20v-6.9Z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a2.98 2.98 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A2.98 2.98 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 2.98 2.98 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a2.98 2.98 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.4 3.7-6.4 3.7Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul>
+        <li><a href="services/technical-seo.html">Technical SEO</a></li>
+        <li><a href="services/content-strategy.html">Content Strategy</a></li>
+        <li><a href="services/link-building.html">Link Building</a></li>
+        <li><a href="services/local-seo.html">Local SEO</a></li>
+        <li><a href="services/ecommerce-seo.html">eCommerce SEO</a></li>
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="careers.html">Careers <span class="link-badge">Hiring</span></a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Resources -->
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <ul>
+        <li><a href="resources/seo-guides.html">SEO Guides</a></li>
+        <li><a href="resources/free-tools.html">Free Tools <span class="link-badge">New</span></a></li>
+        <li><a href="knowledge-base.html">Knowledge Base</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="free-audit.html">Free Audit</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Newsletter -->
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="newsletter-copy">
+        <div class="newsletter-label">Stay ahead of the algorithm.</div>
+        <div class="newsletter-sub">Weekly SEO insights — no fluff, no spam.</div>
+      </div>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input class="newsletter-input" type="email" placeholder="your@email.com" aria-label="Email address" autocomplete="email" />
+        <button class="newsletter-btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 <strong>Russell Digital Ltd.</strong> All rights reserved.</p>
+    <nav class="footer-legal" aria-label="Legal links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="#" id="cookieSettings">Cookie Settings</a>
+    </nav>
+  </div>
+
+</footer>

@@ -1,108 +1,584 @@
-<div class="nav-wrap">
- 
-    <a href="https://russelldigitalads.com/" class="logo">
-      <!-- Replace <svg> with <img src="assets/russell-digital-favicon.png" class="logo-mark img" alt="logo"> -->
-      <div class="logo-mark img">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="36" height="36" rx="9" fill="#1a56f0"/>
-          <rect x="9" y="8" width="3.5" height="20" rx="1.5" fill="white"/>
-          <path d="M12.5 8H19C22.5 8 25.5 11 25.5 14.5C25.5 18 22.5 21 19 21H12.5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M12.5 21L24 28" stroke="white" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+<!-- ============================================================
+     RUSSELL DIGITAL — Header Component
+     Injected via loadComponent.js into <div id="rd-header">
+     ============================================================ -->
+
+<style>
+  /* ── Nav shell ────────────────────────────────────────────── */
+  header.site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    padding: 12px var(--gutter, 48px);
+    transition: padding var(--dur-mid, 280ms) var(--ease-out, cubic-bezier(0.22,1,0.36,1));
+  }
+
+  .nav-wrap {
+    max-width: var(--max-w, 1320px);
+    margin-inline: auto;
+    height: 56px;
+    background: rgba(247,245,240,0.80);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(13,13,11,0.08);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px 0 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    transition: background var(--dur-mid, 280ms) var(--ease-out, cubic-bezier(0.22,1,0.36,1)),
+                box-shadow var(--dur-mid, 280ms) var(--ease-out, cubic-bezier(0.22,1,0.36,1));
+    animation: navIn 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  @keyframes navIn {
+    from { opacity: 0; transform: translateY(-20px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .nav-wrap.scrolled {
+    background: rgba(247,245,240,0.96);
+    box-shadow: 0 4px 28px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  /* ── Logo ─────────────────────────────────────────────────── */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    margin-right: 4px;
+  }
+
+  .logo-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-icon img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 2px;
+  }
+
+  .logo-name {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-weight: 800;
+    font-size: 0.9375rem;
+    letter-spacing: -0.03em;
+    color: var(--ink, #0d0d0b);
+  }
+
+  .logo-tagline {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cobalt, #1246f5);
+  }
+
+  /* ── Desktop nav ──────────────────────────────────────────── */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-item { position: relative; }
+
+  /* Bridge gap between trigger and dropdown */
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: -8px; right: -8px;
+    height: 16px;
+    display: none;
+  }
+  .nav-item:hover::after { display: block; }
+
+  .nav-link {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.8375rem;
+    font-weight: 500;
+    color: rgba(13,13,11,0.60);
+    padding: 7px 13px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.15s, background 0.15s;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover,
+  .nav-item:hover > .nav-link,
+  .nav-link.active {
+    color: var(--ink, #0d0d0b);
+    background: rgba(13,13,11,0.055);
+  }
+
+  .nav-link.active { font-weight: 600; }
+
+  .nav-chev {
+    width: 11px;
+    height: 11px;
+    opacity: 0.40;
+    transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), opacity 0.15s;
+    flex-shrink: 0;
+  }
+  .nav-item:hover > .nav-link .nav-chev {
+    transform: rotate(180deg);
+    opacity: 0.70;
+  }
+
+  .nav-rule {
+    width: 1px;
+    height: 18px;
+    background: rgba(13,13,11,0.12);
+    margin: 0 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── Dropdown ─────────────────────────────────────────────── */
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    min-width: 250px;
+    background: var(--white, #ffffff);
+    border: 1px solid rgba(13,13,11,0.09);
+    border-radius: 18px;
+    box-shadow: 0 20px 56px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+    padding: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.16s, transform 0.22s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .nav-item:hover > .dropdown {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .drop-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 11px;
+    font-size: 0.845rem;
+    color: rgba(13,13,11,0.65);
+    transition: background 0.14s, color 0.14s;
+  }
+
+  .drop-item:hover {
+    background: var(--cream, #f7f5f0);
+    color: var(--ink, #0d0d0b);
+  }
+
+  .drop-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--cream, #f7f5f0);
+    border: 1px solid rgba(13,13,11,0.07);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+  }
+
+  .drop-text { line-height: 1.2; }
+
+  .drop-text strong {
+    display: block;
+    font-weight: 600;
+    color: var(--ink, #0d0d0b);
+    font-size: 0.845rem;
+  }
+
+  .drop-text small {
+    font-size: 0.72rem;
+    color: rgba(13,13,11,0.45);
+    font-weight: 400;
+  }
+
+  /* ── CTA group ────────────────────────────────────────────── */
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+
+  /* Re-declare btn sizes here so header is self-contained */
+  .nav-btn-ghost {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.8375rem;
+    font-weight: 500;
+    color: rgba(13,13,11,0.55);
+    padding: 8px 14px;
+    border-radius: 10px;
+    transition: color 0.15s, background 0.15s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-btn-ghost:hover { background: rgba(13,13,11,0.055); color: var(--ink, #0d0d0b); }
+
+  .nav-btn-primary {
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-weight: 700;
+    font-size: 0.8375rem;
+    letter-spacing: -0.01em;
+    background: var(--cobalt, #1246f5);
+    color: var(--white, #ffffff);
+    padding: 9px 18px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background 0.16s, transform 0.16s, box-shadow 0.16s;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(18,70,245,0.30);
+  }
+  .nav-btn-primary:hover {
+    background: var(--cobalt-dark, #0a34c7);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(18,70,245,0.36);
+  }
+
+  .nav-arrow {
+    width: 18px;
+    height: 18px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Hamburger ────────────────────────────────────────────── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    width: 38px;
+    height: 38px;
+    padding: 7px;
+    border-radius: 10px;
+    border: 1px solid rgba(13,13,11,0.10);
+    transition: background 0.15s;
+  }
+  .hamburger:hover { background: rgba(13,13,11,0.055); }
+
+  .hamburger span {
+    display: block;
+    height: 1.5px;
+    background: var(--ink, #0d0d0b);
+    border-radius: 2px;
+    transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), opacity 0.2s, width 0.2s;
+    transform-origin: center;
+  }
+  .hamburger span:nth-child(1) { width: 16px; }
+  .hamburger span:nth-child(2) { width: 11px; }
+  .hamburger span:nth-child(3) { width: 16px; }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg);  width: 16px; }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 16px; }
+
+  /* ================================================================
+     MOBILE DRAWER
+     ================================================================ */
+  .mobile-drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 600;
+  }
+
+  .drawer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13,13,11,0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .drawer-panel {
+    position: absolute;
+    top: 0; right: 0;
+    width: min(360px, 94vw);
+    height: 100%;
+    background: var(--white, #ffffff);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    overflow-y: auto;
+  }
+
+  .mobile-drawer.open .drawer-overlay { opacity: 1; }
+  .mobile-drawer.open .drawer-panel   { transform: translateX(0); }
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px 16px;
+    border-bottom: 1px solid rgba(13,13,11,0.08);
+    flex-shrink: 0;
+  }
+
+  .drawer-close {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    border: 1px solid rgba(13,13,11,0.10);
+    display: grid;
+    place-items: center;
+    font-size: 0.95rem;
+    color: rgba(13,13,11,0.50);
+    transition: background 0.14s, color 0.14s;
+  }
+  .drawer-close:hover {
+    background: var(--cream, #f7f5f0);
+    color: var(--ink, #0d0d0b);
+  }
+
+  .drawer-body {
+    padding: 10px 12px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;
+  }
+
+  .m-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 13px;
+    border-radius: 12px;
+    font-family: var(--sans, 'Geist', sans-serif);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--ink, #0d0d0b);
+    transition: background 0.13s;
+    width: 100%;
+    text-align: left;
+  }
+  .m-link:hover { background: var(--cream, #f7f5f0); }
+
+  .m-link svg {
+    width: 13px; height: 13px;
+    color: rgba(13,13,11,0.35);
+    transition: transform 0.22s cubic-bezier(0.22,1,0.36,1);
+    flex-shrink: 0;
+  }
+  .m-link.expanded svg { transform: rotate(180deg); }
+
+  .m-sub {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.32s cubic-bezier(0.22,1,0.36,1);
+  }
+  .m-sub.open { max-height: 600px; }
+
+  .m-sub-inner {
+    padding: 4px 0 6px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .m-sub-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 10px;
+    font-size: 0.855rem;
+    color: rgba(13,13,11,0.60);
+    transition: background 0.13s, color 0.13s;
+  }
+  .m-sub-link:hover { background: var(--cream, #f7f5f0); color: var(--ink, #0d0d0b); }
+
+  .m-sub-link .drop-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+  }
+
+  .m-divider {
+    height: 1px;
+    background: rgba(13,13,11,0.08);
+    margin: 8px 4px;
+  }
+
+  .drawer-footer {
+    padding: 0 12px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .drawer-footer .nav-btn-primary {
+    justify-content: center;
+    padding: 14px;
+    font-size: 0.9rem;
+    border-radius: 14px;
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .desktop-nav,
+    .nav-btn-ghost.hide-mobile { display: none !important; }
+    .hamburger      { display: flex; }
+    .mobile-drawer  { display: block; }
+    header.site-header { padding-inline: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-wrap { padding: 0 8px 0 12px; border-radius: 16px; }
+    header.site-header { padding-inline: 10px; }
+  }
+</style>
+
+<header class="site-header" role="banner">
+  <div class="nav-wrap" id="navWrap">
+
+    <!-- Logo -->
+    <a href="index.html" class="logo" aria-label="Russell Digital – Home">
+      <div class="logo-icon">
+        <img src="assets/russell-digital-favicon.png" alt="Russell Digital logo" width="34" height="34" />
       </div>
       <div class="logo-text">
         <span class="logo-name">Russell Digital</span>
         <span class="logo-tagline">SEO Agency</span>
       </div>
     </a>
- 
-    <nav class="desktop-nav">
- 
+
+    <!-- Desktop nav -->
+    <nav class="desktop-nav" aria-label="Main navigation">
+
+      <!-- Services dropdown -->
       <div class="nav-item">
-        <button class="nav-link" type="button">
+        <button class="nav-link" type="button" aria-haspopup="true">
           Services
-          <svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <svg class="nav-chev" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div class="dropdown">
-          <a href="#">
+        <div class="dropdown" role="menu">
+          <a href="services/technical-seo.html" class="drop-item" role="menuitem">
             <div class="drop-icon">🔍</div>
-            <div class="drop-label"><strong>Technical SEO</strong><small>Site audits &amp; crawl fixes</small></div>
+            <div class="drop-text"><strong>Technical SEO</strong><small>Audits, crawl fixes &amp; Core Web Vitals</small></div>
           </a>
-          <a href="#">
+          <a href="services/content-strategy.html" class="drop-item" role="menuitem">
             <div class="drop-icon">✍️</div>
-            <div class="drop-label"><strong>Content Strategy</strong><small>Keywords &amp; editorial plans</small></div>
+            <div class="drop-text"><strong>Content Strategy</strong><small>Keywords, topical maps &amp; editorial plans</small></div>
           </a>
-          <a href="#">
+          <a href="services/link-building.html" class="drop-item" role="menuitem">
             <div class="drop-icon">🔗</div>
-            <div class="drop-label"><strong>Link Building</strong><small>Authority &amp; backlinks</small></div>
+            <div class="drop-text"><strong>Link Building</strong><small>Editorial outreach &amp; digital PR</small></div>
           </a>
-          <a href="#">
+          <a href="services/local-seo.html" class="drop-item" role="menuitem">
             <div class="drop-icon">📍</div>
-            <div class="drop-label"><strong>Local SEO</strong><small>Maps &amp; citation growth</small></div>
+            <div class="drop-text"><strong>Local SEO</strong><small>Map pack dominance &amp; citations</small></div>
+          </a>
+          <a href="services/ecommerce-seo.html" class="drop-item" role="menuitem">
+            <div class="drop-icon">🛒</div>
+            <div class="drop-text"><strong>eCommerce SEO</strong><small>Shopify, WooCommerce &amp; category SEO</small></div>
           </a>
         </div>
       </div>
- 
-      <a href="#" class="nav-link">Case Studies</a>
-      <a href="#" class="nav-link">Knowledge Base</a>
- 
+
+      <a href="case-studies.html" class="nav-link">Case Studies</a>
+      <a href="knowledge-base.html" class="nav-link">Knowledge Base</a>
+
+      <!-- Resources dropdown -->
       <div class="nav-item">
-        <button class="nav-link" type="button">
+        <button class="nav-link" type="button" aria-haspopup="true">
           Resources
-          <svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <svg class="nav-chev" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div class="dropdown">
-          <a href="#">
+        <div class="dropdown" role="menu">
+          <a href="resources/seo-guides.html" class="drop-item" role="menuitem">
             <div class="drop-icon">📚</div>
-            <div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div>
+            <div class="drop-text"><strong>SEO Guides</strong><small>Free learning library</small></div>
           </a>
-          <a href="#">
+          <a href="resources/free-tools.html" class="drop-item" role="menuitem">
             <div class="drop-icon">🛠️</div>
-            <div class="drop-label"><strong>Free Tools</strong><small>Analyzers &amp; calculators</small></div>
+            <div class="drop-text"><strong>Free Tools</strong><small>Analyzers &amp; calculators</small></div>
           </a>
-          <a href="https://russelldigitalads.com/about/">
+          <a href="about.html" class="drop-item" role="menuitem">
             <div class="drop-icon">📖</div>
-            <div class="drop-label"><strong>About Us</strong><small>Learn about our company</small></div>
+            <div class="drop-text"><strong>About Us</strong><small>Our story &amp; team</small></div>
           </a>
         </div>
       </div>
- 
-      <div class="nav-divider"></div>
-      <a href="#" class="nav-link">Pricing</a>
+
+      <div class="nav-rule" role="separator"></div>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+
     </nav>
- 
-    <div class="cta-group">
-      <a href="https://russelldigitalads.com/free-audit/" class="btn-primary desktop-cta">
-        Get a Free Audit <span class="arrow">→</span>
+
+    <!-- CTA group -->
+    <div class="nav-cta">
+      <a href="#" class="nav-btn-ghost hide-mobile">Sign in</a>
+      <a href="free-audit.html" class="nav-btn-primary">
+        Free Audit <span class="nav-arrow">→</span>
       </a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
         <span></span><span></span><span></span>
       </button>
     </div>
- 
+
   </div>
 </header>
- 
-<!-- ============================================================
-     MOBILE DRAWER
-============================================================ -->
+
+<!-- Mobile drawer -->
 <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
   <div class="drawer-overlay" id="drawerOverlay"></div>
- 
-  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Site navigation">
+
     <div class="drawer-header">
-      <a href="/" class="logo">
-        <div class="logo-mark img">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="36" height="36" rx="9" fill="#1a56f0"/>
-            <rect x="9" y="8" width="3.5" height="20" rx="1.5" fill="white"/>
-            <path d="M12.5 8H19C22.5 8 25.5 11 25.5 14.5C25.5 18 22.5 21 19 21H12.5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <path d="M12.5 21L24 28" stroke="white" stroke-width="3" stroke-linecap="round"/>
-          </svg>
+      <a href="index.html" class="logo" aria-label="Russell Digital – Home">
+        <div class="logo-icon">
+          <img src="assets/russell-digital-favicon.png" alt="Russell Digital logo" width="34" height="34" />
         </div>
         <div class="logo-text">
           <span class="logo-name">Russell Digital</span>
@@ -111,47 +587,50 @@
       </a>
       <button class="drawer-close" id="drawerClose" aria-label="Close menu" type="button">✕</button>
     </div>
- 
+
     <div class="drawer-body">
-      <button class="m-link" data-accordion="services" type="button">
+
+      <button class="m-link" data-accordion="m-services" aria-expanded="false" type="button">
         Services
         <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <div class="m-sub" id="services">
+      <div class="m-sub" id="m-services">
         <div class="m-sub-inner">
-          <a href="#" class="m-sub-link"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Site audits &amp; crawl fixes</small></div></a>
-          <a href="#" class="m-sub-link"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords &amp; editorial plans</small></div></a>
-          <a href="#" class="m-sub-link"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority &amp; backlinks</small></div></a>
-          <a href="#" class="m-sub-link"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps &amp; citation growth</small></div></a>
+          <a href="services/technical-seo.html"  class="m-sub-link"><div class="drop-icon">🔍</div><div class="drop-text"><strong>Technical SEO</strong><small>Audits &amp; crawl fixes</small></div></a>
+          <a href="services/content-strategy.html" class="m-sub-link"><div class="drop-icon">✍️</div><div class="drop-text"><strong>Content Strategy</strong><small>Keywords &amp; editorial</small></div></a>
+          <a href="services/link-building.html"  class="m-sub-link"><div class="drop-icon">🔗</div><div class="drop-text"><strong>Link Building</strong><small>Authority &amp; backlinks</small></div></a>
+          <a href="services/local-seo.html"      class="m-sub-link"><div class="drop-icon">📍</div><div class="drop-text"><strong>Local SEO</strong><small>Map pack &amp; citations</small></div></a>
+          <a href="services/ecommerce-seo.html"  class="m-sub-link"><div class="drop-icon">🛒</div><div class="drop-text"><strong>eCommerce SEO</strong><small>Shopify &amp; WooCommerce</small></div></a>
         </div>
       </div>
- 
-      <a href="#" class="m-link">Case Studies</a>
-      <a href="#" class="m-link">Knowledge Base</a>
- 
-      <button class="m-link" data-accordion="resources" type="button">
+
+      <a href="case-studies.html"  class="m-link">Case Studies</a>
+      <a href="knowledge-base.html" class="m-link">Knowledge Base</a>
+
+      <button class="m-link" data-accordion="m-resources" aria-expanded="false" type="button">
         Resources
         <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <div class="m-sub" id="resources">
+      <div class="m-sub" id="m-resources">
         <div class="m-sub-inner">
-          <a href="#" class="m-sub-link"><div class="drop-icon">📚</div><div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
-          <a href="#" class="m-sub-link"><div class="drop-icon">🛠️</div><div class="drop-label"><strong>Free Tools</strong><small>Analyzers &amp; calculators</small></div></a>
-          <a href="https://russelldigitalads.com/about/" class="m-sub-link"><div class="drop-icon">📖</div><div class="drop-label"><strong>About Us</strong><small>Learn about our company</small></div></a>
+          <a href="resources/seo-guides.html" class="m-sub-link"><div class="drop-icon">📚</div><div class="drop-text"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
+          <a href="resources/free-tools.html" class="m-sub-link"><div class="drop-icon">🛠️</div><div class="drop-text"><strong>Free Tools</strong><small>Analyzers &amp; calculators</small></div></a>
+          <a href="about.html"                class="m-sub-link"><div class="drop-icon">📖</div><div class="drop-text"><strong>About Us</strong><small>Our story &amp; team</small></div></a>
         </div>
       </div>
- 
+
       <div class="m-divider"></div>
-      <a href="#" class="m-link">Pricing</a>
+      <a href="pricing.html" class="m-link">Pricing</a>
+
     </div>
- 
+
     <div class="drawer-footer">
-      <a href="https://russelldigitalads.com/free-audit/" class="btn-primary">
-        Get a Free Audit <span class="arrow">→</span>
+      <a href="free-audit.html" class="nav-btn-primary">
+        Get a Free Audit <span class="nav-arrow">→</span>
       </a>
     </div>
   </div>
