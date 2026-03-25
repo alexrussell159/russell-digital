@@ -1,4 +1,3 @@
-<script>
   // ── Hamburger → drawer ──────────────────────────────────────
   const hamburger     = document.getElementById('hamburger');
   const mobileDrawer  = document.getElementById('mobileDrawer');
@@ -34,4 +33,3 @@
       btn.classList.toggle('expanded', isOpen);
     });
   });
-</script>
