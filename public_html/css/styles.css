@@ -447,7 +447,7 @@ header {
   .hamburger            { display: flex; }
   .mobile-drawer        { display: block; }
   header                { padding: var(--header-pad-v) 1rem 0; }
-  .cta-group {display:none;}
+  .mobile-btn-noshow {display:none;}
 }
 
 @media (max-width: 480px) {
