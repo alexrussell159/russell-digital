@@ -25,8 +25,8 @@
 
   /* Load both in parallel */
   await Promise.all([
-    loadComponent('rd-header', 'header.html'),
-    loadComponent('rd-footer', 'footer.html'),
+    loadComponent('rd-header', 'components/header.html'),
+    loadComponent('rd-footer', 'components/footer.html'),
   ]);
 
   /* ── Highlight current page nav link ────────────────────── */
