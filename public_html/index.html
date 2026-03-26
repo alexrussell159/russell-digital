@@ -377,12 +377,18 @@
       .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
     }
   </style>
+
+  <script src="js/loadComponent.js"></script>
+  <script>loadHeader();</script>
+
 </head>
 <body>
 
   <!-- Header loads from components/header.html -->
   <div id="header-slot"></div>
   <div class="nav-offset"></div>
+
+  <header><div id="header"></div></header>
 
   <!-- HERO -->
   <section class="hero">
