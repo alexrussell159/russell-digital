@@ -529,5 +529,5 @@ p { color: var(--color-text-muted); line-height: 1.75; }
 }
 @media (max-width: 640px) {
   .nav-inner { height: 60px; }
-  .nav-mobile { inset-top: 60px; }
+  .nav-mobile { padding-top: 60px; }
 }
