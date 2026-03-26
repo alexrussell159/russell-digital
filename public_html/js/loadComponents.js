@@ -23,6 +23,8 @@
     }
   }
 
+  
+
   /* Load both in parallel */
   await Promise.all([
     loadComponent('rd-header', 'components/header.html'),
@@ -129,3 +131,12 @@
   });
 
 })();
+
+document.querySelectorAll('.m-link[data-accordion]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.accordion;
+    const panel = document.getElementById(id);
+    btn.classList.toggle('expanded');
+    panel.classList.toggle('open');
+  });
+});
