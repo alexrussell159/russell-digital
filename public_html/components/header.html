@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
     :root {
       --bg: #f5f4f0;
       --surface: rgba(255,255,255,0.88);
@@ -19,9 +19,9 @@
       --nav-h: 68px;
       --header-pad-v: 14px; /* vertical padding above/below nav pill */
     }
- 
+
     html { scroll-behavior: smooth; }
- 
+
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
@@ -29,7 +29,7 @@
       min-height: 200vh; /* tall page so scroll effect is testable */
       overflow-x: hidden;
     }
- 
+
     /* ══════════════════════════════════════
        HEADER — fixed, NOT sticky.
        Using fixed + defined height so the
@@ -47,10 +47,10 @@
       /* Pointer events only on the pill itself */
       pointer-events: none;
     }
- 
+
     /* Push page content below fixed header */
     body { padding-top: calc(var(--nav-h) + var(--header-pad-v) + 20px); }
- 
+
     .nav-wrap {
       pointer-events: all;
       max-width: 1280px;
@@ -68,12 +68,12 @@
       box-shadow: 0 4px 28px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04);
       animation: slideDown 0.55s cubic-bezier(.22,1,.36,1) both;
     }
- 
+
     @keyframes slideDown {
       from { opacity: 0; transform: translateY(-14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
- 
+
     /* ══════════════════════════════════════
        RUSSELL DIGITAL LOGO
        R mark: stylised "R" built from SVG
@@ -86,7 +86,7 @@
       text-decoration: none;
       flex-shrink: 0;
     }
- 
+
     .logo-mark {
       width: 36px; height: 36px;
       background: var(--accent);
@@ -97,19 +97,19 @@
       flex-shrink: 0;
       box-shadow: 0 2px 8px rgba(26,86,240,0.30);
     }
- 
+
     .logo-mark svg {
       width: 22px; height: 22px;
       overflow: visible;
     }
- 
+
     .logo-text {
       display: flex;
       flex-direction: column;
       line-height: 1;
       gap: 1px;
     }
- 
+
     .logo-name {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -117,7 +117,7 @@
       letter-spacing: -0.03em;
       color: var(--text);
     }
- 
+
     .logo-tagline {
       font-size: 0.62rem;
       font-weight: 500;
@@ -125,7 +125,7 @@
       text-transform: uppercase;
       color: var(--accent);
     }
- 
+
     /* ══════════════════════════════════════
        DESKTOP NAV — pure CSS hover dropdowns
     ══════════════════════════════════════ */
@@ -134,7 +134,7 @@
       align-items: center;
       gap: 2px;
     }
- 
+
     /* Each item wraps the trigger + dropdown.
        The invisible bridge fills the gap between
        pill bottom and dropdown top so the mouse
@@ -142,7 +142,7 @@
     .nav-item {
       position: relative;
     }
- 
+
     .nav-link {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.875rem;
@@ -162,25 +162,25 @@
       font-family: 'DM Sans', sans-serif;
       line-height: 1;
     }
- 
+
     .nav-link:hover,
     .nav-item:hover > .nav-link {
       color: var(--text);
       background: rgba(0,0,0,0.05);
     }
- 
+
     .nav-link .chev {
       width: 12px; height: 12px;
       flex-shrink: 0;
       opacity: 0.45;
       transition: transform 0.22s cubic-bezier(.22,1,.36,1), opacity 0.15s;
     }
- 
+
     .nav-item:hover > .nav-link .chev {
       transform: rotate(180deg);
       opacity: 0.75;
     }
- 
+
     /* ── Invisible hover bridge (fills gap between trigger and panel) ── */
     .nav-item::after {
       content: '';
@@ -191,7 +191,7 @@
       display: none;
     }
     .nav-item:hover::after { display: block; }
- 
+
     /* ── DROPDOWN PANEL ── */
     .dropdown {
       position: absolute;
@@ -208,21 +208,21 @@
       pointer-events: none;
       transition: opacity 0.16s, transform 0.22s cubic-bezier(.22,1,.36,1);
     }
- 
+
     /* Show on hover of parent nav-item */
     .nav-item:hover > .dropdown {
       opacity: 1;
       pointer-events: all;
       transform: translateX(-50%) translateY(0);
     }
- 
+
     /* Keep dropdown visible when mouse travels into it */
     .dropdown:hover {
       opacity: 1;
       pointer-events: all;
       transform: translateX(-50%) translateY(0);
     }
- 
+
     .dropdown a {
       display: flex;
       align-items: center;
@@ -235,7 +235,7 @@
       transition: background 0.14s, color 0.14s;
     }
     .dropdown a:hover { background: #f5f4f0; color: var(--text); }
- 
+
     .drop-icon {
       width: 32px; height: 32px;
       border-radius: 9px;
@@ -245,13 +245,13 @@
       flex-shrink: 0;
       font-size: 0.9rem;
     }
- 
+
     .drop-label { line-height: 1.25; }
     .drop-label strong { display: block; font-weight: 500; color: var(--text); font-size: 0.845rem; }
     .drop-label small { font-size: 0.735rem; color: var(--muted); font-weight: 300; }
- 
+
     .nav-divider { width: 1px; height: 20px; background: var(--border); margin: 0 6px; flex-shrink: 0; }
- 
+
     /* ══════════════════════════════════════
        CTA GROUP
     ══════════════════════════════════════ */
@@ -261,7 +261,7 @@
       gap: 8px;
       flex-shrink: 0;
     }
- 
+
     .btn-ghost {
       font-size: 0.875rem;
       font-weight: 500;
@@ -277,7 +277,7 @@
       white-space: nowrap;
     }
     .btn-ghost:hover { background: rgba(0,0,0,0.05); color: var(--text); }
- 
+
     .btn-primary {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
@@ -303,7 +303,7 @@
       box-shadow: 0 6px 20px rgba(26,86,240,0.36);
     }
     .btn-primary:active { transform: translateY(0); }
- 
+
     .btn-primary .arrow {
       width: 19px; height: 19px;
       background: rgba(255,255,255,0.18);
@@ -312,7 +312,7 @@
       place-items: center;
       font-size: 0.72rem;
     }
- 
+
     /* ══════════════════════════════════════
        HAMBURGER
     ══════════════════════════════════════ */
@@ -343,7 +343,7 @@
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 18px; }
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 18px; }
- 
+
     /* ══════════════════════════════════════
        MOBILE DRAWER
     ══════════════════════════════════════ */
@@ -375,7 +375,7 @@
     .mobile-drawer.open { pointer-events: all; }
     .mobile-drawer.open .drawer-overlay { opacity: 1; }
     .mobile-drawer.open .drawer-panel   { transform: translateX(0); }
- 
+
     .drawer-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 20px 16px;
@@ -390,12 +390,12 @@
       transition: background 0.14s, color 0.14s;
     }
     .drawer-close:hover { background: #f5f4f0; color: var(--text); }
- 
+
     .drawer-body {
       padding: 12px 12px 16px; flex: 1;
       display: flex; flex-direction: column; gap: 2px;
     }
- 
+
     .m-link {
       display: flex; align-items: center; justify-content: space-between;
       padding: 12px 14px; border-radius: 12px;
@@ -407,7 +407,7 @@
     .m-link:hover { background: #f5f4f0; }
     .m-link svg { width: 14px; height: 14px; color: var(--muted); transition: transform 0.22s cubic-bezier(.22,1,.36,1); flex-shrink: 0; }
     .m-link.expanded svg { transform: rotate(180deg); }
- 
+
     .m-sub { overflow: hidden; max-height: 0; transition: max-height 0.32s cubic-bezier(.22,1,.36,1); }
     .m-sub.open { max-height: 500px; }
     .m-sub-inner { padding: 4px 0 8px 12px; display: flex; flex-direction: column; gap: 2px; }
@@ -419,13 +419,13 @@
     }
     .m-sub-link:hover { background: #f5f4f0; color: var(--text); }
     .m-sub-link .drop-icon { width: 28px; height: 28px; font-size: 0.8rem; }
- 
+
     .m-divider { height: 1px; background: var(--border); margin: 8px 4px; }
- 
+
     .drawer-footer { padding: 0 12px 32px; display: flex; flex-direction: column; gap: 8px; }
     .drawer-footer .btn-primary { justify-content: center; padding: 13px; font-size: 0.9rem; border-radius: 14px; }
     .drawer-footer .btn-ghost { text-align: center; display: flex; align-items: center; justify-content: center; padding: 12px; border-radius: 14px; border: 1px solid var(--border); }
- 
+
     /* ══════════════════════════════════════
        HERO TEASER
     ══════════════════════════════════════ */
@@ -461,7 +461,7 @@
       font-size: clamp(0.95rem, 2.5vw, 1.05rem); font-weight: 300;
       color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.65;
     }
- 
+
     /* ══════════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════════ */
@@ -481,11 +481,11 @@
   </style>
 </head>
 <body>
- 
+
   <!-- ══ HEADER ══ -->
   <header>
     <div class="nav-wrap">
- 
+
       <!-- Russell Digital Logo -->
       <a href="#" class="logo">
         <div class="logo-mark">
@@ -507,10 +507,10 @@
           <span class="logo-tagline">SEO Agency</span>
         </div>
       </a>
- 
+
       <!-- Desktop Nav -->
       <nav class="desktop-nav">
- 
+
         <div class="nav-item">
           <button class="nav-link">
             Services
@@ -523,10 +523,10 @@
             <a href="#"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
           </div>
         </div>
- 
+
         <a href="#" class="nav-link">Case Studies</a>
         <a href="#" class="nav-link">Knowledge Base</a>
- 
+
         <div class="nav-item">
           <button class="nav-link">
             Resources
@@ -538,12 +538,12 @@
             <a href="#"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
           </div>
         </div>
- 
+
         <div class="nav-divider"></div>
         <a href="#" class="nav-link">Pricing</a>
- 
+
       </nav>
- 
+
       <!-- CTA -->
       <div class="cta-group">
         <a href="#" class="btn-ghost desktop-only">Sign in</a>
@@ -554,15 +554,15 @@
           <span></span><span></span><span></span>
         </button>
       </div>
- 
+
     </div>
   </header>
- 
+
   <!-- ══ MOBILE DRAWER ══ -->
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation">
- 
+
       <div class="drawer-header">
         <a href="#" class="logo">
           <div class="logo-mark">
@@ -581,9 +581,9 @@
         </a>
         <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
       </div>
- 
+
       <div class="drawer-body">
- 
+
         <button class="m-link" data-accordion="services">
           Services
           <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -596,10 +596,10 @@
             <a href="#" class="m-sub-link"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
           </div>
         </div>
- 
+
         <a href="#" class="m-link">Case Studies</a>
         <a href="#" class="m-link">Knowledge Base</a>
- 
+
         <button class="m-link" data-accordion="resources">
           Resources
           <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -611,20 +611,20 @@
             <a href="#" class="m-sub-link"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
           </div>
         </div>
- 
+
         <div class="m-divider"></div>
         <a href="#" class="m-link">Pricing</a>
- 
+
       </div>
- 
+
       <div class="drawer-footer">
         <a href="#" class="btn-primary">Get a Free Audit <span class="arrow">→</span></a>
         <a href="#" class="btn-ghost">Sign in</a>
       </div>
- 
+
     </div>
   </div>
- 
+
   <!-- ══ HERO ══ -->
   <section class="hero-teaser">
     <div class="badge">Trusted by 400+ growing brands</div>
@@ -633,22 +633,22 @@
     </h1>
     <p class="hero-sub">Data-driven SEO strategies that turn organic traffic into measurable revenue — no guesswork, just results.</p>
   </section>
- 
+
   <script>
     /* ── Mobile drawer ── */
     const hamburger = document.getElementById('hamburger');
     const drawer    = document.getElementById('mobileDrawer');
     const overlay   = document.getElementById('drawerOverlay');
     const closeBtn  = document.getElementById('drawerClose');
- 
+
     const openDrawer  = () => { drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); hamburger.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
     const closeDrawer = () => { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
- 
+
     hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
     overlay.addEventListener('click', closeDrawer);
     closeBtn.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
- 
+
     /* ── Mobile accordion ── */
     document.querySelectorAll('[data-accordion]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -661,6 +661,6 @@
       });
     });
   </script>
- 
+
 </body>
 </html>
