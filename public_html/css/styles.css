@@ -667,7 +667,7 @@ header {
 
     .logo-mark {
       width: 36px; height: 36px;
-      background: var(--accent);
+      background: var(#fff);
       border-radius: 11px;
       display: flex;
       align-items: center;
