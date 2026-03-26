@@ -1,543 +1,704 @@
-<!-- ============================================================
-     RUSSELL DIGITAL — Footer Component
-     Injected via loadComponent.js into <div id="rd-footer">
-     ============================================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Russell Digital – Footer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-  /* ── Footer shell ─────────────────────────────────────────── */
-  .site-footer {
-    background: var(--ink, #0d0d0b);
-    color: var(--white, #ffffff);
-    padding-top: 0;
-  }
-
-  /* ── CTA band ─────────────────────────────────────────────── */
-  .footer-cta {
-    background: var(--cobalt, #1246f5);
-    padding: clamp(48px, 6vw, 80px) var(--gutter, 48px);
-  }
-
-  .footer-cta-inner {
-    max-width: var(--max-w, 1320px);
-    margin-inline: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .footer-cta-text {}
-
-  .footer-cta-eyebrow {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .footer-cta-eyebrow::before {
-    content: '';
-    display: block;
-    width: 20px;
-    height: 1.5px;
-    background: rgba(255,255,255,0.40);
-  }
-
-  .footer-cta-title {
-    font-family: var(--serif, 'Instrument Serif', serif);
-    font-size: clamp(2.2rem, 4.5vw, 4.5rem);
-    font-weight: 400;
-    line-height: 1.0;
-    letter-spacing: -0.01em;
-    color: var(--white, #ffffff);
-  }
-
-  .footer-cta-title em {
-    font-style: italic;
-    color: rgba(255,255,255,0.65);
-  }
-
-  .footer-cta-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .footer-btn-white {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-weight: 700;
-    font-size: 0.875rem;
-    letter-spacing: -0.01em;
-    background: var(--white, #ffffff);
-    color: var(--cobalt, #1246f5);
-    border-radius: 12px;
-    padding: 13px 24px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 0.16s, box-shadow 0.16s;
-    white-space: nowrap;
-  }
-  .footer-btn-white:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
-  }
-
-  .footer-btn-arrow {
-    width: 20px;
-    height: 20px;
-    background: rgba(18,70,245,0.10);
-    border-radius: 6px;
-    display: grid;
-    place-items: center;
-    font-size: 0.72rem;
-  }
-
-  .footer-btn-ghost {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.70);
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.20);
-    padding: 12px 20px;
-    border-radius: 12px;
-    transition: background 0.15s, color 0.15s;
-    white-space: nowrap;
-  }
-  .footer-btn-ghost:hover {
-    background: rgba(255,255,255,0.10);
-    color: var(--white, #ffffff);
-  }
-
-  /* ── Main footer body ─────────────────────────────────────── */
-  .footer-body {
-    max-width: var(--max-w, 1320px);
-    margin-inline: auto;
-    padding: clamp(56px, 6vw, 80px) var(--gutter, 48px) 0;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: clamp(32px, 4vw, 60px);
-  }
-
-  /* Brand column */
-  .footer-brand {}
-
-  .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin-bottom: 20px;
-  }
-
-  .footer-logo-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.10);
-    flex-shrink: 0;
-  }
-
-  .footer-logo-icon img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-    opacity: 0.85;
-  }
-
-  .footer-logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-    gap: 2px;
-  }
-
-  .footer-logo-name {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-weight: 800;
-    font-size: 0.9375rem;
-    letter-spacing: -0.03em;
-    color: var(--white, #ffffff);
-  }
-
-  .footer-logo-tagline {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-size: 0.58rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(18,70,245,0.8);
-    color: #7096ff;
-  }
-
-  .footer-desc {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-size: 0.875rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.7;
-    max-width: 280px;
-    margin-bottom: 28px;
-  }
-
-  .footer-socials {
-    display: flex;
-    gap: 8px;
-  }
-
-  .social-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(255,255,255,0.05);
-    display: grid;
-    place-items: center;
-    color: rgba(255,255,255,0.45);
-    transition: background 0.14s, border-color 0.14s, color 0.14s, transform 0.14s;
-  }
-  .social-btn:hover {
-    background: var(--cobalt, #1246f5);
-    border-color: var(--cobalt, #1246f5);
-    color: var(--white, #ffffff);
-    transform: translateY(-2px);
-  }
-  .social-btn svg {
-    width: 14px;
-    height: 14px;
-    fill: currentColor;
-  }
-
-  /* Link columns */
-  .footer-col {}
-
-  .footer-col-title {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
-    margin-bottom: 20px;
-  }
-
-  .footer-col ul {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-  }
-
-  .footer-col ul li a {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.55);
-    padding: 5px 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.14s;
-  }
-  .footer-col ul li a:hover { color: var(--white, #ffffff); }
-
-  .link-badge {
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    background: rgba(18,70,245,0.25);
-    color: #7096ff;
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
-
-  /* ── Newsletter strip ─────────────────────────────────────── */
-  .footer-newsletter {
-    max-width: var(--max-w, 1320px);
-    margin-inline: auto;
-    margin-top: clamp(48px, 5vw, 64px);
-    padding: 0 var(--gutter, 48px);
-  }
-
-  .footer-newsletter-inner {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px;
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .newsletter-copy {}
-
-  .newsletter-label {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-weight: 700;
-    font-size: 0.9375rem;
-    color: var(--white, #ffffff);
-    margin-bottom: 3px;
-  }
-
-  .newsletter-sub {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-size: 0.8125rem;
-    color: rgba(255,255,255,0.40);
-    font-weight: 300;
-  }
-
-  .newsletter-form {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  .newsletter-input {
-    font-family: var(--sans, 'Geist', sans-serif);
-    height: 44px;
-    min-width: 240px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px;
-    padding: 0 14px;
-    font-size: 0.875rem;
-    color: var(--white, #ffffff);
-    outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
-  }
-  .newsletter-input::placeholder { color: rgba(255,255,255,0.30); }
-  .newsletter-input:focus {
-    border-color: rgba(18,70,245,0.60);
-    box-shadow: 0 0 0 4px rgba(18,70,245,0.15);
-  }
-
-  .newsletter-btn {
-    font-family: var(--sans, 'Geist', sans-serif);
-    height: 44px;
-    background: var(--cobalt, #1246f5);
-    color: var(--white, #ffffff);
-    border-radius: 10px;
-    padding: 0 20px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    transition: background 0.14s, transform 0.14s;
-    white-space: nowrap;
-  }
-  .newsletter-btn:hover {
-    background: #0a34c7;
-    transform: translateY(-1px);
-  }
-
-  /* ── Bottom bar ───────────────────────────────────────────── */
-  .footer-bottom {
-    max-width: var(--max-w, 1320px);
-    margin-inline: auto;
-    padding: 28px var(--gutter, 48px) 36px;
-    margin-top: 48px;
-    border-top: 1px solid rgba(255,255,255,0.07);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .footer-copy {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.28);
-    font-weight: 300;
-  }
-
-  .footer-copy strong {
-    font-weight: 600;
-    color: rgba(255,255,255,0.45);
-  }
-
-  .footer-legal {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .footer-legal a {
-    font-family: var(--sans, 'Geist', sans-serif);
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.28);
-    font-weight: 400;
-    transition: color 0.14s;
-  }
-  .footer-legal a:hover { color: rgba(255,255,255,0.65); }
-
-  /* ── Responsive ───────────────────────────────────────────── */
-  @media (max-width: 1100px) {
-    .footer-body { grid-template-columns: 1fr 1fr 1fr; }
-    .footer-brand { grid-column: 1 / -1; }
-    .footer-brand .footer-desc { max-width: 100%; }
-  }
-
-  @media (max-width: 900px) {
-    .footer-cta-inner { flex-direction: column; align-items: flex-start; }
-
-    .footer-body {
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
+    :root {
+      --bg: #f5f4f0;
+      --surface: rgba(255,255,255,0.88);
+      --border: rgba(0,0,0,0.08);
+      --text: #0f0f0e;
+      --muted: #6b6a65;
+      --accent: #1a56f0;
+      --radius: 14px;
     }
-    .footer-brand { grid-column: auto; }
 
-    .footer-newsletter-inner {
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
       flex-direction: column;
-      align-items: stretch;
+      justify-content: flex-end;
     }
-    .newsletter-form { flex-direction: column; }
-    .newsletter-input { min-width: 0; width: 100%; }
-    .newsletter-btn { width: 100%; height: 48px; }
-  }
 
-  @media (max-width: 640px) {
-    .footer-body { grid-template-columns: 1fr; }
+    /* ══════════════════════════════════════
+       FOOTER WRAPPER
+    ══════════════════════════════════════ */
+    footer {
+      width: 100%;
+      padding: 0 1.5rem 1.5rem;
+    }
 
+    .footer-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 4px 28px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.03);
+      overflow: hidden;
+    }
+
+    /* ══════════════════════════════════════
+       TOP CTA BAND
+    ══════════════════════════════════════ */
+    .footer-cta-band {
+      background: var(--accent);
+      padding: 52px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative grid pattern */
+    .footer-cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    /* Glowing orb */
+    .footer-cta-band::after {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-band-text { position: relative; z-index: 1; }
+
+    .cta-band-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cta-band-eyebrow::before {
+      content: '';
+      width: 18px;
+      height: 1.5px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 2px;
+      display: block;
+    }
+
+    .cta-band-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: -0.04em;
+      color: #fff;
+      line-height: 1.08;
+    }
+
+    .cta-band-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-white {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: -0.01em;
+      background: #fff;
+      color: var(--accent);
+      border: none;
+      border-radius: 12px;
+      padding: 12px 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.16s, box-shadow 0.16s;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+    .btn-white:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.24);
+    }
+    .btn-white .arrow {
+      width: 20px; height: 20px;
+      background: rgba(26,86,240,0.1);
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+    }
+
+    .btn-ghost-white {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 12px 22px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-ghost-white:hover {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+    }
+
+    /* ══════════════════════════════════════
+       MAIN FOOTER GRID
+    ══════════════════════════════════════ */
+    .footer-main {
+      padding: 44px 48px 0;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    /* Brand column */
+    .footer-brand {}
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+
+    .logo-mark {
+      width: 36px; height: 36px;
+      background: var(--accent);
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(26,86,240,0.30);
+    }
+
+    .logo-mark svg {
+      width: 22px; height: 22px;
+      overflow: visible;
+    }
+
+    .logo-text { display: flex; flex-direction: column; line-height: 1; gap: 1px; }
+    .logo-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .logo-tagline {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .footer-desc {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 260px;
+      margin-bottom: 24px;
+    }
+
+    /* Social links */
+    .footer-socials {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social-btn {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.14s, border-color 0.14s, transform 0.14s;
+      color: var(--muted);
+    }
+    .social-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .social-btn svg {
+      width: 15px; height: 15px;
+      fill: currentColor;
+    }
+
+    /* Nav columns */
+    .footer-col {}
+
+    .footer-col-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 8px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.14s, background 0.14s;
+      margin-left: -8px;
+    }
+    .footer-col ul li a:hover {
+      color: var(--text);
+      background: #f5f4f0;
+    }
+
+    .link-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(26,86,240,0.1);
+      color: var(--accent);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* ══════════════════════════════════════
+       NEWSLETTER STRIP
+    ══════════════════════════════════════ */
+    .footer-newsletter {
+      margin: 40px 48px 0;
+      background: #f5f4f0;
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      justify-content: space-between;
+    }
+
+    .newsletter-left {}
+
+    .newsletter-label {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .newsletter-sub {
+      font-size: 0.815rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .newsletter-input {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 10px 16px;
+      outline: none;
+      width: 230px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .newsletter-input::placeholder { color: var(--muted); }
+    .newsletter-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(26,86,240,0.10);
+    }
+
+    .btn-subscribe {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.845rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      padding: 10px 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 10px rgba(26,86,240,0.28);
+    }
+    .btn-subscribe:hover {
+      background: #0d45d6;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(26,86,240,0.34);
+    }
+
+    /* ══════════════════════════════════════
+       BOTTOM BAR
+    ══════════════════════════════════════ */
     .footer-bottom {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
+      padding: 24px 48px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    .footer-cta-actions { flex-direction: column; align-items: stretch; }
-    .footer-btn-white,
-    .footer-btn-ghost { justify-content: center; }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
 
-    .footer-newsletter-inner { padding: 20px; }
-    .footer-newsletter { padding-inline: var(--gutter, 20px); }
-  }
-</style>
+    .footer-copy strong {
+      font-weight: 500;
+      color: var(--text);
+    }
 
-<footer class="site-footer" role="contentinfo">
+    .footer-legal {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+    }
 
-  <!-- CTA band -->
-  <div class="footer-cta">
-    <div class="footer-cta-inner">
-      <div class="footer-cta-text">
-        <div class="footer-cta-eyebrow">Ready to grow?</div>
-        <h2 class="footer-cta-title">Own your market.<br><em>Start with a free audit.</em></h2>
-      </div>
-      <div class="footer-cta-actions">
-        <a href="free-audit.html" class="footer-btn-white">
-          Get a Free Audit <span class="footer-btn-arrow">→</span>
-        </a>
-        <a href="case-studies.html" class="footer-btn-ghost">See Results</a>
-      </div>
+    .footer-legal a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: color 0.14s, background 0.14s;
+    }
+    .footer-legal a:hover { color: var(--text); background: #f5f4f0; }
+
+    .footer-legal-dot {
+      width: 3px; height: 3px;
+      background: var(--border);
+      border-radius: 50%;
+    }
+
+    /* ══════════════════════════════════════
+       TRUST BADGES
+    ══════════════════════════════════════ */
+    .footer-trust {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 0 48px 32px;
+      flex-wrap: wrap;
+    }
+
+    .trust-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f5f4f0;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 5px 12px 5px 8px;
+      font-size: 0.775rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .trust-badge-icon {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 0.7rem;
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+      .footer-desc { max-width: 100%; }
+    }
+
+    @media (max-width: 768px) {
+      footer { padding: 0 1rem 1rem; }
+
+      .footer-cta-band {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 36px 28px;
+        gap: 24px;
+      }
+      .cta-band-actions { flex-direction: column; width: 100%; }
+      .btn-white, .btn-ghost-white { justify-content: center; text-align: center; }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        padding: 32px 28px 0;
+        gap: 28px;
+      }
+      .footer-brand { grid-column: 1 / -1; }
+
+      .footer-newsletter {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 28px 20px 0;
+        gap: 16px;
+      }
+      .newsletter-form { width: 100%; flex-direction: column; }
+      .newsletter-input { width: 100%; }
+      .btn-subscribe { width: 100%; padding: 12px; }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 28px;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .footer-trust {
+        padding: 0 28px 24px;
+        gap: 8px;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-main {
+        grid-template-columns: 1fr;
+        padding: 28px 20px 0;
+      }
+      .footer-cta-band { padding: 28px 20px; }
+      .footer-newsletter { margin: 24px 12px 0; }
+      .footer-bottom { padding: 20px; }
+      .footer-trust { padding: 0 20px 20px; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Spacer to push footer to bottom in demo -->
+  <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:48px 24px; text-align:center;">
+    <div>
+      <p style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.8rem,5vw,3rem); letter-spacing:-0.04em; color:#0f0f0e; margin-bottom:12px;">Page content goes here</p>
+      <p style="font-family:'DM Sans',sans-serif; font-size:0.95rem; color:#6b6a65; font-weight:300;">Scroll down to see the footer</p>
     </div>
   </div>
 
-  <!-- Main grid -->
-  <div class="footer-body">
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-wrap">
 
-    <!-- Brand -->
-    <div class="footer-brand">
-      <a href="index.html" class="footer-logo" aria-label="Russell Digital – Home">
-        <div class="footer-logo-icon">
-          <img src="assets/russell-digital-favicon.png" alt="Russell Digital logo" width="28" height="28" />
+      <!-- Top CTA Band -->
+      <div class="footer-cta-band">
+        <div class="cta-band-text">
+          <div class="cta-band-eyebrow">Ready to grow?</div>
+          <div class="cta-band-title">Let's build your<br>organic presence.</div>
         </div>
-        <div class="footer-logo-text">
-          <span class="footer-logo-name">Russell Digital</span>
-          <span class="footer-logo-tagline">SEO Agency</span>
+        <div class="cta-band-actions">
+          <a href="#" class="btn-white">Get a Free Audit <span class="arrow">→</span></a>
+          <a href="#" class="btn-ghost-white">View Case Studies</a>
         </div>
-      </a>
-      <p class="footer-desc">
-        Performance-driven SEO that turns organic search into your most profitable acquisition channel — no guesswork, no vanity metrics.
-      </p>
-      <div class="footer-socials">
-        <a href="#" class="social-btn" aria-label="X / Twitter">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.77 7.74L23 22h-6.1l-4.77-6.24L6.67 22H3.56l7.24-8.28L1 2h6.25l4.31 5.71L18.9 2Z"/></svg>
-        </a>
-        <a href="#" class="social-btn" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.56a1.95 1.95 0 1 0-3.9 0 1.95 1.95 0 0 0 3.9 0ZM20 13.1c0-3.44-1.83-5.03-4.28-5.03-1.97 0-2.85 1.08-3.35 1.84V8.5H9V20h3.37v-6.39c0-1.68.32-3.31 2.4-3.31 2.05 0 2.08 1.92 2.08 3.42V20H20v-6.9Z"/></svg>
-        </a>
-        <a href="#" class="social-btn" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a2.98 2.98 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A2.98 2.98 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 2.98 2.98 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a2.98 2.98 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.4 3.7-6.4 3.7Z"/></svg>
-        </a>
       </div>
-    </div>
 
-    <!-- Services -->
-    <div class="footer-col">
-      <div class="footer-col-title">Services</div>
-      <ul>
-        <li><a href="services/technical-seo.html">Technical SEO</a></li>
-        <li><a href="services/content-strategy.html">Content Strategy</a></li>
-        <li><a href="services/link-building.html">Link Building</a></li>
-        <li><a href="services/local-seo.html">Local SEO</a></li>
-        <li><a href="services/ecommerce-seo.html">eCommerce SEO</a></li>
-      </ul>
-    </div>
+      <!-- Main Footer Grid -->
+      <div class="footer-main">
 
-    <!-- Company -->
-    <div class="footer-col">
-      <div class="footer-col-title">Company</div>
-      <ul>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="case-studies.html">Case Studies</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="careers.html">Careers <span class="link-badge">Hiring</span></a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">
+            <div class="logo-mark">
+              <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/>
+                <path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+                <circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/>
+                <circle cx="17.5" cy="5.5" r="1" fill="white"/>
+              </svg>
+            </div>
+            <div class="logo-text">
+              <span class="logo-name">Russell Digital</span>
+              <span class="logo-tagline">SEO Agency</span>
+            </div>
+          </a>
+          <p class="footer-desc">Data-driven SEO strategies that turn organic traffic into measurable revenue — no guesswork, just results for growing brands.</p>
+          <div class="footer-socials">
+            <!-- X / Twitter -->
+            <a href="#" class="social-btn" aria-label="X / Twitter">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <!-- Facebook -->
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <!-- YouTube -->
+            <a href="#" class="social-btn" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
 
-    <!-- Resources -->
-    <div class="footer-col">
-      <div class="footer-col-title">Resources</div>
-      <ul>
-        <li><a href="resources/seo-guides.html">SEO Guides</a></li>
-        <li><a href="resources/free-tools.html">Free Tools <span class="link-badge">New</span></a></li>
-        <li><a href="knowledge-base.html">Knowledge Base</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="free-audit.html">Free Audit</a></li>
-      </ul>
-    </div>
+        <!-- Services Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <ul>
+            <li><a href="#">Technical SEO</a></li>
+            <li><a href="#">Content Strategy</a></li>
+            <li><a href="#">Link Building</a></li>
+            <li><a href="#">Local SEO</a></li>
+            <li><a href="#">E-commerce SEO</a></li>
+            <li><a href="#">Enterprise SEO</a></li>
+          </ul>
+        </div>
 
-  </div>
+        <!-- Company Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Careers <span class="link-badge">Hiring</span></a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
 
-  <!-- Newsletter -->
-  <div class="footer-newsletter">
-    <div class="footer-newsletter-inner">
-      <div class="newsletter-copy">
-        <div class="newsletter-label">Stay ahead of the algorithm.</div>
-        <div class="newsletter-sub">Weekly SEO insights — no fluff, no spam.</div>
+        <!-- Resources Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Resources</div>
+          <ul>
+            <li><a href="#">SEO Guides</a></li>
+            <li><a href="#">Free Tools <span class="link-badge">New</span></a></li>
+            <li><a href="#">Reports & Data</a></li>
+            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
       </div>
-      <form class="newsletter-form" onsubmit="return false;">
-        <input class="newsletter-input" type="email" placeholder="your@email.com" aria-label="Email address" autocomplete="email" />
-        <button class="newsletter-btn" type="submit">Subscribe</button>
-      </form>
+
+      <!-- Newsletter Strip -->
+      <div class="footer-newsletter">
+        <div class="newsletter-left">
+          <div class="newsletter-label">Stay ahead of the algorithm</div>
+          <div class="newsletter-sub">Weekly SEO insights. No fluff, no spam. Unsubscribe anytime.</div>
+        </div>
+        <div class="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Your work email" autocomplete="email" />
+          <button class="btn-subscribe">Subscribe</button>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="footer-trust">
+        <span class="trust-label">Trusted by</span>
+        <div class="trust-badge"><div class="trust-badge-icon">⭐</div> 4.9 / 5 on Clutch</div>
+        <div class="trust-badge"><div class="trust-badge-icon">🏆</div> Top SEO Agency 2024</div>
+        <div class="trust-badge"><div class="trust-badge-icon">✅</div> Google Partner</div>
+        <div class="trust-badge"><div class="trust-badge-icon">🔒</div> SOC 2 Compliant</div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 <strong>Russell Digital</strong>. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <div class="footer-legal-dot"></div>
+          <a href="#">Terms of Service</a>
+          <div class="footer-legal-dot"></div>
+          <a href="#">Cookie Settings</a>
+          <div class="footer-legal-dot"></div>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </footer>
 
-  <!-- Bottom bar -->
-  <div class="footer-bottom">
-    <p class="footer-copy">© 2025 <strong>Russell Digital Ltd.</strong> All rights reserved.</p>
-    <nav class="footer-legal" aria-label="Legal links">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Service</a>
-      <a href="#" id="cookieSettings">Cookie Settings</a>
-    </nav>
-  </div>
-
-</footer>
+</body>
+</html>
