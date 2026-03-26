@@ -3,19 +3,845 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Title — Russell Digital</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <title>SEO Services — Russell Digital</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/russell-digital-favicon.png" type="image/png" />
+
+  <style>
+    .rd-home {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 32px 20px 72px;
+    }
+
+    .rd-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 72px 56px 56px;
+      background:
+        linear-gradient(135deg, rgba(41,94,255,1) 0%, rgba(34,85,235,1) 55%, rgba(61,109,255,0.96) 100%);
+      color: #fff;
+      box-shadow: 0 20px 60px rgba(37, 78, 227, 0.18);
+      margin-bottom: 26px;
+    }
+
+    .rd-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    .rd-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .rd-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 20px;
+    }
+
+    .rd-eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: rgba(255,255,255,0.55);
+    }
+
+    .rd-hero h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 5vw, 4.75rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      color: #fff;
+      max-width: 760px;
+    }
+
+    .rd-hero p {
+      margin: 0;
+      max-width: 620px;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.86);
+    }
+
+    .rd-hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .rd-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .rd-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .rd-btn-primary {
+      background: #fff;
+      color: #2457ea;
+      box-shadow: 0 10px 30px rgba(255,255,255,0.16);
+    }
+
+    .rd-btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      backdrop-filter: blur(10px);
+    }
+
+    .rd-hero-card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(16px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .rd-card-label {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 14px;
+    }
+
+    .rd-kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .rd-kpi {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .rd-kpi strong {
+      display: block;
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .rd-kpi span {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.78);
+    }
+
+    .rd-mini-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .rd-mini-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .rd-mini-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      flex-shrink: 0;
+      opacity: 0.9;
+    }
+
+    .rd-section {
+      margin-bottom: 26px;
+    }
+
+    .rd-panel {
+      background: #fff;
+      border: 1px solid rgba(17,24,39,0.06);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 10px 36px rgba(15, 23, 42, 0.05);
+    }
+
+    .rd-section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .rd-section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: #111827;
+    }
+
+    .rd-section-head p {
+      margin: 0;
+      max-width: 640px;
+      color: #667085;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .rd-link-inline {
+      color: #295eff;
+      text-decoration: none;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .rd-services {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .rd-service-card {
+      padding: 24px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fbfcff 0%, #f7f9ff 100%);
+      border: 1px solid #e8eeff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .rd-service-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(41,94,255,0.08);
+      border-color: #d9e4ff;
+    }
+
+    .rd-service-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: #295eff;
+      color: #fff;
+      font-size: 0.86rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .rd-service-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+      color: #111827;
+    }
+
+    .rd-service-card p {
+      margin: 0 0 16px;
+      color: #667085;
+      line-height: 1.65;
+      font-size: 0.97rem;
+    }
+
+    .rd-service-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .rd-service-card li {
+      position: relative;
+      padding-left: 18px;
+      color: #344054;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .rd-service-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #295eff;
+    }
+
+    .rd-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: 22px;
+    }
+
+    .rd-steps {
+      display: grid;
+      gap: 16px;
+    }
+
+    .rd-step {
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: 16px;
+      padding: 20px;
+      border-radius: 20px;
+      background: #fafbfc;
+      border: 1px solid #edf1f5;
+    }
+
+    .rd-step-num {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #eff4ff;
+      color: #295eff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .rd-step h3 {
+      margin: 2px 0 8px;
+      font-size: 1.08rem;
+      color: #111827;
+      letter-spacing: -0.02em;
+    }
+
+    .rd-step p {
+      margin: 0;
+      color: #667085;
+      line-height: 1.65;
+      font-size: 0.96rem;
+    }
+
+    .rd-proof-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+      border: 1px solid #e8eeff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+      height: 100%;
+    }
+
+    .rd-proof-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #295eff;
+      margin-bottom: 14px;
+    }
+
+    .rd-proof-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+      letter-spacing: -0.03em;
+      color: #111827;
+    }
+
+    .rd-proof-card p {
+      margin: 0 0 18px;
+      color: #667085;
+      line-height: 1.65;
+      font-size: 0.97rem;
+    }
+
+    .rd-proof-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .rd-proof-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eef2f7;
+      color: #344054;
+      font-size: 0.94rem;
+    }
+
+    .rd-proof-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .rd-proof-list strong {
+      color: #111827;
+      font-weight: 700;
+    }
+
+    .rd-testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .rd-quote {
+      padding: 24px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid #edf1f5;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .rd-quote-mark {
+      color: #295eff;
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .rd-quote p {
+      margin: 0 0 18px;
+      color: #475467;
+      line-height: 1.75;
+      font-size: 0.98rem;
+    }
+
+    .rd-quote strong {
+      display: block;
+      color: #111827;
+      font-size: 0.96rem;
+    }
+
+    .rd-quote span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.9rem;
+      color: #667085;
+    }
+
+    .rd-final-cta {
+      overflow: hidden;
+      position: relative;
+      border-radius: 28px;
+      padding: 38px;
+      background: linear-gradient(135deg, #0f172a 0%, #162650 100%);
+      color: #fff;
+      box-shadow: 0 18px 46px rgba(15, 23, 42, 0.16);
+    }
+
+    .rd-final-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(41,94,255,0.45), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,0.05), transparent 26%);
+      pointer-events: none;
+    }
+
+    .rd-final-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .rd-final-text h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      color: #fff;
+    }
+
+    .rd-final-text p {
+      margin: 0;
+      max-width: 620px;
+      color: rgba(255,255,255,0.74);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .rd-final-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .rd-btn-darkghost {
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+    }
+
+    @media (max-width: 1280px) {
+      .rd-hero-inner,
+      .rd-split,
+      .rd-services,
+      .rd-testimonials {
+        grid-template-columns: 1fr;
+      }
+
+      .rd-section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .rd-home {
+        padding: 20px 14px 56px;
+      }
+
+      .rd-hero,
+      .rd-panel,
+      .rd-final-cta {
+        padding: 28px 22px;
+        border-radius: 22px;
+      }
+
+      .rd-hero {
+        margin-top: 6px;
+      }
+
+      .rd-hero-inner {
+        gap: 24px;
+      }
+
+      .rd-kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rd-step {
+        grid-template-columns: 1fr;
+      }
+
+      .rd-step-num {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+      }
+
+      .rd-hero-actions,
+      .rd-final-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .rd-btn {
+        width: 100%;
+      }
+
+      .rd-final-inner {
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <div id="rd-header"></div>
 
   <main class="page-top">
-    <!-- your page content here -->
+    <div class="rd-home">
+
+      <section class="rd-hero">
+        <div class="rd-hero-inner">
+          <div>
+            <div class="rd-eyebrow">SEO Services for Growing Brands</div>
+            <h1>Rank higher. Grow faster. Own more of your market.</h1>
+            <p>
+              Russell Digital helps service businesses and growth-focused brands turn organic search into a real
+              acquisition channel through technical SEO, content strategy, local SEO, and conversion-focused execution.
+            </p>
+
+            <div class="rd-hero-actions">
+              <a href="free-audit.html" class="rd-btn rd-btn-primary">Get a Free Audit <span>→</span></a>
+              <a href="case-studies.html" class="rd-btn rd-btn-secondary">View Case Studies</a>
+            </div>
+          </div>
+
+          <aside class="rd-hero-card">
+            <div class="rd-card-label">What we focus on</div>
+
+            <div class="rd-kpi-grid">
+              <div class="rd-kpi">
+                <strong>Technical</strong>
+                <span>Fix crawl, speed, indexing, and site structure issues holding rankings back.</span>
+              </div>
+              <div class="rd-kpi">
+                <strong>Content</strong>
+                <span>Build pages and topic clusters around real search demand and buying intent.</span>
+              </div>
+              <div class="rd-kpi">
+                <strong>Local</strong>
+                <span>Increase visibility in maps and local search for service-area businesses.</span>
+              </div>
+              <div class="rd-kpi">
+                <strong>Growth</strong>
+                <span>Connect traffic gains to leads, revenue opportunities, and long-term SEO equity.</span>
+              </div>
+            </div>
+
+            <ul class="rd-mini-list">
+              <li><span class="rd-mini-dot"></span><span>Keyword strategy built around actual services</span></li>
+              <li><span class="rd-mini-dot"></span><span>On-page SEO that supports conversion, not just rankings</span></li>
+              <li><span class="rd-mini-dot"></span><span>Clear reporting focused on what matters</span></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="rd-section">
+        <div class="rd-panel">
+          <div class="rd-section-head">
+            <div>
+              <div class="rd-eyebrow" style="color:#295eff;">Core Services</div>
+              <h2>SEO services built to create momentum.</h2>
+              <p>
+                The best SEO work is not random. It is a structured system of technical improvements, content expansion,
+                local optimization, and authority building that compounds over time.
+              </p>
+            </div>
+            <a class="rd-link-inline" href="pricing.html">See Pricing →</a>
+          </div>
+
+          <div class="rd-services">
+            <article class="rd-service-card">
+              <div class="rd-service-num">01</div>
+              <h3>Technical SEO</h3>
+              <p>
+                Clean up the issues that limit crawlability, indexation, performance, and search visibility.
+              </p>
+              <ul>
+                <li>Technical audits and priority fixes</li>
+                <li>Site architecture and internal linking</li>
+                <li>Core Web Vitals and performance guidance</li>
+                <li>Schema and indexation cleanup</li>
+              </ul>
+            </article>
+
+            <article class="rd-service-card">
+              <div class="rd-service-num">02</div>
+              <h3>Content Strategy</h3>
+              <p>
+                Build service pages, supporting articles, and keyword clusters designed to rank and convert.
+              </p>
+              <ul>
+                <li>Keyword research and intent mapping</li>
+                <li>Service page SEO structure</li>
+                <li>Topic clusters and content planning</li>
+                <li>On-page optimization recommendations</li>
+              </ul>
+            </article>
+
+            <article class="rd-service-card">
+              <div class="rd-service-num">03</div>
+              <h3>Local SEO</h3>
+              <p>
+                Improve map visibility and local intent rankings for businesses that win customers in defined markets.
+              </p>
+              <ul>
+                <li>Google Business Profile optimization</li>
+                <li>Local landing page strategy</li>
+                <li>Location relevance and citations</li>
+                <li>Review and trust signal guidance</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="rd-section">
+        <div class="rd-split">
+          <div class="rd-panel">
+            <div class="rd-section-head">
+              <div>
+                <div class="rd-eyebrow" style="color:#295eff;">How it works</div>
+                <h2>A simple process with clear priorities.</h2>
+                <p>
+                  Russell Digital focuses on the work that is most likely to improve visibility first, then builds a
+                  stronger SEO foundation from there.
+                </p>
+              </div>
+            </div>
+
+            <div class="rd-steps">
+              <div class="rd-step">
+                <div class="rd-step-num">01</div>
+                <div>
+                  <h3>Audit the site and opportunity</h3>
+                  <p>
+                    Review technical health, ranking gaps, content weaknesses, and the highest-value search opportunities.
+                  </p>
+                </div>
+              </div>
+
+              <div class="rd-step">
+                <div class="rd-step-num">02</div>
+                <div>
+                  <h3>Prioritize the right fixes</h3>
+                  <p>
+                    Focus on the pages, technical issues, and keyword targets most likely to produce meaningful gains.
+                  </p>
+                </div>
+              </div>
+
+              <div class="rd-step">
+                <div class="rd-step-num">03</div>
+                <div>
+                  <h3>Build and improve the asset base</h3>
+                  <p>
+                    Strengthen service pages, publish supporting content, improve local relevance, and enhance internal linking.
+                  </p>
+                </div>
+              </div>
+
+              <div class="rd-step">
+                <div class="rd-step-num">04</div>
+                <div>
+                  <h3>Measure what actually matters</h3>
+                  <p>
+                    Track the impact on rankings, visibility, organic traffic quality, and business outcomes over time.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rd-proof-card">
+            <div class="rd-proof-tag">Ideal fit</div>
+            <h3>Built for businesses that want search to become a growth channel.</h3>
+            <p>
+              Russell Digital is a strong fit for brands that want a cleaner site, stronger rankings, better visibility,
+              and an SEO plan tied to actual business goals.
+            </p>
+
+            <ul class="rd-proof-list">
+              <li><span>Service businesses</span><strong>Lead generation</strong></li>
+              <li><span>Local companies</span><strong>Market visibility</strong></li>
+              <li><span>Growing brands</span><strong>Content expansion</strong></li>
+              <li><span>Multi-location businesses</span><strong>Scalable local SEO</strong></li>
+              <li><span>E-commerce or hybrid businesses</span><strong>SEO foundation</strong></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="rd-section">
+        <div class="rd-panel">
+          <div class="rd-section-head">
+            <div>
+              <div class="rd-eyebrow" style="color:#295eff;">Why Russell Digital</div>
+              <h2>Search strategy without fluff.</h2>
+              <p>
+                Clean execution, practical priorities, and a focus on the work that improves visibility and supports growth.
+              </p>
+            </div>
+          </div>
+
+          <div class="rd-testimonials">
+            <div class="rd-quote">
+              <div class="rd-quote-mark">“</div>
+              <p>
+                Every recommendation should have a reason behind it. The goal is not busywork. The goal is better search
+                performance and more qualified opportunities.
+              </p>
+              <strong>Technical-first thinking</strong>
+              <span>Strong foundations before scaling</span>
+            </div>
+
+            <div class="rd-quote">
+              <div class="rd-quote-mark">“</div>
+              <p>
+                Content should not just fill space. It should support the pages that matter, answer intent clearly,
+                and help turn search visits into real business outcomes.
+              </p>
+              <strong>Conversion-aware content</strong>
+              <span>Built around intent and action</span>
+            </div>
+
+            <div class="rd-quote">
+              <div class="rd-quote-mark">“</div>
+              <p>
+                The best SEO plans are understandable. You should know what is being worked on, why it matters,
+                and how success will be measured.
+              </p>
+              <strong>Clear communication</strong>
+              <span>Simple priorities and useful reporting</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rd-section">
+        <div class="rd-final-cta">
+          <div class="rd-final-inner">
+            <div class="rd-final-text">
+              <h2>Let’s build your organic presence.</h2>
+              <p>
+                Start with a free audit and get a clearer view of where your site stands, what is holding it back,
+                and where the best SEO opportunities are.
+              </p>
+            </div>
+
+            <div class="rd-final-actions">
+              <a href="free-audit.html" class="rd-btn rd-btn-primary">Get a Free Audit <span>→</span></a>
+              <a href="contact.html" class="rd-btn rd-btn-darkghost">Talk Strategy</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
   </main>
 
   <div id="rd-footer"></div>
