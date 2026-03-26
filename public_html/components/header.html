@@ -3,159 +3,722 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Russell Digital</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel"stylesheet" href="css/styles"/>
-  <script src="js/loadComponent"></script>
+  <title>Russell Digital – SEO Agency | Rank Higher. Grow Faster.</title>
+  <meta name="description" content="Russell Digital is a performance SEO agency that turns organic search into your #1 revenue channel. Get a free audit today." />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel"stylesheet" href"css/styles.css"/>
 </head>
 <body>
 
-  <nav class="nav">
-    <div class="nav-inner">
-
-      <a href="/" class="nav-logo">
-        <div class="nav-logo-icon"><img src="public_html\assets\russell-digital-favicon.png"</img></div>
-        <span class="nav-logo-name">Russell Digital</span>
-      </a>
-
-      <ul class="nav-links">
-
-        <li class="nav-item">
-          <button class="nav-link">
-            Services
-            <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
-          </button>
-          <div class="nav-dropdown">
-            <a href="#">
-              <div class="nav-dropdown-icon">🔍</div>
-              <div class="nav-dropdown-text">
-                <strong>SEO</strong>
-                <span>Rank higher, grow faster</span>
-              </div>
-            </a>
-            <a href="#">
-              <div class="nav-dropdown-icon">📍</div>
-              <div class="nav-dropdown-text">
-                <strong>Local SEO</strong>
-                <span>Dominate your local market</span>
-              </div>
-            </a>
-            <a href="#">
-              <div class="nav-dropdown-icon">⚙️</div>
-              <div class="nav-dropdown-text">
-                <strong>Technical SEO</strong>
-                <span>Speed, health & crawlability</span>
-              </div>
-            </a>
-            <a href="#">
-              <div class="nav-dropdown-icon">✍️</div>
-              <div class="nav-dropdown-text">
-                <strong>Content Strategy</strong>
-                <span>Content that converts</span>
-              </div>
-            </a>
-            <a href="#">
-              <div class="nav-dropdown-icon">🔗</div>
-              <div class="nav-dropdown-text">
-                <strong>Link Building</strong>
-                <span>Authority backlinks</span>
-              </div>
-            </a>
-          </div>
-        </li>
-
-        <li class="nav-item">
-          <button class="nav-link">
-            Results
-            <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
-          </button>
-          <div class="nav-dropdown">
-            <a href="#">
-              <div class="nav-dropdown-icon">📈</div>
-              <div class="nav-dropdown-text">
-                <strong>Case Studies</strong>
-                <span>Real campaign results</span>
-              </div>
-            </a>
-            <a href="#">
-              <div class="nav-dropdown-icon">⭐</div>
-              <div class="nav-dropdown-text">
-                <strong>Testimonials</strong>
-                <span>What clients say</span>
-              </div>
-            </a>
-          </div>
-        </li>
-
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-
-      </ul>
-
-      <div class="nav-cta">
-        <a href="#" class="btn-ghost">Contact</a>
-        <a href="#" class="btn-primary">Free Audit</a>
+<!-- ══════════════════════════════════
+     HEADER
+══════════════════════════════════ -->
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 22 22" fill="none">
+          <rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/>
+          <path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/>
+          <circle cx="17.5" cy="5.5" r="1" fill="white"/>
+        </svg>
       </div>
+      <div class="logo-text">
+        <span class="logo-name">Russell Digital</span>
+        <span class="logo-tagline">SEO Agency</span>
+      </div>
+    </a>
 
-      <button class="nav-burger" id="burger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
+    <nav class="desktop-nav">
+      <div class="nav-item">
+        <button class="nav-link">Services <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dropdown">
+          <a href="#services"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Site audits & crawl fixes</small></div></a>
+          <a href="#services"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial plans</small></div></a>
+          <a href="#services"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
+          <a href="#services"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
+        </div>
+      </div>
+      <a href="#cases" class="nav-link">Case Studies</a>
+      <a href="#process" class="nav-link">How It Works</a>
+      <div class="nav-item">
+        <button class="nav-link">Resources <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dropdown">
+          <a href="#"><div class="drop-icon">📚</div><div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
+          <a href="#"><div class="drop-icon">🛠️</div><div class="drop-label"><strong>Free Tools</strong><small>Analyzers & calculators</small></div></a>
+          <a href="#"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
+        </div>
+      </div>
+      <div class="nav-divider"></div>
+      <a href="#pricing" class="nav-link">Pricing</a>
+    </nav>
+
+    <div class="cta-group">
+      <a href="#" class="btn-ghost desktop-only">Sign in</a>
+      <a href="#cta-section" class="btn-primary desktop-cta">Get a Free Audit <span class="arrow">→</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
-
     </div>
-  </nav>
-
-  <!-- Mobile drawer -->
-  <div class="nav-drawer" id="drawer">
-
-    <button class="drawer-link drawer-toggle" data-target="sub-services">
-      Services
-      <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
-    </button>
-    <div class="drawer-sub" id="sub-services">
-      <a href="#">🔍&nbsp;&nbsp;SEO</a>
-      <a href="#">📍&nbsp;&nbsp;Local SEO</a>
-      <a href="#">⚙️&nbsp;&nbsp;Technical SEO</a>
-      <a href="#">✍️&nbsp;&nbsp;Content Strategy</a>
-      <a href="#">🔗&nbsp;&nbsp;Link Building</a>
-    </div>
-
-    <button class="drawer-link drawer-toggle" data-target="sub-results">
-      Results
-      <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
-    </button>
-    <div class="drawer-sub" id="sub-results">
-      <a href="#">📈&nbsp;&nbsp;Case Studies</a>
-      <a href="#">⭐&nbsp;&nbsp;Testimonials</a>
-    </div>
-
-    <a href="#" class="drawer-link">About</a>
-    <a href="#" class="drawer-link">Blog</a>
-    <a href="#" class="drawer-link">Pricing</a>
-
-    <div class="drawer-div"></div>
-
-    <div class="drawer-cta">
-      <a href="#" class="cta-outline">Contact</a>
-      <a href="#" class="cta-solid">Free SEO Audit</a>
-    </div>
-
   </div>
+</header>
 
-  <!-- Demo page content -->
-  <div class="page">
-    <div class="hero">
-      <span class="hero-label">SEO Services — Australia</span>
-      <h1>Rank higher.<br>Grow faster.</h1>
-      <p>Russell Digital builds organic search strategies that drive qualified traffic and compound in value over time.</p>
-      <div class="hero-btns">
-        <a href="#" class="solid">Get a Free Audit</a>
-        <a href="#" class="outline">See Results</a>
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true">
+    <div class="drawer-header">
+      <a href="#" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/><path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/><circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/><circle cx="17.5" cy="5.5" r="1" fill="white"/></svg>
+        </div>
+        <div class="logo-text"><span class="logo-name">Russell Digital</span><span class="logo-tagline">SEO Agency</span></div>
+      </a>
+      <button class="drawer-close" id="drawerClose">✕</button>
+    </div>
+    <div class="drawer-body">
+      <button class="m-link" data-accordion="m-services">Services <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="m-sub" id="m-services">
+        <div class="m-sub-inner">
+          <a href="#services" class="m-sub-link"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Audits & crawl fixes</small></div></a>
+          <a href="#services" class="m-sub-link"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial</small></div></a>
+          <a href="#services" class="m-sub-link"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
+          <a href="#services" class="m-sub-link"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citations</small></div></a>
+        </div>
+      </div>
+      <a href="#cases" class="m-link">Case Studies</a>
+      <a href="#process" class="m-link">How It Works</a>
+      <a href="#pricing" class="m-link">Pricing</a>
+      <div class="m-divider"></div>
+    </div>
+    <div class="drawer-footer">
+      <a href="#cta-section" class="btn-primary">Get a Free Audit <span class="arrow">→</span></a>
+      <a href="#" class="btn-ghost">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-pill reveal">
+        <span class="hero-pill-dot">Live</span>
+        <span class="hero-pill-text">400+ brands ranking on page 1</span>
+      </div>
+      <h1 class="hero-h1 reveal" style="transition-delay:0.08s">
+        Turn organic<br>search into your<br><em>top revenue</em><br>channel.
+      </h1>
+      <p class="hero-sub-text reveal" style="transition-delay:0.14s">
+        Russell Digital is a performance SEO agency that builds sustainable search presence — the kind that compounds month over month and doesn't vanish when ad budgets do.
+      </p>
+      <div class="hero-actions reveal" style="transition-delay:0.2s">
+        <a href="#cta-section" class="btn-hero">Get Your Free Audit <span class="arrow-box">→</span></a>
+        <a href="#process" class="btn-secondary"><span class="play-icon">▶</span> See how it works</a>
+      </div>
+      <div class="hero-social-proof reveal" style="transition-delay:0.26s">
+        <div class="avatar-stack">
+          <div class="av">JM</div>
+          <div class="av">SR</div>
+          <div class="av">AK</div>
+          <div class="av">+</div>
+        </div>
+        <div class="proof-text">
+          <strong>97% of clients</strong> see page-1 rankings<br>within 90 days of onboarding.
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card reveal" style="transition-delay:0.18s">
+      <div class="card-label">Organic Traffic — Live Dashboard</div>
+      <div class="metric-row">
+        <div class="metric-big">184K</div>
+        <div class="metric-delta">↑ 312% YoY</div>
+      </div>
+      <div class="bar-chart" id="barChart"></div>
+      <div class="bar-labels">
+        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+      </div>
+      <div class="card-divider"></div>
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="ms-val">2,847</div>
+          <div class="ms-label">Keywords ranking</div>
+          <div class="ms-delta">↑ 94 this week</div>
+        </div>
+        <div class="mini-stat">
+          <div class="ms-val">$62K</div>
+          <div class="ms-label">Traffic value / mo</div>
+          <div class="ms-delta">↑ 41% vs last mo</div>
+        </div>
+        <div class="mini-stat">
+          <div class="ms-val">4.8×</div>
+          <div class="ms-label">Average ROI</div>
+          <div class="ms-delta">↑ from 2.1× at start</div>
+        </div>
+        <div class="mini-stat">
+          <div class="ms-val">68</div>
+          <div class="ms-label">DA score</div>
+          <div class="ms-delta">↑ from 31</div>
+        </div>
       </div>
     </div>
   </div>
+</section>
+
+<!-- ══════════════════════════════════
+     TRUST / LOGO BAR
+══════════════════════════════════ -->
+<section id="trust">
+  <div class="trust-inner">
+    <p class="trust-label">Trusted by fast-growing brands across industries</p>
+    <div class="logo-strip reveal">
+      <span class="logo-chip">Meridian</span>
+      <span class="logo-chip">Foxline</span>
+      <span class="logo-chip">Kasparo</span>
+      <span class="logo-chip">Altivex</span>
+      <span class="logo-chip">Novexa</span>
+      <span class="logo-chip">Stratum</span>
+      <span class="logo-chip">Clermont</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     RESULTS / STATS
+══════════════════════════════════ -->
+<section id="results">
+  <div class="results-inner">
+    <div class="results-top">
+      <div class="section-badge">Proven results</div>
+      <h2 class="section-title reveal">Numbers that matter</h2>
+      <p class="section-sub reveal">We measure success in revenue, not vanity metrics. Here's what our clients actually see.</p>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-num"><span>312</span>%</div>
+        <div class="stat-desc">Average organic traffic increase in the first 12 months</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num"><span>4.8</span>×</div>
+        <div class="stat-desc">Average ROI on SEO investment across all client accounts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num"><span>90</span>d</div>
+        <div class="stat-desc">Typical time to first page-1 ranking for target keywords</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num"><span>97</span>%</div>
+        <div class="stat-desc">Client retention rate after the first year of partnership</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SERVICES
+══════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-badge">What we do</div>
+      <h2 class="section-title reveal">Every facet of SEO,<br>done properly.</h2>
+      <p class="section-sub reveal">We don't dabble. Each service is run by a specialist who lives and breathes that discipline.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🔍</div>
+        <div class="service-name">Technical SEO</div>
+        <p class="service-desc">Crawlability, Core Web Vitals, structured data, log file analysis — we fix the foundations that hold most sites back without them knowing it.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card featured reveal" style="transition-delay:0.08s">
+        <div class="service-icon">✍️</div>
+        <div class="service-name">Content Strategy</div>
+        <p class="service-desc">Keyword research, topical authority mapping, content briefs and production — we build content that ranks and converts, not just fills pages.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.16s">
+        <div class="service-icon">🔗</div>
+        <div class="service-name">Link Building</div>
+        <p class="service-desc">White-hat digital PR, editorial outreach, broken-link building — we earn links from sites Google actually trusts, not bulk directories.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.08s">
+        <div class="service-icon">📍</div>
+        <div class="service-name">Local SEO</div>
+        <p class="service-desc">Google Business Profile optimisation, citation building, local schema and review strategy — dominate the map pack in your area.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.16s">
+        <div class="service-icon">🛒</div>
+        <div class="service-name">eCommerce SEO</div>
+        <p class="service-desc">Category architecture, faceted navigation, product page optimisation and Shopify/WooCommerce technical fixes that move revenue.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.24s">
+        <div class="service-icon">📊</div>
+        <div class="service-name">SEO Analytics</div>
+        <p class="service-desc">Custom dashboards, GA4 and GSC setup, attribution modelling — you'll always know exactly what's working and why.</p>
+        <a href="#" class="service-link">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PROCESS
+══════════════════════════════════ -->
+<section id="process">
+  <div class="container">
+    <div class="process-grid">
+      <div>
+        <div class="section-badge">How it works</div>
+        <h2 class="section-title reveal">From audit to<br>page 1 in 4 steps.</h2>
+        <p class="section-sub reveal" style="margin-bottom:36px">No fluff, no 6-month onboarding. We move fast and show our work every step of the way.</p>
+        <div class="process-steps">
+          <div class="step active reveal">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <div class="step-title">Free Site Audit</div>
+              <p class="step-text">We analyse your site's technical health, keyword landscape, backlink profile and competitors — then build a roadmap with a clear ROI projection.</p>
+            </div>
+          </div>
+          <div class="step reveal" style="transition-delay:0.08s">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <div class="step-title">Strategy & Quick Wins</div>
+              <p class="step-text">We prioritise the highest-impact actions first — technical fixes that unblock indexing, and content updates that capture existing demand immediately.</p>
+            </div>
+          </div>
+          <div class="step reveal" style="transition-delay:0.16s">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <div class="step-title">Content & Authority</div>
+              <p class="step-text">We build out your topical authority with original content and earn editorial links from high-DA publications in your niche.</p>
+            </div>
+          </div>
+          <div class="step reveal" style="transition-delay:0.24s">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <div class="step-title">Scale & Report</div>
+              <p class="step-text">Monthly reporting tied to revenue, not just rankings. As results compound, we reinvest into the channels delivering the highest returns.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-visual reveal">
+        <div class="visual-title">Keyword rankings — after 6 months</div>
+        <div class="keyword-rows" id="kwRows"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CASE STUDIES
+══════════════════════════════════ -->
+<section id="cases">
+  <div class="container">
+    <div class="cases-header">
+      <div class="section-badge">Case studies</div>
+      <h2 class="section-title reveal">Real clients.<br>Real results.</h2>
+      <p class="section-sub reveal">No cherry-picked outliers. These are typical outcomes for businesses who commit to the process.</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-top">
+          <div class="case-industry">SaaS · B2B</div>
+          <div class="case-client">Meridian Analytics</div>
+          <p class="case-desc">Grew organic pipeline from near zero to their #1 acquisition channel in 11 months, displacing a $40K/month PPC spend.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><div class="cm-val">+487%</div><div class="cm-label">Organic sessions</div></div>
+          <div class="cm"><div class="cm-val">214</div><div class="cm-label">Keywords on page 1</div></div>
+          <div class="cm"><div class="cm-val">$1.2M</div><div class="cm-label">Pipeline attributed</div></div>
+          <div class="cm"><div class="cm-val">11mo</div><div class="cm-label">To #1 revenue channel</div></div>
+        </div>
+      </div>
+      <div class="case-card reveal" style="transition-delay:0.08s">
+        <div class="case-top">
+          <div class="case-industry">eCommerce · Fashion</div>
+          <div class="case-client">Foxline Store</div>
+          <p class="case-desc">Fixed a catastrophic crawl budget issue causing 60% of products to be invisible to Google, then rebuilt category authority.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><div class="cm-val">+312%</div><div class="cm-label">Organic revenue</div></div>
+          <div class="cm"><div class="cm-val">8.2×</div><div class="cm-label">SEO ROI</div></div>
+          <div class="cm"><div class="cm-val">6,400</div><div class="cm-label">Products indexed</div></div>
+          <div class="cm"><div class="cm-val">90d</div><div class="cm-label">To first major result</div></div>
+        </div>
+      </div>
+      <div class="case-card reveal" style="transition-delay:0.16s">
+        <div class="case-top">
+          <div class="case-industry">Professional Services · Legal</div>
+          <div class="case-client">Kasparo Law</div>
+          <p class="case-desc">Dominated local map pack in 3 cities simultaneously, cutting cost-per-lead by 68% versus their previous paid search strategy.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><div class="cm-val">−68%</div><div class="cm-label">Cost per lead</div></div>
+          <div class="cm"><div class="cm-val">#1</div><div class="cm-label">Map pack, 3 cities</div></div>
+          <div class="cm"><div class="cm-val">+290%</div><div class="cm-label">Inbound calls</div></div>
+          <div class="cm"><div class="cm-val">4mo</div><div class="cm-label">To map pack dominance</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testi-header">
+      <div class="section-badge">What clients say</div>
+      <h2 class="section-title reveal">Don't take our word for it.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Russell Digital didn't just improve our rankings — they fundamentally changed how we think about organic growth. SEO is now our most profitable channel by a distance.</p>
+        <div class="testi-author">
+          <div class="testi-av">JM</div>
+          <div>
+            <div class="testi-name">James Morley</div>
+            <div class="testi-role">CEO, Meridian Analytics</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.08s">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">We'd tried two other agencies before. The difference with Russell Digital is the transparency — we see everything in real time and actually understand what they're doing and why.</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#0d40c6">SR</div>
+          <div>
+            <div class="testi-name">Sarah Reeves</div>
+            <div class="testi-role">Marketing Director, Foxline</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.16s">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Within 4 months we were appearing in the map pack across all three of our target cities. The inbound volume increased to the point we had to hire two new intake specialists.</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#1e40af">AK</div>
+          <div>
+            <div class="testi-name">Alex Kasparo</div>
+            <div class="testi-role">Managing Partner, Kasparo Law</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PRICING
+══════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="section-badge">Pricing</div>
+      <h2 class="section-title reveal">Simple, transparent pricing.</h2>
+      <p class="section-sub reveal">No lock-in contracts. Cancel anytime. Every plan includes a dedicated account strategist.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan-card reveal">
+        <div class="plan-tag">Starter</div>
+        <div class="plan-name">Growth</div>
+        <p class="plan-desc">For small businesses and startups building their first serious SEO presence.</p>
+        <div class="plan-price">
+          <div class="plan-amount"><sup>$</sup>1,500</div>
+          <div class="plan-period">per month</div>
+        </div>
+        <ul class="plan-features">
+          <li>Technical SEO audit & fixes</li>
+          <li>4 optimised blog posts/mo</li>
+          <li>5 backlinks per month</li>
+          <li>Monthly reporting dashboard</li>
+          <li>Dedicated strategist</li>
+        </ul>
+        <a href="#cta-section" class="plan-cta">Get started</a>
+      </div>
+      <div class="plan-card popular reveal" style="transition-delay:0.08s">
+        <div class="plan-tag">Most popular</div>
+        <div class="plan-name">Scale</div>
+        <p class="plan-desc">For growing businesses ready to make SEO their primary acquisition channel.</p>
+        <div class="plan-price">
+          <div class="plan-amount"><sup>$</sup>3,500</div>
+          <div class="plan-period">per month</div>
+        </div>
+        <ul class="plan-features">
+          <li>Everything in Growth</li>
+          <li>10 content pieces/mo</li>
+          <li>15 backlinks per month</li>
+          <li>CRO & conversion tracking</li>
+          <li>Competitor monitoring</li>
+          <li>Bi-weekly strategy calls</li>
+        </ul>
+        <a href="#cta-section" class="plan-cta">Get started</a>
+      </div>
+      <div class="plan-card reveal" style="transition-delay:0.16s">
+        <div class="plan-tag">Enterprise</div>
+        <div class="plan-name">Dominate</div>
+        <p class="plan-desc">For established brands that want category leadership across multiple markets.</p>
+        <div class="plan-price">
+          <div class="plan-amount">Custom</div>
+          <div class="plan-period">bespoke engagement</div>
+        </div>
+        <ul class="plan-features">
+          <li>Everything in Scale</li>
+          <li>Unlimited content production</li>
+          <li>Digital PR campaigns</li>
+          <li>Multi-market / multilingual</li>
+          <li>Dedicated team of 4+</li>
+          <li>Weekly executive reporting</li>
+        </ul>
+        <a href="#cta-section" class="plan-cta">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FAQ
+══════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="faq-header">
+        <div class="section-badge">FAQ</div>
+        <h2 class="section-title reveal">Questions we get asked a lot.</h2>
+      </div>
+      <div id="faqList">
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">How long does SEO take to show results?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">Most clients see meaningful movement in rankings within 60–90 days. Significant traffic and revenue impact typically takes 4–6 months. SEO is a compounding investment — the longer you run it, the better the ROI becomes. We also prioritise quick wins in the first 30 days so you see momentum immediately.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">Do you guarantee page 1 rankings?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">No — and you should be wary of any agency that does. Google's algorithm is complex and no one can guarantee positions. What we do guarantee is a transparent process, work we're proud to show you, and a clear ROI methodology. 97% of our clients see page-1 results within 90 days because of how we work, not because we made promises.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">What makes Russell Digital different from other SEO agencies?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">Three things: specialists not generalists (your account is handled by people who only do SEO, not account managers who dabble), full transparency (you see everything we do in real time), and a revenue focus (we tie every activity to pipeline and revenue, not just traffic vanity metrics).</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">Is there a minimum contract length?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">No lock-in contracts. We work on a rolling monthly basis. We do ask for at least 3 months to show meaningful results — SEO is not a one-month activity — but you're never contractually obligated to stay.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-text">What industries do you work with?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">We work across SaaS, eCommerce, professional services, healthcare, fintech and more. Our approach is industry-agnostic at the technical level, but we do assign strategists who have experience in your sector so the content and keyword strategy is grounded in how your buyers actually search.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CTA / AUDIT FORM
+══════════════════════════════════ -->
+<section id="cta-section">
+  <div class="cta-inner">
+    <div class="section-badge" style="background:rgba(26,86,240,0.15);border-color:rgba(26,86,240,0.3);">Free audit — no obligation</div>
+    <h2 class="cta-title reveal">Ready to own<br>your market?</h2>
+    <p class="cta-sub reveal">Fill in the form and we'll send you a full SEO audit of your site within 48 hours — completely free, no strings attached.</p>
+    <div class="audit-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your name</label>
+          <input type="text" placeholder="Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label>Work email</label>
+          <input type="email" placeholder="jane@company.com" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Company</label>
+          <input type="text" placeholder="Acme Corp" />
+        </div>
+        <div class="form-group">
+          <label>Monthly SEO budget</label>
+          <input type="text" placeholder="e.g. $2,000–$5,000" />
+        </div>
+      </div>
+      <div class="form-full">
+        <div class="form-group">
+          <label>Website URL</label>
+          <input type="url" placeholder="https://yourwebsite.com" />
+        </div>
+      </div>
+      <button class="form-submit" onclick="handleSubmit(this)">Send Me My Free Audit →</button>
+      <p class="form-note">No spam. No sales calls unless you ask for one. Audit delivered within 48 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/><path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/><circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/><circle cx="17.5" cy="5.5" r="1" fill="white"/></svg>
+          </div>
+          <div class="logo-text"><span class="logo-name">Russell Digital</span><span class="logo-tagline">SEO Agency</span></div>
+        </a>
+        <p class="footer-desc">Performance SEO that turns organic search into your most profitable growth channel.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">Technical SEO</a>
+        <a href="#">Content Strategy</a>
+        <a href="#">Link Building</a>
+        <a href="#">Local SEO</a>
+        <a href="#">eCommerce SEO</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Case Studies</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">SEO Guides</a>
+        <a href="#">Free Tools</a>
+        <a href="#">Knowledge Base</a>
+        <a href="#">Reports</a>
+        <a href="#">Free Audit</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Russell Digital Ltd. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Settings</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Bar chart ── */
+  const barData = [22, 31, 38, 45, 58, 72, 88, 100];
+  const chart = document.getElementById('barChart');
+  if (chart) {
+    barData.forEach((h, i) => {
+      const bar = document.createElement('div');
+      bar.className = 'bar' + (i === barData.length - 1 ? ' highlight' : '');
+      bar.innerHTML = `<div class="fill" style="height:0%"></div>`;
+      chart.appendChild(bar);
+      setTimeout(() => { bar.querySelector('.fill').style.height = h + '%'; }, 200 + i * 60);
+    });
+  }
+
+  /* ── Keyword rows ── */
+  const keywords = [
+    { kw: 'seo agency london', pos: 1, w: 98 },
+    { kw: 'technical seo services', pos: 2, w: 92 },
+    { kw: 'link building agency', pos: 3, w: 85 },
+    { kw: 'content strategy seo', pos: 4, w: 78 },
+    { kw: 'local seo company', pos: 5, w: 72 },
+    { kw: 'ecommerce seo agency', pos: 7, w: 60 },
+    { kw: 'seo audit service', pos: 9, w: 48 },
+  ];
+  const kwRows = document.getElementById('kwRows');
+  if (kwRows) {
+    keywords.forEach(({ kw, pos, w }) => {
+      const cls = pos <= 3 ? 'good' : pos <= 6 ? 'mid' : 'low';
+      kwRows.innerHTML += `
+        <div class="kw-row">
+          <div class="kw-label">${kw}</div>
+          <div class="kw-bar-track"><div class="kw-bar-fill" style="width:${w}%"></div></div>
+          <div class="kw-pos ${cls}">#${pos}</div>
+        </div>`;
+    });
+  }
+
+  /* ── Mobile drawer ── */
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('mobileDrawer');
+  const overlay   = document.getElementById('drawerOverlay');
+  const closeBtn  = document.getElementById('drawerClose');
+
+  const openDrawer  = () => { drawer.classList.add('open'); hamburger.classList.add('open'); document.body.style.overflow='hidden'; };
+  const closeDrawer = () => { drawer.classList.remove('open'); hamburger.classList.remove('open'); document.body.style.overflow=''; };
+
+  hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+  overlay.addEventListener('click', closeDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  document.querySelectorAll('[data-accordion]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id   = btn.dataset.accordion;
+      const sub  = document.getElementById(id);
+      const open = sub.classList.contains('open');
+      document.querySelectorAll('.m-sub').forEach(s => s.classList.remove('open'));
+      document.querySelectorAll('[data-accordion]').forEach(b => b.classList.remove('expanded'));
+      if (!open) { sub.classList.add('open'); btn.classList.add('expanded'); }
+    });
+  });
+
+  /* ── Mobile nav links close drawer ── */
+  document.querySelectorAll('.m-link[href], .m-sub-link').forEach(a => {
+    a.addEventListener('click', closeDrawer);
+  });
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ── Process steps ── */
+  document.querySelectorAll('.step').forEach(step => {
+    step.addEventListener('mouseenter', () => {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+    });
+  });
+
+  /* ── Scroll reveal ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Form submit ── */
+  function handleSubmit(btn) {
+    btn.textContent = '✓ Audit request sent! Check your inbox within 48h.';
+    btn.style.background = '#16a34a';
+    btn.disabled = true;
+  }
+</script>
 </body>
 </html>
