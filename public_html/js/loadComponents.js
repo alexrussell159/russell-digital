@@ -1,11 +1,17 @@
-/**
- * Russell Digital — Component Loader
- * loadComponent.js
- *
- * Usage on any page:
- *   loadComponent('#header-placeholder', 'header.html');
- *   loadComponent('#footer-placeholder', 'footer.html');
- */
+async function loadComponent(id, file) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const res = await fetch(file);
+  const data = await res.text();
+
+  el.innerHTML = data;
+}
+
+// Load components
+document.addEventListener("DOMContentLoaded", () => {
+  loadComponent("header", "/components/header.html");
+});
 
 /**
  * Fetches an HTML file and injects it into a target element.
