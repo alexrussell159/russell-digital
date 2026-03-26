@@ -1,503 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Russell Digital – SEO Agency</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<!-- ══ RUSSELL DIGITAL — HEADER COMPONENT ══
+     Loaded dynamically via loadComponents.js into <div id="rd-header"></div>
+     Requires: css/styles.css to include the header styles below
+     ════════════════════════════════════════════════════════════ -->
 
-    :root {
-      --bg: #f5f4f0;
-      --surface: rgba(255,255,255,0.88);
-      --border: rgba(0,0,0,0.08);
-      --text: #0f0f0e;
-      --muted: #6b6a65;
-      --accent: #1a56f0;
-      --radius: 14px;
-      --nav-h: 68px;
-      --header-pad-v: 14px; /* vertical padding above/below nav pill */
-    }
+<header>
+  <div class="nav-wrap">
 
-    html { scroll-behavior: smooth; }
+    <!-- Russell Digital Logo -->
+    <a href="index.html" class="logo">
+      <div class="logo-mark">
+        <img src"assets/russell-digital-favicon.png"/>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Russell Digital</span>
+        <span class="logo-tagline">SEO Agency</span>
+      </div>
+    </a>
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 200vh; /* tall page so scroll effect is testable */
-      overflow-x: hidden;
-    }
+    <!-- Desktop Nav -->
+    <nav class="desktop-nav">
 
-    /* ══════════════════════════════════════
-       HEADER — fixed, NOT sticky.
-       Using fixed + defined height so the
-       page content is offset via body padding.
-       The pill never moves on scroll.
-    ══════════════════════════════════════ */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      /* Total header height = pill height + top padding */
-      height: calc(var(--nav-h) + var(--header-pad-v) + 4px);
-      /* No bottom padding — dropdown overflows naturally */
-      padding: var(--header-pad-v) 1.5rem 0;
-      /* Pointer events only on the pill itself */
-      pointer-events: none;
-    }
+      <div class="nav-item">
+        <button class="nav-link">
+          Services
+          <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="dropdown">
+          <a href="services/technical-seo.html"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Site audits & crawl fixes</small></div></a>
+          <a href="services/content-strategy.html"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial plans</small></div></a>
+          <a href="services/link-building.html"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
+          <a href="services/local-seo.html"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
+        </div>
+      </div>
 
-    /* Push page content below fixed header */
-    body { padding-top: calc(var(--nav-h) + var(--header-pad-v) + 20px); }
+      <a href="case-studies.html" class="nav-link">Case Studies</a>
+      <a href="knowledge-base.html" class="nav-link">Knowledge Base</a>
 
-    .nav-wrap {
-      pointer-events: all;
-      max-width: 1280px;
-      margin: 0 auto;
-      height: var(--nav-h);
-      background: var(--surface);
-      backdrop-filter: blur(20px) saturate(170%);
-      -webkit-backdrop-filter: blur(20px) saturate(170%);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5rem;
-      box-shadow: 0 4px 28px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04);
-      animation: slideDown 0.55s cubic-bezier(.22,1,.36,1) both;
-    }
+      <div class="nav-item">
+        <button class="nav-link">
+          Resources
+          <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="dropdown">
+          <a href="resources/seo-guides.html"><div class="drop-icon">📚</div><div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
+          <a href="resources/free-tools.html"><div class="drop-icon">🛠️</div><div class="drop-label"><strong>Free Tools</strong><small>Analyzers & calculators</small></div></a>
+          <a href="resources/reports.html"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
+        </div>
+      </div>
 
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+      <div class="nav-divider"></div>
+      <a href="pricing.html" class="nav-link">Pricing</a>
 
-    /* ══════════════════════════════════════
-       RUSSELL DIGITAL LOGO
-       R mark: stylised "R" built from SVG
-       with a rising signal/chart accent
-    ══════════════════════════════════════ */
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
+    </nav>
 
-    .logo-mark {
-      width: 36px; height: 36px;
-      background: var(--accent);
-      border-radius: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(26,86,240,0.30);
-    }
+    <!-- CTA -->
+    <div class="cta-group">
+      <a href="signin.html" class="btn-ghost desktop-only">Sign in</a>
+      <a href="free-audit.html" class="btn-primary desktop-cta">
+        Get a Free Audit <span class="arrow">→</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-    .logo-mark svg {
-      width: 22px; height: 22px;
-      overflow: visible;
-    }
+  </div>
+</header>
 
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-      gap: 1px;
-    }
+<!-- ══ MOBILE DRAWER ══ -->
+<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation">
 
-    .logo-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      letter-spacing: -0.03em;
-      color: var(--text);
-    }
-
-    .logo-tagline {
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    /* ══════════════════════════════════════
-       DESKTOP NAV — pure CSS hover dropdowns
-    ══════════════════════════════════════ */
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-    }
-
-    /* Each item wraps the trigger + dropdown.
-       The invisible bridge fills the gap between
-       pill bottom and dropdown top so the mouse
-       path never breaks the hover state. */
-    .nav-item {
-      position: relative;
-    }
-
-    .nav-link {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 10px;
-      transition: color 0.15s, background 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      white-space: nowrap;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-      line-height: 1;
-    }
-
-    .nav-link:hover,
-    .nav-item:hover > .nav-link {
-      color: var(--text);
-      background: rgba(0,0,0,0.05);
-    }
-
-    .nav-link .chev {
-      width: 12px; height: 12px;
-      flex-shrink: 0;
-      opacity: 0.45;
-      transition: transform 0.22s cubic-bezier(.22,1,.36,1), opacity 0.15s;
-    }
-
-    .nav-item:hover > .nav-link .chev {
-      transform: rotate(180deg);
-      opacity: 0.75;
-    }
-
-    /* ── Invisible hover bridge (fills gap between trigger and panel) ── */
-    .nav-item::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 0; right: 0;
-      height: 14px; /* matches dropdown top offset */
-      display: none;
-    }
-    .nav-item:hover::after { display: block; }
-
-    /* ── DROPDOWN PANEL ── */
-    .dropdown {
-      position: absolute;
-      top: calc(100% + 14px); /* gap from nav bottom */
-      left: 50%;
-      transform: translateX(-50%) translateY(5px);
-      min-width: 240px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.11), 0 2px 8px rgba(0,0,0,0.05);
-      padding: 7px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.16s, transform 0.22s cubic-bezier(.22,1,.36,1);
-    }
-
-    /* Show on hover of parent nav-item */
-    .nav-item:hover > .dropdown {
-      opacity: 1;
-      pointer-events: all;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* Keep dropdown visible when mouse travels into it */
-    .dropdown:hover {
-      opacity: 1;
-      pointer-events: all;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .dropdown a {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 9px 12px;
-      border-radius: 10px;
-      font-size: 0.845rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: background 0.14s, color 0.14s;
-    }
-    .dropdown a:hover { background: #f5f4f0; color: var(--text); }
-
-    .drop-icon {
-      width: 32px; height: 32px;
-      border-radius: 9px;
-      background: #f0f0eb;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      font-size: 0.9rem;
-    }
-
-    .drop-label { line-height: 1.25; }
-    .drop-label strong { display: block; font-weight: 500; color: var(--text); font-size: 0.845rem; }
-    .drop-label small { font-size: 0.735rem; color: var(--muted); font-weight: 300; }
-
-    .nav-divider { width: 1px; height: 20px; background: var(--border); margin: 0 6px; flex-shrink: 0; }
-
-    /* ══════════════════════════════════════
-       CTA GROUP
-    ══════════════════════════════════════ */
-    .cta-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .btn-ghost {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--muted);
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 8px 13px;
-      border-radius: 10px;
-      transition: color 0.15s, background 0.15s;
-      font-family: 'DM Sans', sans-serif;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .btn-ghost:hover { background: rgba(0,0,0,0.05); color: var(--text); }
-
-    .btn-primary {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 0.845rem;
-      letter-spacing: -0.01em;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      padding: 10px 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.16s, box-shadow 0.16s, background 0.16s;
-      text-decoration: none;
-      white-space: nowrap;
-      box-shadow: 0 2px 10px rgba(26,86,240,0.28);
-    }
-    .btn-primary:hover {
-      background: #0d45d6;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(26,86,240,0.36);
-    }
-    .btn-primary:active { transform: translateY(0); }
-
-    .btn-primary .arrow {
-      width: 19px; height: 19px;
-      background: rgba(255,255,255,0.18);
-      border-radius: 6px;
-      display: grid;
-      place-items: center;
-      font-size: 0.72rem;
-    }
-
-    /* ══════════════════════════════════════
-       HAMBURGER
-    ══════════════════════════════════════ */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 5px;
-      cursor: pointer;
-      padding: 7px 8px;
-      border-radius: 10px;
-      background: transparent;
-      border: 1px solid var(--border);
-      width: 40px; height: 40px;
-      transition: background 0.15s;
-    }
-    .hamburger:hover { background: rgba(0,0,0,0.05); }
-    .hamburger span {
-      display: block; height: 2px;
-      background: var(--text); border-radius: 2px;
-      transition: transform 0.28s cubic-bezier(.22,1,.36,1), opacity 0.2s, width 0.2s;
-      transform-origin: center;
-    }
-    .hamburger span:nth-child(1) { width: 18px; }
-    .hamburger span:nth-child(2) { width: 13px; }
-    .hamburger span:nth-child(3) { width: 18px; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 18px; }
-    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 18px; }
-
-    /* ══════════════════════════════════════
-       MOBILE DRAWER
-    ══════════════════════════════════════ */
-    .mobile-drawer {
-      display: none;
-      position: fixed; inset: 0;
-      z-index: 400;
-      pointer-events: none;
-    }
-    .drawer-overlay {
-      position: absolute; inset: 0;
-      background: rgba(15,15,14,0.40);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      opacity: 0;
-      transition: opacity 0.26s;
-    }
-    .drawer-panel {
-      position: absolute;
-      top: 0; right: 0;
-      width: min(340px, 92vw); height: 100%;
-      background: #fff;
-      box-shadow: -12px 0 48px rgba(0,0,0,0.11);
-      display: flex; flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.32s cubic-bezier(.22,1,.36,1);
-      overflow-y: auto;
-    }
-    .mobile-drawer.open { pointer-events: all; }
-    .mobile-drawer.open .drawer-overlay { opacity: 1; }
-    .mobile-drawer.open .drawer-panel   { transform: translateX(0); }
-
-    .drawer-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 20px 16px;
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-    .drawer-close {
-      width: 34px; height: 34px; border-radius: 9px;
-      border: 1px solid var(--border); background: transparent;
-      cursor: pointer; display: grid; place-items: center;
-      font-size: 1rem; color: var(--muted);
-      transition: background 0.14s, color 0.14s;
-    }
-    .drawer-close:hover { background: #f5f4f0; color: var(--text); }
-
-    .drawer-body {
-      padding: 12px 12px 16px; flex: 1;
-      display: flex; flex-direction: column; gap: 2px;
-    }
-
-    .m-link {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 14px; border-radius: 12px;
-      font-size: 0.95rem; font-weight: 500; color: var(--text);
-      text-decoration: none; transition: background 0.14s;
-      cursor: pointer; background: transparent; border: none;
-      font-family: 'DM Sans', sans-serif; width: 100%; text-align: left;
-    }
-    .m-link:hover { background: #f5f4f0; }
-    .m-link svg { width: 14px; height: 14px; color: var(--muted); transition: transform 0.22s cubic-bezier(.22,1,.36,1); flex-shrink: 0; }
-    .m-link.expanded svg { transform: rotate(180deg); }
-
-    .m-sub { overflow: hidden; max-height: 0; transition: max-height 0.32s cubic-bezier(.22,1,.36,1); }
-    .m-sub.open { max-height: 500px; }
-    .m-sub-inner { padding: 4px 0 8px 12px; display: flex; flex-direction: column; gap: 2px; }
-    .m-sub-link {
-      display: flex; align-items: center; gap: 10px;
-      padding: 9px 10px; border-radius: 10px;
-      font-size: 0.855rem; color: var(--muted);
-      text-decoration: none; transition: background 0.14s, color 0.14s;
-    }
-    .m-sub-link:hover { background: #f5f4f0; color: var(--text); }
-    .m-sub-link .drop-icon { width: 28px; height: 28px; font-size: 0.8rem; }
-
-    .m-divider { height: 1px; background: var(--border); margin: 8px 4px; }
-
-    .drawer-footer { padding: 0 12px 32px; display: flex; flex-direction: column; gap: 8px; }
-    .drawer-footer .btn-primary { justify-content: center; padding: 13px; font-size: 0.9rem; border-radius: 14px; }
-    .drawer-footer .btn-ghost { text-align: center; display: flex; align-items: center; justify-content: center; padding: 12px; border-radius: 14px; border: 1px solid var(--border); }
-
-    /* ══════════════════════════════════════
-       HERO TEASER
-    ══════════════════════════════════════ */
-    .hero-teaser {
-      max-width: 1280px; margin: 56px auto 0;
-      padding: 0 1.5rem; text-align: center;
-    }
-    .badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(26,86,240,0.08); color: var(--accent);
-      font-size: 0.775rem; font-weight: 600;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      padding: 5px 13px; border-radius: 99px;
-      border: 1px solid rgba(26,86,240,0.15); margin-bottom: 22px;
-    }
-    .badge::before {
-      content: ''; width: 6px; height: 6px;
-      background: var(--accent); border-radius: 50%;
-      animation: pulse 1.8s ease infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.4; transform: scale(0.7); }
-    }
-    .hero-title {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(2.4rem, 7vw, 5rem);
-      letter-spacing: -0.04em; line-height: 1.02;
-      color: var(--text); margin-bottom: 18px;
-    }
-    .hero-title em { font-style: normal; color: var(--accent); }
-    .hero-sub {
-      font-size: clamp(0.95rem, 2.5vw, 1.05rem); font-weight: 300;
-      color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.65;
-    }
-
-    /* ══════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════ */
-    @media (max-width: 900px) {
-      .desktop-nav,
-      .btn-ghost.desktop-only,
-      .nav-divider { display: none !important; }
-      .btn-primary.desktop-cta { display: none !important; }
-      .hamburger { display: flex; }
-      .mobile-drawer { display: block; }
-      header { padding: var(--header-pad-v) 1rem 0; }
-    }
-    @media (max-width: 480px) {
-      .nav-wrap { padding: 0 1rem; }
-      header { padding: 10px 0.75rem 0; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ══ HEADER ══ -->
-  <header>
-    <div class="nav-wrap">
-
-      <!-- Russell Digital Logo -->
-      <a href="#" class="logo">
+    <div class="drawer-header">
+      <a href="index.html" class="logo">
         <div class="logo-mark">
-          <!-- SVG: stylised "R" with upward signal bars on the leg -->
           <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- R stem -->
             <rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/>
-            <!-- R bowl -->
             <path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <!-- R leg with rising angle -->
             <path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
-            <!-- Rising signal dot accent -->
             <circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/>
             <circle cx="17.5" cy="5.5" r="1" fill="white"/>
           </svg>
@@ -507,160 +88,48 @@
           <span class="logo-tagline">SEO Agency</span>
         </div>
       </a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
+    </div>
 
-      <!-- Desktop Nav -->
-      <nav class="desktop-nav">
+    <div class="drawer-body">
 
-        <div class="nav-item">
-          <button class="nav-link">
-            Services
-            <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="dropdown">
-            <a href="#"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Site audits & crawl fixes</small></div></a>
-            <a href="#"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial plans</small></div></a>
-            <a href="#"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
-            <a href="#"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
-          </div>
+      <button class="m-link" data-accordion="services">
+        Services
+        <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="m-sub" id="services">
+        <div class="m-sub-inner">
+          <a href="services/technical-seo.html" class="m-sub-link"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Site audits & crawl fixes</small></div></a>
+          <a href="services/content-strategy.html" class="m-sub-link"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial plans</small></div></a>
+          <a href="services/link-building.html" class="m-sub-link"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
+          <a href="services/local-seo.html" class="m-sub-link"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
         </div>
-
-        <a href="#" class="nav-link">Case Studies</a>
-        <a href="#" class="nav-link">Knowledge Base</a>
-
-        <div class="nav-item">
-          <button class="nav-link">
-            Resources
-            <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="dropdown">
-            <a href="#"><div class="drop-icon">📚</div><div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
-            <a href="#"><div class="drop-icon">🛠️</div><div class="drop-label"><strong>Free Tools</strong><small>Analyzers & calculators</small></div></a>
-            <a href="#"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
-          </div>
-        </div>
-
-        <div class="nav-divider"></div>
-        <a href="#" class="nav-link">Pricing</a>
-
-      </nav>
-
-      <!-- CTA -->
-      <div class="cta-group">
-        <a href="#" class="btn-ghost desktop-only">Sign in</a>
-        <a href="#" class="btn-primary desktop-cta">
-          Get a Free Audit <span class="arrow">→</span>
-        </a>
-        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
       </div>
+
+      <a href="case-studies.html" class="m-link">Case Studies</a>
+      <a href="knowledge-base.html" class="m-link">Knowledge Base</a>
+
+      <button class="m-link" data-accordion="resources">
+        Resources
+        <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="m-sub" id="resources">
+        <div class="m-sub-inner">
+          <a href="resources/seo-guides.html" class="m-sub-link"><div class="drop-icon">📚</div><div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
+          <a href="resources/free-tools.html" class="m-sub-link"><div class="drop-icon">🛠️</div><div class="drop-label"><strong>Free Tools</strong><small>Analyzers & calculators</small></div></a>
+          <a href="resources/reports.html" class="m-sub-link"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
+        </div>
+      </div>
+
+      <div class="m-divider"></div>
+      <a href="pricing.html" class="m-link">Pricing</a>
 
     </div>
-  </header>
 
-  <!-- ══ MOBILE DRAWER ══ -->
-  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
-    <div class="drawer-overlay" id="drawerOverlay"></div>
-    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation">
-
-      <div class="drawer-header">
-        <a href="#" class="logo">
-          <div class="logo-mark">
-            <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="2.8" height="16" rx="1.2" fill="white"/>
-              <path d="M5.8 3 H12 C14.8 3 17 5.2 17 8 C17 10.8 14.8 13 12 13 H5.8" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <path d="M5.8 13 L16.5 19" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
-              <circle cx="17.5" cy="5.5" r="2" fill="rgba(255,255,255,0.35)"/>
-              <circle cx="17.5" cy="5.5" r="1" fill="white"/>
-            </svg>
-          </div>
-          <div class="logo-text">
-            <span class="logo-name">Russell Digital</span>
-            <span class="logo-tagline">SEO Agency</span>
-          </div>
-        </a>
-        <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
-      </div>
-
-      <div class="drawer-body">
-
-        <button class="m-link" data-accordion="services">
-          Services
-          <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="m-sub" id="services">
-          <div class="m-sub-inner">
-            <a href="#" class="m-sub-link"><div class="drop-icon">🔍</div><div class="drop-label"><strong>Technical SEO</strong><small>Site audits & crawl fixes</small></div></a>
-            <a href="#" class="m-sub-link"><div class="drop-icon">✍️</div><div class="drop-label"><strong>Content Strategy</strong><small>Keywords & editorial plans</small></div></a>
-            <a href="#" class="m-sub-link"><div class="drop-icon">🔗</div><div class="drop-label"><strong>Link Building</strong><small>Authority & backlinks</small></div></a>
-            <a href="#" class="m-sub-link"><div class="drop-icon">📍</div><div class="drop-label"><strong>Local SEO</strong><small>Maps & citation growth</small></div></a>
-          </div>
-        </div>
-
-        <a href="#" class="m-link">Case Studies</a>
-        <a href="#" class="m-link">Knowledge Base</a>
-
-        <button class="m-link" data-accordion="resources">
-          Resources
-          <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="m-sub" id="resources">
-          <div class="m-sub-inner">
-            <a href="#" class="m-sub-link"><div class="drop-icon">📚</div><div class="drop-label"><strong>SEO Guides</strong><small>Free learning library</small></div></a>
-            <a href="#" class="m-sub-link"><div class="drop-icon">🛠️</div><div class="drop-label"><strong>Free Tools</strong><small>Analyzers & calculators</small></div></a>
-            <a href="#" class="m-sub-link"><div class="drop-icon">📊</div><div class="drop-label"><strong>Reports & Data</strong><small>Industry benchmarks</small></div></a>
-          </div>
-        </div>
-
-        <div class="m-divider"></div>
-        <a href="#" class="m-link">Pricing</a>
-
-      </div>
-
-      <div class="drawer-footer">
-        <a href="#" class="btn-primary">Get a Free Audit <span class="arrow">→</span></a>
-        <a href="#" class="btn-ghost">Sign in</a>
-      </div>
-
+    <div class="drawer-footer">
+      <a href="free-audit.html" class="btn-primary">Get a Free Audit <span class="arrow">→</span></a>
+      <a href="signin.html" class="btn-ghost">Sign in</a>
     </div>
+
   </div>
-
-  <!-- ══ HERO ══ -->
-  <section class="hero-teaser">
-    <div class="badge">Trusted by 400+ growing brands</div>
-    <h1 class="hero-title">
-      Rank higher.<br><em>Grow faster.</em><br>Own your market.
-    </h1>
-    <p class="hero-sub">Data-driven SEO strategies that turn organic traffic into measurable revenue — no guesswork, just results.</p>
-  </section>
-
-  <script>
-    /* ── Mobile drawer ── */
-    const hamburger = document.getElementById('hamburger');
-    const drawer    = document.getElementById('mobileDrawer');
-    const overlay   = document.getElementById('drawerOverlay');
-    const closeBtn  = document.getElementById('drawerClose');
-
-    const openDrawer  = () => { drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); hamburger.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
-    const closeDrawer = () => { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
-
-    hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
-    overlay.addEventListener('click', closeDrawer);
-    closeBtn.addEventListener('click', closeDrawer);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
-
-    /* ── Mobile accordion ── */
-    document.querySelectorAll('[data-accordion]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id   = btn.dataset.accordion;
-        const sub  = document.getElementById(id);
-        const open = sub.classList.contains('open');
-        document.querySelectorAll('.m-sub').forEach(s => s.classList.remove('open'));
-        document.querySelectorAll('[data-accordion]').forEach(b => b.classList.remove('expanded'));
-        if (!open) { sub.classList.add('open'); btn.classList.add('expanded'); }
-      });
-    });
-  </script>
-
-</body>
-</html>
+</div>
