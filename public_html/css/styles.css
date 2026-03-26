@@ -975,7 +975,7 @@ header {
     }
 
     @media (max-width: 768px) {
-      footer { padding: 0 1rem 1rem; }
+      footer { padding: 0 1rem; }
 
       .footer-cta-band {
         flex-direction: column;
@@ -1021,7 +1021,7 @@ header {
     @media (max-width: 480px) {
       .footer-main {
         grid-template-columns: 1fr;
-        padding: 28px 20px 0;
+        padding: 0 1rem;
       }
       .footer-cta-band { padding: 28px 20px; }
       .footer-newsletter { margin: 24px 12px 0; }
