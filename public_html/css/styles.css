@@ -83,7 +83,7 @@ header {
 
 .logo-mark {
   width: 36px; height: 36px;
-  background: var(--accent);
+  background: var(#FFF);
   border-radius: 11px;
   display: flex;
   align-items: center;
@@ -255,6 +255,26 @@ header {
   white-space: nowrap;
 }
 .btn-ghost:hover { background: rgba(0,0,0,0.05); color: var(--text); }
+
+    .btn-blue {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: -0.01em;
+      background: #1a56f0;
+      color: var(--accent);
+      border: none;
+      border-radius: 12px;
+      padding: 12px 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.16s, box-shadow 0.16s;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
 
 .btn-primary {
   font-family: 'Instrument Serif', serif;
