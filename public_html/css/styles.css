@@ -600,6 +600,7 @@ header {
       display: flex;
       align-items: center;
       gap: 10px;
+
       flex-shrink: 0;
       position: relative;
       z-index: 1;
@@ -983,7 +984,7 @@ header {
         padding: 36px 28px;
         gap: 24px;
       }
-      .cta-band-actions { flex-direction: left; width: 100%; }
+      .cta-band-actions { flex-direction: center; width: 100%;  justify-content: center;     flex-wrap: wrap;}
       .btn-white, .btn-ghost-white { justify-content: center; text-align: center; }
 
       .footer-main {
@@ -1021,12 +1022,14 @@ header {
     @media (max-width: 480px) {
       .footer-main {
         grid-template-columns: 1fr;
-        padding: 0 1rem;
+        padding: 28px 20px 0;
       }
       .footer-cta-band { padding: 28px 20px; }
       .footer-newsletter { margin: 24px 12px 0; }
       .footer-bottom { padding: 20px; }
       .footer-trust { padding: 0 20px 20px; }
       .footer-legal { flex-wrap: wrap; justify-content: center; }
+      footer    { padding: 10px 0.75rem 0; }
+
 
     }
