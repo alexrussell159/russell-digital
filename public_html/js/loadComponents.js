@@ -1,49 +1,31 @@
-async function loadComponent(id, file) {
-  const el = document.getElementById(id);
-  if (!el) return;
+    const burger  = document.getElementById('burger');
+    const drawer  = document.getElementById('drawer');
 
-  const res = await fetch(file);
-  const data = await res.text();
-
-  el.innerHTML = data;
-}
-
-// Load components
-document.addEventListener("DOMContentLoaded", () => {
-  loadComponent("header", "/components/header.html");
-});
-
-/**
- * Fetches an HTML file and injects it into a target element.
- * Runs any inline <script> tags found in the loaded HTML.
- *
- * @param {string} selector  - CSS selector for the placeholder element
- * @param {string} file      - Path to the HTML component file
- * @param {Function} [callback] - Optional function called after injection
- */
-async function loadComponent(selector, file, callback) {
-  const target = document.querySelector(selector);
-  if (!target) {
-    console.warn(`loadComponent: no element found for "${selector}"`);
-    return;
-  }
-
-  try {
-    const res = await fetch(file);
-    if (!res.ok) throw new Error(`Failed to fetch ${file}: ${res.status}`);
-    const html = await res.text();
-    target.innerHTML = html;
-
-    // Re-execute any <script> tags inside the loaded HTML
-    target.querySelectorAll('script').forEach(oldScript => {
-      const newScript = document.createElement('script');
-      [...oldScript.attributes].forEach(attr => newScript.setAttribute(attr.name, attr.value));
-      newScript.textContent = oldScript.textContent;
-      oldScript.replaceWith(newScript);
+    burger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
     });
 
-    if (typeof callback === 'function') callback();
-  } catch (err) {
-    console.error(`loadComponent error:`, err);
-  }
-}
+    document.querySelectorAll('.drawer-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sub = document.getElementById(btn.dataset.target);
+        const opening = !sub.classList.contains('open');
+
+        document.querySelectorAll('.drawer-sub.open').forEach(s => s.classList.remove('open'));
+        document.querySelectorAll('.drawer-toggle.open').forEach(b => b.classList.remove('open'));
+
+        if (opening) {
+          sub.classList.add('open');
+          btn.classList.add('open');
+        }
+      });
+    });
+
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });

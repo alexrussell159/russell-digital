@@ -1,119 +1,161 @@
-<header class="site-header" id="site-header" role="banner">
-  <div class="container">
-    <nav class="nav-inner" aria-label="Main navigation">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Russell Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel"stylesheet" href="css/styles"/>
+  <script src="js/loadComponent"></script>
+</head>
+<body>
 
-      <!-- Logo -->
-      <a href="/" class="nav-logo" aria-label="Russell Digital — Home">
-        <img src="assets/russell-digital-favicon.png" alt="Russell Digital" width="34" height="34" />
-        <span class="nav-logo-text">
-          <span class="nav-logo-name">Russell Digital</span>
-          <span class="nav-logo-tagline">SEO Services</span>
-        </span>
+  <nav class="nav">
+    <div class="nav-inner">
+
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon"><img src="public_html\assets\russell-digital-favicon.png"</img></div>
+        <span class="nav-logo-name">Russell Digital</span>
       </a>
 
-      <!-- Desktop links -->
-      <ul class="nav-links" role="list">
+      <ul class="nav-links">
 
-        <li class="nav-dropdown-wrapper">
-          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item">
+          <button class="nav-link">
             Services
-            <svg class="nav-link-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
+            <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
           </button>
-          <div class="nav-dropdown" role="menu">
-            <a href="/services/seo" class="nav-dropdown-item" role="menuitem">
-              <span class="nav-dropdown-icon">🔍</span>
-              <span><span class="nav-dropdown-label">Search Engine Optimisation</span><span class="nav-dropdown-desc">Rank higher, drive qualified organic traffic</span></span>
+          <div class="nav-dropdown">
+            <a href="#">
+              <div class="nav-dropdown-icon">🔍</div>
+              <div class="nav-dropdown-text">
+                <strong>SEO</strong>
+                <span>Rank higher, grow faster</span>
+              </div>
             </a>
-            <a href="/services/local-seo" class="nav-dropdown-item" role="menuitem">
-              <span class="nav-dropdown-icon">📍</span>
-              <span><span class="nav-dropdown-label">Local SEO</span><span class="nav-dropdown-desc">Dominate local search results</span></span>
+            <a href="#">
+              <div class="nav-dropdown-icon">📍</div>
+              <div class="nav-dropdown-text">
+                <strong>Local SEO</strong>
+                <span>Dominate your local market</span>
+              </div>
             </a>
-            <a href="/services/technical-seo" class="nav-dropdown-item" role="menuitem">
-              <span class="nav-dropdown-icon">⚙️</span>
-              <span><span class="nav-dropdown-label">Technical SEO</span><span class="nav-dropdown-desc">Site health, speed &amp; crawlability audits</span></span>
+            <a href="#">
+              <div class="nav-dropdown-icon">⚙️</div>
+              <div class="nav-dropdown-text">
+                <strong>Technical SEO</strong>
+                <span>Speed, health & crawlability</span>
+              </div>
             </a>
-            <a href="/services/content" class="nav-dropdown-item" role="menuitem">
-              <span class="nav-dropdown-icon">✍️</span>
-              <span><span class="nav-dropdown-label">Content Strategy</span><span class="nav-dropdown-desc">Words that rank and convert</span></span>
+            <a href="#">
+              <div class="nav-dropdown-icon">✍️</div>
+              <div class="nav-dropdown-text">
+                <strong>Content Strategy</strong>
+                <span>Content that converts</span>
+              </div>
             </a>
-            <a href="/services/link-building" class="nav-dropdown-item" role="menuitem">
-              <span class="nav-dropdown-icon">🔗</span>
-              <span><span class="nav-dropdown-label">Link Building</span><span class="nav-dropdown-desc">Authority-building backlink campaigns</span></span>
+            <a href="#">
+              <div class="nav-dropdown-icon">🔗</div>
+              <div class="nav-dropdown-text">
+                <strong>Link Building</strong>
+                <span>Authority backlinks</span>
+              </div>
             </a>
           </div>
         </li>
 
-        <li class="nav-dropdown-wrapper">
-          <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item">
+          <button class="nav-link">
             Results
-            <svg class="nav-link-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
+            <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
           </button>
-          <div class="nav-dropdown" role="menu">
-            <a href="/case-studies" class="nav-dropdown-item" role="menuitem">
-              <span class="nav-dropdown-icon">📈</span>
-              <span><span class="nav-dropdown-label">Case Studies</span><span class="nav-dropdown-desc">Real results from real campaigns</span></span>
+          <div class="nav-dropdown">
+            <a href="#">
+              <div class="nav-dropdown-icon">📈</div>
+              <div class="nav-dropdown-text">
+                <strong>Case Studies</strong>
+                <span>Real campaign results</span>
+              </div>
             </a>
-            <a href="/testimonials" class="nav-dropdown-item" role="menuitem">
-              <span class="nav-dropdown-icon">⭐</span>
-              <span><span class="nav-dropdown-label">Testimonials</span><span class="nav-dropdown-desc">What our clients say</span></span>
+            <a href="#">
+              <div class="nav-dropdown-icon">⭐</div>
+              <div class="nav-dropdown-text">
+                <strong>Testimonials</strong>
+                <span>What clients say</span>
+              </div>
             </a>
           </div>
         </li>
 
-        <li><a href="/about"   class="nav-link">About</a></li>
-        <li><a href="/blog"    class="nav-link">Blog</a></li>
-        <li><a href="/pricing" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
 
       </ul>
 
-      <!-- Desktop CTAs -->
       <div class="nav-cta">
-        <a href="/contact"    class="btn secondary-button btn-sm">Contact</a>
-        <a href="/free-audit" class="btn primary-button  btn-sm">Free SEO Audit</a>
+        <a href="#" class="btn-ghost">Contact</a>
+        <a href="#" class="btn-primary">Free Audit</a>
       </div>
 
-      <!-- Hamburger -->
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile">
-        <span></span><span></span><span></span>
+      <button class="nav-burger" id="burger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
 
-    </nav>
-  </div>
+    </div>
+  </nav>
 
   <!-- Mobile drawer -->
-  <div class="nav-mobile" id="nav-mobile" role="navigation" aria-label="Mobile navigation">
+  <div class="nav-drawer" id="drawer">
 
-    <button class="nav-mobile-link" data-mobile-toggle="mobile-services">
+    <button class="drawer-link drawer-toggle" data-target="sub-services">
       Services
-      <svg class="mobile-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transition:transform 250ms ease;flex-shrink:0"><polyline points="4 6 8 10 12 6"/></svg>
+      <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
     </button>
-    <div class="nav-mobile-submenu" id="mobile-services">
-      <a href="/services/seo">🔍 &nbsp;Search Engine Optimisation</a>
-      <a href="/services/local-seo">📍 &nbsp;Local SEO</a>
-      <a href="/services/technical-seo">⚙️ &nbsp;Technical SEO</a>
-      <a href="/services/content">✍️ &nbsp;Content Strategy</a>
-      <a href="/services/link-building">🔗 &nbsp;Link Building</a>
+    <div class="drawer-sub" id="sub-services">
+      <a href="#">🔍&nbsp;&nbsp;SEO</a>
+      <a href="#">📍&nbsp;&nbsp;Local SEO</a>
+      <a href="#">⚙️&nbsp;&nbsp;Technical SEO</a>
+      <a href="#">✍️&nbsp;&nbsp;Content Strategy</a>
+      <a href="#">🔗&nbsp;&nbsp;Link Building</a>
     </div>
 
-    <button class="nav-mobile-link" data-mobile-toggle="mobile-results">
+    <button class="drawer-link drawer-toggle" data-target="sub-results">
       Results
-      <svg class="mobile-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transition:transform 250ms ease;flex-shrink:0"><polyline points="4 6 8 10 12 6"/></svg>
+      <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
     </button>
-    <div class="nav-mobile-submenu" id="mobile-results">
-      <a href="/case-studies">📈 &nbsp;Case Studies</a>
-      <a href="/testimonials">⭐ &nbsp;Testimonials</a>
+    <div class="drawer-sub" id="sub-results">
+      <a href="#">📈&nbsp;&nbsp;Case Studies</a>
+      <a href="#">⭐&nbsp;&nbsp;Testimonials</a>
     </div>
 
-    <a href="/about"   class="nav-mobile-link">About</a>
-    <a href="/blog"    class="nav-mobile-link">Blog</a>
-    <a href="/pricing" class="nav-mobile-link">Pricing</a>
+    <a href="#" class="drawer-link">About</a>
+    <a href="#" class="drawer-link">Blog</a>
+    <a href="#" class="drawer-link">Pricing</a>
 
-    <div class="nav-mobile-divider"></div>
+    <div class="drawer-div"></div>
 
-    <div class="nav-mobile-cta">
-      <a href="/contact"    class="btn secondary-button" style="width:100%;justify-content:center">Contact</a>
-      <a href="/free-audit" class="btn primary-button"   style="width:100%;justify-content:center">Free SEO Audit →</a>
+    <div class="drawer-cta">
+      <a href="#" class="cta-outline">Contact</a>
+      <a href="#" class="cta-solid">Free SEO Audit</a>
     </div>
 
   </div>
-</header>
+
+  <!-- Demo page content -->
+  <div class="page">
+    <div class="hero">
+      <span class="hero-label">SEO Services — Australia</span>
+      <h1>Rank higher.<br>Grow faster.</h1>
+      <p>Russell Digital builds organic search strategies that drive qualified traffic and compound in value over time.</p>
+      <div class="hero-btns">
+        <a href="#" class="solid">Get a Free Audit</a>
+        <a href="#" class="outline">See Results</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
