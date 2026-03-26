@@ -92,7 +92,7 @@ header {
   box-shadow: 0 2px 8px rgba(26,86,240,0.30);
 }
 
-.logo-mark svg { width: 22px; height: 22px; overflow: visible; }
+.logo-mark img { width: 22px; height: 22px; overflow: visible; }
 
 .logo-text {
   display: flex;
