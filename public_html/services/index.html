@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Core Services — Russell Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+
+
+  <style>
+    :root{
+      --rd-blue:#2563eb;
+      --rd-blue-dark:#1d4ed8;
+      --rd-text:#0f172a;
+      --rd-muted:#64748b;
+      --rd-border:#dbe5f1;
+      --rd-soft:#f8fbff;
+      --rd-soft-2:#eef5ff;
+      --rd-white:#ffffff;
+      --rd-shadow:0 20px 60px rgba(15,23,42,.10);
+      --rd-shadow-soft:0 12px 32px rgba(15,23,42,.08);
+      --rd-radius:28px;
+      --rd-radius-sm:20px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      color:var(--rd-text);
+      background:linear-gradient(180deg,#dfeafb 0%,#f5f8ff 20%,#ffffff 100%);
+    }
+
+    .rd-services-page{
+      position:relative;
+      overflow:hidden;
+      padding:132px 16px 84px;
+      font-family:'DM Sans', Arial, sans-serif;
+    }
+
+    .rd-services-page::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.12), transparent 28%),
+        radial-gradient(circle at 85% 14%, rgba(37,99,235,.07), transparent 18%);
+      pointer-events:none;
+    }
+
+    .rd-container{
+      width:100%;
+      max-width:1280px;
+      margin:0 auto;
+      padding:0 12px;
+      position:relative;
+      z-index:1;
+    }
+
+    .rd-eyebrow{
+      display:block;
+      width:fit-content;
+      margin:0 auto 18px;
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(37,99,235,.10);
+      color:var(--rd-blue);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .rd-hero{
+      max-width:860px;
+      margin:0 auto 32px;
+      text-align:center;
+    }
+
+    .rd-hero h1{
+      margin:0 0 16px;
+      font-size:clamp(2.6rem, 6vw, 5rem);
+      line-height:.93;
+      letter-spacing:-.06em;
+      font-weight:900;
+    }
+
+    .rd-hero p{
+      margin:0 auto;
+      color:var(--rd-muted);
+      font-size:1.06rem;
+      line-height:1.8;
+      max-width:760px;
+    }
+
+    .rd-summary{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      max-width:1080px;
+      margin:0 auto 26px;
+    }
+
+    .rd-summary-card{
+      padding:22px;
+      border:1px solid var(--rd-border);
+      border-radius:24px;
+      background:rgba(255,255,255,.88);
+      box-shadow:var(--rd-shadow-soft);
+    }
+
+    .rd-summary-card strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1rem;
+      letter-spacing:-.02em;
+    }
+
+    .rd-summary-card span{
+      display:block;
+      color:var(--rd-muted);
+      line-height:1.65;
+      font-size:.95rem;
+    }
+
+    .rd-section{
+      margin-top:24px;
+      padding:28px;
+      border:1px solid var(--rd-border);
+      border-radius:28px;
+      background:rgba(255,255,255,.92);
+      box-shadow:var(--rd-shadow-soft);
+    }
+
+    .rd-section h2{
+      margin:0 0 10px;
+      font-size:1.6rem;
+      letter-spacing:-.03em;
+    }
+
+    .rd-section > p{
+      margin:0;
+      color:var(--rd-muted);
+      line-height:1.75;
+      max-width:880px;
+    }
+
+    .rd-services-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:20px;
+    }
+
+    .rd-service-card{
+      padding:24px;
+      border:1px solid #e8eef7;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:var(--rd-shadow-soft);
+    }
+
+    .rd-service-num{
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,var(--rd-blue),var(--rd-blue-dark));
+      color:#fff;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:14px;
+    }
+
+    .rd-service-card h3{
+      margin:0 0 10px;
+      font-size:1.15rem;
+      letter-spacing:-.02em;
+    }
+
+    .rd-service-card p{
+      margin:0 0 14px;
+      color:var(--rd-muted);
+      line-height:1.7;
+      font-size:.95rem;
+    }
+
+    .rd-points{
+      display:grid;
+      gap:10px;
+    }
+
+    .rd-point{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:#334155;
+      font-size:.92rem;
+      line-height:1.55;
+    }
+
+    .rd-point-mark{
+      flex:0 0 22px;
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#eef5ff;
+      color:var(--rd-blue);
+      font-size:12px;
+      font-weight:800;
+      margin-top:1px;
+    }
+
+    .rd-split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:20px;
+    }
+
+    .rd-subcard{
+      padding:22px;
+      border:1px solid #e8eef7;
+      border-radius:20px;
+      background:#fff;
+    }
+
+    .rd-subcard h3{
+      margin:0 0 10px;
+      font-size:1.08rem;
+      letter-spacing:-.02em;
+    }
+
+    .rd-subcard p{
+      margin:0;
+      color:var(--rd-muted);
+      line-height:1.7;
+      font-size:.95rem;
+    }
+
+    .rd-process{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:20px;
+    }
+
+    .rd-process-card{
+      padding:18px;
+      border:1px solid #e8eef7;
+      border-radius:18px;
+      background:#fff;
+    }
+
+    .rd-process-card strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:1rem;
+    }
+
+    .rd-process-card span{
+      display:block;
+      color:var(--rd-muted);
+      font-size:.92rem;
+      line-height:1.6;
+    }
+
+    .rd-faq{
+      display:grid;
+      gap:14px;
+      margin-top:20px;
+    }
+
+    .rd-faq-item{
+      padding:18px 20px;
+      border:1px solid #e8eef7;
+      border-radius:18px;
+      background:#fff;
+    }
+
+    .rd-faq-item strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:1rem;
+      letter-spacing:-.01em;
+    }
+
+    .rd-faq-item span{
+      display:block;
+      color:var(--rd-muted);
+      line-height:1.65;
+      font-size:.94rem;
+    }
+
+    .rd-bottom-cta{
+      margin-top:24px;
+      padding:30px;
+      border:1px solid var(--rd-border);
+      border-radius:28px;
+      background:linear-gradient(135deg,#f8fbff 0%,#eef5ff 100%);
+      box-shadow:var(--rd-shadow-soft);
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:20px;
+      align-items:center;
+    }
+
+    .rd-bottom-cta h2{
+      margin:0 0 8px;
+      font-size:1.7rem;
+      letter-spacing:-.03em;
+    }
+
+    .rd-bottom-cta p{
+      margin:0;
+      color:var(--rd-muted);
+      line-height:1.7;
+      max-width:740px;
+    }
+
+    .rd-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      padding:0 20px;
+      border-radius:16px;
+      text-decoration:none;
+      font-size:.96rem;
+      font-weight:800;
+      transition:transform .2s ease, box-shadow .2s ease;
+      background:linear-gradient(135deg,var(--rd-blue) 0%,var(--rd-blue-dark) 100%);
+      color:#fff;
+      box-shadow:0 16px 34px rgba(37,99,235,.24);
+      white-space:nowrap;
+    }
+
+    .rd-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 20px 38px rgba(37,99,235,.28);
+    }
+
+    @media (max-width: 1024px){
+      .rd-summary,
+      .rd-services-grid,
+      .rd-process,
+      .rd-bottom-cta{
+        grid-template-columns:1fr;
+      }
+
+      .rd-split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 767px){
+      .rd-services-page{
+        padding:112px 12px 56px;
+      }
+
+      .rd-section,
+      .rd-summary-card,
+      .rd-bottom-cta{
+        padding:20px;
+      }
+
+      .rd-hero h1{
+        font-size:clamp(2.2rem, 12vw, 3.8rem);
+      }
+
+      .rd-hero p,
+      .rd-section > p{
+        font-size:.97rem;
+        line-height:1.72;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="rd-header"></div>
+
+    <section class="rd-services-page">
+      <div class="rd-container">
+
+        <div class="rd-eyebrow">Core Services</div>
+
+        <div class="rd-hero">
+          <h1>SEO services built around consistent execution.</h1>
+          <p>
+            Russell Digital focuses on SEO. The work is straightforward: publish useful content, improve page targeting, strengthen site structure, and expand the number of ways qualified searchers can find your business.
+          </p>
+        </div>
+
+        <div class="rd-summary">
+          <div class="rd-summary-card">
+            <strong>What we do</strong>
+            <span>SEO strategy, content production, on-page optimization, and organic growth support.</span>
+          </div>
+          <div class="rd-summary-card">
+            <strong>What we do not do</strong>
+            <span>This page is specifically about SEO services. It is not a catch-all marketing offer.</span>
+          </div>
+          <div class="rd-summary-card">
+            <strong>How it works</strong>
+            <span>We identify search opportunities, create content around them, and execute consistently over time.</span>
+          </div>
+        </div>
+
+        <div class="rd-section">
+          <h2>Main service areas</h2>
+          <p>
+            The core offer is built around a small number of service areas that work together. Each one supports the same goal: stronger organic visibility for the searches most relevant to your business.
+          </p>
+
+          <div class="rd-services-grid">
+            <div class="rd-service-card">
+              <div class="rd-service-num">01</div>
+              <h3>SEO Content Production</h3>
+              <p>
+                Ongoing article creation designed to expand your search footprint and build topical coverage around your services.
+              </p>
+              <div class="rd-points">
+                <div class="rd-point"><div class="rd-point-mark">✓</div><div>Service-related articles and supporting content</div></div>
+                <div class="rd-point"><div class="rd-point-mark">✓</div><div>Publishing consistency based on retainer scope</div></div>
+                <div class="rd-point"><div class="rd-point-mark">✓</div><div>Built to increase relevant entry points from search</div></div>
+              </div>
+            </div>
+
+            <div class="rd-service-card">
+              <div class="rd-service-num">02</div>
+              <h3>Keyword and Topic Targeting</h3>
+              <p>
+                Content is planned around the terms and questions your customers are already searching, not around filler topics.
+              </p>
+              <div class="rd-points">
+                <div class="rd-point"><div class="rd-point-mark">✓</div><div>Topic planning based on business relevance</div></div>
+                <div class="rd-point"><div class="rd-point-mark">✓</div><div>Priority given to clear service intent</div></div>
+                <div class="rd-point"><div class="rd-point-mark">✓</div><div>Direction adjusted as the site grows</div></div>
+              </div>
+            </div>
+
+            <div class="rd-service-card">
+              <div class="rd-service-num">03</div>
+              <h3>On-Page SEO</h3>
+              <p>
+                Published content is supported by on-page optimization so pages are structured clearly for both search engines and users.
+              </p>
+              <div class="rd-points">
+                <div class="rd-point"><div class="rd-point-mark">✓</div><div>Titles, headings, and content structure</div></div>
+                <div class="rd-point"><div class="rd-point-mark">✓</div><div>Internal linking where appropriate</div></div>
+                <div class="rd-point"><div class="rd-point-mark">✓</div><div>Page-level improvements tied to content output</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rd-section">
+          <h2>What this is meant to solve</h2>
+          <p>
+            Most businesses do not need vague “full-service marketing.” They need to become easier to find in search for the services they already sell. This work is meant to solve that problem directly.
+          </p>
+
+          <div class="rd-split">
+            <div class="rd-subcard">
+              <h3>If your site has low visibility</h3>
+              <p>
+                Consistent SEO content gives Google more relevant pages to index and gives your business more opportunities to appear for useful searches.
+              </p>
+            </div>
+
+            <div class="rd-subcard">
+              <h3>If you are not publishing consistently</h3>
+              <p>
+                A structured retainer replaces inconsistency with ongoing output, which is usually what SEO needs in order to compound.
+              </p>
+            </div>
+
+            <div class="rd-subcard">
+              <h3>If your site has pages but no momentum</h3>
+              <p>
+                Better topic targeting and on-page improvements help turn disconnected pages into a more useful organic system.
+              </p>
+            </div>
+
+            <div class="rd-subcard">
+              <h3>If you want a simpler growth channel</h3>
+              <p>
+                SEO can be managed in a straightforward way: identify priority topics, publish around them, optimize, and repeat.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rd-section">
+          <h2>How engagement works</h2>
+          <p>
+            The process is intentionally simple. We determine fit, align on the direction, and then execute on a monthly basis.
+          </p>
+
+          <div class="rd-process">
+            <div class="rd-process-card">
+              <strong>1. Initial strategy call</strong>
+              <span>We review your business, what you sell, and whether SEO is the right channel for where you are now.</span>
+            </div>
+
+            <div class="rd-process-card">
+              <strong>2. Content direction is set</strong>
+              <span>We identify the priority topics, service angles, and search opportunities worth building around.</span>
+            </div>
+
+            <div class="rd-process-card">
+              <strong>3. Monthly execution</strong>
+              <span>Content is produced, pages are optimized, and the site grows through consistent monthly work.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rd-section">
+          <h2>Common questions</h2>
+          <p>
+            Straight answers to the main things people usually want to know.
+          </p>
+
+          <div class="rd-faq">
+            <div class="rd-faq-item">
+              <strong>Do you guarantee rankings?</strong>
+              <span>No. SEO does not work that way. The value is in consistent execution, better search coverage, and long-term organic growth.</span>
+            </div>
+
+            <div class="rd-faq-item">
+              <strong>Is this only for large businesses?</strong>
+              <span>No. The work is relevant anywhere a business has clear services and wants to improve how often it gets found in search.</span>
+            </div>
+
+            <div class="rd-faq-item">
+              <strong>Is this just blogging?</strong>
+              <span>No. Content is only one part of it. The work also includes topic direction, on-page optimization, and building a more useful search presence overall.</span>
+            </div>
+
+            <div class="rd-faq-item">
+              <strong>How quickly does SEO work?</strong>
+              <span>SEO is a compounding channel. Some progress can happen earlier, but the strongest value usually comes from consistent work over multiple months.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rd-bottom-cta">
+          <div>
+            <h2>Need SEO that is clear and consistent?</h2>
+            <p>
+              Book a strategy call and we can talk through whether this is the right fit for your business, your market, and your goals.
+            </p>
+          </div>
+
+          <a class="rd-btn" href="/free-strategy-call/">Book a Strategy Call</a>
+        </div>
+
+      </div>
+    </section>
+
+
+  <div id="rd-footer"></div>
+  <script src="/js/loadComponents.js" defer></script>
+</body>
+</html>

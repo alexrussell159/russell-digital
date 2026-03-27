@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AfricaCTN Case Study - Russell Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --rd-blue:#2563eb;
+    --rd-blue-dark:#1d4ed8;
+    --rd-text:#0f172a;
+    --rd-muted:#64748b;
+    --rd-border:#dbe5f1;
+    --rd-soft:#f8fbff;
+    --rd-white:#ffffff;
+    --rd-shadow:0 18px 50px rgba(15,23,42,.08);
+    --rd-radius:24px;
+    --rd-radius-sm:18px;
+    --rd-max:1020px;
+  }
+
+  *{
+    box-sizing:border-box;
+  }
+
+  .rd-case-study{
+    position:relative;
+    overflow:hidden;
+    padding:128px 16px 72px;
+    margin-bottom:64px;
+    font-family:'DM Sans', Arial, sans-serif;
+    color:var(--rd-text);
+    background:linear-gradient(180deg,#dfeafb 0%,#f5f8ff 20%,#ffffff 100%);
+  }
+
+  .rd-case-study::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at top left, rgba(37,99,235,.10), transparent 28%),
+      radial-gradient(circle at 85% 16%, rgba(37,99,235,.06), transparent 16%);
+    pointer-events:none;
+  }
+
+  .rd-case-wrap{
+    position:relative;
+    z-index:1;
+    width:min(var(--rd-max), 100%);
+    margin:0 auto;
+  }
+
+  .rd-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    padding:9px 14px;
+    border-radius:999px;
+    background:rgba(37,99,235,.10);
+    color:var(--rd-blue);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+
+  .rd-case-hero{
+    max-width:820px;
+    margin-bottom:32px;
+  }
+
+  .rd-case-hero h1{
+    margin:0 0 16px;
+    font-size:clamp(2.4rem, 6vw, 4.8rem);
+    line-height:.94;
+    letter-spacing:-.06em;
+    font-weight:900;
+  }
+
+  .rd-case-hero p{
+    margin:0;
+    color:var(--rd-muted);
+    font-size:1.05rem;
+    line-height:1.8;
+  }
+
+  .rd-metrics{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:28px;
+  }
+
+  .rd-metric{
+    padding:20px;
+    border:1px solid var(--rd-border);
+    border-radius:22px;
+    background:rgba(255,255,255,.88);
+    box-shadow:var(--rd-shadow);
+  }
+
+  .rd-metric-label{
+    display:block;
+    margin-bottom:10px;
+    color:var(--rd-blue);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+  .rd-metric strong{
+    display:block;
+    margin-bottom:8px;
+    font-size:clamp(1.5rem,3vw,2.3rem);
+    line-height:1;
+    letter-spacing:-.04em;
+  }
+
+  .rd-metric span{
+    display:block;
+    color:var(--rd-muted);
+    font-size:.92rem;
+    line-height:1.55;
+  }
+
+  .rd-section{
+    margin-top:22px;
+    padding:26px;
+    border:1px solid var(--rd-border);
+    border-radius:26px;
+    background:rgba(255,255,255,.92);
+    box-shadow:var(--rd-shadow);
+  }
+
+  .rd-section h2{
+    margin:0 0 12px;
+    font-size:1.45rem;
+    letter-spacing:-.03em;
+  }
+
+  .rd-section p{
+    margin:0;
+    color:var(--rd-muted);
+    line-height:1.8;
+    font-size:1rem;
+  }
+
+  .rd-split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:22px;
+  }
+
+  .rd-subcard{
+    padding:22px;
+    border:1px solid #e8eef7;
+    border-radius:20px;
+    background:#fff;
+  }
+
+  .rd-subcard h3{
+    margin:0 0 10px;
+    font-size:1.08rem;
+    letter-spacing:-.02em;
+  }
+
+  .rd-subcard p{
+    margin:0;
+    color:var(--rd-muted);
+    line-height:1.75;
+    font-size:.96rem;
+  }
+
+  .rd-points{
+    display:grid;
+    gap:12px;
+    margin-top:18px;
+  }
+
+  .rd-point{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    padding:14px 16px;
+    border:1px solid #e8eef7;
+    border-radius:16px;
+    background:#fff;
+  }
+
+  .rd-point-num{
+    flex:0 0 30px;
+    width:30px;
+    height:30px;
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--rd-blue),var(--rd-blue-dark));
+    color:#fff;
+    font-size:13px;
+    font-weight:800;
+  }
+
+  .rd-point strong{
+    display:block;
+    margin-bottom:4px;
+    font-size:.96rem;
+  }
+
+  .rd-point span{
+    display:block;
+    color:var(--rd-muted);
+    line-height:1.6;
+    font-size:.92rem;
+  }
+
+  .rd-chart{
+    margin-top:18px;
+    padding:16px;
+    border:1px solid #e7edf7;
+    border-radius:22px;
+    background:linear-gradient(180deg,#ffffff 0%,#f8fbff 100%);
+  }
+
+  .rd-chart h3{
+    margin:0 0 6px;
+    font-size:1.05rem;
+    letter-spacing:-.02em;
+  }
+
+  .rd-chart p{
+    margin:0 0 14px;
+    color:var(--rd-muted);
+    font-size:.92rem;
+    line-height:1.65;
+  }
+
+  .rd-chart img{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:14px;
+    border:1px solid #edf2f8;
+    background:#fff;
+  }
+
+  .rd-outcome{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:18px;
+  }
+
+  .rd-outcome-box{
+    padding:18px;
+    border:1px solid #e8eef7;
+    border-radius:18px;
+    background:#fff;
+  }
+
+  .rd-outcome-box strong{
+    display:block;
+    margin-bottom:6px;
+    font-size:1.1rem;
+    letter-spacing:-.02em;
+  }
+
+  .rd-outcome-box span{
+    display:block;
+    color:var(--rd-muted);
+    font-size:.92rem;
+    line-height:1.6;
+  }
+
+  .rd-cta{
+    margin-top:24px;
+    padding:26px;
+    border:1px solid var(--rd-border);
+    border-radius:24px;
+    background:linear-gradient(135deg,#f8fbff 0%,#eef5ff 100%);
+    box-shadow:var(--rd-shadow);
+    text-align:left;
+  }
+
+  .rd-cta h2{
+    margin:0 0 8px;
+    font-size:1.55rem;
+    letter-spacing:-.03em;
+  }
+
+  .rd-cta p{
+    margin:0 0 18px;
+    color:var(--rd-muted);
+    line-height:1.75;
+    max-width:720px;
+  }
+
+  .rd-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:54px;
+    padding:0 22px;
+    border-radius:16px;
+    background:linear-gradient(135deg,var(--rd-blue) 0%,var(--rd-blue-dark) 100%);
+    color:#fff;
+    text-decoration:none;
+    font-size:.96rem;
+    font-weight:800;
+    box-shadow:0 14px 30px rgba(37,99,235,.24);
+  }
+
+  @media (max-width: 900px){
+    .rd-metrics{
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    .rd-split,
+    .rd-outcome{
+      grid-template-columns:1fr;
+    }
+  }
+
+  @media (max-width: 640px){
+    .rd-case-study{
+      padding:108px 12px 56px;
+    }
+
+    .rd-metrics{
+      grid-template-columns:1fr;
+    }
+
+    .rd-section,
+    .rd-cta{
+      padding:20px;
+    }
+
+    .rd-case-hero h1{
+      font-size:clamp(2.1rem, 12vw, 3.7rem);
+    }
+
+    .rd-case-hero p,
+    .rd-section p{
+      font-size:.97rem;
+      line-height:1.72;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+  <div id="rd-header"></div>
+
+    <section class="rd-case-study">
+  <div class="rd-case-wrap">
+
+    <div class="rd-eyebrow">Case Study</div>
+
+    <div class="rd-case-hero">
+      <h1>AfricaCTN grew from scattered search visibility to a predictable inbound lead engine.</h1>
+      <p>
+        AfricaCTN is an authorized Cargo Tracking Note provider that helps shippers and freight forwarders secure required CTN and ECTN documents for African countries. Over a 6-month period, Russell Digital used content and SEO to grow qualified traffic, increase weekly leads, and drive meaningful new-customer revenue.
+      </p>
+    </div>
+
+    <div class="rd-metrics">
+      <div class="rd-metric">
+        <span class="rd-metric-label">Content Published</span>
+        <strong>165+</strong>
+        <span>Pieces of content created over 6 months.</span>
+      </div>
+
+      <div class="rd-metric">
+        <span class="rd-metric-label">Weekly Leads</span>
+        <strong>3 → 14</strong>
+        <span>Average weekly leads increased significantly.</span>
+      </div>
+
+      <div class="rd-metric">
+        <span class="rd-metric-label">Lead Conversion</span>
+        <strong>42%</strong>
+        <span>Average percentage of leads that became paying customers.</span>
+      </div>
+
+      <div class="rd-metric">
+        <span class="rd-metric-label">Q1 Revenue</span>
+        <strong>$45,086.45</strong>
+        <span>Revenue from new customers in Q1 alone.</span>
+      </div>
+    </div>
+
+    <div class="rd-section">
+      <h2>The challenge</h2>
+      <p>
+        AfricaCTN already operated in a high-value niche, but their organic visibility did not reflect the amount of demand in the market. The goal was simple: create a content and SEO system that would increase discoverability for country-specific compliance searches and turn that visibility into qualified leads.
+      </p>
+
+      <div class="rd-split">
+        <div class="rd-subcard">
+          <h3>What we focused on</h3>
+          <p>
+            We built out a high-volume content strategy centered on the exact topics people search before filing CTNs: country requirements, document explanations, process questions, and related compliance terms.
+          </p>
+        </div>
+
+        <div class="rd-subcard">
+          <h3>Why it mattered</h3>
+          <p>
+            These are not low-intent visitors. Searchers landing on this content are often already close to needing help, which means improved rankings directly impact lead flow and revenue.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rd-section">
+      <h2>What Russell Digital did</h2>
+
+      <div class="rd-points">
+        <div class="rd-point">
+          <div class="rd-point-num">1</div>
+          <div>
+            <strong>Published at scale</strong>
+            <span>Produced more than 165 pieces of content over the course of 6 months.</span>
+          </div>
+        </div>
+
+        <div class="rd-point">
+          <div class="rd-point-num">2</div>
+          <div>
+            <strong>Targeted high-intent search topics</strong>
+            <span>Focused on country-specific CTN requirements, shipping documents, process questions, and supporting educational pages.</span>
+          </div>
+        </div>
+
+        <div class="rd-point">
+          <div class="rd-point-num">3</div>
+          <div>
+            <strong>Expanded organic entry points</strong>
+            <span>Built a larger search footprint so AfricaCTN could be discovered across more relevant queries.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rd-section">
+      <h2>Search growth over time</h2>
+      <p>
+        Both third-party visibility data and first-party Search Console data showed clear upward movement as the campaign progressed.
+      </p>
+
+      <div class="rd-chart">
+        <h3>SEMrush visibility trend</h3>
+        <p>Visibility increased substantially over the campaign period, showing stronger overall presence in search.</p>
+        <img src="/assets/africactn-semrush-results.png" alt="AfricaCTN SEMrush visibility chart">
+      </div>
+
+      <div class="rd-chart">
+        <h3>Google Search Console impressions and clicks</h3>
+        <p>Impressions and clicks climbed as more content ranked and more relevant searches began finding the site.</p>
+        <img src="/assets/africactn-search-impressions.png" alt="AfricaCTN Search Console impressions and clicks chart">
+      </div>
+    </div>
+
+    <div class="rd-section">
+      <h2>The outcome</h2>
+
+      <div class="rd-outcome">
+        <div class="rd-outcome-box">
+          <strong>More visibility</strong>
+          <span>AfricaCTN became much more discoverable across relevant compliance and shipping searches.</span>
+        </div>
+
+        <div class="rd-outcome-box">
+          <strong>More qualified leads</strong>
+          <span>Average weekly leads increased from about 3 to 14.</span>
+        </div>
+
+        <div class="rd-outcome-box">
+          <strong>Real revenue impact</strong>
+          <span>The campaign contributed to $45,086.45 in new-customer revenue in Q1.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rd-cta">
+      <h2>Need this kind of growth for your business?</h2>
+      <p>
+        Russell Digital builds SEO and content systems designed to increase qualified traffic, leads, and revenue, not just vanity metrics.
+      </p>
+      <a class="rd-btn" href="/free-strategy-call/">Book a Strategy Call</a>
+    </div>
+
+  </div>
+</section>
+
+
+  <div id="rd-footer"></div>
+  <script src="/js/loadComponents.js" defer></script>
+</body>
+</html>

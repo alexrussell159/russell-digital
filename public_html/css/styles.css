@@ -18,6 +18,8 @@
   --radius:         14px;
   --nav-h:          68px;
   --header-pad-v:   14px;
+  --rd-blue:        #0b5ed7;
+  --rd-blue-dark:   #083b8a;
 }
 
 html { scroll-behavior: smooth; }
@@ -28,7 +30,7 @@ body {
   color: var(--text);
   overflow-x: hidden;
   /* Push content below fixed header */
-  padding-top: calc(var(--nav-h) + var(--header-pad-v) + 20px);
+  padding-top: 0px;
 }
 
 /* ── Fixed header shell ───────────────────────────────────── */
@@ -92,7 +94,18 @@ header {
   box-shadow: 0 2px 8px rgba(26,86,240,0.30);
 }
 
-.logo-mark img { width: 22px; height: 22px; overflow: visible; }
+  .hero-img{
+    display:block;
+    max-width:100%;
+    height:auto;
+    border-radius:14px;
+    border:1px solid #edf2f8;
+    background:#fff;
+      box-shadow:var(--rd-shadow);
+
+  }
+
+.logo-mark img { width: 32px; height: 32px; overflow: visible; }
 
 .logo-text {
   display: flex;
@@ -122,6 +135,7 @@ header {
   display: flex;
   align-items: center;
   gap: 2px;
+  background-color: rgba(255,255,255,0.00);
 }
 
 .nav-item { position: relative; }
@@ -256,6 +270,35 @@ header {
 }
 .btn-ghost:hover { background: rgba(0,0,0,0.05); color: var(--text); }
 
+.rd-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:0 16px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:700;
+  transition:all .22s ease;
+  border:1px solid transparent;
+}
+
+.rd-btn:hover{
+  transform:translateY(-2px);
+}
+
+.rd-btn-primary{
+  background:linear-gradient(135deg, var(--rd-blue) 0%, var(--rd-blue-dark) 100%) !important;
+  color:#fff;
+  box-shadow:0 14px 24px rgba(11, 94, 215, 0.22);
+}
+
+.rd-btn-primary:hover{
+  box-shadow:0 18px 38px rgba(11, 94, 215, 0.28);
+}
+
+
+
     .btn-blue {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
@@ -306,7 +349,7 @@ header {
   box-shadow: 0 2px 10px rgba(26,86,240,0.28);
 }
 .btn-primary:hover {
-  background: #0d45d6;
+  background: #0d45d6 !important;
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(26,86,240,0.36);
 }
@@ -484,6 +527,7 @@ header {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  
 }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Core Services — Russell Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+
+    .rd-blog{
+    padding:120px 16px 64px;
+    margin-bottom: 64px;
+    font-family:'DM Sans', Arial, sans-serif;
+    background:linear-gradient(180deg,#dfeafb 0%,#f5f8ff 20%,#ffffff 100%);
+  }
+
+  .rd-blog-wrap{
+    max-width:1280px;
+    margin:0 auto;
+  }
+
+  .rd-blog-hero{
+    text-align:center;
+    max-width:800px;
+    margin:0 auto 40px;
+  }
+
+  .rd-blog-hero h1{
+    margin:0 0 12px;
+    font-size:clamp(2.4rem,5vw,4rem);
+    font-weight:900;
+    letter-spacing:-.05em;
+  }
+
+  .rd-blog-hero p{
+    margin:0;
+    color:#64748b;
+    font-size:1.05rem;
+    line-height:1.7;
+  }
+
+  .rd-blog-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+  }
+
+  .rd-post{
+    display:block;
+    padding:22px;
+    border-radius:22px;
+    border:1px solid #dbe5f1;
+    background:rgba(255,255,255,.9);
+    text-decoration:none;
+    color:#0f172a;
+    box-shadow:0 12px 32px rgba(15,23,42,.06);
+    transition:.2s ease;
+  }
+
+  .rd-post:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px rgba(15,23,42,.10);
+  }
+
+  .rd-post-meta{
+    font-size:.8rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#2563eb;
+    margin-bottom:10px;
+  }
+
+  .rd-post h2{
+    margin:0 0 10px;
+    font-size:1.2rem;
+    line-height:1.4;
+    letter-spacing:-.02em;
+  }
+
+  .rd-post p{
+    margin:0;
+    color:#64748b;
+    font-size:.95rem;
+    line-height:1.6;
+  }
+
+  @media (max-width:640px){
+    .rd-blog{
+      padding:100px 12px 48px;
+    }
+  }
+
+  </style>
+</head>
+
+<body>
+  <div id="rd-header"></div>
+
+<!-- THIS IS WHERE THE PAGE CONTENT BEGINS -->
+<section class="rd-blog">
+  <div class="rd-blog-wrap">
+
+    <div class="rd-blog-hero">
+      <h1>Insights & SEO</h1>
+      <p>Simple breakdowns of what actually drives organic growth.</p>
+    </div>
+
+    <div class="rd-blog-grid">
+
+      <!-- POST -->
+      <a href="/blog/how-to-get-more-leads.html" class="rd-post">
+        <div class="rd-post-meta">SEO • March 2026</div>
+        <h2>How to Get More Leads from SEO Without Increasing Traffic</h2>
+        <p>Most businesses don’t need more traffic. They need better intent and better conversion paths.</p>
+      </a>
+
+      <!-- POST -->
+      <a href="/blog/content-vs-backlinks.html" class="rd-post">
+        <div class="rd-post-meta">SEO • March 2026</div>
+        <h2>Content vs Backlinks: What Actually Moves Rankings</h2>
+        <p>A realistic breakdown of what matters and what doesn’t in modern SEO.</p>
+      </a>
+
+      <!-- POST -->
+      <a href="/blog/local-seo-framework.html" class="rd-post">
+        <div class="rd-post-meta">Local SEO • March 2026</div>
+        <h2>The Local SEO Framework That Actually Works</h2>
+        <p>A simple structure for service businesses to consistently generate inbound leads.</p>
+      </a>
+
+      <a href="/blog/first-blog-post" class="rd-post">
+        <div class="rd-post-meta">Local SEO • March 2026</div>
+        <h2>The Local SEO Framework That Actually Works</h2>
+        <p>A simple structure for service businesses to consistently generate inbound leads.</p>
+      </a>
+
+      <a href="/blog/first-blog-post" class="rd-post">
+        <div class="rd-post-meta">Local SEO • March 2026</div>
+        <h2>The Local SEO Framework That Actually Works</h2>
+        <p>A simple structure for service businesses to consistently generate inbound leads.</p>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+<!-- THIS IS WHERE THE PAGE CONTENT ENDS -->
+
+  <div id="rd-footer"></div>
+<script src="/js/loadComponents.js" defer></script>
+
+</body>
+
+</html>
