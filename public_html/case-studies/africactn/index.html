@@ -6,7 +6,9 @@
   <title>AfricaCTN Case Study - Russell Digital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
+
 
 <style>
   :root{
@@ -75,7 +77,7 @@
 
   .rd-case-hero h1{
     margin:0 0 16px;
-    font-size:clamp(2.4rem, 6vw, 4.8rem);
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
     line-height:.94;
     letter-spacing:-.06em;
     font-weight:900;
@@ -142,6 +144,119 @@
     font-size:1.45rem;
     letter-spacing:-.03em;
   }
+
+  <!--HERO-->
+  .rd-hero{
+  position:relative;
+  padding:136px 0 72px;
+  background:
+    radial-gradient(circle at top left, rgba(11, 94, 215, 0.12), transparent 34%),
+    radial-gradient(circle at right center, rgba(8, 59, 138, 0.10), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #f3f8fd 100%);
+}
+
+.rd-card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.rd-card-label{
+  font-size:13px;
+  font-weight:800;
+  color:var(--rd-blue);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+.rd-card-status{
+  font-size:13px;
+  font-weight:700;
+  color:#0f766e;
+  background:#ecfdf5;
+  padding:8px 12px;
+  border-radius:999px;
+}
+
+.rd-hero::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, #d9e5f4, transparent);
+}
+
+.rd-hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:42px;
+  align-items:center;
+}
+
+.rd-hero-copy h1{
+  margin:0 0 18px;
+  font-size:clamp(2.6rem, 5vw, 4rem);
+  line-height:.98;
+  letter-spacing:-0.05em;
+  max-width:780px;
+}
+
+.rd-hero-text{
+  max-width:680px;
+  margin:0 0 28px;
+  color:var(--rd-muted);
+  font-size:1.08rem;
+  line-height:1.8;
+}
+
+.rd-hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-bottom:30px;
+}
+
+.rd-hero-proof{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:14px;
+}
+
+.rd-proof-item{
+  padding:18px;
+  border:1px solid var(--rd-border);
+  border-radius:18px;
+  background:rgba(255,255,255,0.82);
+  backdrop-filter:blur(10px);
+}
+
+.rd-proof-item strong{
+  display:block;
+  margin-bottom:6px;
+  font-size:1rem;
+}
+
+.rd-proof-item span{
+  display:block;
+  color:var(--rd-muted);
+  font-size:.93rem;
+  line-height:1.5;
+}
+
+.rd-hero-card-wrap{
+  position:relative;
+}
+
+.rd-hero-card{
+  position:relative;
+  padding:28px;
+  border-radius:28px;
+  background:linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+  border:1px solid #dbe6f2;
+  box-shadow:var(--rd-shadow);
+}
 
   .rd-section p{
     margin:0;
@@ -288,6 +403,62 @@
     text-align:left;
   }
 
+  .rd-services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .rd-service-card {
+      padding: 20px;
+      border: 1px solid #e8eef7;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: var(--rd-shadow-soft);
+    }
+
+    .rd-service-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--rd-blue), var(--rd-blue-dark));
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+        .rd-point-mark {
+      flex: 0 0 20px;
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eef5ff;
+      color: var(--rd-blue);
+      font-size: 11px;
+      font-weight: 800;
+      margin-top: 1px;
+    }
+
+    .rd-service-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+      letter-spacing: -.02em;
+    }
+
+    .rd-service-card p {
+      margin: 0 0 12px;
+      color: var(--rd-muted);
+      line-height: 1.62;
+      font-size: .92rem;
+    }
+
   .rd-cta h2{
     margin:0 0 8px;
     font-size:1.55rem;
@@ -361,14 +532,33 @@
     <section class="rd-case-study">
   <div class="rd-case-wrap">
 
-    <div class="rd-eyebrow">Case Study</div>
+      <!-- HERO -->
+  <section class="rd-hero">
+    <div class="rd-container rd-hero-grid">
+      <div class="rd-hero-copy">
+        <span class="rd-eyebrow">Houston SEO Agency</span>
+        <h1>AfricaCTN found search traffic they didn't even know existed.</h1>
+        <p class="rd-hero-text">
+          AfricaCTN is an authorized Cargo Tracking Note provider that helps shippers and freight forwarders secure required CTN and ECTN documents for African countries. Over a 6-month period, Russell Digital used content and SEO to grow qualified traffic, increase weekly leads, and drive meaningful new-customer revenue.
+        </p>
 
-    <div class="rd-case-hero">
-      <h1>AfricaCTN grew from scattered search visibility to a predictable inbound lead engine.</h1>
-      <p>
-        AfricaCTN is an authorized Cargo Tracking Note provider that helps shippers and freight forwarders secure required CTN and ECTN documents for African countries. Over a 6-month period, Russell Digital used content and SEO to grow qualified traffic, increase weekly leads, and drive meaningful new-customer revenue.
-      </p>
+        <div class="rd-hero-actions">
+          <a href="/free-strategy-call/" class="rd-btn rd-btn-primary">Book a Strategy Call</a>
+        </div>
+      </div>
+
+      <div class="rd-hero-card-wrap">
+        <div class="rd-hero-card">
+          <div class="rd-card-top">
+            <span class="rd-card-label">Growth Snapshot</span>
+            <span class="rd-card-status">Live Strategy</span>
+          </div>
+
+<img class="hero-img" style="margin-bottom: 8px;" src="/assets/africactn-search-impressions.png" alt="AfricaCTN search impressions chart">
+<img class="hero-img" src="/assets/africactn-semrush-results.png" alt="AfricaCTN search impressions chart">       </div>
+      </div>
     </div>
+  </section>
 
     <div class="rd-metrics">
       <div class="rd-metric">
@@ -402,22 +592,28 @@
         AfricaCTN already operated in a high-value niche, but their organic visibility did not reflect the amount of demand in the market. The goal was simple: create a content and SEO system that would increase discoverability for country-specific compliance searches and turn that visibility into qualified leads.
       </p>
 
-      <div class="rd-split">
-        <div class="rd-subcard">
-          <h3>What we focused on</h3>
-          <p>
-            We built out a high-volume content strategy centered on the exact topics people search before filing CTNs: country requirements, document explanations, process questions, and related compliance terms.
-          </p>
-        </div>
+      <div class="rd-services-grid">
+          <div class="rd-service-card">
+            <div class="rd-service-num">01</div>
+            <h3>What we focused on</h3>
+            <p>High volume content strategy</p>
+            <div class="rd-points">
+              <div class="rd-point"><div class="rd-point-mark">&check;</div><div>Exact topics people search for</div></div>
+              <div class="rd-point"><div class="rd-point-mark">&check;</div><div>Country requirements, documents, processes</div></div>
+              <div class="rd-point"><div class="rd-point-mark">&check;</div><div>Written in natural language</div></div>
+            </div>
+          </div>
 
-        <div class="rd-subcard">
-          <h3>Why it mattered</h3>
-          <p>
-            These are not low-intent visitors. Searchers landing on this content are often already close to needing help, which means improved rankings directly impact lead flow and revenue.
-          </p>
-        </div>
-      </div>
-    </div>
+        <div class="rd-service-card">
+            <div class="rd-service-num">01</div>
+            <h3>Why it mattered</h3>
+            <p>How this strategy took off</p>
+            <div class="rd-points">
+              <div class="rd-point"><div class="rd-point-mark">&check;</div><div>Highly motivated customers searching for the product</div></div>
+              <div class="rd-point"><div class="rd-point-mark">&check;</div><div>Impacted lead flow and conversion rate</div></div>
+              <div class="rd-point"><div class="rd-point-mark">&check;</div><div>Leads turned to revenue</div></div>
+            </div>
+          </div></div>
 
     <div class="rd-section">
       <h2>What Russell Digital did</h2>
