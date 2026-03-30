@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog — Russell Digital</title>
+  <title>Blog - Russell Digital</title>
 
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
@@ -41,8 +41,8 @@
     }
 
     .rd-blog-list{
-      display:flex;
-      flex-direction:column;
+      display:grid;
+      grid-template-columns:2fr 2fr;
       gap:20px;
     }
 
@@ -105,15 +105,50 @@
       line-height:1.5;
     }
 
+    .rd-blog-actions{
+      display:flex;
+      justify-content:center;
+      margin-top:28px;
+    }
+
+    .rd-load-more{
+      appearance:none;
+      border:none;
+      background:#0f172a;
+      color:#fff;
+      font-family:'DM Sans', Arial, sans-serif;
+      font-size:14px;
+      font-weight:600;
+      padding:14px 22px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:all .2s ease;
+      box-shadow:0 10px 25px rgba(15,23,42,.10);
+    }
+
+    .rd-load-more:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 30px rgba(15,23,42,.14);
+    }
+
+    .rd-load-more[hidden]{
+      display:none !important;
+    }
+
     @media (max-width:640px){
       .rd-post{
         flex-direction:column;
         align-items:flex-start;
+        margin-bottom:16px;
       }
 
       .rd-post-img{
         width:100%;
         height:160px;
+      }
+
+      .rd-blog-list{
+        display:inline;
       }
     }
   </style>
@@ -123,61 +158,95 @@
 
 <div id="rd-header"></div>
 
+<section class="rd-blog">
+  <div class="rd-blog-wrap">
 
-  <section class="rd-blog">
-    <div class="rd-blog-wrap">
+    <div class="rd-blog-hero">
+      <h1>Insights & SEO</h1>
+      <p>Simple breakdowns of what actually drives organic growth.</p>
+    </div>
 
-      <div class="rd-blog-hero">
-        <h1>Insights & SEO</h1>
-        <p>Simple breakdowns of what actually drives organic growth.</p>
-      </div>
+    <div class="rd-blog-list" id="rdBlogList">
 
-      <div class="rd-blog-list">
+      <!-- POST -->
+      <a href="/blog/auto-dealer-local-seo-service" class="rd-post">
+        <div class="rd-post-img">
+          <img src="/assets/blog1.jpg" alt="">
+        </div>
+        <div class="rd-post-content">
+          <div class="rd-post-meta">March 2026</div>
+          <div class="rd-post-title">Auto Dealer Local SEO Service</div>
+          <div class="rd-post-excerpt">Auto Dealers that need local SEO Services look to Russell Digital.</div>
+        </div>
+      </a>
 
-        <!-- POST -->
-        <a href="/blog/auto-dealer-local-seo-service" class="rd-post">
-          <div class="rd-post-img">
-            <img src="/assets/blog1.jpg" alt="">
-          </div>
-          <div class="rd-post-content">
-            <div class="rd-post-meta">March 2026</div>
-            <div class="rd-post-title">Auto Dealer Local SEO Service</div>
-            <div class="rd-post-excerpt">Auto Dealers that need local SEO Services look to Russell Digital.</div>
-          </div>
-        </a>
+      <!-- POST -->
+      <a href="/blog/ai-seo-services-for-logistics/" class="rd-post">
+        <div class="rd-post-img">
+          <img src="/assets/blog2.jpg" alt="">
+        </div>
+        <div class="rd-post-content">
+          <div class="rd-post-meta">March 2026</div>
+          <div class="rd-post-title">AI SEO Services for Logistics</div>
+          <div class="rd-post-excerpt">How Russell Digital helps logistics companies with their AI SEO efforts.</div>
+        </div>
+      </a>
 
-        <!-- POST -->
-        <a href="/blog/ai-seo-services-for-logistics/" class="rd-post">
-          <div class="rd-post-img">
-            <img src="/assets/blog2.jpg" alt="">
-          </div>
-          <div class="rd-post-content">
-            <div class="rd-post-meta">March 2026</div>
-            <div class="rd-post-title">AI SEO Services for Logistics</div>
-            <div class="rd-post-excerpt">How Russell Digital helps logistics companies with their AI SEO efforts.</div>
-          </div>
-        </a>
-
-        <!-- POST -->
-        <a href="/blog/bellaire-local-business-seo-service/" class="rd-post">
-          <div class="rd-post-img">
-            <img src="/assets/blog3.jpg" alt="">
-          </div>
-          <div class="rd-post-content">
-            <div class="rd-post-meta">March 2026</div>
-            <div class="rd-post-title">Bellaire Local Business SEO Services</div>
-            <div class="rd-post-excerpt">Russell Digital helps local businesses in Bellaire with SEO Services.</div>
-          </div>
-        </a>
-
-      </div>
+      <!-- POST -->
+      <a href="/blog/bellaire-local-business-seo-service/" class="rd-post">
+        <div class="rd-post-img">
+          <img src="/assets/blog3.jpg" alt="">
+        </div>
+        <div class="rd-post-content">
+          <div class="rd-post-meta">March 2026</div>
+          <div class="rd-post-title">Bellaire Local Business SEO Services</div>
+          <div class="rd-post-excerpt">Russell Digital helps local businesses in Bellaire with SEO Services.</div>
+        </div>
+      </a>
 
     </div>
-  </section>
+
+    <div class="rd-blog-actions">
+      <button type="button" class="rd-load-more" id="rdLoadMoreBtn">Load More</button>
+    </div>
+
+  </div>
+</section>
 
 <div id="rd-footer"></div>
 
 <script src="/js/loadComponents.js" defer></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const posts = Array.from(document.querySelectorAll('#rdBlogList .rd-post'));
+    const loadMoreBtn = document.getElementById('rdLoadMoreBtn');
+    const initialVisible = 8;
+    const increment = 8;
+    let visibleCount = initialVisible;
+
+    function getDisplayValue() {
+      return window.innerWidth <= 640 ? 'flex' : 'flex';
+    }
+
+    function updatePosts() {
+      posts.forEach((post, index) => {
+        post.style.display = index < visibleCount ? getDisplayValue() : 'none';
+      });
+
+      loadMoreBtn.hidden = visibleCount >= posts.length;
+    }
+
+    loadMoreBtn.addEventListener('click', function () {
+      visibleCount += increment;
+      updatePosts();
+    });
+
+    window.addEventListener('resize', updatePosts);
+
+    updatePosts();
+  });
+</script>
 
 </body>
 </html>
