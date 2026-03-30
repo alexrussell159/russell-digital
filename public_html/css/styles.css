@@ -102,6 +102,14 @@ header {
     margin:0 auto;
   }
 
+.blog-image {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto 24px auto;
+}
+
   .rd-article-meta{
     display:flex;
     align-items:center;
