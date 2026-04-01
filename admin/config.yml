@@ -1,9 +1,9 @@
-local_backend: true
-
 backend:
   name: github
   repo: alexrussell159/russell-digital
   branch: main
+  base_url: https://decap-auth.russellgiditalads.com
+  auth_endpoint: auth
 
 media_folder: "public_html/assets"
 public_folder: "/assets"
