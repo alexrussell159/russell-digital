@@ -4,6 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Fourth Blog Post - Russell Digital</title>
+
+  <!-- Basic SEO -->
+<meta name="description" content="no description this time">
+
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="My Fourth Blog Post">
+<meta property="og:description" content="no description this time">
+<meta property="og:url" content="/blog/my-fourth-blog-post/">
+
+
+<meta property="og:image" content="/assets/default-og.png">
+
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="My Fourth Blog Post">
+<meta name="twitter:description" content="no description this time">
+
+
+<meta name="twitter:image" content="/assets/default-og.png">
+
+
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
 </head>
@@ -22,9 +46,6 @@
 
       <h1 class="rd-post-title">My Fourth Blog Post</h1>
 
-      
-        <p class="rd-post-intro">no description this time</p>
-      
     </header>
 
     <div class="rd-post-content">
@@ -54,4 +75,34 @@
 
   <script src="/js/loadComponents.js" defer></script>
 </body>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "My Fourth Blog Post",
+  "description": "no description this time",
+  "author": {
+    "@type": "Person",
+    "name": "Alex Russell"
+  },
+  "datePublished": "Wed Apr 01 2026 15:57:00 GMT-0500 (Central Daylight Time)",
+  "dateModified": "Wed Apr 01 2026 15:57:00 GMT-0500 (Central Daylight Time)",
+  "image": "/assets/russell-digital-favicon.png",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Russell Digital",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/assets/russell-digital-favicon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/blog/my-fourth-blog-post/"
+  }
+}
+</script>
+
 </html>
+

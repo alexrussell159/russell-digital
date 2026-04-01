@@ -4,6 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My First Blog Post - Russell Digital</title>
+
+  <!-- Basic SEO -->
+<meta name="description" content="This is my first Eleventy post.">
+
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="My First Blog Post">
+<meta property="og:description" content="This is my first Eleventy post.">
+<meta property="og:url" content="/blog/my-first-post-2/">
+
+
+<meta property="og:image" content="/assets/default-og.png">
+
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="My First Blog Post">
+<meta name="twitter:description" content="This is my first Eleventy post.">
+
+
+<meta name="twitter:image" content="/assets/default-og.png">
+
+
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
 </head>
@@ -22,9 +46,6 @@
 
       <h1 class="rd-post-title">My First Blog Post</h1>
 
-      
-        <p class="rd-post-intro">This is my first Eleventy post.</p>
-      
     </header>
 
     <div class="rd-post-content">
@@ -52,4 +73,34 @@
 
   <script src="/js/loadComponents.js" defer></script>
 </body>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "My First Blog Post",
+  "description": "This is my first Eleventy post.",
+  "author": {
+    "@type": "Person",
+    "name": "Alex Russell"
+  },
+  "datePublished": "Tue Mar 31 2026 19:00:00 GMT-0500 (Central Daylight Time)",
+  "dateModified": "Tue Mar 31 2026 19:00:00 GMT-0500 (Central Daylight Time)",
+  "image": "/assets/russell-digital-favicon.png",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Russell Digital",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/assets/russell-digital-favicon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/blog/my-first-post-2/"
+  }
+}
+</script>
+
 </html>
+

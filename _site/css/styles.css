@@ -596,7 +596,7 @@ header {
 .rd-post-content img,
 .blog-image{
   display:block;
-  width:100%;
+  width:65%;
   max-width:100%;
   height:auto;
   margin:28px auto;

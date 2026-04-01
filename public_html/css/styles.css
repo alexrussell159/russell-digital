@@ -529,6 +529,7 @@ header {
   font-size:1.05rem;
   line-height:1.9;
   color:#334155;
+  text-align:left;
 }
 
 .rd-post-content > *:first-child{
@@ -596,7 +597,7 @@ header {
 .rd-post-content img,
 .blog-image{
   display:block;
-  width:100%;
+  width:65%;
   max-width:100%;
   height:auto;
   margin:28px auto;
