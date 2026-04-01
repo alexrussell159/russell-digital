@@ -11,27 +11,15 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "public_html/free-strategy-call": "free-strategy-call" });
 
   eleventyConfig.addPassthroughCopy({ "public_html/index.html": "index.html" });
-
   eleventyConfig.addPassthroughCopy({ "public_html/admin": "admin" });
 
-  eleventyConfig.addPassthroughCopy({
-    "public_html/src/blog/**/*.png": "blog"
-  });
-  eleventyConfig.addPassthroughCopy({
-    "public_html/src/blog/**/*.jpg": "blog"
-  });
-  eleventyConfig.addPassthroughCopy({
-    "public_html/src/blog/**/*.jpeg": "blog"
-  });
-  eleventyConfig.addPassthroughCopy({
-    "public_html/src/blog/**/*.webp": "blog"
-  });
-  eleventyConfig.addPassthroughCopy({
-    "public_html/src/blog/**/*.gif": "blog"
-  });
-  eleventyConfig.addPassthroughCopy({
-    "public_html/src/blog/**/*.svg": "blog"
-  });
+  // Post-local images
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.png");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.jpg");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.jpeg");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.webp");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.gif");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.svg");
 
   return {
     dir: {
