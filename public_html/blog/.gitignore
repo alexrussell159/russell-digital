@@ -1,0 +1,7 @@
+/cache/*
+/content/*
+/config/config.ini
+/config/users/*.ini
+/backup
+/.htaccess
+.DS_Store
