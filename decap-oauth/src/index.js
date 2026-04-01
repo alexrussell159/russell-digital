@@ -1,8 +1,9 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    const pathname = url.pathname.replace(/\/+$/, "") || "/";
 
-    if (url.pathname === "/auth") {
+    if (pathname === "/auth") {
       const state = crypto.randomUUID();
       const redirect = new URL("https://github.com/login/oauth/authorize");
       redirect.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
@@ -13,7 +14,7 @@ export default {
       return Response.redirect(redirect.toString(), 302);
     }
 
-    if (url.pathname === "/callback") {
+    if (pathname === "/callback") {
       const code = url.searchParams.get("code");
 
       if (!code) {
@@ -45,10 +46,12 @@ export default {
 <html>
   <body>
     <script>
-      window.opener.postMessage(
-        'authorization:github:success:${tokenData.access_token}',
-        '*'
-      );
+      if (window.opener) {
+        window.opener.postMessage(
+          'authorization:github:success:${tokenData.access_token}',
+          '*'
+        );
+      }
       window.close();
     </script>
     Login complete.
@@ -60,6 +63,6 @@ export default {
       });
     }
 
-    return new Response("Not found", { status: 404 });
+    return new Response(`Not found: ${url.pathname}`, { status: 404 });
   }
 };
