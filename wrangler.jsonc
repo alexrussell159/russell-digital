@@ -1,14 +1,10 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "alexrussell159",
+  "$schema": "./config-schema.json",
+  "name": "decap-oauth",
+  "main": "src/index.js",
   "compatibility_date": "2026-04-01",
-  "observability": {
-    "enabled": true
-  },
-  "assets": {
-    "directory": "./_site"
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+
+  "vars": {
+    "PUBLIC_URL": "https://decap-oauth.russellditialads.workers.dev"
+  }
 }
