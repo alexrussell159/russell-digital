@@ -1,0 +1,35 @@
+backend:
+  name: github
+  repo: alexrussell159/russell-digital
+  branch: main
+  base_url: https://decap-oauth.alexrussell159.workers.dev
+  auth_endpoint: auth
+
+media_folder: "public_html/assets"
+public_folder: "/assets"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "public_html/src/blog"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    path: "{{slug}}/index"
+    extension: "md"
+    format: "frontmatter"
+    preview_path: "blog/{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "Alex Russell" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        default: ["blog"]
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
+      - { label: "Permalink", name: "permalink", widget: "string", default: "/blog/{{slug}}/" }
+      - { label: "Body", name: "body", widget: "markdown" }
