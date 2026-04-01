@@ -8,30 +8,6 @@
   <!-- Basic SEO -->
 <meta name="description" content="{% if description %}{{ description | truncate(160) }}{% else %}Russell Digital — Data-driven SEO strategies that turn traffic into revenue.{% endif %}">
 
-
-<!-- Open Graph (Facebook, LinkedIn) -->
-<meta property="og:type" content="article">
-<meta property="og:title" content="{{ title }}">
-<meta property="og:description" content="{{ description | truncate(160) }}">
-<meta property="og:url" content="{{ page.url | url }}">
-
-{% if image %}
-<meta property="og:image" content="{{ image }}">
-{% else %}
-<meta property="og:image" content="/assets/default-og.png">
-{% endif %}
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ title }}">
-<meta name="twitter:description" content="{{ description | truncate(160) }}">
-
-{% if image %}
-<meta name="twitter:image" content="{{ image }}">
-{% else %}
-<meta name="twitter:image" content="/assets/default-og.png">
-{% endif %}
-
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
 </head>

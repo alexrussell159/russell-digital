@@ -529,6 +529,7 @@ header {
   font-size:1.05rem;
   line-height:1.9;
   color:#334155;
+  text-align:left;
 }
 
 .rd-post-content > *:first-child{

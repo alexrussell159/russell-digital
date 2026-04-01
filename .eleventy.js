@@ -1,4 +1,12 @@
+const sitemap = require("@quasibit/eleventy-plugin-sitemap");
+
 module.exports = function(eleventyConfig) {
+  eleventyConfig.addPlugin(sitemap, {
+    sitemap: {
+      hostname: "https://russelldigitalads.com"
+    }
+  });
+
   eleventyConfig.addPassthroughCopy({ "public_html/css": "css" });
   eleventyConfig.addPassthroughCopy({ "public_html/js": "js" });
   eleventyConfig.addPassthroughCopy({ "public_html/assets": "assets" });
@@ -13,7 +21,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "public_html/index.html": "index.html" });
   eleventyConfig.addPassthroughCopy({ "public_html/admin": "admin" });
 
-  // Post-local images
   eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.png");
   eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.jpg");
   eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.jpeg");
