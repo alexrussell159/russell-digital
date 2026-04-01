@@ -4,6 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% if title %}{{ title }} - Russell Digital{% else %}Russell Digital{% endif %}</title>
+
+  <!-- Basic SEO -->
+<meta name="description" content="{% if description %}{{ description | truncate(160) }}{% else %}Russell Digital — Data-driven SEO strategies that turn traffic into revenue.{% endif %}">
+
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description | truncate(160) }}">
+<meta property="og:url" content="{{ page.url | url }}">
+
+{% if image %}
+<meta property="og:image" content="{{ image }}">
+{% else %}
+<meta property="og:image" content="/assets/default-og.png">
+{% endif %}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description | truncate(160) }}">
+
+{% if image %}
+<meta name="twitter:image" content="{{ image }}">
+{% else %}
+<meta name="twitter:image" content="/assets/default-og.png">
+{% endif %}
+
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
 </head>
@@ -19,4 +47,34 @@
 
   <script src="/js/loadComponents.js" defer></script>
 </body>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ title }}",
+  "description": "{{ description }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ author | default('Alex Russell') }}"
+  },
+  "datePublished": "{{ date }}",
+  "dateModified": "{{ updated | default(date) }}",
+  "image": "{% if image %}{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Russell Digital",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/assets/russell-digital-favicon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | url }}"
+  }
+}
+</script>
+
 </html>
+
