@@ -41,26 +41,35 @@ export default {
         return new Response(`OAuth failed: ${JSON.stringify(tokenData)}`, { status: 400 });
       }
 
-      const html = `
-<!doctype html>
+      return new Response(
+        `<!doctype html>
 <html>
   <body>
     <script>
-      if (window.opener) {
-        window.opener.postMessage(
-          'authorization:github:success:${tokenData.access_token}',
-          '*'
-        );
-      }
-      window.close();
+      (function () {
+        function receiveMessage(e) {
+          window.opener.postMessage(
+            'authorization:github:success:${JSON.stringify({
+              token: tokenData.access_token,
+              provider: "github"
+            }).replace(/'/g, "\\'")}',
+            e.origin
+          );
+          window.removeEventListener("message", receiveMessage, false);
+          window.close();
+        }
+
+        window.addEventListener("message", receiveMessage, false);
+        window.opener.postMessage("authorizing:github", "*");
+      })();
     </script>
     Login complete.
   </body>
-</html>`;
-
-      return new Response(html, {
-        headers: { "Content-Type": "text/html; charset=utf-8" }
-      });
+</html>`,
+        {
+          headers: { "Content-Type": "text/html; charset=utf-8" }
+        }
+      );
     }
 
     return new Response(`Not found: ${url.pathname}`, { status: 404 });

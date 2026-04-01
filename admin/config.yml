@@ -5,8 +5,8 @@ backend:
   base_url: https://decap-oauth.alexrussell159.workers.dev
   auth_endpoint: auth
 
-media_folder: "/assets"
-public_folder: "public_html/assets"
+media_folder: "public_html/assets"
+public_folder: "/assets"
 
 collections:
   - name: "blog"
