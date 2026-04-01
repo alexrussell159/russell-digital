@@ -6,6 +6,6 @@ author: Alex Russell
 tags:
   - blog
 layout: post.njk
-permalink: /blog/{{slug}}/
----
+permalink: /blog/my-third-post/
+---s
 this is my next and final blog post
