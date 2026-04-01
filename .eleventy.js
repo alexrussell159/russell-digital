@@ -1,6 +1,5 @@
 module.exports = function(eleventyConfig) {
 
-  // Copy your existing site into output
   eleventyConfig.addPassthroughCopy("public_html/css");
   eleventyConfig.addPassthroughCopy("public_html/js");
   eleventyConfig.addPassthroughCopy("public_html/assets");
@@ -12,11 +11,16 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("public_html/case-studies");
   eleventyConfig.addPassthroughCopy("public_html/free-strategy-call");
 
-  // VERY IMPORTANT → homepage
   eleventyConfig.addPassthroughCopy({ "public_html/index.html": "index.html" });
-
-  // admin (for Decap)
   eleventyConfig.addPassthroughCopy({ "public_html/admin": "admin" });
+
+  // copy post-local images
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.png");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.jpg");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.jpeg");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.webp");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.gif");
+  eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.svg");
 
   return {
     dir: {
