@@ -3,18 +3,16 @@
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "decap-oauth",
-	"main": "src/index.js",
-	"compatibility_date": "2026-03-10",
-	"observability": {
-		"enabled": true
-	},
-	"upload_source_maps": true,
-	"compatibility_flags": [
-		"nodejs_compat"
-	]
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "decap-oauth",
+  "main": "src/index.js",
+  "compatibility_date": "2026-04-01",
+
+  "vars": {
+    "PUBLIC_URL": "https://decap-oauth.alexrussell159.workers.dev",
+
 	/**
+
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
 	 */
@@ -42,4 +40,4 @@
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
 	 */
 	// "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ]
-}
+}}
