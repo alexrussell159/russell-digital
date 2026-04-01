@@ -1,0 +1,17 @@
+---
+layout: base.njk
+---
+
+<article class="rd-post">
+  <div class="rd-post-wrap">
+    <h1>{{ title }}</h1>
+    <p>{{ date | date("MMMM d, yyyy") }}</p>
+    {% if description %}
+      <p>{{ description }}</p>
+    {% endif %}
+
+    <div class="rd-post-content">
+      {{ content | safe }}
+    </div>
+  </div>
+</article>

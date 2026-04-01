@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Blog
+permalink: /blog/
+---
+
+<section class="rd-blog">
+  <div class="rd-blog-wrap">
+    <h1>Blog</h1>
+
+    <div class="rd-blog-grid">
+      {% for post in collections.blog | reverse %}
+        <article class="rd-blog-card">
+          <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+          <p>{{ post.date | date("MMMM d, yyyy") }}</p>
+          {% if post.data.description %}
+            <p>{{ post.data.description }}</p>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
