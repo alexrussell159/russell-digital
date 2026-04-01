@@ -1,10 +1,11 @@
 {
   "name": "russell-digital",
   "version": "1.0.0",
-  "description": "<!DOCTYPE html>\r <html lang=\"en\">\r <head>\r   <meta charset=\"UTF-8\" />\r   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r   <title>Core Services — Russell Digital</title>\r   <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />\r   <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin />\r   <link rel=\"stylesheet\" href=\"/css/styles.css\" />\r   <link rel=\"icon\" href=\"/assets/russell-digital-favicon.png\" type=\"image/png\" />\r   <link href=\"https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,300;1,9..40,400&display=swap\" rel=\"stylesheet\">",
+  "description": "Russell Digital website with Eleventy blog",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
   },
   "repository": {
     "type": "git",
