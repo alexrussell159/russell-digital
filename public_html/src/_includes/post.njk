@@ -2,16 +2,35 @@
 layout: base.njk
 ---
 
-<article class="rd-post">
-  <div class="rd-post-wrap">
-    <h1>{{ title }}</h1>
-    <p>{{ date | date("MMMM d, yyyy") }}</p>
-    {% if description %}
-      <p>{{ description }}</p>
-    {% endif %}
+<section class="rd-post-page">
+  <article class="rd-post-article">
+    <main class="rd-post-header">
+      {% if date %}
+        <p class="rd-post-date">{{ date.toDateString() }}</p>
+      {% endif %}
+
+      <h1 class="rd-post-title">{{ title }}</h1>
+
+      {% if description %}
+        <p class="rd-post-intro">{{ description }}</p>
+      {% endif %}
+    </header>
 
     <div class="rd-post-content">
       {{ content | safe }}
     </div>
-  </div>
-</article>
+
+    <section class="rd-post-cta">
+      <p class="rd-post-cta-eyebrow">Ready to grow?</p>
+      <h2 class="rd-post-cta-title">Let’s build your organic presence.</h2>
+      <p class="rd-post-cta-text">
+        Data-driven SEO strategies that turn organic traffic into measurable revenue.
+      </p>
+
+      <div class="rd-post-cta-actions">
+        <a href="/free-strategy-call/" class="rd-btn rd-btn-primary">Book a Strategy Call</a>
+        <a href="/case-studies/africactn/" class="rd-btn rd-btn-secondary">View Case Studies</a>
+      </div>
+    </section>
+  </article>
+</section>

@@ -4,28 +4,57 @@ title: Blog
 permalink: /blog/
 ---
 
-<section class="rd-blog">
+
+<section class="rd-blog-page">
   <div class="rd-blog-wrap">
-    <h1 class="rd-blog-title">Insights & Strategy</h1>
-
-    <div class="rd-blog-grid">
-      {% for post in collections.blog | reverse %}
-        <article class="rd-blog-card">
-          <a href="{{ post.url }}">
-            <h2>{{ post.data.title }}</h2>
-          </a>
-
-          <p class="rd-blog-date">
-            {{ post.date | date("MMMM d, yyyy") }}
-          </p>
-
-          {% if post.data.description %}
-            <p class="rd-blog-desc">
-              {{ post.data.description }}
-            </p>
-          {% endif %}
-        </article>
-      {% endfor %}
+    <div class="rd-blog-hero">
+      <div class="rd-blog-hero-inner">
+        <span class="rd-blog-eyebrow">Russell Digital Blog</span>
+        <h1 class="rd-blog-title">SEO insights, strategy, and growth content for businesses that want to rank.</h1>
+        <p class="rd-blog-subtitle">
+          Practical articles on SEO, AI search, content strategy, local visibility, and digital growth.
+        </p>
+      </div>
     </div>
+
+    <section class="rd-blog-list-section">
+      <div class="rd-blog-grid">
+        {% for post in collections.blog | reverse %}
+          <article class="rd-blog-card">
+            {% if post.data.image %}
+              <a class="rd-blog-card-image-link" href="{{ post.url }}">
+                <img
+                  src="{{ post.data.image }}"
+                  alt="{{ post.data.title }}"
+                  class="rd-blog-card-image"
+                >
+              </a>
+            {% endif %}
+
+            <div class="rd-blog-card-body">
+              <div class="rd-blog-card-meta">
+                {% if post.date %}
+  <span>{{ post.date.toDateString() }}</span>
+{% endif %}
+                {% if post.data.author %}
+                  <span>•</span>
+                  <span>{{ post.data.author }}</span>
+                {% endif %}
+              </div>
+
+              <h2 class="rd-blog-card-title">
+                <a href="{{ post.url }}">{{ post.data.title }}</a>
+              </h2>
+
+              {% if post.data.description %}
+                <p class="rd-blog-card-desc">{{ post.data.description }}</p>
+              {% endif %}
+
+              <a class="rd-blog-card-link" href="{{ post.url }}">Read article</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
   </div>
 </section>
