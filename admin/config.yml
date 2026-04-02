@@ -21,9 +21,17 @@ collections:
     format: "frontmatter"
     preview_path: "blog/{{slug}}"
     fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
+      - { label: "Author", name: "author", widget: "hidden", default: "Alex Russell" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text", required: false }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Slug", name: "slug", widget: "string", hint: "example: my-blog-post" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "example: auto-dealer-local-seo-services" }
+      - { label: "Permalink", name: "permalink", widget: "string", required: false, hint: "example: /blog/auto-dealer-local-seo-services/" }
+      - label: "Tags"
+        name: "tags"
+        widget: "hidden"
+        default:
+          - blog
       - { label: "Featured Image", name: "image", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
