@@ -6,6 +6,6 @@ image: screenshot-2026-04-02-101214.png
 tags:
   - blog
 layout: post.njk
-permalink: /blog/{{slug}}/
+permalink: /blog/testing-another/
 ---
 ![](screenshot-2026-04-02-101214.png)
