@@ -23,11 +23,7 @@ permalink: /blog/
           <article class="rd-blog-card">
             {% if post.data.image %}
               <a class="rd-blog-card-image-link" href="{{ post.url }}">
-                <img
-                  src="{{ post.data.image }}"
-                  alt="{{ post.data.title }}"
-                  class="rd-blog-card-image"
-                >
+                <img src="{{ post.url }}{{ post.data.image }}" alt="{{ post.data.title }}" class="rd-blog-card-image">
               </a>
             {% endif %}
 
