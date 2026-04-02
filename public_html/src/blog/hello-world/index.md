@@ -6,7 +6,7 @@ image: screenshot-2026-04-02-103643.png
 tags:
   - blog
 layout: post.njk
-permalink: /blog/{{slug}}/
+permalink: /blog/hello-world/
 ---
 this is my blog post
 
