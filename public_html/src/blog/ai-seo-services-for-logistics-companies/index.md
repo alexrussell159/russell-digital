@@ -5,7 +5,7 @@ description: AI-driven SEO Services for Logistics Companies is accomplished by
   helps logistics companies around the world.
 date: 2026-04-02T09:42:00.000-05:00
 author: Alex Russell
-image: ai-seo-for-logistics-companies.png
+image: https://russelldigitalads.com/assets/ai-seo-for-logistics-companies.png
 tags:
   - blog
 layout: post.njk
