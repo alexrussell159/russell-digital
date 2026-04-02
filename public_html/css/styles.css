@@ -195,14 +195,12 @@ header {
   display:block;
   aspect-ratio:16/9;
   overflow:hidden;
-  background:#e5eefc;
 }
 
 .rd-blog-card-image{
   width:100%;
   height:auto;
   object-fit:cover;
-  border-radius: 22px;
   display:block;
   justify-content: center;
 
@@ -339,7 +337,6 @@ header {
   display:block;
   aspect-ratio:16/9;
   overflow:hidden;
-  background:#e5eefc;
 }
 
 
