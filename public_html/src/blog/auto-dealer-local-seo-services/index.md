@@ -4,7 +4,7 @@ description: Russell Digital helps local car dealers optimize your web pages for
   search engines, google business profile and attain high quality backlinks by
   becoming a source of truth on the internet.
 date: 2026-04-02T12:32:00.000-05:00
-slug: /blog/ai-seo-for-logistics-companies
+slug: /blog/auto-dealer-local-seo-services
 image: auto-dealer-local-seo-service.png
 ---
 Local car dealerships looking for SEO services to improve rankings in local search can find success with Russell Digital Ads high volume SEO strategy. We focus on optimization of your web pages for search engines, google business profile and attain high quality backlinks by becoming a source of truth on the internet.
