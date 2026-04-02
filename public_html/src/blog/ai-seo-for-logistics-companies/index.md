@@ -1,15 +1,16 @@
 ---
+layout: post.njk
+author: Alex Russell
 title: AI SEO Services for Logistics Companies
+slug: /blog/ai-seo-for-logistics-companies/
+permalink: /blog/ai-seo-for-logistics-companies/
+date: 2026-04-02T09:42:00.000-05:00
+tags:
+  - blog
 description: AI-driven SEO Services for Logistics Companies is accomplished by
   content creation, producing images and acquiring backlinks. Russell Digital
   helps logistics companies around the world.
-date: 2026-04-02T09:42:00.000-05:00
-author: Alex Russell
 image: ai-seo-for-logistics-companies.png
-tags:
-  - blog
-layout: post.njk
-permalink: /blog/ai-seo-for-logistics-companies/
 ---
 AI-driven SEO Services for Logistics Companies is accomplished by content creation, producing images and acquiring backlinks. Russell Digital helps logistics companies / providers rank internationally by writing data-driven blog articles and optimization of existing pages for logistics businesses.
 
