@@ -32,7 +32,7 @@
   .rd-case-study{
     position:relative;
     overflow:hidden;
-    padding:128px 16px 72px;
+    padding:64px 16px 72px;
     margin-bottom:64px;
     font-family:'DM Sans', Arial, sans-serif;
     color:var(--rd-text);
@@ -52,23 +52,25 @@
   .rd-case-wrap{
     position:relative;
     z-index:1;
-    width:min(var(--rd-max), 100%);
+    width:min(1260px, 100%);
     margin:0 auto;
   }
 
-  .rd-eyebrow{
-    display:inline-flex;
-    align-items:center;
-    padding:9px 14px;
-    border-radius:999px;
-    background:rgba(37,99,235,.10);
-    color:var(--rd-blue);
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    margin-bottom:18px;
-  }
+  .rd-eyebrow-case{
+    display: inline-flex;
+  align-items: center;     /* vertical alignment */
+  justify-content: flex-start;  /* horizontal alignment */
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(37,99,235,.10);
+  color: var(--rd-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
 
   .rd-case-hero{
     max-width:820px;
@@ -77,10 +79,11 @@
 
   .rd-case-hero h1{
     margin:0 0 16px;
-    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    font-size:32px;
     line-height:.94;
     letter-spacing:-.06em;
     font-weight:900;
+    justify-content: left;
   }
 
   .rd-case-hero p{
@@ -94,7 +97,7 @@
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:14px;
-    margin-bottom:28px;
+    margin-bottom:96px;
   }
 
   .rd-metric{
@@ -131,7 +134,8 @@
   }
 
   .rd-section{
-    margin-top:22px;
+    margin-top:96px;
+    margin-bottom:96px;
     padding:26px;
     border:1px solid var(--rd-border);
     border-radius:26px;
@@ -195,20 +199,34 @@
   align-items:center;
 }
 
-.rd-hero-copy h1{
+.rd-hero-container{
+  width:100%;
+  max-width:1260px;
+  margin:0 auto;
+  padding:0 12px;
+  position:relative;
+  z-index:1;
+}
+
+.case-hero-h1 {
   margin:0 0 18px;
-  font-size:clamp(2.6rem, 5vw, 4rem);
+  font-size:32px;
+  text-align: left;
   line-height:.98;
+  justify-content: flex-start;
   letter-spacing:-0.05em;
   max-width:780px;
 }
 
 .rd-hero-text{
   max-width:680px;
+    text-align: left;
+
   margin:0 0 28px;
   color:var(--rd-muted);
   font-size:1.08rem;
   line-height:1.8;
+  margin-bottom: 24px;
 }
 
 .rd-hero-actions{
@@ -216,6 +234,7 @@
   flex-wrap:wrap;
   gap:14px;
   margin-bottom:30px;
+  margin-top: 30px;
 }
 
 .rd-hero-proof{
@@ -279,6 +298,89 @@
     background:#fff;
   }
 
+  .rd-hero{
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.7);
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.96) 0%, rgba(244,247,252,.96) 100%);
+    border-radius:36px;
+    box-shadow:var(--rd-shadow);
+    padding:72px 60px;
+  }
+
+  .rd-hero::before{
+    content:"";
+    position:absolute;
+    inset:auto -80px -120px auto;
+    width:340px;
+    height:340px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(37,99,235,.13) 0%, rgba(37,99,235,0) 70%);
+    pointer-events:none;
+  }
+
+  .rd-hero-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:36px;
+    align-items:end;
+    position:relative;
+    z-index:1;
+    margin-top: 96px;
+    margin-bottom:96px;
+  }
+
+  .rd-eyebrow-about {
+  display: inline-flex;
+  align-items: center;     /* vertical alignment */
+  justify-content: flex-start;  /* horizontal alignment */
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(37,99,235,.10);
+  color: var(--rd-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+  .rd-hero h1,
+  .rd-section-title,
+  .rd-stat-number,
+  .rd-founder-card h3,
+  .rd-quote{
+    font-family:"DM Sans", sans-serif;
+  }
+
+  .rd-hero h1{
+    margin:0 0 18px;
+    font-size:clamp(42px, 7vw, 72px);
+    line-height:.98;
+    letter-spacing:-.04em;
+    max-width:720px;
+  }
+
+  .rd-hero h1 span{
+    color:var(--rd-blue);
+  }
+
+  .rd-hero-copy{
+    max-width:640px;
+    font-size:18px;
+    line-height:1.7;
+    color:var(--rd-text);
+    margin:28px 0 28px;
+  }
+
+  .rd-hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+
   .rd-subcard h3{
     margin:0 0 10px;
     font-size:1.08rem;
@@ -336,7 +438,7 @@
   }
 
   .rd-chart{
-    margin-top:18px;
+    margin-top:96px;
     padding:16px;
     border:1px solid #e7edf7;
     border-radius:22px;
@@ -489,19 +591,33 @@
   }
 
   @media (max-width: 900px){
+    .rd-case-study{
+      padding:112px 16px 64px;
+    }
+
+    .rd-case-wrap{
+      width:100%;
+    }
+
     .rd-metrics{
       grid-template-columns:repeat(2,1fr);
     }
 
+    .rd-hero-grid,
     .rd-split,
-    .rd-outcome{
+    .rd-outcome,
+    .rd-services-grid{
+      grid-template-columns:1fr;
+    }
+
+    .rd-hero-proof{
       grid-template-columns:1fr;
     }
   }
 
   @media (max-width: 640px){
     .rd-case-study{
-      padding:108px 16px 56px;
+      padding:48px 12px 56px;
     }
 
     .rd-metrics{
@@ -513,20 +629,53 @@
       padding:20px;
     }
 
+    .rd-hero{
+      padding:116px 0 56px;
+    }
+
+    .rd-hero-container{
+      padding:0;
+    }
+
     .rd-services-grid{
-    display:flex;
-    flex-direction: column;
+      display:grid;
+      grid-template-columns:1fr;
     }
 
     .rd-hero-grid{
-      display: flex;
-      flex-direction: column;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:24px;
+      margin-top:64px;
       margin-bottom:16px;
+    }
+
+    .rd-hero-card{
+      padding:8px;
+      border-radius:22px;
+    }
+
+    .case-hero-h1{
+      font-size:clamp(2rem, 10vw, 2.8rem);
+    }
+
+    .rd-hero-text{
+      font-size:1rem;
+      line-height:1.7;
+    }
+
+    .rd-hero-actions{
+      margin-top:24px;
+      margin-bottom:20px;
+    }
+
+    .rd-btn{
+      width:100%;
     }
 
 
     .rd-case-hero h1{
-      font-size:clamp(2.1rem, 12vw, 3.7rem);
+      font-size:clamp(1.8rem, 12vw, 3.7rem);
     }
 
     .rd-case-hero p,
@@ -546,11 +695,10 @@
   <div class="rd-case-wrap">
 
       <!-- HERO -->
-  <section class="rd-hero">
-    <div class="rd-container rd-hero-grid">
+    <div class="rd-hero-grid">
       <div class="rd-hero-copy">
-        <span class="rd-eyebrow">Houston SEO Agency</span>
-        <h1>AfricaCTN found search traffic they didn't even know existed.</h1>
+        <span class="rd-eyebrow-about">Houston SEO Agency</span>
+        <h1 class="case-hero-h1">AfricaCTN found search traffic they didn't even know existed.</h1>
         <p class="rd-hero-text">
           AfricaCTN is an authorized Cargo Tracking Note provider that helps shippers and freight forwarders secure required CTN and ECTN documents for African countries. Over a 6-month period, Russell Digital used content and SEO to grow qualified traffic, increase weekly leads, and drive meaningful new-customer revenue.
         </p>
@@ -571,7 +719,6 @@
 <img class="hero-img" src="/assets/africactn-semrush-results.png" alt="AfricaCTN search impressions chart">       </div>
       </div>
     </div>
-  </section>
 
     <div class="rd-metrics">
       <div class="rd-metric">

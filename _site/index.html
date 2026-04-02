@@ -85,8 +85,8 @@ body{
 }
 
 .rd-eyebrow-light{
-  background:rgba(255,255,255,0.12);
-  color:#dbeafe;
+  background:rgba(255,255,255,0.9);
+  color:#fff;
 }
 
 .rd-section-head{
@@ -161,6 +161,10 @@ body{
 }
 
 /* HERO */
+.rd-home-hero{
+  padding:0 24px;
+}
+
 .rd-hero{
   position:relative;
   width:100vw;
@@ -567,7 +571,11 @@ body{
 
 @media (max-width: 767px){
   .rd-container{
-    width:min(100% - 24px, var(--rd-max));
+    width:min(100% - 24px);
+  }
+
+  .rd-home-hero{
+    padding:0 16px;
   }
 
   .rd-section,
@@ -624,7 +632,7 @@ body{
   <main class="rd-home">
 
   <!-- HERO -->
-  <section class="rd-services-page" style="margin-top:136px; margin-bottom: 36px;">
+  <section class="rd-services-page rd-home-hero" style="margin-top:136px; margin-bottom: 36px;">
     <div class="rd-hero-inner">
       <div class="rd-hero-grid">
         <div class="rd-hero-copy">

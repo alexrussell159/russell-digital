@@ -63,9 +63,9 @@
       margin:0 auto;
     }
 
-    .rd-hero{
+    .rd-hero-price{
       max-width:920px;
-      margin:0 auto 34px;
+      margin:0 auto 96px;
       text-align:center;
     }
 
@@ -111,8 +111,9 @@
       color:var(--rd-blue);
     }
 
-    .rd-hero-sub{
+    .rd-hero-sub-p{
       margin:0 auto 26px;
+      margin-bottom: 24px;
       color:var(--rd-muted);
       font-size:1.06rem;
       line-height:1.8;
@@ -124,6 +125,7 @@
       flex-direction:column;
       align-items:center;
       gap:12px;
+      margin-top:36px;
     }
 
     .rd-hero-cta-wrap .rd-btn{
@@ -196,7 +198,8 @@
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:18px;
-      align-items:stretch;
+      align-items:center;
+      margin-top:96px;
     }
 
     .rd-plan{
@@ -359,7 +362,8 @@
     }
 
     .rd-section{
-      margin-top:24px;
+      margin-top:96px;
+
       padding:26px;
       border:1px solid var(--rd-border);
       border-radius:28px;
@@ -449,7 +453,7 @@
     }
 
     .rd-bottom-cta{
-      margin-top:24px;
+      margin-top:96px;
       padding:30px;
       border:1px solid var(--rd-border);
       border-radius:28px;
@@ -496,8 +500,10 @@
 
     @media (max-width: 767px){
       .rd-pricing-page{
-        padding:112px 12px 56px;
+        padding:112px 0px 56px;
       }
+
+      
 
 
       .rd-plan,
@@ -535,7 +541,7 @@
 
           <h1>Is your business ready for <br><em>consistent SEO growth?</em></h1>
 
-          <p class="rd-hero-sub">
+          <p class="rd-hero-sub-p">
             Russell Digital offers SEO services designed to increase search visibility through consistent execution. The focus is simple: publish useful content, improve organic coverage and build momentum over time.
           </p>
 
@@ -599,7 +605,7 @@
             </div>
           </div>
 
-          <div class="rd-plan rd-plan-featured">
+          <div class="rd-plan">
             <div class="rd-badge">Main Offer</div>
 
             <h2 class="rd-plan-name">Growth SEO</h2>
