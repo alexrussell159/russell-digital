@@ -3,11 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>{% if title %}{{ title }} - Russell Digital{% else %}Russell Digital{% endif %}</title>
 
   <!-- Basic SEO -->
-<meta name="description" content="{% if description %}{{ description | truncate(160) }}{% else %}Russell Digital — Data-driven SEO strategies that turn traffic into revenue.{% endif %}">
+  <meta
+    name="description"
+    content="{% if description %}{{ description | truncate(160) }}{% else %}Russell Digital — Data-driven SEO strategies that turn traffic into revenue.{% endif %}"
+  />
+  <meta name="robots" content="index, follow" />
 
+  <!-- Canonical -->
+  <link rel="canonical" href="https://russelldigitalads.com{{ page.url }}" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Russell Digital" />
+  <meta property="og:type" content="article" />
+  <meta
+    property="og:title"
+    content="{% if title %}{{ title }} - Russell Digital{% else %}Russell Digital{% endif %}"
+  />
+  <meta
+    property="og:description"
+    content="{% if description %}{{ description | truncate(160) }}{% else %}Russell Digital — Data-driven SEO strategies that turn traffic into revenue.{% endif %}"
+  />
+  <meta property="og:url" content="https://russelldigitalads.com{{ page.url }}" />
+  <meta
+    property="og:image"
+    content="https://russelldigitalads.com{% if image %}{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}"
+  />
+  <meta
+    property="og:image:alt"
+    content="{% if title %}{{ title }}{% else %}Russell Digital{% endif %}"
+  />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:title"
+    content="{% if title %}{{ title }} - Russell Digital{% else %}Russell Digital{% endif %}"
+  />
+  <meta
+    name="twitter:description"
+    content="{% if description %}{{ description | truncate(160) }}{% else %}Russell Digital — Data-driven SEO strategies that turn traffic into revenue.{% endif %}"
+  />
+  <meta
+    name="twitter:image"
+    content="https://russelldigitalads.com{% if image %}{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}"
+  />
+
+  <!-- Styles / Icons -->
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
 </head>
@@ -22,35 +68,84 @@
   <div id="rd-footer"></div>
 
   <script src="/js/loadComponents.js" defer></script>
-</body>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "{{ title }}",
-  "description": "{{ description }}",
-  "author": {
-    "@type": "Person",
-    "name": "{{ author | default('Alex Russell') }}"
-  },
-  "datePublished": "{{ date }}",
-  "dateModified": "{{ updated | default(date) }}",
-  "image": "{% if image %}{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}",
-  "publisher": {
+  <!-- BlogPosting Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ title | default('Russell Digital') }}",
+    "description": "{% if description %}{{ description | truncate(160) }}{% else %}Russell Digital — Data-driven SEO strategies that turn traffic into revenue.{% endif %}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ author | default('Alex Russell') }}"
+    },
+    "datePublished": "{{ date }}",
+    "dateModified": "{{ updated | default(date) }}",
+    "image": "https://russelldigitalads.com{% if image %}{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Russell Digital",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://russelldigitalads.com/assets/russell-digital-favicon.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://russelldigitalads.com{{ page.url }}"
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://russelldigitalads.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://russelldigitalads.com/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ title | default('Post') }}",
+        "item": "https://russelldigitalads.com{{ page.url }}"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Russell Digital",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "/assets/russell-digital-favicon.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ page.url | url }}"
+    "url": "https://russelldigitalads.com",
+    "logo": "https://russelldigitalads.com/assets/russell-digital-favicon.png"
   }
-}
-</script>
+  </script>
 
+  <!-- Website Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Russell Digital",
+    "url": "https://russelldigitalads.com"
+  }
+  </script>
+
+</body>
 </html>
-
