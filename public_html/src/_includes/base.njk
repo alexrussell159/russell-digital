@@ -82,7 +82,7 @@
     },
     "datePublished": "{{ date }}",
     "dateModified": "{{ updated | default(date) }}",
-    "image": "https://russelldigitalads.com{% if image %}{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}",
+    "image": "https://russelldigitalads.com{% if image %}/{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}",
     "publisher": {
       "@type": "Organization",
       "name": "Russell Digital",
