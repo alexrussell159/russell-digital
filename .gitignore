@@ -4,3 +4,11 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# Keep large local video assets out of git; serve them from object storage/CDN.
+_site/assets/*.mp4
+_site/assets/*.mov
+_site/assets/*.webm
+public_html/assets/*.mp4
+public_html/assets/*.mov
+public_html/assets/*.webm
