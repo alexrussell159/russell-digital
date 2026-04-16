@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO Marketing — Russell Digital Ads</title>
+  <meta name="description"
+    content="SEO marketing that actually drives leads. Book a free strategy call with Russell Digital Ads." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="icon" href="/assets/russell-digital-favicon.png" type="image/png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,300;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ---------- Landing Page Scoped Styles ---------- */
+    .lp {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      color: #111;
+      line-height: 1.5;
+    }
+
+    .lp h1,
+    .lp h2,
+    .lp h3,
+    .lp h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin: 0 0 0.5em;
+    }
+
+    .lp .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Announcement bar */
+    .lp-announce {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+
+    .lp-announce .tag {
+      display: inline-block;
+      background: #f25c1f;
+      color: #fff;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 8px;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .lp-announce a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Hero */
+    .lp-hero {
+      background: linear-gradient(180deg, #0b0b0b 0%, #1a1a1a 100%);
+      color: #fff;
+      padding: 70px 0 80px;
+      text-align: center;
+    }
+
+    .lp-hero .eyebrow {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: #f25c1f;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .lp-hero h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      max-width: 900px;
+      margin: 0 auto 18px;
+    }
+
+    .lp-hero h2 {
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 400;
+      color: #cfcfcf;
+      max-width: 780px;
+      margin: 0 auto 40px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* Video placeholder */
+    .lp-video {
+      max-width: 660px;
+      margin: 0 auto 36px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #2a2a2a;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    .lp-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .unmute-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+
+    .unmute-inner {
+      text-align: center;
+      color: #fff;
+    }
+
+    .unmute-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #f25c1f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 14px;
+      box-shadow: 0 10px 40px rgba(242, 92, 31, 0.5);
+    }
+
+    .unmute-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .unmute-sub {
+      font-size: 14px;
+      color: #ddd;
+      margin-top: 4px;
+    }
+
+    .unmute-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+
+    /* Buttons */
+    .lp-btn {
+      display: inline-block;
+      background: #f25c1f;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 18px 44px;
+      border-radius: 6px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 8px 24px rgba(242, 92, 31, 0.3);
+    }
+
+
+    .lp-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(242, 92, 31, 0.4);
+    }
+
+    .lp-hero p.intro {
+      max-width: 720px;
+      margin: 30px auto 28px;
+      color: #d8d8d8;
+      font-size: 17px;
+    }
+
+    .lp-hero p.intro strong {
+      color: #fff;
+    }
+
+    /* Testimonials / Social proof strip */
+    .lp-social {
+      background: #f6f5f2;
+      padding: 60px 0;
+    }
+
+    .lp-social h3 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .lp-social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .lp-quote {
+      background: #fff;
+      border-radius: 10px;
+      padding: 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid #f25c1f;
+    }
+
+    .lp-quote p {
+      font-style: italic;
+      margin: 0 0 14px;
+      color: #333;
+    }
+
+    .lp-quote .who {
+      font-weight: 700;
+      color: #111;
+      font-size: 14px;
+    }
+
+    .lp-quote .who span {
+      display: block;
+      font-weight: 400;
+      color: #777;
+      font-size: 13px;
+    }
+
+    /* Benefits */
+    .lp-benefits {
+      padding: 80px 0;
+      background: #fff;
+    }
+
+    .lp-benefits h2 {
+      text-align: center;
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 50px;
+    }
+
+    .lp-benefit {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      align-items: flex-start;
+      max-width: 820px;
+      margin: 0 auto 40px;
+      padding: 28px;
+      background: #faf9f6;
+      border-radius: 12px;
+      border: 1px solid #eee;
+    }
+
+    .lp-benefit .num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #f25c1f;
+      line-height: 1;
+    }
+
+    .lp-benefit h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .lp-benefit p {
+      margin: 0;
+      color: #444;
+    }
+
+    .lp-cta-center {
+      text-align: center;
+      padding: 30px 0 10px;
+    }
+
+    /* FAQ-style accordions */
+    .lp-faq {
+      background: #f6f5f2;
+      padding: 80px 0;
+    }
+
+    .lp-faq h2 {
+      text-align: center;
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 14px;
+    }
+
+    .lp-faq .sub {
+      text-align: center;
+      color: #555;
+      margin-bottom: 44px;
+    }
+
+    .lp-faq details {
+      background: #fff;
+      border-radius: 10px;
+      margin: 0 auto 14px;
+      max-width: 820px;
+      border: 1px solid #e6e5e0;
+      overflow: hidden;
+    }
+
+    .lp-faq summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 22px 26px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lp-faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .lp-faq summary::after {
+      content: "+";
+      font-size: 28px;
+      color: #f25c1f;
+      font-weight: 400;
+      transition: transform 0.2s;
+    }
+
+    .lp-faq details[open] summary::after {
+      content: "−";
+    }
+
+    .lp-faq .answer {
+      padding: 0 26px 24px;
+      color: #444;
+    }
+
+    .lp-faq .answer p {
+      margin: 0 0 10px;
+    }
+
+    /* Final CTA */
+    .lp-final {
+      background: #0b0b0b;
+      color: #fff;
+      text-align: center;
+      padding: 90px 0;
+    }
+
+    .lp-final h2 {
+      font-size: clamp(30px, 4.2vw, 48px);
+      max-width: 820px;
+      margin: 0 auto 18px;
+    }
+
+    .lp-final p {
+      color: #bfbfbf;
+      max-width: 640px;
+      margin: 0 auto 36px;
+      font-size: 17px;
+    }
+
+    /* Cal.com embed wrapper */
+    .lp-cal-wrap {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 40px auto 0;
+      min-height: 720px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .lp-cal-wrap #my-cal-inline-free-strategy-call {
+      min-height: 680px;
+    }
+
+    @media (max-width: 600px) {
+      .lp-cal-wrap {
+        padding: 10px;
+        min-height: 640px;
+      }
+
+      .lp-benefit {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .lp-hero {
+        padding: 50px 0 60px;
+      }
+
+      .lp-benefits,
+      .lp-faq,
+      .lp-final {
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8KGVSNQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- THIS IS WHERE THE PAGE CONTENT BEGINS -->
+  <main class="lp">
+
+    <!-- Announcement bar -->
+    <div class="lp-announce">
+      <span class="tag">NEW</span>
+      <strong>Local Business Owners:</strong> Limited free SEO audits available this month —
+      <a href="#book">see if you qualify</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="lp-hero">
+      <div class="container">
+        <div class="eyebrow">SEO Marketing for Local Businesses</div>
+        <h1>Is your website invisible on Google?</h1>
+        <h2>We help Local businesses rank #1 locally — and turn search traffic into paying customers.</h2>
+
+        <p class="intro">
+          It's a <strong>free 30-minute strategy call</strong> where you'll get a personalized SEO breakdown of your
+          website from the team that's ranked local businesses on page one of Google.
+        </p>
+
+        <a href="#book" class="lp-btn">I'M READY TO RANK</a>
+      </div>
+    </section>
+
+    <!-- Social proof -->
+    <section class="lp-social">
+      <div class="container">
+        <h3>What business owners are saying:</h3>
+        <div class="lp-social-grid">
+          <div class="lp-quote">
+            <p>"We went from unranked to top 3 results for our main keywords in under 6 months. We've been adding a new
+              customer almost every day."</p>
+            <div class="who">Chris <span>Logistics - Texas</span></div>
+          </div>
+          <div class="lp-quote">
+            <p>"We're getting people to fill out our lead form, that's never happened before."</p>
+            <div class="who">Charles <span>Software Development - The Heights</span></div>
+          </div>
+          <div class="lp-quote">
+            <p>"Best marketing investment we've made. Our Google Business Profile gets 5x the calls it did a year ago."
+            </p>
+            <div class="who">Richard <span>Car Detailing - College Station</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="lp-benefits">
+      <div class="container">
+        <h2>What you get on the free strategy call:</h2>
+
+        <div class="lp-benefit">
+          <div class="num">01</div>
+          <div>
+            <h3>A Full SEO Audit</h3>
+            <p>We analyze your site's current rankings, technical health, local presence, and competitors in the local
+              market — then show you exactly where you're leaking traffic and revenue.</p>
+          </div>
+        </div>
+
+        <div class="lp-benefit">
+          <div class="num">02</div>
+          <div>
+            <h3>Your Custom Ranking Roadmap</h3>
+            <p>We break down the same local SEO framework we use to rank Local businesses for high-intent keywords
+              like "SEO marketing" — showing you exactly what it takes to dominate your niche.</p>
+          </div>
+        </div>
+
+        <div class="lp-benefit">
+          <div class="num">03</div>
+          <div>
+            <h3>3–5 Tactical Next Steps</h3>
+            <p>You walk away with clear, actionable next steps you can implement immediately — whether you hire us or
+              not. No pressure, no gimmicks, just real insight from a local SEO team.</p>
+          </div>
+        </div>
+
+        <div class="lp-cta-center">
+          <a href="#book" class="lp-btn">I'M READY TO RANK</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="lp-final" id="book">
+      <div class="container">
+        <h2>Ready to stop losing customers to your competitors?</h2>
+        <p>Book your free SEO strategy call below. Spots are limited each week so we can give every business the
+          attention it deserves.</p>
+
+
+        <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-free-strategy-call"></div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="lp-faq">
+      <div class="container">
+        <h2>What actually happens on the call?</h2>
+        <p class="sub">Get 3-5 action items you can do this week to improve your online visibility.</p>
+
+        <details open>
+          <summary>What actually happens during the strategy call?</summary>
+          <div class="answer">
+            <p>It's a 30-minute working session with Alex, the guy on the video.</p>
+            <p>We pull up your website live, review your current Google rankings for Local area searches, check your
+              Google Business Profile, and look at what your top competitors are doing.</p>
+            <p>We'll tell you the top 3 things holding you back from ranking, and exactly what you can do this week to fix it.</p>
+          </div>
+        </details>
+
+        <details open>
+          <summary>What do I walk away with?</summary>
+          <div class="answer">
+            <p>The aim: you walk away with 3–5 next steps you can implement this week.</p>
+            <p>We tailor the advice to your business size, industry, and the specific neighborhoods you want to
+              target. It's hands-on help specific to your biggest SEO challenge.</p>
+            <p>You'll also get a recap of the call so you don't lose anything we covered.</p>
+          </div>
+        </details>
+
+        <details open>
+          <summary>Is this right for my business?</summary>
+          <div class="answer">
+            <p>If you serve customers in your local area, chances are we can help.</p>
+          </div>
+        </details>
+
+        <details open>
+          <summary>How much does the strategy call cost?</summary>
+          <div class="answer">
+            <p>The strategy call is completely free. No credit card, no catch.</p>
+            <p>We do this because the vast majority of businesses we talk to don't know what's actually hurting their
+              rankings. Once we show you, some hire us, some don't. Either way, you walk away with a plan.</p>
+            <p>We only take on a limited number of new SEO clients each month, so we use these calls to see if
+              we're a good fit both ways.</p>
+          </div>
+        </details>
+
+        <details open>
+          <summary>How long until I see results?</summary>
+          <div class="answer">
+            <p>SEO is a long game, anyone promising you page one in 30 days is lying.</p>
+            <p>Most of our clients start seeing meaningful ranking movement within 60–90 days, and significant
+              lead flow within 4-6 months.</p>
+            <p>We'll give you a realistic timeline for your specific situation on the call.</p>
+          </div>
+        </details>
+
+      </div>
+
+      <div class="lp-cta-center">
+        <a href="#book" class="lp-btn">I'M READY TO RANK</a>
+      </div>
+    </section>
+
+    <!-- Final CTA + Cal.com booking embed -->
+
+
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "free-strategy-call", { origin: "https://app.cal.com" });
+      Cal.ns["free-strategy-call"]("inline", { elementOrSelector: "#my-cal-inline-free-strategy-call", config: { "layout": "month_view", "useSlotsViewOnSmallScreen": "true" }, calLink: "russell-digital/free-strategy-call" });
+      Cal.ns["free-strategy-call"]("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
+    </script>
+
+    <script>
+  (function () {
+    var overlay = document.getElementById('unmuteOverlay');
+    var video = document.getElementById('vslVideo');
+    if (overlay && video) {
+      overlay.addEventListener('click', function () {
+        video.muted = false;
+        video.currentTime = 0;
+        video.play();
+        overlay.classList.add('hidden');
+      });
+    }
+  })();
+</script>
+
+  </main>
+  <!-- THIS IS WHERE THE PAGE CONTENT ENDS -->
+
+  <script src="/js/loadComponents.js" defer></script>
+</body>
+
+</html>
