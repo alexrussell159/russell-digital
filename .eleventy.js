@@ -1,6 +1,6 @@
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(sitemap, {
     sitemap: {
       hostname: "https://russelldigitalads.com"
@@ -17,6 +17,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "public_html/pricing": "pricing" });
   eleventyConfig.addPassthroughCopy({ "public_html/case-studies": "case-studies" });
   eleventyConfig.addPassthroughCopy({ "public_html/free-strategy-call": "free-strategy-call" });
+  eleventyConfig.addPassthroughCopy({ "public_html/free-strategy-call-offer": "free-strategy-call-offer" });
+
+
 
   eleventyConfig.addPassthroughCopy({ "public_html/index.html": "index.html" });
   eleventyConfig.addPassthroughCopy({ "admin": "admin" });
