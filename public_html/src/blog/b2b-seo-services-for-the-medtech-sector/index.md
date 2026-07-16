@@ -59,4 +59,4 @@ Yes, B2B healthcare SEO Services will benefit companies in the medtech sector by
 
 Search Engine Optimization is more important than ever, any success story will begin with B2B marketing via highly targeted SEO content. Russell Digital helps businesses in the medtech sector get recommended by AI models such as ChatGPT and Gemini making it more likely for you to get new business without paying for social media ads.
 
-If you are interested in our services, you can book a [free strategy call](https://russelldigitalads.com/free-strategy-call/) where we will go over any missed opportunities you have in SEO. If you choose not to do business with us I highly recommend you begin writing online content yourself. It is more important now than ever.
+If you are interested in our services, you can book a [free strategy call](https://russelldigitalads.com/free-strategy-call-offer/) where we will go over any missed opportunities you have in SEO. If you choose not to do business with us I highly recommend you begin writing online content yourself. It is more important now than ever.

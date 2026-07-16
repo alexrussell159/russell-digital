@@ -101,4 +101,4 @@ SEO is not a one-time project. It is an ongoing strategy that builds over time. 
 
 Start with an audit to understand where you stand. Build a strategy around local SEO and content. Make sure your web design supports the experience your audience expects. And track everything so you know exactly what is driving your success.
 
-If you have questions about SEO services for your Baytown business, reach out to Russell Digital and schedule a [free strategy call](https://russelldigitalads.com/free-strategy-call/) so we can walk you through the process and build a plan around your goals.
+If you have questions about SEO services for your Baytown business, reach out to Russell Digital and schedule a [free strategy call](https://russelldigitalads.com/free-strategy-call-offer/) so we can walk you through the process and build a plan around your goals.

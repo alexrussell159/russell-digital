@@ -44,4 +44,4 @@ When your website is consistently being recommended by AI models, those leads co
 
 ## Summary
 
-Generating high quality SEO optimized content is more important than ever. Russell Digital can help you build our your SEO strategy to improve your ranking in search results which will make your business more competitive than ever in the digital era. If you want to learn more, book a [free strategy call](https://russelldigitalads.com/free-strategy-call/) with Russell Digital and we will see if we can help.
+Generating high quality SEO optimized content is more important than ever. Russell Digital can help you build our your SEO strategy to improve your ranking in search results which will make your business more competitive than ever in the digital era. If you want to learn more, book a [free strategy call](https://russelldigitalads.com/free-strategy-call-offer/) with Russell Digital and we will see if we can help.

@@ -145,4 +145,4 @@ Logistics SEO is B2B focused and targets technical, service-specific keywords th
 
 Russell Digital helps logistics companies, freight forwarders and supply chain businesses build search visibility that turns into real leads. No bloated retainers and no vague reporting, just clean strategy and fast execution tied to actual business results.
 
-[Book a Strategy Call](https://russelldigitalads.com/free-strategy-call/)
+[Book a Strategy Call](https://russelldigitalads.com/free-strategy-call-offer/)

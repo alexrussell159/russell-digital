@@ -50,6 +50,6 @@ These strategies are implemented by SEO experts and have lead to measurable resu
 
 ## Why Choose Russell Digital for SEO Solutions
 
-Russell Digital is a local SEO agency that helps local and small businesses improve their search rankings, boosting their track record with online presence and link building. If you are interested in seeing how we can help your business please schedule a [free strategy call](https://russelldigitalads.com/free-strategy-call/) and we will happily show you what you’re missing.
+Russell Digital is a local SEO agency that helps local and small businesses improve their search rankings, boosting their track record with online presence and link building. If you are interested in seeing how we can help your business please schedule a [free strategy call](https://russelldigitalads.com/free-strategy-call-offer/) and we will happily show you what you’re missing.
 
 If you choose not to work with us, I highly recommend you implement content marketing into your business or your website might become invisible to AI search traffic.

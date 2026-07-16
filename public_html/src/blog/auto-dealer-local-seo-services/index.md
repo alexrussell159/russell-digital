@@ -69,4 +69,4 @@ Improving your search rankings / search visibility and online presence is only h
 
 Automotive searches are becoming more specific, dealer SEO and lead generation is being done by AI, now partnerships with a high quality SEO agency is becoming more and more important.
 
-Russell Digital will help ensure your dealership ranks in your local search results. To learn more please book a [free strategy call](https://russelldigitalads.com/free-strategy-call/), it doesn’t cost anything and you can implement your findings by yourself if you choose not to do business with us. It is important for all local businesses to get on the AI train before it’s too late.
+Russell Digital will help ensure your dealership ranks in your local search results. To learn more please book a [free strategy call](https://russelldigitalads.com/free-strategy-call-offer/), it doesn’t cost anything and you can implement your findings by yourself if you choose not to do business with us. It is important for all local businesses to get on the AI train before it’s too late.

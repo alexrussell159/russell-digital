@@ -157,4 +157,4 @@ The ROI is there. You just need the right partner to help you capture it.
 
 - - -
 
-*Looking for SEO solutions tailored to logistics and supply chain businesses? The right consultant can mean the difference between digital growth and digital invisibility. Start with [Russell Digital](https://russelldigitalads.com/free-strategy-call/), our free strategy call can help you find the gaps in your website..*
+*Looking for SEO solutions tailored to logistics and supply chain businesses? The right consultant can mean the difference between digital growth and digital invisibility. Start with [Russell Digital](https://russelldigitalads.com/free-strategy-call-offer/), our free strategy call can help you find the gaps in your website..*
