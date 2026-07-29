@@ -679,53 +679,68 @@ function writePng(canvas) {
 }
 
 function renderBlogPng(variant = "hero") {
-  const canvas = createCanvas(1200, variant === "signal" ? 720 : 675);
+  const backgrounds = {
+    hero: ["#fffaf3", "#eefaf7"],
+    decision: ["#f8fafc", "#fff7ed"],
+    signal: ["#111827", "#1f2937"]
+  };
+  const [top, bottom] = backgrounds[variant] || backgrounds.hero;
+  const canvas = createCanvas(1200, 1200, top, bottom);
   const orange = { ...hexToRgb("#ff5a1f"), a: 1 };
   const teal = { ...hexToRgb("#0fba9f"), a: 1 };
   const yellow = { ...hexToRgb("#f8c32d"), a: 1 };
+  const blue = { ...hexToRgb("#2563eb"), a: 1 };
+  const green = { ...hexToRgb("#22c55e"), a: 1 };
   const ink = { ...hexToRgb("#111827"), a: 1 };
   const slate = { ...hexToRgb("#64748b"), a: 1 };
   const white = { ...hexToRgb("#ffffff"), a: 1 };
 
-  drawCircle(canvas, 170, 140, 160, orange, 0.18);
-  drawCircle(canvas, 1040, 160, 190, teal, 0.16);
-  drawCircle(canvas, 620, 580, 240, yellow, 0.11);
-
-  for (let x = 100; x < 1100; x += 52) drawLine(canvas, x, 70, x, canvas.height - 70, 1, slate, 0.12);
-  for (let y = 90; y < canvas.height - 70; y += 52) drawLine(canvas, 90, y, 1110, y, 1, slate, 0.12);
-
-  drawRect(canvas, 150, 110, 900, 430, white, 0.86);
-  drawRect(canvas, 150, 110, 900, 10, orange, 0.9);
-
   if (variant === "decision") {
+    for (let x = 130; x < 1080; x += 70) drawLine(canvas, x, 110, x, 1090, 1, slate, 0.09);
+    for (let y = 130; y < 1080; y += 70) drawLine(canvas, 110, y, 1090, y, 1, slate, 0.09);
+    drawRect(canvas, 150, 150, 900, 260, white, 0.9);
+    drawRect(canvas, 190, 198, 470, 18, ink, 0.8);
+    drawRect(canvas, 190, 240, 640, 14, slate, 0.28);
+    drawRect(canvas, 190, 280, 520, 14, slate, 0.2);
     for (let i = 0; i < 4; i += 1) {
-      const x = 210 + i * 210;
-      drawRect(canvas, x, 245, 150, 150, white, 0.92);
-      drawCircle(canvas, x + 75, 320, 44, [orange, teal, yellow, ink][i], 0.9);
-      drawRect(canvas, x + 32, 430, 86, 12, slate, 0.35);
+      const x = 165 + i * 225;
+      const y = 505 + (i % 2) * 110;
+      drawRect(canvas, x, y, 180, 180, white, 0.92);
+      drawCircle(canvas, x + 90, y + 78, 48, [teal, yellow, orange, blue][i], 0.92);
+      drawRect(canvas, x + 44, y + 136, 92, 12, slate, 0.32);
     }
-    drawLine(canvas, 230, 535, 960, 535, 12, slate, 0.25);
-    drawLine(canvas, 230, 535, 720, 535, 12, teal, 0.9);
-    drawCircle(canvas, 720, 535, 24, teal, 1);
+    drawLine(canvas, 245, 865, 955, 865, 14, slate, 0.22);
+    drawLine(canvas, 245, 865, 735, 865, 14, teal, 0.95);
+    drawCircle(canvas, 735, 865, 30, teal, 1);
   } else if (variant === "signal") {
-    for (let i = 0; i < 4; i += 1) {
-      const y = 205 + i * 92;
-      drawRect(canvas, 230, y, 720, 52, white, 0.95);
-      drawCircle(canvas, 265, y + 26, 14, [teal, yellow, orange, ink][i], 1);
-      drawRect(canvas, 306, y + 18, 360 + i * 35, 12, slate, 0.35);
-      drawRect(canvas, 306, y + 38, 190 + i * 28, 8, slate, 0.2);
+    drawRect(canvas, 120, 120, 960, 960, white, 0.94);
+    drawRect(canvas, 170, 175, 360, 24, ink, 0.8);
+    drawRect(canvas, 170, 225, 560, 14, slate, 0.26);
+    drawRect(canvas, 785, 170, 180, 180, green, 0.18);
+    drawCircle(canvas, 875, 260, 58, green, 0.86);
+    for (let i = 0; i < 5; i += 1) {
+      const y = 420 + i * 105;
+      drawRect(canvas, 185, y, 830, 62, white, 0.96);
+      drawRect(canvas, 185, y, 830, 2, slate, 0.18);
+      drawCircle(canvas, 235, y + 31, 18, [green, blue, teal, orange, yellow][i], 1);
+      drawRect(canvas, 282, y + 20, 330 + i * 42, 13, ink, 0.46);
+      drawRect(canvas, 282, y + 43, 210 + i * 24, 8, slate, 0.24);
     }
   } else {
-    drawRect(canvas, 230, 205, 420, 18, ink, 0.86);
-    drawRect(canvas, 230, 244, 620, 18, ink, 0.72);
-    drawRect(canvas, 230, 283, 520, 18, ink, 0.55);
-    drawLine(canvas, 700, 400, 760, 340, 12, teal, 0.9);
-    drawLine(canvas, 760, 340, 830, 365, 12, teal, 0.9);
-    drawLine(canvas, 830, 365, 920, 270, 12, teal, 0.9);
-    drawCircle(canvas, 920, 270, 22, orange, 1);
-    drawRect(canvas, 230, 420, 150, 18, orange, 0.85);
-    drawRect(canvas, 400, 420, 150, 18, yellow, 0.85);
-    drawRect(canvas, 570, 420, 150, 18, teal, 0.85);
+    for (let y = 160; y < 1040; y += 58) drawLine(canvas, 120, y, 1080, y, 1, slate, 0.1);
+    drawRect(canvas, 135, 170, 610, 760, white, 0.88);
+    drawRect(canvas, 795, 255, 260, 520, white, 0.82);
+    drawRect(canvas, 185, 235, 350, 22, ink, 0.86);
+    drawRect(canvas, 185, 292, 455, 16, ink, 0.56);
+    drawRect(canvas, 185, 338, 375, 16, ink, 0.42);
+    drawLine(canvas, 240, 760, 370, 650, 14, teal, 0.9);
+    drawLine(canvas, 370, 650, 515, 690, 14, teal, 0.9);
+    drawLine(canvas, 515, 690, 670, 500, 14, teal, 0.9);
+    drawCircle(canvas, 670, 500, 28, orange, 1);
+    drawRect(canvas, 840, 330, 130, 18, orange, 0.82);
+    drawRect(canvas, 840, 410, 170, 18, blue, 0.75);
+    drawRect(canvas, 840, 490, 105, 18, teal, 0.82);
+    drawCircle(canvas, 900, 675, 58, yellow, 0.82);
   }
 
   return writePng(canvas);
@@ -733,19 +748,23 @@ function renderBlogPng(variant = "hero") {
 
 function imagePromptForArticle({ title, topic, variant }) {
   const base = [
-    "Create a polished modern PNG blog image for Russell Digital, a Houston SEO and digital marketing website.",
-    "Style: premium editorial tech illustration, clean composition, warm white background, black text-free UI elements, orange/yellow/teal accents, subtle depth, realistic browser/dashboard shapes, no fake logos, no readable text.",
+    "Create a square 1:1 PNG blog image for Russell Digital, a Houston SEO and digital marketing website.",
+    "Style: polished modern editorial tech illustration, no fake logos, no readable text, no template-looking repetition.",
+    "Change the composition, accent colors, object placement, and visual metaphor so this image does not look like every other Russell Digital blog image.",
     "Avoid: cheesy stock-photo people, robot hands, neon cyberpunk, messy charts, blurry text, distorted typography, generic AI slop, screenshots of real websites.",
     `Article title: ${title}`,
     `Topic brief: ${topic.topic || title}`
   ];
 
   if (variant === "decision") {
-    base.push("Image concept: a clear decision framework for evaluating SEO readiness, using visual cards, checkmarks, and search/lead-flow cues.");
+    base.push("Image concept: a square decision framework using offset cards, branching paths, checkmarks, and search-to-lead cues.");
+    base.push("Palette direction: crisp white, charcoal, muted teal, soft gold, and one restrained coral accent.");
   } else if (variant === "signal") {
-    base.push("Image concept: a local SEO signal checklist, with abstract Google Business Profile, service page, call, and analytics elements.");
+    base.push("Image concept: a square local SEO signal checklist using an audit board, pinned notes, map marker shapes, call/form icons, and analytics blocks.");
+    base.push("Palette direction: deep ink, white panels, bright green, steel blue, and small orange accents.");
   } else {
-    base.push("Image concept: a hero image showing organic growth, search visibility, service pages, local map cues, and lead generation in one clean dashboard scene.");
+    base.push("Image concept: a square hero image with an editorial search-growth scene, service page panels, local map cues, and lead generation elements.");
+    base.push("Palette direction: warm white, black, orange, teal, and a small unexpected blue or lime accent.");
   }
 
   return base.join("\n");
@@ -778,7 +797,7 @@ async function generateImagePng({ title, topic, variant }) {
         {
           type: "image_generation",
           model: process.env.OPENAI_IMAGE_MODEL || "gpt-image-1",
-          size: variant === "hero" ? "1536x1024" : "1024x1024",
+          size: "1024x1024",
           quality: "medium",
           output_format: "png"
         }

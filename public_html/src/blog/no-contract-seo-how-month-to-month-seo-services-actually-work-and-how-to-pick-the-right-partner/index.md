@@ -7,7 +7,7 @@ date: 2026-04-13T14:40:00.000-05:00
 updated: 2026-07-29T12:00:00.000-05:00
 tags:
   - blog
-image: month-to-month-seo.png
+image: cover.png
 ---
 Month-to-month SEO can be a good deal.
 
@@ -16,8 +16,6 @@ It can also be an easy way to pay for vague work.
 The difference is the scope. Before you sign up, you should know what the agency is checking, what they are fixing, and how they will show progress.
 
 No long contract does not mean no plan.
-
-![No contract SEO dashboard](month-to-month-seo.png)
 
 ## What Month-To-Month SEO Should Include
 

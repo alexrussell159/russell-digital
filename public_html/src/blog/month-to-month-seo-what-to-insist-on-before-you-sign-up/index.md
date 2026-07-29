@@ -7,15 +7,13 @@ date: 2026-07-29T12:08:26.000-05:00
 updated: 2026-07-29T12:40:00.000-05:00
 tags:
   - blog
-image: month-to-month-seo.png
+image: cover.png
 ---
 Month-to-month SEO should not feel vague.
 
 You are still paying for real work. The only difference is that you are not locked into a long contract before the agency proves it can help.
 
 Before you sign up, ask for the scope. If the scope is soft, the work probably will be too.
-
-![Month-to-month SEO planning dashboard](month-to-month-seo.png)
 
 ## Start With Access
 

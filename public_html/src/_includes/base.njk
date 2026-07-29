@@ -15,6 +15,7 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://russelldigitalads.com{{ page.url }}" />
+  {% set rdMetaImage %}{% if image %}{{ page.url }}{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}{% endset %}
 
   <!-- Open Graph -->
   <meta property="og:site_name" content="Russell Digital" />
@@ -30,7 +31,7 @@
   <meta property="og:url" content="https://russelldigitalads.com{{ page.url }}" />
   <meta
     property="og:image"
-    content="https://russelldigitalads.com{% if image %}/{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}"
+    content="https://russelldigitalads.com{{ rdMetaImage | trim }}"
   />
   <meta
     property="og:image:alt"
@@ -50,7 +51,7 @@
   />
   <meta
     name="twitter:image"
-    content="https://russelldigitalads.com{% if image %}/{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}"
+    content="https://russelldigitalads.com{{ rdMetaImage | trim }}"
   />
 
   <!-- Styles / Icons -->
@@ -105,7 +106,7 @@
     },
     "datePublished": "{{ date }}",
     "dateModified": "{{ updated | default(date) }}",
-    "image": "https://russelldigitalads.com{% if image %}/{{ image }}{% else %}/assets/russell-digital-favicon.png{% endif %}",
+    "image": "https://russelldigitalads.com{{ rdMetaImage | trim }}",
     "publisher": {
       "@type": "Organization",
       "name": "Russell Digital",

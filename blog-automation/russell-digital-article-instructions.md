@@ -34,12 +34,13 @@ Write like a hands-on SEO consultant talking to a busy owner:
 - Start with the answer
 - Use a compact "Quick Answer" or answer-first section near the top
 - Be plain and specific
-- Use short sentences by default
+- Use short and medium sentences
+- Combine related thoughts into compact paragraphs
 - Explain cause and effect
 - Say what to fix before explaining why
 - Use examples a local business would recognize
 - Sound confident without hype
-- Keep paragraphs very tight
+- Keep paragraphs short, but not choppy
 - Let the article feel slightly uneven and human
 
 Do not use:
@@ -78,11 +79,11 @@ Default target: 650 to 900 words. Go longer only when every added section is use
 
 Use:
 
-- A direct opening of three to five very short paragraphs
+- A direct opening of one or two compact paragraphs
 - A "Quick Answer" section near the top when it fits
 - Six to nine useful H2 sections
 - H3s only when a subsection truly needs them
-- Bullets for checks, mistakes, deliverables, red flags, and examples
+- Bullets for checks, mistakes, deliverables, red flags, and examples, but do not use the same bold-label bullet pattern in every section
 - Numbered steps only when the order matters
 - A short CTA near the end that points to a valid Russell Digital internal URL
 
@@ -92,19 +93,15 @@ Do not force a FAQ. Add one only when it answers useful search questions not alr
 
 Most articles should open like this:
 
-1. One short answer sentence.
-2. One or two short explanation paragraphs.
+1. One answer-first paragraph of three to five short sentences.
+2. One compact explanation paragraph when needed.
 3. A compact bullet list that answers the main query.
 4. Then move into short H2 sections.
 
 Example rhythm:
 
 ```markdown
-Focused service pages help local businesses attract better leads because they match one specific search intent.
-
-That is the short answer.
-
-A homepage has to explain the whole business. A focused service page only has to explain one service, one customer need, and one next step.
+Focused service pages help local businesses attract better leads because they match one specific search intent. A homepage has to explain the whole business, but a focused service page only has to explain one service, one customer need, and one next step. That makes the page easier for Google to understand and easier for a real person to act on.
 
 ## Quick Answer
 
@@ -121,11 +118,14 @@ Do not open with a long introduction. Do not announce the article. Do not write 
 
 ## Paragraph Rules
 
-- Most paragraphs should be one or two sentences.
-- Three sentences is okay when the idea needs it.
+- Most paragraphs should be three to five short sentences.
+- One-sentence paragraphs are allowed only for emphasis, not as the default rhythm.
+- Do not stack several one-sentence paragraphs in a row.
+- If three related one-line statements appear together, combine them into one compact paragraph.
 - Avoid long paragraphs unless there is a clear reason.
 - Put a heading before the reader starts wondering what the section is about.
 - Use bullets when a paragraph starts listing checks, mistakes, deliverables, or signals.
+- Use bold-label bullets sparingly. In a typical article, use them for one or two sections, then switch to numbered checks, plain bullets, short paragraphs, or a compact table-style breakdown.
 - Never jam multiple numbered steps into one paragraph.
 
 ## Internal Links
@@ -140,6 +140,18 @@ Prefer links to:
 - Relevant Russell Digital blog posts
 
 Use internal links naturally. Do not stuff them. Do not link externally.
+
+## Image Rules
+
+Every article image should be square, 1:1 ratio.
+
+Use three image types when images are generated:
+
+- **Cover:** A strong editorial lead image with the topic represented visually.
+- **Decision framework:** A square diagram, flow, or comparison scene that explains how to choose.
+- **Signal checklist:** A square checklist, audit board, or measurement scene that shows what to inspect.
+
+Do not make every image look like the same template. Change the composition, accent colors, density, and visual metaphor between images. Keep it Russell Digital, but shuffle the layout enough that the images feel like a set, not three copies.
 
 ## Russell Digital Positioning
 
@@ -173,7 +185,7 @@ Good bullet style:
 - **Technical cleanup:** Mention crawlability, speed, indexation, schema, or broken pages only when relevant.
 - **Reporting:** Focus on calls, forms, organic sessions, rankings, and visible work completed.
 
-Keep labels short. Put the useful explanation after the colon.
+Keep labels short. Put the useful explanation after the colon. Do not repeat this exact format in every H2 section; vary the shape so the article does not feel templated.
 
 ## Claims and Safety
 

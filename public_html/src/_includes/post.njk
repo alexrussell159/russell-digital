@@ -4,13 +4,20 @@ layout: base.njk
 
 <section class="rd-post-page">
   <article class="rd-post-article">
-    <main class="rd-post-header">
+    <header class="rd-post-header">
       {% if date %}
         <p class="rd-post-date">{{ date.toDateString() }}</p>
       {% endif %}
 
       <h1 class="rd-post-title">{{ title }}</h1>
 
+      {% if image %}
+        <img
+          class="rd-post-cover"
+          src="{{ page.url }}{{ image }}"
+          alt="{{ title }}"
+          loading="eager">
+      {% endif %}
     </header>
 
     <div class="rd-post-content">
@@ -26,7 +33,7 @@ layout: base.njk
 
       <div class="rd-post-cta-actions">
         <a href="/free-strategy-call-offer/" class="rd-btn rd-btn-primary">Book a Strategy Call</a>
-        <a href="/case-studies/africactn/" class="rd-btn rd-btn-secondary">View Case Studies</a>
+        <a href="/services/" class="rd-btn rd-btn-secondary">View Services</a>
       </div>
     </section>
   </article>

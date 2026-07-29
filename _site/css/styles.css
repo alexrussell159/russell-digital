@@ -193,17 +193,15 @@ header {
 
 .rd-blog-card-image-link{
   display:block;
-  aspect-ratio:16/9;
+  aspect-ratio:1/1;
   overflow:hidden;
 }
 
 .rd-blog-card-image{
   width:100%;
-  height:auto;
+  height:100%;
   object-fit:cover;
   display:block;
-  justify-content: center;
-
 }
 
 .rd-blog-card-body{
@@ -364,7 +362,7 @@ header {
 
 .rd-blog-card-image-link{
   display:block;
-  aspect-ratio:16/9;
+  aspect-ratio:1/1;
   overflow:hidden;
 }
 
@@ -543,6 +541,16 @@ header {
   text-wrap:balance;
 }
 
+.rd-post-cover{
+  display:block;
+  width:min(100%,720px);
+  aspect-ratio:1/1;
+  height:auto;
+  object-fit:cover;
+  margin:30px auto 0;
+  border-radius:18px;
+}
+
 .rd-post-intro{
   max-width:700px;
   margin:0 auto;
@@ -625,10 +633,11 @@ header {
   display:block;
   width:65%;
   max-width:100%;
+  aspect-ratio:1/1;
   height:auto;
+  object-fit:cover;
   margin:28px auto;
   border-radius:14px;
-  align-items: start;
 }
 
 /* CTA only card */

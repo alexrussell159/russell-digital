@@ -28,7 +28,7 @@ permalink: /blog/
                   src="{{ postImage | trim }}"
                   loading="{% if loop.index <= 3 %}eager{% else %}lazy{% endif %}"
                 {% else %}
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3C/svg%3E"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E"
                   data-src="{{ postImage | trim }}"
                   loading="lazy"
                 {% endif %}
