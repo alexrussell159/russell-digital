@@ -105,8 +105,7 @@ body{
 
 .rd-section-head h2,
 .rd-why-grid h2,
-.rd-results-copy h2,
-.rd-cta-band h2{
+.rd-results-copy h2{
   margin:0 0 14px;
   font-size:clamp(2rem, 3vw, 3.2rem);
   line-height:1.08;
@@ -115,8 +114,7 @@ body{
 
 .rd-section-head p,
 .rd-lead,
-.rd-results-copy p,
-.rd-cta-band p{
+.rd-results-copy p{
   margin:0;
   color:var(--rd-muted);
   font-size:1.05rem;
@@ -165,7 +163,7 @@ body{
 
 /* HERO */
 .rd-home-hero{
-  padding:0 24px;
+  padding:0;
 }
 
 .rd-hero{
@@ -174,11 +172,10 @@ body{
   max-width:none;
   margin-left:calc(50% - 50vw);
   margin-right:calc(50% - 50vw);
-  padding:136px 24px 72px;
+  padding:96px 24px 74px;
   background:
-    radial-gradient(circle at top left, rgba(11, 94, 215, 0.12), transparent 34%),
-    radial-gradient(circle at right center, rgba(8, 59, 138, 0.10), transparent 28%),
-    linear-gradient(180deg, #f8fbff 0%, #f3f8fd 100%);
+    radial-gradient(circle at 78% 22%, rgba(11, 94, 215, 0.10), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
 }
 
 .rd-hero::after{
@@ -197,41 +194,71 @@ body{
 
 .rd-hero-grid{
   display:grid;
-  grid-template-columns:1fr;
-  gap:36px;
-  max-width:920px;
+  grid-template-columns:minmax(0, .92fr) minmax(460px, 1.08fr);
+  gap:58px;
+  max-width:1180px;
   margin:0 auto;
-  justify-items:center;
+  align-items:center;
 }
 
 .rd-hero-copy{
   width:100%;
-  max-width:760px;
-  text-align:center;
+  max-width:540px;
+  text-align:left;
 }
 
 .rd-hero-copy h1{
-  margin:0 0 18px;
-  font-size:clamp(2.6rem, 5vw, 5rem);
-  line-height:.98;
-  letter-spacing:-0.05em;
+  margin:0 0 22px;
+  font-size:clamp(2.7rem, 4vw, 4.05rem);
+  line-height:1.12;
+  letter-spacing:0;
   max-width:none;
 }
 
 .rd-hero-text{
-  max-width:680px;
-  margin:0 auto 28px;
-  color:var(--rd-muted);
-  font-size:1.08rem;
-  line-height:1.8;
+  max-width:500px;
+  margin:0 0 24px;
+  color:#273449;
+  font-size:1.04rem;
+  line-height:1.62;
 }
 
 .rd-hero-actions{
   display:flex;
   flex-wrap:wrap;
   gap:14px;
-  justify-content:center;
-  margin-bottom:30px;
+  justify-content:flex-start;
+  margin:24px 0 14px;
+}
+
+.rd-hero-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin:0 0 24px;
+}
+
+.rd-hero-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:#f1f5f9;
+  color:#3f4756;
+  font-size:.92rem;
+  font-weight:600;
+}
+
+.rd-hero-chip-active{
+  background:#e8edff;
+  color:#4f46e5;
+}
+
+.rd-hero-note{
+  margin:0;
+  color:#8a8f9a;
+  font-size:.92rem;
 }
 
 .rd-hero-proof{
@@ -264,16 +291,104 @@ body{
 .rd-hero-card-wrap{
   position:relative;
   width:100%;
-  max-width:760px;
+  min-height:410px;
+  max-width:710px;
+  justify-self:end;
 }
 
-.rd-hero-card{
+.rd-chart-stack{
   position:relative;
-  padding:0;
-  border:none;
-  border-radius:0;
-  background:transparent;
-  box-shadow:none;
+  min-height:410px;
+}
+
+.rd-chart-card{
+  position:absolute;
+  overflow:hidden;
+  border:8px solid rgba(255,255,255,0.94);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 24px 70px rgba(15,23,42,.14);
+}
+
+.rd-chart-card img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  background:#fff;
+}
+
+.rd-chart-card-main{
+  z-index:3;
+  top:44px;
+  left:88px;
+  width:500px;
+  aspect-ratio:1320 / 454;
+  height:auto;
+}
+
+.rd-chart-card-left{
+  z-index:1;
+  left:0;
+  top:2px;
+  width:360px;
+  aspect-ratio:2076 / 836;
+  height:auto;
+}
+
+.rd-chart-card-right{
+  z-index:1;
+  right:0;
+  top:218px;
+  width:320px;
+  aspect-ratio:704 / 369;
+  height:auto;
+}
+
+.rd-chart-float{
+  position:absolute;
+  z-index:4;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px 16px;
+  border:1px solid rgba(15,23,42,.08);
+  border-radius:13px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 14px 36px rgba(15,23,42,.14);
+  backdrop-filter:blur(10px);
+}
+
+.rd-chart-float strong{
+  display:block;
+  color:#111827;
+  font-size:.9rem;
+}
+
+.rd-chart-float span{
+  display:block;
+  margin-top:3px;
+  color:#6b7280;
+  font-size:.78rem;
+}
+
+.rd-chart-dot{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  background:linear-gradient(135deg, #0b5ed7, #63d6bd);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.36);
+}
+
+.rd-chart-float-top{
+  top:10px;
+  right:18px;
+}
+
+.rd-chart-float-bottom{
+  left:38px;
+  bottom:62px;
 }
 
 .rd-card-top{
@@ -520,41 +635,32 @@ body{
   line-height:1.6;
 }
 
-/* CTA BAND */
-.rd-cta-band{
-  padding:96px 0;
-  margin-bottom: 72px;
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 24%),
-    linear-gradient(135deg, #0a3d91 0%, #0b5ed7 50%, #0a4fb8 100%);
-  color:#fff;
-}
-
-.rd-cta-band-inner{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:30px;
-  align-items:center;
-}
-
-.rd-cta-band p{
-  color:rgba(255,255,255,0.82);
-}
-
-.rd-cta-band-actions{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-  gap:14px;
-}
-
 /* RESPONSIVE */
 @media (max-width: 1100px){
   .rd-hero-grid,
   .rd-why-grid,
-  .rd-results-grid,
-  .rd-cta-band-inner{
+  .rd-results-grid{
     grid-template-columns:1fr;
+  }
+
+  .rd-hero-copy{
+    max-width:720px;
+    text-align:center;
+    margin:0 auto;
+  }
+
+  .rd-hero-text{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .rd-hero-chips,
+  .rd-hero-actions{
+    justify-content:center;
+  }
+
+  .rd-hero-card-wrap{
+    justify-self:center;
   }
 
   .rd-card-grid-3,
@@ -567,9 +673,6 @@ body{
     grid-template-columns:1fr;
   }
 
-  .rd-cta-band-actions{
-    justify-content:flex-start;
-  }
 }
 
 @media (max-width: 767px){
@@ -582,8 +685,7 @@ body{
   }
 
   .rd-section,
-  .rd-section-alt,
-  .rd-cta-band{
+  .rd-section-alt{
     padding:72px 0px;
   }
 
@@ -591,7 +693,7 @@ body{
     width:100vw;
     margin-left:calc(50% - 50vw);
     margin-right:calc(50% - 50vw);
-    padding:112px 16px 56px;
+    padding:92px 16px 48px;
   }
 
   .rd-card-grid-3,
@@ -604,6 +706,70 @@ body{
   .rd-hero-actions{
     flex-direction:column;
     align-items:stretch;
+  }
+
+  .rd-hero-card-wrap,
+  .rd-chart-stack{
+    min-height:300px;
+  }
+
+  .rd-chart-card{
+    border-width:6px;
+    border-radius:14px;
+  }
+
+  .rd-chart-card-main{
+    width:82%;
+    aspect-ratio:1320 / 454;
+    height:auto;
+    top:58px;
+    left:9%;
+  }
+
+  .rd-chart-card-left{
+    width:58%;
+    aspect-ratio:2076 / 836;
+    height:auto;
+    top:0;
+    left:0;
+  }
+
+  .rd-chart-card-right{
+    width:55%;
+    aspect-ratio:704 / 369;
+    height:auto;
+    top:164px;
+    right:0;
+  }
+
+  .rd-chart-float{
+    padding:10px 12px;
+    gap:9px;
+    max-width:82%;
+  }
+
+  .rd-chart-float strong{
+    font-size:.8rem;
+  }
+
+  .rd-chart-float span{
+    font-size:.7rem;
+  }
+
+  .rd-chart-dot{
+    width:28px;
+    height:28px;
+    border-radius:8px;
+  }
+
+  .rd-chart-float-top{
+    top:26px;
+    right:4px;
+  }
+
+  .rd-chart-float-bottom{
+    left:4px;
+    bottom:14px;
   }
 
   .rd-btn{
@@ -639,25 +805,46 @@ body{
     <div class="rd-hero-inner">
       <div class="rd-hero-grid">
         <div class="rd-hero-copy">
-          <span class="rd-eyebrow">Houston SEO Agency</span>
-          <h1>Get found by the people already searching for you.</h1>
+          <h1>Turn Google searches into booked calls.</h1>
           <p class="rd-hero-text">
-            Russell Digital helps local businesses generate better leads through clean websites,
-            search engine optimization, and compete with the big guys.
+            SEO, Google Ads, and conversion-focused websites for local businesses that need
+            more qualified leads.
           </p>
+
 
           <div class="rd-hero-actions">
             <a href="/free-strategy-call-offer/" class="rd-btn rd-btn-primary">Book a Strategy Call</a>
-            <a href="/services/" class="rd-btn rd-btn-secondary">Explore Services</a>
           </div>
+
+          <p class="rd-hero-note">Recieve actionable next steps ✦ No credit card needed</p>
         </div>
 
         <div class="rd-hero-card-wrap">
-          <div class="rd-card-top">
-            <span class="rd-card-label">Growth Snapshot</span>
-            <span class="rd-card-status">Live Strategy</span>
+          <div class="rd-chart-stack" aria-label="Search growth dashboard examples">
+            <div class="rd-chart-card rd-chart-card-left">
+              <img src="/assets/africactn-semrush-results.png" alt="Organic keyword growth chart">
+            </div>
+            <div class="rd-chart-card rd-chart-card-main">
+              <img src="/assets/africactn-search-impressions.png" alt="Google Search Console impressions chart">
+            </div>
+            <div class="rd-chart-card rd-chart-card-right">
+              <img src="/assets/revenue-increase-from-russell-digital.png" alt="Revenue increase chart">
+            </div>
+            <div class="rd-chart-float rd-chart-float-top">
+              <span class="rd-chart-dot" aria-hidden="true"></span>
+              <div>
+                <strong>Search demand captured</strong>
+                <span>More impressions from better pages</span>
+              </div>
+            </div>
+            <div class="rd-chart-float rd-chart-float-bottom">
+              <span class="rd-chart-dot" aria-hidden="true"></span>
+              <div>
+                <strong>Lead paths improved</strong>
+                <span>Calls, forms, and revenue in focus</span>
+              </div>
+            </div>
           </div>
-          <img class="hero-img" src="/assets/africactn-search-impressions.png" alt="AfricaCTN search impressions chart">
         </div>
       </div>
     </div>
@@ -816,25 +1003,6 @@ body{
           <strong>Faster decisions</strong>
           <span>Less friction, less confusion, more qualified inquiries</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="rd-cta-band">
-    <div class="rd-container rd-cta-band-inner">
-      <div>
-        <span class="rd-eyebrow rd-eyebrow-light">Ready to grow?</span>
-        <h2>Let’s build a site and strategy that actually brings in leads.</h2>
-        <p>
-          Whether you need a cleaner homepage, stronger SEO, or a funnel that makes sense,
-          Russell Digital can help you turn search demand into revenue.
-        </p>
-      </div>
-
-      <div class="rd-cta-band-actions">
-        <a href="/free-strategy-call-offer/" class="rd-btn rd-btn-light">Book a Strategy Call</a>
-        <a href="tel:+12814773233" class="rd-btn rd-btn-outline-light">Call Now</a>
       </div>
     </div>
   </section>

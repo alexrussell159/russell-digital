@@ -761,7 +761,7 @@ body {
 
 .logo-name {
   font-family: 'Poppins', sans-serif;
-  font-weight: 800;
+  font-weight: 400;
   font-size: .8rem;
   letter-spacing: -0.03em;
   color: var(--text);
@@ -772,6 +772,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  padding-top:1px;
   color: var(--accent);
 }
 
@@ -1170,6 +1171,7 @@ body {
 footer {
   width: 100%;
   padding: 0 1.5rem 1.5rem;
+  background: #eef4fb;
 }
 
 .footer-wrap {
@@ -1183,8 +1185,11 @@ footer {
 }
 
 .footer-cta-band {
-  background: var(--accent);
-  padding: 52px 48px;
+  min-height: 220px;
+  background:
+    linear-gradient(105deg, rgba(4,10,24,0.92) 0%, rgba(4,10,24,0.84) 48%, rgba(4,10,24,0.68) 100%),
+    url("/assets/africactn-search-impressions.png") center/cover no-repeat;
+  padding: 34px 42px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1197,22 +1202,14 @@ footer {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(11,94,215,0.12), transparent 28%),
+    linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.24));
   pointer-events: none;
 }
 
 .footer-cta-band::after {
-  content: '';
-  position: absolute;
-  right: -60px;
-  top: -60px;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%);
-  pointer-events: none;
+  content: none;
 }
 
 .cta-band-text {
@@ -1243,10 +1240,18 @@ footer {
 .cta-band-title {
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  letter-spacing: -0.04em;
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  letter-spacing: 0;
   color: #fff;
   line-height: 1.08;
+}
+
+.cta-band-subtitle {
+  max-width: 560px;
+  margin: 12px 0 0;
+  color: rgba(255,255,255,0.82);
+  font-size: 1.02rem;
+  line-height: 1.65;
 }
 
 .cta-band-actions {
@@ -1385,13 +1390,16 @@ footer {
   .footer-cta-band {
     flex-direction: column;
     align-items: flex-start;
-    padding: 36px 28px;
+    padding: 32px 28px;
     gap: 24px;
+    background:
+      linear-gradient(180deg, rgba(4,10,24,0.92) 0%, rgba(4,10,24,0.78) 100%),
+      url("/assets/africactn-search-impressions.png") center/cover no-repeat;
   }
 
   .cta-band-actions {
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
   }
 
@@ -1415,6 +1423,7 @@ footer {
   }
 
   .footer-cta-band {
+    min-height: auto;
     padding: 28px 20px;
   }
 
