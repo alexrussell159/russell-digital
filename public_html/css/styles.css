@@ -9,6 +9,7 @@
 
 /* ── Design tokens ────────────────────────────────────────── */
 :root {
+  --rd-font:        'Poppins', sans-serif;
   --bg:             #f5f4f0;
   --surface:        rgba(255, 255, 255, 0.88);
   --border:         rgba(0, 0, 0, 0.08);
@@ -22,15 +23,29 @@
   --rd-blue-dark:   #083b8a;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  font-family: var(--rd-font);
+}
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--rd-font);
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
   /* Push content below fixed header */
   padding-top: 0px;
+}
+
+body * {
+  font-family: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 /* ── Fixed header shell ───────────────────────────────────── */
@@ -707,6 +722,18 @@ body {
   color:var(--rd-blue);
 }
 
+.rd-btn-light{
+  background:#fff;
+  color:#0f172a;
+  border:1px solid rgba(255,255,255,.82);
+  box-shadow:0 16px 32px rgba(0,0,0,.18);
+}
+
+.rd-btn-light:hover{
+  color:var(--rd-blue);
+  box-shadow:0 20px 42px rgba(0,0,0,.22);
+}
+
 @media (max-width: 767px){
   .rd-post-page{
     padding:130px 16px 56px;
@@ -1187,8 +1214,7 @@ footer {
 .footer-cta-band {
   min-height: 220px;
   background:
-    linear-gradient(105deg, rgba(4,10,24,0.92) 0%, rgba(4,10,24,0.84) 48%, rgba(4,10,24,0.68) 100%),
-    url("/assets/africactn-search-impressions.png") center/cover no-repeat;
+    linear-gradient(135deg, #07111f 0%, #0b2f6f 56%, #0b5ed7 100%);
   padding: 34px 42px;
   display: flex;
   align-items: center;
@@ -1392,9 +1418,7 @@ footer {
     align-items: flex-start;
     padding: 32px 28px;
     gap: 24px;
-    background:
-      linear-gradient(180deg, rgba(4,10,24,0.92) 0%, rgba(4,10,24,0.78) 100%),
-      url("/assets/africactn-search-impressions.png") center/cover no-repeat;
+    background:linear-gradient(135deg, #07111f 0%, #0b2f6f 58%, #0b5ed7 100%);
   }
 
   .cta-band-actions {
