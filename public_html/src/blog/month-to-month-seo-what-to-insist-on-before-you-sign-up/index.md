@@ -15,6 +15,8 @@ You are still paying for real work. The only difference is that you are not lock
 
 Before you sign up, ask for the scope. If the scope is soft, the work probably will be too.
 
+![Month-to-month SEO planning visual](cover.png)
+
 ## Start With Access
 
 The first step is not content.

@@ -17,6 +17,8 @@ The difference is the scope. Before you sign up, you should know what the agency
 
 No long contract does not mean no plan.
 
+![No contract SEO planning visual](cover.png)
+
 ## What Month-To-Month SEO Should Include
 
 A good monthly SEO plan should be simple to understand.

@@ -479,11 +479,11 @@ function renderHeroImage(title) {
   <rect x="908" y="172" width="82" height="8" rx="4" fill="#aeb8c8"/>
   <rect x="186" y="126" width="828" height="423" rx="34" fill="#ffffff" filter="url(#softShadow)"/>
   <rect x="230" y="170" width="740" height="9" rx="4.5" fill="url(#accent)"/>
-  <text x="600" y="238" text-anchor="middle" fill="#687386" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800">RUSSELL DIGITAL</text>
-  <g fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" letter-spacing="0">
+  <text x="600" y="238" text-anchor="middle" fill="#687386" font-family="Poppins, sans-serif" font-size="22" font-weight="800">RUSSELL DIGITAL</text>
+  <g fill="#111827" font-family="Poppins, sans-serif" font-size="52" font-weight="900" letter-spacing="0">
       ${titleLines}
   </g>
-  <text x="600" y="486" text-anchor="middle" fill="#5c6472" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">SEO strategy for businesses that need actual leads</text>
+  <text x="600" y="486" text-anchor="middle" fill="#5c6472" font-family="Poppins, sans-serif" font-size="23" font-weight="700">SEO strategy for businesses that need actual leads</text>
 </svg>
 `;
 }
@@ -496,9 +496,9 @@ function renderDecisionImage(title) {
   <rect width="1200" height="720" rx="0" fill="#f8fafc"/>
   <rect x="96" y="82" width="1008" height="556" rx="34" fill="#ffffff"/>
   <rect x="132" y="122" width="936" height="10" rx="5" fill="#ff5a1f"/>
-  <text x="160" y="194" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900">SEO is worth it when the signals line up</text>
-  <text x="160" y="242" fill="#5f6b7c" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Demand, visibility, conversion, and capacity all have to make sense.</text>
-  <g font-family="Arial, Helvetica, sans-serif" font-weight="800">
+  <text x="160" y="194" fill="#111827" font-family="Poppins, sans-serif" font-size="42" font-weight="900">SEO is worth it when the signals line up</text>
+  <text x="160" y="242" fill="#5f6b7c" font-family="Poppins, sans-serif" font-size="24" font-weight="700">Demand, visibility, conversion, and capacity all have to make sense.</text>
+  <g font-family="Poppins, sans-serif" font-weight="800">
     <rect x="160" y="314" width="196" height="142" rx="22" fill="#fff7ed"/>
     <text x="258" y="374" text-anchor="middle" fill="#111827" font-size="26">Demand</text>
     <text x="258" y="413" text-anchor="middle" fill="#ff5a1f" font-size="46">01</text>
@@ -515,7 +515,7 @@ function renderDecisionImage(title) {
   <path d="M204 536 H996" stroke="#d7dee8" stroke-width="12" stroke-linecap="round"/>
   <path d="M204 536 H742" stroke="#0fba9f" stroke-width="12" stroke-linecap="round"/>
   <circle cx="742" cy="536" r="22" fill="#0fba9f"/>
-  <text x="160" y="596" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">Do the boring checks before you buy the big strategy.</text>
+  <text x="160" y="596" fill="#111827" font-family="Poppins, sans-serif" font-size="26" font-weight="900">Do the boring checks before you buy the big strategy.</text>
 </svg>
 `;
 }
@@ -529,8 +529,8 @@ function renderSignalImage(title) {
   <circle cx="1030" cy="140" r="122" fill="#0fba9f" opacity="0.22"/>
   <circle cx="176" cy="592" r="160" fill="#ff5a1f" opacity="0.16"/>
   <rect x="106" y="86" width="988" height="548" rx="34" fill="#ffffff"/>
-  <text x="160" y="174" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900">${escapeXml(title)}</text>
-  <g font-family="Arial, Helvetica, sans-serif">
+  <text x="160" y="174" fill="#111827" font-family="Poppins, sans-serif" font-size="44" font-weight="900">${escapeXml(title)}</text>
+  <g font-family="Poppins, sans-serif">
     <rect x="162" y="238" width="876" height="66" rx="18" fill="#f8fafc"/>
     <circle cx="206" cy="271" r="14" fill="#0fba9f"/>
     <text x="238" y="281" fill="#111827" font-size="25" font-weight="800">People are already searching for the service.</text>
@@ -678,61 +678,43 @@ function writePng(canvas) {
   ]);
 }
 
-function renderBlogPng(variant = "hero") {
-  const backgrounds = {
-    hero: ["#fffaf3", "#eefaf7"],
-    decision: ["#f8fafc", "#fff7ed"],
-    signal: ["#111827", "#1f2937"]
-  };
-  const [top, bottom] = backgrounds[variant] || backgrounds.hero;
+function hashString(value) {
+  let hash = 2166136261;
+  for (const char of String(value)) {
+    hash ^= char.charCodeAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function renderBlogPng(variant = "hero", seedText = "") {
+  const seed = hashString(`${variant}:${seedText}`);
+  const palettes = [
+    ["#fffaf3", "#eefaf7", "#ff5a1f", "#0fba9f", "#f8c32d", "#2563eb"],
+    ["#f8fafc", "#eef2ff", "#14b8a6", "#6366f1", "#f59e0b", "#ef4444"],
+    ["#f0fdfa", "#f8fafc", "#0891b2", "#22c55e", "#f97316", "#1f2937"],
+    ["#fff7ed", "#f1f5f9", "#ea580c", "#2563eb", "#16a34a", "#eab308"],
+    ["#f7fee7", "#eff6ff", "#65a30d", "#0284c7", "#f97316", "#7c3aed"]
+  ];
+  const palette = palettes[seed % palettes.length];
+  const [top, bottom] = palette;
   const canvas = createCanvas(1200, 1200, top, bottom);
-  const orange = { ...hexToRgb("#ff5a1f"), a: 1 };
-  const teal = { ...hexToRgb("#0fba9f"), a: 1 };
-  const yellow = { ...hexToRgb("#f8c32d"), a: 1 };
-  const blue = { ...hexToRgb("#2563eb"), a: 1 };
+  const orange = { ...hexToRgb(palette[2]), a: 1 };
+  const teal = { ...hexToRgb(palette[3]), a: 1 };
+  const yellow = { ...hexToRgb(palette[4]), a: 1 };
+  const blue = { ...hexToRgb(palette[5]), a: 1 };
   const green = { ...hexToRgb("#22c55e"), a: 1 };
   const ink = { ...hexToRgb("#111827"), a: 1 };
   const slate = { ...hexToRgb("#64748b"), a: 1 };
   const white = { ...hexToRgb("#ffffff"), a: 1 };
+  const layout = (seed + { hero: 0, decision: 2, signal: 5 }[variant]) % 6;
 
-  if (variant === "decision") {
-    for (let x = 130; x < 1080; x += 70) drawLine(canvas, x, 110, x, 1090, 1, slate, 0.09);
-    for (let y = 130; y < 1080; y += 70) drawLine(canvas, 110, y, 1090, y, 1, slate, 0.09);
-    drawRect(canvas, 150, 150, 900, 260, white, 0.9);
-    drawRect(canvas, 190, 198, 470, 18, ink, 0.8);
-    drawRect(canvas, 190, 240, 640, 14, slate, 0.28);
-    drawRect(canvas, 190, 280, 520, 14, slate, 0.2);
-    for (let i = 0; i < 4; i += 1) {
-      const x = 165 + i * 225;
-      const y = 505 + (i % 2) * 110;
-      drawRect(canvas, x, y, 180, 180, white, 0.92);
-      drawCircle(canvas, x + 90, y + 78, 48, [teal, yellow, orange, blue][i], 0.92);
-      drawRect(canvas, x + 44, y + 136, 92, 12, slate, 0.32);
-    }
-    drawLine(canvas, 245, 865, 955, 865, 14, slate, 0.22);
-    drawLine(canvas, 245, 865, 735, 865, 14, teal, 0.95);
-    drawCircle(canvas, 735, 865, 30, teal, 1);
-  } else if (variant === "signal") {
-    drawRect(canvas, 120, 120, 960, 960, white, 0.94);
-    drawRect(canvas, 170, 175, 360, 24, ink, 0.8);
-    drawRect(canvas, 170, 225, 560, 14, slate, 0.26);
-    drawRect(canvas, 785, 170, 180, 180, green, 0.18);
-    drawCircle(canvas, 875, 260, 58, green, 0.86);
-    for (let i = 0; i < 5; i += 1) {
-      const y = 420 + i * 105;
-      drawRect(canvas, 185, y, 830, 62, white, 0.96);
-      drawRect(canvas, 185, y, 830, 2, slate, 0.18);
-      drawCircle(canvas, 235, y + 31, 18, [green, blue, teal, orange, yellow][i], 1);
-      drawRect(canvas, 282, y + 20, 330 + i * 42, 13, ink, 0.46);
-      drawRect(canvas, 282, y + 43, 210 + i * 24, 8, slate, 0.24);
-    }
-  } else {
+  if (layout === 0) {
     for (let y = 160; y < 1040; y += 58) drawLine(canvas, 120, y, 1080, y, 1, slate, 0.1);
-    drawRect(canvas, 135, 170, 610, 760, white, 0.88);
+    drawRect(canvas, 135, 170, 610, 760, white, 0.9);
     drawRect(canvas, 795, 255, 260, 520, white, 0.82);
     drawRect(canvas, 185, 235, 350, 22, ink, 0.86);
-    drawRect(canvas, 185, 292, 455, 16, ink, 0.56);
-    drawRect(canvas, 185, 338, 375, 16, ink, 0.42);
+    drawRect(canvas, 185, 292, 455, 16, ink, 0.46);
     drawLine(canvas, 240, 760, 370, 650, 14, teal, 0.9);
     drawLine(canvas, 370, 650, 515, 690, 14, teal, 0.9);
     drawLine(canvas, 515, 690, 670, 500, 14, teal, 0.9);
@@ -741,6 +723,95 @@ function renderBlogPng(variant = "hero") {
     drawRect(canvas, 840, 410, 170, 18, blue, 0.75);
     drawRect(canvas, 840, 490, 105, 18, teal, 0.82);
     drawCircle(canvas, 900, 675, 58, yellow, 0.82);
+  } else if (layout === 1) {
+    drawRect(canvas, 120, 145, 960, 870, white, 0.93);
+    drawRect(canvas, 165, 205, 360, 20, ink, 0.72);
+    drawRect(canvas, 165, 250, 590, 14, slate, 0.26);
+    for (let i = 0; i < 3; i += 1) {
+      const x = 165 + i * 285;
+      drawRect(canvas, x, 330, 235, 135, [teal, blue, orange][i], 0.14);
+      drawRect(canvas, x + 30, 370, 110, 16, ink, 0.48);
+      drawRect(canvas, x + 30, 412, 150, 10, slate, 0.24);
+    }
+    drawRect(canvas, 165, 555, 580, 295, white, 0.98);
+    for (let i = 0; i < 6; i += 1) {
+      drawRect(canvas, 210 + i * 78, 770 - i * 34, 44, 80 + i * 34, [teal, blue, orange, yellow, green, ink][i], 0.78);
+    }
+    drawRect(canvas, 790, 555, 220, 295, white, 0.96);
+    for (let i = 0; i < 5; i += 1) {
+      drawCircle(canvas, 835, 610 + i * 46, 13, [green, blue, teal, orange, yellow][i], 1);
+      drawRect(canvas, 865, 603 + i * 46, 105 + i * 11, 10, slate, 0.32);
+    }
+    drawLine(canvas, 165, 925, 1010, 925, 12, slate, 0.18);
+    drawLine(canvas, 165, 925, 790, 925, 12, orange, 0.85);
+  } else if (layout === 2) {
+    drawRect(canvas, 125, 135, 950, 930, white, 0.92);
+    drawRect(canvas, 125, 135, 950, 86, ink, 0.9);
+    drawCircle(canvas, 185, 178, 13, orange, 1);
+    drawCircle(canvas, 225, 178, 13, yellow, 1);
+    drawCircle(canvas, 265, 178, 13, teal, 1);
+    drawRect(canvas, 180, 285, 210, 600, blue, 0.08);
+    for (let i = 0; i < 5; i += 1) {
+      drawRect(canvas, 220, 335 + i * 88, 122 + i * 18, 14, ink, 0.3);
+      drawRect(canvas, 220, 365 + i * 88, 92 + i * 14, 9, slate, 0.22);
+    }
+    drawRect(canvas, 455, 285, 500, 240, white, 0.98);
+    drawRect(canvas, 490, 330, 230, 18, ink, 0.7);
+    drawRect(canvas, 490, 375, 330, 12, slate, 0.26);
+    drawLine(canvas, 510, 470, 605, 415, 9, teal, 0.9);
+    drawLine(canvas, 605, 415, 700, 445, 9, teal, 0.9);
+    drawLine(canvas, 700, 445, 860, 350, 9, teal, 0.9);
+    drawCircle(canvas, 860, 350, 24, orange, 1);
+    for (let i = 0; i < 4; i += 1) {
+      const x = 455 + (i % 2) * 255;
+      const y = 590 + Math.floor(i / 2) * 165;
+      drawRect(canvas, x, y, 220, 120, [teal, orange, blue, yellow][i], 0.16);
+      drawRect(canvas, x + 28, y + 34, 124, 14, ink, 0.48);
+      drawRect(canvas, x + 28, y + 68, 150, 9, slate, 0.24);
+    }
+  } else if (layout === 3) {
+    drawRect(canvas, 145, 145, 910, 910, white, 0.9);
+    for (let i = 0; i < 6; i += 1) {
+      const y = 245 + i * 110;
+      drawRect(canvas, 215, y, 610 + (i % 3) * 55, 50, white, 0.96);
+      drawCircle(canvas, 248, y + 25, 15, [green, blue, teal, orange, yellow, ink][i], 1);
+      drawRect(canvas, 292, y + 16, 300 + i * 35, 11, slate, 0.35);
+      drawRect(canvas, 292, y + 36, 155 + i * 30, 8, slate, 0.2);
+    }
+    drawRect(canvas, 780, 260, 180, 180, teal, 0.16);
+    drawCircle(canvas, 870, 350, 54, teal, 0.82);
+  } else if (layout === 4) {
+    drawRect(canvas, 120, 160, 960, 850, white, 0.92);
+    drawRect(canvas, 170, 220, 370, 22, ink, 0.72);
+    drawRect(canvas, 170, 270, 520, 14, slate, 0.28);
+    drawRect(canvas, 170, 350, 570, 315, white, 0.98);
+    drawRect(canvas, 205, 395, 245, 18, ink, 0.66);
+    drawRect(canvas, 205, 438, 420, 12, slate, 0.24);
+    for (let i = 0; i < 5; i += 1) {
+      drawRect(canvas, 225 + i * 82, 575 - i * 28, 46, 90 + i * 28, [orange, blue, teal, yellow, green][i], 0.82);
+    }
+    drawRect(canvas, 790, 350, 210, 315, blue, 0.12);
+    drawCircle(canvas, 895, 455, 55, orange, 0.84);
+    drawRect(canvas, 835, 565, 115, 14, ink, 0.44);
+    drawRect(canvas, 835, 600, 145, 10, slate, 0.22);
+    for (let i = 0; i < 3; i += 1) {
+      const x = 170 + i * 285;
+      drawRect(canvas, x, 740, 240, 135, [teal, orange, blue][i], 0.15);
+      drawRect(canvas, x + 30, 782, 135, 14, ink, 0.44);
+      drawRect(canvas, x + 30, 817, 165, 9, slate, 0.22);
+    }
+  } else {
+    drawRect(canvas, 145, 145, 910, 910, white, 0.88);
+    drawRect(canvas, 210, 230, 330, 22, ink, 0.82);
+    drawRect(canvas, 210, 285, 520, 16, slate, 0.3);
+    for (let i = 0; i < 4; i += 1) {
+      const x = 210 + (i % 2) * 410;
+      const y = 420 + Math.floor(i / 2) * 235;
+      drawRect(canvas, x, y, 310, 150, [teal, orange, blue, yellow][i], 0.18);
+      drawRect(canvas, x + 35, y + 44, 210, 14, ink, 0.44);
+      drawRect(canvas, x + 35, y + 82, 150, 10, slate, 0.28);
+    }
+    drawCircle(canvas, 895, 280, 80, green, 0.72);
   }
 
   return writePng(canvas);
@@ -749,22 +820,24 @@ function renderBlogPng(variant = "hero") {
 function imagePromptForArticle({ title, topic, variant }) {
   const base = [
     "Create a square 1:1 PNG blog image for Russell Digital, a Houston SEO and digital marketing website.",
-    "Style: polished modern editorial tech illustration, no fake logos, no readable text, no template-looking repetition.",
-    "Change the composition, accent colors, object placement, and visual metaphor so this image does not look like every other Russell Digital blog image.",
-    "Avoid: cheesy stock-photo people, robot hands, neon cyberpunk, messy charts, blurry text, distorted typography, generic AI slop, screenshots of real websites.",
+    "Style: polished, modern, clean PNG. Use crisp composition, generous spacing, and a professional SaaS/SEO editorial look.",
+    "Create real variation between images: change layout, camera angle, palette, density, and visual metaphor. Do not reuse the same line-chart card composition or the same dashboard twice.",
+    "Acceptable concepts: SEO dashboard mockups, Google Search Console-style performance charts, Semrush/Ahrefs-style reports without real logos, local search result mockups, service-page wireframes, chart overlays on realistic laptop/desk scenes, or a clean title-card visual for video topics.",
+    "The finished image should look like a high-quality editorial blog thumbnail, not a generic placeholder.",
+    "Avoid: fake readable UI text, real third-party logos, cheesy stock-photo people, robot hands, neon cyberpunk, messy charts, blurry text, distorted typography, generic AI slop, screenshots of real websites.",
     `Article title: ${title}`,
     `Topic brief: ${topic.topic || title}`
   ];
 
   if (variant === "decision") {
-    base.push("Image concept: a square decision framework using offset cards, branching paths, checkmarks, and search-to-lead cues.");
-    base.push("Palette direction: crisp white, charcoal, muted teal, soft gold, and one restrained coral accent.");
+    base.push("Image concept: a decision framework or comparison dashboard with offset cards, branching paths, audit columns, or tool-style panels.");
+    base.push("Make this image visibly different from the cover image and the checklist image.");
   } else if (variant === "signal") {
-    base.push("Image concept: a square local SEO signal checklist using an audit board, pinned notes, map marker shapes, call/form icons, and analytics blocks.");
-    base.push("Palette direction: deep ink, white panels, bright green, steel blue, and small orange accents.");
+    base.push("Image concept: a signal checklist, analytics board, local SEO audit workspace, GSC-style chart, map/search mockup, or measurement dashboard.");
+    base.push("Make this image visibly different from the cover image and the decision image.");
   } else {
-    base.push("Image concept: a square hero image with an editorial search-growth scene, service page panels, local map cues, and lead generation elements.");
-    base.push("Palette direction: warm white, black, orange, teal, and a small unexpected blue or lime accent.");
+    base.push("Image concept: a strong cover image. It can be an SEO tool mockup, realistic laptop/desk scene with chart overlays, service-page mockup, or clean video-title-card style visual.");
+    base.push("Make this feel like the lead image for this exact article, not a generic template.");
   }
 
   return base.join("\n");
@@ -824,7 +897,7 @@ async function writeArticleImages({ postDir, slug, title, topic }) {
 
   for (const image of images) {
     const generated = await generateImagePng({ title, topic, variant: image.variant });
-    writeFileSync(path.join(postDir, image.file), generated || renderBlogPng(image.variant));
+    writeFileSync(path.join(postDir, image.file), generated || renderBlogPng(image.variant, `${slug}:${title}:${image.file}`));
     console.log(`${generated ? "Generated" : "Rendered fallback"} image: ${image.file}`);
   }
 }

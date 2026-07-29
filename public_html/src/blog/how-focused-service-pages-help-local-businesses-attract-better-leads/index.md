@@ -11,6 +11,8 @@ image: cover.png
 ---
 Focused service pages help local businesses attract better leads because they match one specific search intent. A homepage explains the whole business. A service page explains one offer, one customer problem, and one next step.
 
+![Focused service page SEO planning visual](cover.png)
+
 ## Quick Answer
 
 A focused service page should quickly tell the visitor:

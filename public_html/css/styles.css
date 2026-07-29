@@ -25,7 +25,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
@@ -34,7 +34,7 @@ body {
 }
 
 /* ── Fixed header shell ───────────────────────────────────── */
-header {
+#rd-header header {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 200;
@@ -508,7 +508,7 @@ header {
 
 .rd-post-page{
   background:#fff;
-  padding:140px 20px 80px;
+  padding:170px 20px 80px;
 }
 
 .rd-post-article{
@@ -519,7 +519,7 @@ header {
 
 .rd-post-header{
   text-align:center;
-  margin-bottom:40px;
+  margin-bottom:34px;
 }
 
 .rd-post-date{
@@ -533,20 +533,12 @@ header {
 
 .rd-post-title{
   margin:0 0 18px;
-  font-size:clamp(2.5rem,6vw,4.75rem);
-  line-height:.95;
-  letter-spacing:-.05em;
+  font-size:clamp(2.25rem,4.5vw,3.75rem);
+  line-height:1.04;
+  letter-spacing:-.035em;
   font-weight:900;
   color:#0f172a;
   text-wrap:balance;
-}
-
-.rd-post-cover{
-  display:block;
-  width:min(100%,720px);
-  height:auto;
-  margin:30px auto 0;
-  border-radius:18px;
 }
 
 .rd-post-intro{
@@ -629,10 +621,10 @@ header {
 .rd-post-content img,
 .blog-image{
   display:block;
-  width:65%;
+  width:min(100%,720px);
   max-width:100%;
   height:auto;
-  margin:28px auto;
+  margin:30px auto;
   border-radius:14px;
 }
 
@@ -717,11 +709,12 @@ header {
 
 @media (max-width: 767px){
   .rd-post-page{
-    padding:110px 16px 56px;
+    padding:130px 16px 56px;
   }
 
   .rd-post-title{
-    font-size:clamp(2.2rem,11vw,3.3rem);
+    font-size:clamp(2rem,9vw,3rem);
+    line-height:1.06;
   }
 
   .rd-post-intro,
@@ -767,7 +760,7 @@ header {
 }
 
 .logo-name {
-  font-family: 'Syne', serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   font-size: .8rem;
   letter-spacing: -0.03em;
@@ -793,7 +786,7 @@ header {
 .nav-item { position: relative; }
 
 .nav-link {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--muted);
@@ -907,7 +900,7 @@ header {
 }
 
 .btn-ghost {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--muted);
@@ -952,7 +945,7 @@ header {
 
 
     .btn-blue {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 700;
       font-size: 0.875rem;
       letter-spacing: -0.01em;
@@ -982,7 +975,7 @@ header {
       box-shadow: 0 8px 24px rgba(0,0,0,0.24);}
 
 .btn-primary {
-  font-family: 'Instrument Serif', serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 0.845rem;
   letter-spacing: -0.01em;
@@ -1105,7 +1098,7 @@ header {
   font-size: 0.95rem; font-weight: 500; color: var(--text);
   text-decoration: none; transition: background 0.14s;
   cursor: pointer; background: transparent; border: none;
-  font-family: 'DM Sans', sans-serif; width: 100%; text-align: left;
+  font-family: 'Poppins', sans-serif; width: 100%; text-align: left;
 }
 .m-link:hover { background: #f5f4f0; }
 .m-link.active { color: var(--accent); }
@@ -1248,7 +1241,7 @@ footer {
 }
 
 .cta-band-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   letter-spacing: -0.04em;
@@ -1266,7 +1259,7 @@ footer {
 }
 
 .btn-ghost-white {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   color: rgba(255,255,255,0.75);
@@ -1304,7 +1297,7 @@ footer {
 .footer-col-title {
   margin-bottom: 16px;
   color: var(--text);
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1433,4 +1426,3 @@ footer {
     padding: 0 0.75rem 0.75rem;
   }
 }
-

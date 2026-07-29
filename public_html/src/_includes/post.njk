@@ -4,21 +4,13 @@ layout: base.njk
 
 <section class="rd-post-page">
   <article class="rd-post-article">
-    <header class="rd-post-header">
+    <div class="rd-post-header">
       {% if date %}
         <p class="rd-post-date">{{ date.toDateString() }}</p>
       {% endif %}
 
       <h1 class="rd-post-title">{{ title }}</h1>
-
-      {% if image %}
-        <img
-          class="rd-post-cover"
-          src="{{ page.url }}{{ image }}"
-          alt="{{ title }}"
-          loading="eager">
-      {% endif %}
-    </header>
+    </div>
 
     <div class="rd-post-content">
       {{ content | safe }}

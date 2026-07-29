@@ -143,15 +143,17 @@ Use internal links naturally. Do not stuff them. Do not link externally.
 
 ## Image Rules
 
-Every article image should be square, 1:1 ratio.
+Every generated article image should be a clean PNG in a square, 1:1 ratio.
 
-Use three image types when images are generated:
+Most posts should include two or three images inside the article body. Use three image types when images are generated:
 
 - **Cover:** A strong editorial lead image with the topic represented visually.
 - **Decision framework:** A square diagram, flow, or comparison scene that explains how to choose.
 - **Signal checklist:** A square checklist, audit board, or measurement scene that shows what to inspect.
 
-Do not make every image look like the same template. Change the composition, accent colors, density, and visual metaphor between images. Keep it Russell Digital, but shuffle the layout enough that the images feel like a set, not three copies.
+Do not make every image look like the same template. Change the composition, accent colors, density, and visual metaphor between images. Good options include clean mockups of SEO dashboards, Google Search Console-style charts, Semrush/Ahrefs-style reports without real logos, local search result layouts, service-page wireframes, chart overlays on realistic office/device scenes, or simple title-card visuals for video-focused topics.
+
+Keep the images Russell Digital and PNG-ready. Do not use fake readable UI text, real third-party logos, messy screenshots, or three repeated line-chart cards.
 
 ## Russell Digital Positioning
 
