@@ -310,6 +310,13 @@ function markdownLinks(markdown) {
   return [...markdown.matchAll(/(?<!!)\[[^\]]+\]\(([^)]+)\)/g)].map((match) => match[1].trim());
 }
 
+function bareInternalPathMentions(markdown) {
+  const withoutLinks = String(markdown)
+    .replace(/!?\[[^\]]*\]\([^)]+\)/g, "")
+    .replace(/`[^`]+`/g, "");
+  return [...withoutLinks.matchAll(/\((\/[a-z0-9][a-z0-9/_-]*\/?)\)/gi)].map((match) => match[1]);
+}
+
 function preferredInternalUrl(internalUrls) {
   const preferred = [
     "/free-strategy-call-offer/",
@@ -822,8 +829,10 @@ function imagePromptForArticle({ title, topic, variant }) {
     "Create a square 1:1 PNG blog image for Russell Digital, a Houston SEO and digital marketing website.",
     "Style: polished, modern, clean PNG. Use crisp composition, generous spacing, and a professional SaaS/SEO editorial look.",
     "Create variation between posts: change layout, camera angle, palette, density, and visual metaphor. Do not reuse the same line-chart card composition.",
-    "Acceptable concepts: SEO dashboard mockup, Google Search Console-style performance chart, Semrush/Ahrefs-style report without real logos, local search result mockup, service-page wireframe, chart overlay on a realistic laptop/desk scene, or a clean title-card visual for video topics.",
+    "Acceptable concepts: abstract SEO dashboard mockup, performance chart, report layout without logos, local search interface blocks, service-page wireframe, or chart overlay on a realistic laptop/desk scene.",
     "The finished image should look like a high-quality editorial blog thumbnail, not a generic placeholder.",
+    "Hard rule: do not include any readable text, letters, words, numbers, logos, UI labels, search result snippets, captions, headings, title-card copy, or typography anywhere in the image.",
+    "Use only abstract interface blocks, charts, lines, cards, shapes, devices, and non-readable marks.",
     "Avoid: fake readable UI text, real third-party logos, cheesy stock-photo people, robot hands, neon cyberpunk, messy charts, blurry text, distorted typography, generic AI slop, screenshots of real websites.",
     `Article title: ${title}`,
     `Topic brief: ${topic.topic || title}`
@@ -996,6 +1005,21 @@ function validateDraft({ markdown, slug, blogFolder, existingPosts, usedTopics, 
     return validationError("Draft contains placeholder text.");
   }
 
+  const barePaths = bareInternalPathMentions(parsed.body);
+  if (barePaths.length) {
+    return validationError("Draft contains bare internal URL paths. Use Markdown links instead.", { paths: barePaths });
+  }
+
+  const jammedBullet = parsed.body.match(/(^|\n)\s*[-*]\s+[^\n]+?\s[-*]\s+\S/);
+  if (jammedBullet) {
+    return validationError("Draft contains multiple bullets jammed onto one line.", { match: jammedBullet[0].trim() });
+  }
+
+  const jammedNumberedStep = parsed.body.match(/(^|\n)\s*\d+\.\s+[^\n]+?\s\d+\.\s+\S/);
+  if (jammedNumberedStep) {
+    return validationError("Draft contains multiple numbered steps jammed onto one line.", { match: jammedNumberedStep[0].trim() });
+  }
+
   const forbiddenResidue = markdown.match(/\b(AfricaCTN|CTN|ECTN|BESC|BSC|FERI|BIETC|CNCA|ARCCLA|ACD|SPN|cargo tracking note|bill of lading|customs clearance|destination port|discharge port|vessel arrival|shipper|freight forwarder)\b/i);
   if (forbiddenResidue) return validationError("Draft contains AfricaCTN, shipping, or logistics residue.", { match: forbiddenResidue[0] });
 
@@ -1051,7 +1075,10 @@ async function generateArticle({ topic, siteContext, existingPosts, internalUrls
     "Use short sections with useful H2/H3 headings, conversational explanations, and concrete checks or examples that can be supported by the supplied site context.",
     "Do not copy paragraphs from the samples; learn the cadence and point of view.",
     "Return only valid JSON with keys: title, description, body.",
-    "The body must be Markdown and must include useful internal links from the supplied URL inventory.",
+    "The body must be clean Markdown and must include useful internal links from the supplied URL inventory.",
+    "Every internal URL must be part of a Markdown link, such as [free strategy call](/free-strategy-call-offer/). Never write bare paths like (/pricing/) or Useful links: - /services/ - /pricing/.",
+    "Every bullet or numbered item must be on its own line. Never jam several list items into one paragraph.",
+    "Do not include broken image syntax, stray filenames, repeated paragraphs, repeated CTA sections, or orphaned fragments.",
     "Include a natural CTA based on existing site CTAs, especially booking a strategy call.",
     `Write at least ${MIN_WORDS + 100} words.`
   ].join("\n");

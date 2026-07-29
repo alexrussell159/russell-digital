@@ -536,7 +536,7 @@ body {
   font-size:clamp(2.25rem,4.5vw,3.75rem);
   line-height:1.04;
   letter-spacing:-.035em;
-  font-weight:900;
+  font-weight:800;
   color:#0f172a;
   text-wrap:balance;
 }

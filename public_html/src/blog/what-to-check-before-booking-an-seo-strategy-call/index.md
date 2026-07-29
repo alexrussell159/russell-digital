@@ -2,7 +2,7 @@
 layout: post.njk
 author: Alex Russell
 title: "What to check before booking an SEO strategy call"
-description: "A practical checklist business owners can use to get the most from a free SEO strategy call. Covers access, basics to inspect, red flags, and the tangible things a good call should"
+description: "A practical checklist business owners can use before booking a free SEO strategy call, including access, tracking, priorities, red flags, and next steps."
 date: 2026-07-29T15:00:55.000-05:00
 updated: 2026-07-29T15:00:55.000-05:00
 tags:
@@ -10,69 +10,120 @@ tags:
 image: cover.png
 ---
 
-Answer first: book the call, but do a short inspection first. A 20–30 minute strategy call is most useful when you can answer a few simple questions and give the consultant basic access. Without that, the call usually ends with vague recommendations instead of a clear first step.
+Book the call, but do a short inspection first. A 20 to 30 minute SEO strategy call is much more useful when you know what you want to improve, where leads come from now, and which tools you can access.
 
-Most owners only need 30 minutes of prep. Confirm tracking, bring a list of priority services or locations, and know your current lead channels. That small effort makes the strategy call practical: you’ll walk away with specific fixes tied to calls and forms, not generic advice.
-
-png)
+You do not need a full audit before the call. You just need enough context to keep the conversation practical. That way, the call can move past vague advice and into the first few fixes that could improve calls, forms, and qualified inquiries.
 
 ![Blog featured image](cover.png)
 
-
 ## Quick Answer
-A useful pre-call checklist for busy business owners:
 
-- Confirm Google Search Console and Analytics (or tell the agency where they are). - Make a short list of 1–3 business priorities (services, neighborhoods, or pages that must improve). - Check your Google Business Profile and know whether it’s claimed/verified. - Note how customers currently contact you (phone, form, walk-ins) and any conversion tracking gaps. - Gather access for the call if you can: site login, CMS/editor access, and tools credentials.
+Before booking an SEO strategy call, check these basics:
 
-## Why this small prep matters
-If the consultant can see your search data and current pages, recommendations become actionable. Agencies can then point to specific pages that need fixes, identify obvious technical blockers, and give 3–5 tactical next steps you can implement right away. That turns the call into a working session, not a sales presentation.
+- Confirm whether Google Search Console and Analytics are installed.
+- Make a short list of one to three business priorities.
+- Check whether your Google Business Profile is claimed and accurate.
+- Know how customers currently contact you: phone, forms, booking links, or walk-ins.
+- Gather access to your website, CMS, analytics, and Google Business Profile if you can.
+- Bring two or three competitor sites you want to compare against.
 
-## What to check first (10-minute quick audit)
-Do these checks in order. They’re fast and reveal the clearest blockers.
+If you have those pieces ready, the call can focus on diagnosis and next steps instead of basic discovery.
 
-- Search Console: do you or your developer have it? If yes, note whether impressions and clicks are visible. - Analytics: do you have any tracking (Google Analytics, GA4)? If not, say so on the call. - Google Business Profile: is it claimed and accurate for name, address, phone, and hours? - Site speed and mobile: open your site on phone and desktop. Does it feel slow or cramped? - Main service pages: do they clearly explain the service, the area served, and how to get a quote?
+## Why this prep matters
 
-If you can’t access these tools, tell the agency before the call. A good agency will still audit what they can and explain the access they need first.
+A good SEO call should not feel like a generic sales pitch. It should help you understand what is holding back visibility, what is hurting conversions, and what should happen first.
 
-## What to bring to the call (prepare these three things)
-1. Short priority list: one-line items like "brake repair, diagnostics, and weekend appointments" or "commercial logistics quotes for Houston to Dallas". Keep it specific.  
-2. Current conversion points: phone numbers, booking form links, and any tracking you use.  
-3. Competitive examples: two or three competitor URLs you think are doing well (this helps the consultant see what customers are finding).
+When the consultant can see your search data, current pages, and conversion paths, the recommendations get sharper. Instead of hearing "you need more content," you can talk about which service page needs work, whether tracking is missing, or whether your Google Business Profile is sending mixed signals.
 
-## Red flags to watch for when booking
-These are signs the call may not be useful or the vendor is not prepared.
+## Do a 10-minute SEO check first
 
-- Vague scope: they promise "SEO growth" but won’t explain what they’ll inspect on the call. - No questions about access: if the consultant never asks for Search Console, Analytics, or Google Business Profile, they’ll be guessing. - Overly salesy slides: the call should be a working session, not a long pitch.
+Start with the simplest things. You are looking for obvious gaps, not trying to solve the whole SEO campaign in one sitting.
+
+- Search Console: Do you have access? If yes, check whether impressions and clicks are visible.
+- Analytics: Is GA4 or another analytics tool collecting website traffic?
+- Google Business Profile: Is the name, address, phone number, website, and hours information accurate?
+- Mobile experience: Open the site on your phone. Is it fast enough to use without friction?
+- Main service pages: Do your pages clearly explain the service, location, and next step?
+
+If you cannot access one of these tools, make a note of it. That is still useful information. A serious SEO partner should be able to explain which access matters first and why.
+
+## Know what you want from the call
+
+The best strategy calls have a clear business target. That target does not have to be complicated.
+
+Bring a short priority list like:
+
+- More calls for one high-margin service.
+- Better visibility in one city or neighborhood.
+- More estimate requests from organic search.
+- A clearer plan before spending on ongoing SEO.
+- A second opinion on whether your current SEO work is useful.
+
+That keeps the conversation tied to business outcomes instead of vanity metrics. Rankings matter, but only because they can create qualified visibility. The real question is whether search can help produce the right inquiries.
+
+## Bring the right access if you can
+
+You can still book a call without every login. But if you have access, bring it.
+
+Useful access includes:
+
+- Google Search Console.
+- Google Analytics or another traffic-reporting tool.
+- Google Business Profile.
+- Website CMS or page editor.
+- Call tracking, form submissions, or CRM reports.
+
+Do not send passwords over email. Use secure account sharing where possible, or wait until the consultant tells you exactly what they need.
+
+## Watch for red flags
+
+The call itself will tell you a lot about the vendor.
+
+- Vague scope: They talk about "SEO growth" but cannot explain what they will inspect.
+- No diagnostic questions: They do not ask about Search Console, Analytics, pages, leads, or service priorities.
+- Big promises too early: They claim results before seeing the site or market.
+- Sales deck only: The call spends more time pitching than reviewing your actual situation.
+- No next-step clarity: You leave without knowing what should happen first.
+
+A useful call should make the next move feel clearer, even if you do not hire the agency.
 
 ## What a good strategy call should deliver
-A good call should give you a clear short list of next steps you can act on immediately. Expect these outcomes:
 
-- A simple audit summary: the top 3 things holding back your search visibility. - 3–5 tactical next steps: prioritized fixes tied to leads (example: fix tracking, improve one service page, update GBP). - A realistic timeline for early movement and what the agency would do next if you hire them.
+By the end of the call, you should understand the practical shape of the opportunity.
 
-Russell Digital’s free proposal calls aim to do exactly this: a full audit, a custom ranking roadmap, and 3–5 tactical next steps you can implement whether you hire us or not. You can read more about what that call includes on our free strategy call page (/free-strategy-call-offer/).
+Look for three things:
 
-## What to fix before paying for ongoing SEO
-If you want to act yourself before any retainer, fix these first because they unlock everything else:
+1. A simple audit summary that names the biggest blockers.
+2. Three to five tactical next steps tied to calls, forms, visibility, or page quality.
+3. A realistic explanation of what the first month of work would focus on.
 
-- Tracking: make sure Search Console and Analytics are collecting data. - One clear money page: pick the page that drives the most revenue (service or location) and make it obvious what the visitor should do next. - Google Business Profile: claim and complete it, with correct contact details and hours.
+For example, the next step might be fixing tracking, improving one service page, cleaning up Google Business Profile details, or building a clearer internal linking path to an important offer.
 
-Fixing these makes any subsequent content, technical, or local SEO work far more effective.
+## Where Russell Digital fits
 
-## How Russell Digital approaches the first month (what to expect if you hire us)
-We start with an audit to find the biggest opportunities, then prioritize fixes that are most likely to produce leads. Our month-to-month SEO model focuses on clear monthly deliverables and a roadmap tied to calls and forms. You can review plan options on our pricing page (/pricing/) and read about what month-to-month SEO should include in our article on that topic (/blog/month-to-month-seo-what-to-insist-on-before-you-sign-up/).
+Russell Digital focuses on SEO work tied to leads, calls, conversions, and visible deliverables. If you want to understand the service options before a call, review the [SEO services page](/services/) and [pricing page](/pricing/).
 
-If you want to learn how to shape better service pages before the call, our post on focused service pages is a practical read (/blog/how-focused-service-pages-help-local-businesses-attract-better-leads/).
+For many owners, the first useful move is a focused review of what is already in place. The [free strategy call](/free-strategy-call-offer/) is built around that idea: look at the site, identify the biggest blockers, and map the next few practical steps.
 
-## Simple decision framework: ready or not
-- Ready: you can provide Search Console, Analytics, or at least site access and a short priority list. Book the call.  
-- Not ready: you lack tracking and don’t know your main service pages. Spend a day on the quick audit above, then book.
+You may also want to read the guide on [month-to-month SEO](/blog/month-to-month-seo-what-to-insist-on-before-you-sign-up/) if you are comparing vendors, or the article on [focused service pages](/blog/how-focused-service-pages-help-local-businesses-attract-better-leads/) if your main concern is whether your website pages are strong enough.
 
-If you want help deciding what should happen first, start with our free strategy call (/free-strategy-call-offer/). We’ll walk your site live, show the top three things holding you back, and give you 3–5 next steps you can use right away.
+## Simple decision framework
 
-Useful links: - Schedule the free proposal and strategy call: /free-strategy-call-offer/ - See our services: /services/ - Pricing and package details: /pricing/ - Read more on focused service pages: /blog/how-focused-service-pages-help-local-businesses-attract-better-leads/
+You are ready to book if:
 
-Ready today? Claim a free strategy call and bring your site access — it makes the 30 minutes actually useful: /free-strategy-call-offer/.
+- You know the main service or location you want to grow.
+- You can explain how leads currently come in.
+- You have access to at least some tracking or website information.
+- You want a practical diagnosis, not a guaranteed ranking promise.
+
+You may want to wait a day if:
+
+- You do not know which service matters most.
+- You cannot find any analytics or Search Console access.
+- Your website contact forms or phone numbers may not be working.
+
+Fixing those basics first will make the call more productive.
 
 ## Next step
 
-If you want a second set of eyes on the opportunity, start with a [free strategy call](/free-strategy-call-offer/) and use it to pressure-test the next move.
+If you want help deciding what should happen first, start with a [free strategy call](/free-strategy-call-offer/) and use it to pressure-test the SEO opportunity.

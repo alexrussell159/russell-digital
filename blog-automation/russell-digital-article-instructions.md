@@ -141,6 +141,14 @@ Prefer links to:
 
 Use internal links naturally. Do not stuff them. Do not link externally.
 
+All internal links must use Markdown link syntax:
+
+- Good: `[free strategy call](/free-strategy-call-offer/)`
+- Bad: `free strategy call (/free-strategy-call-offer/)`
+- Bad: `Useful links: - /services/ - /pricing/`
+
+Do not leave bare URL paths in body copy. If a URL appears in the article, it should be inside a Markdown link.
+
 ## Image Rules
 
 Every generated article image should be a clean PNG in a square, 1:1 ratio.
@@ -149,9 +157,20 @@ Most posts should use one featured image, not multiple in-article images. The fe
 
 - **Cover:** A strong editorial lead image with the topic represented visually.
 
-Do not make every featured image look like the same template. Change the composition, accent colors, density, and visual metaphor between posts. Good options include clean mockups of SEO dashboards, Google Search Console-style charts, Semrush/Ahrefs-style reports without real logos, local search result layouts, service-page wireframes, chart overlays on realistic office/device scenes, or simple title-card visuals for video-focused topics.
+Do not make every featured image look like the same template. Change the composition, accent colors, density, and visual metaphor between posts. Good options include clean mockups of SEO dashboards, Google Search Console-style charts, Semrush/Ahrefs-style reports without real logos, local search result layouts, service-page wireframes, or chart overlays on realistic office/device scenes.
 
-Keep the image Russell Digital and PNG-ready. Do not use fake readable UI text, real third-party logos, messy screenshots, generic line-chart cards, or repeated clone templates.
+Keep the image Russell Digital and PNG-ready. Do not put any readable text, letters, words, numbers, logos, UI labels, search result snippets, headings, captions, or title-card copy inside generated images. Use abstract cards, charts, shapes, interface blocks, and realistic devices instead. Do not use fake readable UI text, real third-party logos, messy screenshots, generic line-chart cards, or repeated clone templates.
+
+## Markdown Quality Rules
+
+Use clean Markdown that will render correctly on the website.
+
+- Put each bullet on its own line.
+- Put each numbered step on its own line.
+- Do not jam multiple bullets into one paragraph.
+- Do not write inline list fragments like `- first thing - second thing - third thing`.
+- Do not include stray image syntax, broken filenames, or text fragments before or after an image.
+- Do not repeat the same paragraph or CTA section.
 
 ## Russell Digital Positioning
 
