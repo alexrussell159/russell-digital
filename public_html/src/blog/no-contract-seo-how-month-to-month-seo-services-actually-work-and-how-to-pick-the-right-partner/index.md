@@ -56,8 +56,6 @@ That is enough to start.
 
 You do not need a giant PDF. You need a useful order of operations.
 
-![Month-to-month SEO decision framework](decision-framework.png)
-
 ## What Good Deliverables Look Like
 
 Deliverables should be plain.
@@ -102,8 +100,6 @@ Rankings matter.
 They are not the whole story.
 
 You also need to know whether the site is becoming a better business asset.
-
-![Local SEO signal checklist](signal-checklist.png)
 
 Track the basics:
 

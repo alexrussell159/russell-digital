@@ -821,8 +821,8 @@ function imagePromptForArticle({ title, topic, variant }) {
   const base = [
     "Create a square 1:1 PNG blog image for Russell Digital, a Houston SEO and digital marketing website.",
     "Style: polished, modern, clean PNG. Use crisp composition, generous spacing, and a professional SaaS/SEO editorial look.",
-    "Create real variation between images: change layout, camera angle, palette, density, and visual metaphor. Do not reuse the same line-chart card composition or the same dashboard twice.",
-    "Acceptable concepts: SEO dashboard mockups, Google Search Console-style performance charts, Semrush/Ahrefs-style reports without real logos, local search result mockups, service-page wireframes, chart overlays on realistic laptop/desk scenes, or a clean title-card visual for video topics.",
+    "Create variation between posts: change layout, camera angle, palette, density, and visual metaphor. Do not reuse the same line-chart card composition.",
+    "Acceptable concepts: SEO dashboard mockup, Google Search Console-style performance chart, Semrush/Ahrefs-style report without real logos, local search result mockup, service-page wireframe, chart overlay on a realistic laptop/desk scene, or a clean title-card visual for video topics.",
     "The finished image should look like a high-quality editorial blog thumbnail, not a generic placeholder.",
     "Avoid: fake readable UI text, real third-party logos, cheesy stock-photo people, robot hands, neon cyberpunk, messy charts, blurry text, distorted typography, generic AI slop, screenshots of real websites.",
     `Article title: ${title}`,
@@ -890,9 +890,7 @@ async function generateImagePng({ title, topic, variant }) {
 
 async function writeArticleImages({ postDir, slug, title, topic }) {
   const images = [
-    { file: "cover.png", variant: "hero" },
-    { file: "decision-framework.png", variant: "decision" },
-    { file: "signal-checklist.png", variant: "signal" }
+    { file: "cover.png", variant: "hero" }
   ];
 
   for (const image of images) {
@@ -903,19 +901,11 @@ async function writeArticleImages({ postDir, slug, title, topic }) {
 }
 
 function injectArticleVisuals(body, slug) {
-  const firstImage = "![SEO decision framework](decision-framework.png)";
-  const secondImage = "![Local SEO signal checklist](signal-checklist.png)";
+  const coverImage = "![Blog featured image](cover.png)";
   let nextBody = body;
 
-  if (!nextBody.includes(firstImage)) {
-    nextBody = nextBody.replace(/(\n## [^\n]+\n)/, `\n${firstImage}\n\n$1`);
-  }
-
-  if (!nextBody.includes(secondImage)) {
-    const marker = "\n## What to measure";
-    if (nextBody.includes(marker)) {
-      nextBody = nextBody.replace(marker, `\n${secondImage}\n${marker}`);
-    }
+  if (!/!\[[^\]]*\]\(cover\.png\)/.test(nextBody)) {
+    nextBody = nextBody.replace(/(\n## [^\n]+\n)/, `\n${coverImage}\n\n$1`);
   }
 
   return nextBody;

@@ -26,8 +26,6 @@ A focused service page should quickly tell the visitor:
 
 If the page does not answer those fast, rankings may not help much. More traffic on a weak page usually means wasted visits. The point is to help the right person decide whether to call or move on.
 
-![SEO decision framework](decision-framework.png)
-
 ## What A Focused Service Page Does
 
 A focused service page connects search intent to action. Someone searching for a specific service is usually closer to making a decision than someone reading a broad blog post. The page should help them decide quickly, not force them to piece together the offer from five different pages.
@@ -68,8 +66,6 @@ Good service-page content is useful before it is polished. It should answer the 
 - **What should they avoid?** Mention common mistakes when useful.
 
 Short sections work better than one long block. The reader should be able to scan the page and still understand the offer.
-
-![Local SEO signal checklist](signal-checklist.png)
 
 ## How This Helps Local SEO
 

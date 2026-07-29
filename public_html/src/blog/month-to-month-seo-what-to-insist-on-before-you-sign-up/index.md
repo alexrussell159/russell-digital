@@ -53,8 +53,6 @@ Do this in order:
 
 Do not start with a giant content calendar if the foundation is broken.
 
-![Month-to-month SEO decision framework](decision-framework.png)
-
 ## What Deliverables Should Look Like
 
 Deliverables should be plain enough to check.
@@ -99,8 +97,6 @@ Rankings matter.
 But rankings alone do not tell the whole story.
 
 You need to know whether the site is becoming easier to find and easier to act on.
-
-![Local SEO signal checklist](signal-checklist.png)
 
 Track this:
 
