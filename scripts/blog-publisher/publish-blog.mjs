@@ -210,9 +210,40 @@ function getSiteContext(existingPosts, internalUrls) {
   };
 }
 
+function normalizeClaim(value) {
+  return String(value || "")
+    .replace(/[–—]/g, "-")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function getApprovedClaimTokens() {
+  const sourceFiles = [
+    "public_html/index.html",
+    "public_html/about/index.html",
+    "public_html/services/index.html",
+    "public_html/pricing/index.html",
+    "public_html/free-strategy-call-offer/index.html",
+    "public_html/case-studies/africactn/index.html"
+  ].filter((file) => existsSync(path.join(ROOT, file)));
+
+  const claims = new Set();
+  const claimPattern = /\$\s?\d[\d,]*(?:\+)?(?:\s?[-–—]\s?\$\s?\d[\d,]*(?:\+)?)?(?:\s?\/\s?(?:month|mo|hour))?|\d+(?:\.\d+)?\s?%|\d+\s?[-–—]\s?\d+\s?(?:months?|days?|hours?|articles)/gi;
+
+  for (const file of sourceFiles) {
+    const text = stripHtml(read(file));
+    for (const match of text.matchAll(claimPattern)) {
+      claims.add(normalizeClaim(match[0]));
+    }
+  }
+
+  return claims;
+}
+
 function readQueue() {
   const queuePath = path.join(ROOT, "blog-automation/topic-queue.json");
-  const queue = JSON.parse(readFileSync(queuePath, "utf8"));
+  const queue = JSON.parse(readFileSync(queuePath, "utf8").replace(/^\uFEFF/, ""));
   if (!Array.isArray(queue.pending)) throw new Error("blog-automation/topic-queue.json must contain a pending array.");
   return { queuePath, queue };
 }
@@ -226,6 +257,28 @@ function readUsedTopics() {
     .map((line) => JSON.parse(line));
 }
 
+function chicagoParts(date = new Date()) {
+  const formatter = new Intl.DateTimeFormat("en-CA", {
+    timeZone: TIME_ZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    weekday: "short",
+    hourCycle: "h23"
+  });
+  return Object.fromEntries(formatter.formatToParts(date).map((part) => [part.type, part.value]));
+}
+
+function isTopicDue(topic) {
+  if (!topic.publishDate || !topic.publishTimeCT) return true;
+  const now = chicagoParts();
+  const nowKey = `${now.year}-${now.month}-${now.day}T${now.hour}:${now.minute}`;
+  const topicKey = `${topic.publishDate}T${topic.publishTimeCT}`;
+  return topicKey <= nowKey;
+}
+
 function selectTopic(queue, existingPosts, usedTopics) {
   const usedTitles = [
     ...existingPosts.map((post) => post.title),
@@ -233,12 +286,13 @@ function selectTopic(queue, existingPosts, usedTopics) {
   ].filter(Boolean);
 
   for (const topic of queue.pending) {
+    if (!isTopicDue(topic)) continue;
     const candidate = `${topic.topic} ${topic.angle || ""}`;
     const duplicate = usedTitles.some((used) => normalize(used) === normalize(topic.topic) || jaccard(used, candidate) >= 0.62);
     if (!duplicate) return topic;
   }
 
-  throw new Error("No safe unused topics remain in blog-automation/topic-queue.json.");
+  throw new Error("No safe due topics remain in blog-automation/topic-queue.json.");
 }
 
 function countWords(markdown) {
@@ -284,14 +338,7 @@ function chicagoTimestamp(date = new Date()) {
 
 function shouldRunNow() {
   if (force || process.env.GITHUB_EVENT_NAME !== "schedule") return true;
-  const formatter = new Intl.DateTimeFormat("en-US", {
-    timeZone: TIME_ZONE,
-    weekday: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-    hourCycle: "h23"
-  });
-  const parts = Object.fromEntries(formatter.formatToParts(new Date()).map((part) => [part.type, part.value]));
+  const parts = chicagoParts();
   const allowedHours = new Set(["08", "12", "16"]);
   const allowedDays = new Set(["Mon", "Tue", "Wed", "Thu", "Fri"]);
   const allowed = allowedDays.has(parts.weekday) && allowedHours.has(parts.hour) && parts.minute === "17";
@@ -343,34 +390,129 @@ function renderHeroImage(title) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
   <title id="title">${escapeXml(title)}</title>
-  <desc id="desc">Modern Russell Digital blog image with the article title centered.</desc>
+  <desc id="desc">Modern Russell Digital blog image with the article title centered over a clean search-growth dashboard.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f7f8fb"/>
-      <stop offset="0.48" stop-color="#eef2f7"/>
-      <stop offset="1" stop-color="#f9faf5"/>
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="0.45" stop-color="#edf6f4"/>
+      <stop offset="1" stop-color="#fff7ed"/>
     </linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#ff4f2e"/>
-      <stop offset="0.5" stop-color="#ffcc33"/>
-      <stop offset="1" stop-color="#14b8a6"/>
+      <stop offset="0" stop-color="#ff5a1f"/>
+      <stop offset="0.48" stop-color="#f8c32d"/>
+      <stop offset="1" stop-color="#0fba9f"/>
     </linearGradient>
     <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#151923" flood-opacity="0.12"/>
     </filter>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#dbe3ec" stroke-width="1" opacity="0.55"/>
+    </pattern>
   </defs>
   <rect width="1200" height="675" fill="url(#bg)"/>
-  <path d="M0 485 C160 445 244 538 405 493 C576 446 637 328 825 358 C984 383 1042 494 1200 447 L1200 675 L0 675 Z" fill="#ffffff" opacity="0.72"/>
-  <circle cx="160" cy="150" r="74" fill="#ffffff" opacity="0.78"/>
-  <circle cx="1040" cy="150" r="92" fill="#ffffff" opacity="0.7"/>
-  <rect x="186" y="138" width="828" height="398" rx="28" fill="#ffffff" filter="url(#softShadow)"/>
-  <rect x="226" y="178" width="748" height="8" rx="4" fill="url(#accent)"/>
-  <g fill="#151923" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800" letter-spacing="0">
+  <rect width="1200" height="675" fill="url(#grid)" opacity="0.5"/>
+  <path d="M78 517 C218 461 308 543 463 489 C620 434 674 321 862 349 C1019 373 1076 483 1200 447 L1200 675 L78 675 Z" fill="#ffffff" opacity="0.72"/>
+  <rect x="72" y="90" width="268" height="158" rx="24" fill="#ffffff" filter="url(#softShadow)" opacity="0.95"/>
+  <rect x="860" y="410" width="268" height="138" rx="24" fill="#ffffff" filter="url(#softShadow)" opacity="0.95"/>
+  <rect x="872" y="134" width="196" height="56" rx="18" fill="#ffffff" filter="url(#softShadow)" opacity="0.92"/>
+  <circle cx="112" cy="132" r="11" fill="#ff5a1f"/>
+  <circle cx="144" cy="132" r="11" fill="#f8c32d"/>
+  <circle cx="176" cy="132" r="11" fill="#0fba9f"/>
+  <rect x="112" y="169" width="168" height="12" rx="6" fill="#d8dee8"/>
+  <rect x="112" y="198" width="104" height="12" rx="6" fill="#d8dee8"/>
+  <path d="M900 505 L940 472 L984 492 L1031 445 L1087 466" fill="none" stroke="#0fba9f" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="904" y="444" width="174" height="14" rx="7" fill="#d8dee8"/>
+  <rect x="904" y="471" width="86" height="12" rx="6" fill="#d8dee8"/>
+  <rect x="908" y="151" width="124" height="12" rx="6" fill="#151923"/>
+  <rect x="908" y="172" width="82" height="8" rx="4" fill="#aeb8c8"/>
+  <rect x="186" y="126" width="828" height="423" rx="34" fill="#ffffff" filter="url(#softShadow)"/>
+  <rect x="230" y="170" width="740" height="9" rx="4.5" fill="url(#accent)"/>
+  <text x="600" y="238" text-anchor="middle" fill="#687386" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800">RUSSELL DIGITAL</text>
+  <g fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" letter-spacing="0">
       ${titleLines}
   </g>
-  <text x="600" y="470" text-anchor="middle" fill="#5c6472" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Russell Digital</text>
+  <text x="600" y="486" text-anchor="middle" fill="#5c6472" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">SEO strategy for businesses that need actual leads</text>
 </svg>
 `;
+}
+
+function renderDecisionImage(title) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(title)}</title>
+  <desc id="desc">A clean decision framework for evaluating SEO readiness.</desc>
+  <rect width="1200" height="720" rx="0" fill="#f8fafc"/>
+  <rect x="96" y="82" width="1008" height="556" rx="34" fill="#ffffff"/>
+  <rect x="132" y="122" width="936" height="10" rx="5" fill="#ff5a1f"/>
+  <text x="160" y="194" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900">SEO is worth it when the signals line up</text>
+  <text x="160" y="242" fill="#5f6b7c" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Demand, visibility, conversion, and capacity all have to make sense.</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="800">
+    <rect x="160" y="314" width="196" height="142" rx="22" fill="#fff7ed"/>
+    <text x="258" y="374" text-anchor="middle" fill="#111827" font-size="26">Demand</text>
+    <text x="258" y="413" text-anchor="middle" fill="#ff5a1f" font-size="46">01</text>
+    <rect x="386" y="314" width="196" height="142" rx="22" fill="#ecfeff"/>
+    <text x="484" y="374" text-anchor="middle" fill="#111827" font-size="26">Visibility</text>
+    <text x="484" y="413" text-anchor="middle" fill="#0fba9f" font-size="46">02</text>
+    <rect x="612" y="314" width="196" height="142" rx="22" fill="#fefce8"/>
+    <text x="710" y="374" text-anchor="middle" fill="#111827" font-size="26">Conversion</text>
+    <text x="710" y="413" text-anchor="middle" fill="#d99b00" font-size="46">03</text>
+    <rect x="838" y="314" width="196" height="142" rx="22" fill="#f1f5f9"/>
+    <text x="936" y="374" text-anchor="middle" fill="#111827" font-size="26">Follow-up</text>
+    <text x="936" y="413" text-anchor="middle" fill="#334155" font-size="46">04</text>
+  </g>
+  <path d="M204 536 H996" stroke="#d7dee8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M204 536 H742" stroke="#0fba9f" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="742" cy="536" r="22" fill="#0fba9f"/>
+  <text x="160" y="596" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">Do the boring checks before you buy the big strategy.</text>
+</svg>
+`;
+}
+
+function renderSignalImage(title) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(title)}</title>
+  <desc id="desc">A clean visual checklist for local SEO signals.</desc>
+  <rect width="1200" height="720" fill="#111827"/>
+  <circle cx="1030" cy="140" r="122" fill="#0fba9f" opacity="0.22"/>
+  <circle cx="176" cy="592" r="160" fill="#ff5a1f" opacity="0.16"/>
+  <rect x="106" y="86" width="988" height="548" rx="34" fill="#ffffff"/>
+  <text x="160" y="174" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900">${escapeXml(title)}</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="162" y="238" width="876" height="66" rx="18" fill="#f8fafc"/>
+    <circle cx="206" cy="271" r="14" fill="#0fba9f"/>
+    <text x="238" y="281" fill="#111827" font-size="25" font-weight="800">People are already searching for the service.</text>
+    <rect x="162" y="326" width="876" height="66" rx="18" fill="#f8fafc"/>
+    <circle cx="206" cy="359" r="14" fill="#f8c32d"/>
+    <text x="238" y="369" fill="#111827" font-size="25" font-weight="800">Your pages can turn visits into calls or forms.</text>
+    <rect x="162" y="414" width="876" height="66" rx="18" fill="#f8fafc"/>
+    <circle cx="206" cy="447" r="14" fill="#ff5a1f"/>
+    <text x="238" y="457" fill="#111827" font-size="25" font-weight="800">Your Google Business Profile is not dead weight.</text>
+    <rect x="162" y="502" width="876" height="66" rx="18" fill="#f8fafc"/>
+    <circle cx="206" cy="535" r="14" fill="#111827"/>
+    <text x="238" y="545" fill="#111827" font-size="25" font-weight="800">You can keep publishing and measuring without guessing.</text>
+  </g>
+</svg>
+`;
+}
+
+function injectArticleVisuals(body, slug) {
+  const firstImage = `![SEO decision framework](${slug}-decision-framework.svg)`;
+  const secondImage = `![Local SEO signal checklist](${slug}-signal-checklist.svg)`;
+  let nextBody = body;
+
+  if (!nextBody.includes(firstImage)) {
+    nextBody = nextBody.replace(/(\n## [^\n]+\n)/, `\n${firstImage}\n\n$1`);
+  }
+
+  if (!nextBody.includes(secondImage)) {
+    const marker = "\n## What to measure";
+    if (nextBody.includes(marker)) {
+      nextBody = nextBody.replace(marker, `\n${secondImage}\n${marker}`);
+    }
+  }
+
+  return nextBody;
 }
 
 function renderPost({ title, description, date, updated, image, body }) {
@@ -392,11 +534,34 @@ function renderPost({ title, description, date, updated, image, body }) {
   ].join("\n");
 }
 
+function removeUnsupportedClaimSentences(markdown, approvedClaims) {
+  const bannedLanguagePattern = /\b(guarantee(?:d|s)?|#1|number one|limited spots|limited time|certified partner|official partner|proprietary AI|exclusive data)\b/i;
+  const claimPattern = /\$\s?\d[\d,]*(?:\+)?(?:\s?[-–—]\s?\$\s?\d[\d,]*(?:\+)?)?(?:\s?\/\s?(?:month|mo|hour))?|\d+(?:\.\d+)?\s?%/gi;
+  const hasUnsupportedClaim = (sentence) => {
+    if (bannedLanguagePattern.test(sentence)) return true;
+    for (const match of sentence.matchAll(claimPattern)) {
+      if (!approvedClaims.has(normalizeClaim(match[0]))) return true;
+    }
+    return false;
+  };
+
+  return markdown
+    .split(/\n{2,}/)
+    .map((block) => {
+      if (/^#{1,6}\s/.test(block.trim())) return block;
+      const sentences = block.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g) || [block];
+      const kept = sentences.filter((sentence) => !hasUnsupportedClaim(sentence));
+      return kept.join(" ").replace(/\s+/g, " ").trim();
+    })
+    .filter(Boolean)
+    .join("\n\n");
+}
+
 function validationError(message, details = {}) {
   return { ok: false, message, details };
 }
 
-function validateDraft({ markdown, slug, blogFolder, existingPosts, usedTopics, internalUrls }) {
+function validateDraft({ markdown, slug, blogFolder, existingPosts, usedTopics, internalUrls, approvedClaims }) {
   const parsed = parseFrontMatter(markdown);
   if (!parsed) return validationError("Draft is missing YAML front matter.");
 
@@ -441,9 +606,15 @@ function validateDraft({ markdown, slug, blogFolder, existingPosts, usedTopics, 
     .filter((paragraph) => paragraph.split(" ").length >= 12);
   if (new Set(paragraphs).size !== paragraphs.length) return validationError("Draft contains duplicate paragraphs.");
 
-  const prohibited = /\b(guarantee(?:d|s)?|#1|number one|limited spots|limited time|certified partner|official partner|proprietary AI|exclusive data)\b|(?:\d+(?:\.\d+)?\s?%)|(?:\$\s?\d+)/i;
-  const prohibitedMatch = markdown.match(prohibited);
-  if (prohibitedMatch) return validationError("Draft contains a prohibited or unsupported claim pattern.", { match: prohibitedMatch[0] });
+  const bannedLanguage = markdown.match(/\b(guarantee(?:d|s)?|#1|number one|limited spots|limited time|certified partner|official partner|proprietary AI|exclusive data)\b/i);
+  if (bannedLanguage) return validationError("Draft contains a prohibited claim pattern.", { match: bannedLanguage[0] });
+
+  const claimPattern = /\$\s?\d[\d,]*(?:\+)?(?:\s?[-–—]\s?\$\s?\d[\d,]*(?:\+)?)?(?:\s?\/\s?(?:month|mo|hour))?|\d+(?:\.\d+)?\s?%/gi;
+  for (const claim of markdown.matchAll(claimPattern)) {
+    if (!approvedClaims.has(normalizeClaim(claim[0]))) {
+      return validationError("Draft contains an unsupported numeric or pricing claim.", { match: claim[0] });
+    }
+  }
 
   const urlSet = new Set(internalUrls);
   const links = markdownLinks(parsed.body);
@@ -468,9 +639,24 @@ async function generateArticle({ topic, siteContext, existingPosts, internalUrls
     "You write blog posts for Russell Digital.",
     "Use only the company and website facts supplied in the prompt.",
     "Do not invent products, prices, statistics, locations, guarantees, customer stories, laws, deadlines, certifications, or company claims.",
+    "Never use rankings like #1, guaranteed-result language, or unsupported numerical claims.",
+    "You may use pricing, plan names, and numeric claims only when they are explicitly included in the supplied site facts or topic brief.",
     "Match the direct, practical style of the existing Russell Digital blog samples.",
     "Write like the current posts on russelldigitalads.com/blog: plainspoken, specific, direct, occasionally blunt, and focused on what business owners actually need to know.",
+    "Open with the problem in plain English, then give the honest answer quickly.",
+    "Use mostly short and medium sentences. Do not stack abstract ideas together.",
+    "Keep most paragraphs between one and three sentences. Avoid walls of text.",
+    "Lead with the practical instruction. Add the explanation after it.",
+    "Use bold-label bullets for checks, mistakes, red flags, document-style lists, or decision points.",
+    "Use numbered lists only when the actions must happen in order.",
+    "Do not put more than three normal paragraphs in a row without a useful heading, list, or numbered process.",
+    "Repeat the main term naturally when needed instead of overusing vague pronouns.",
+    "Use direct cause and effect for SEO topics: weak page -> fewer calls, missing tracking -> bad decisions, thin service pages -> weaker rankings.",
+    "Allow slightly uneven section lengths. A slightly uneven article is better than a perfectly symmetrical one.",
+    "Use plain observations like 'This is where businesses usually get stuck.' when they fit.",
+    "Use bolded takeaways, practical bullets, red flags, and FAQ sections when they fit the topic.",
     "Avoid polished SaaS-marketing filler, inflated adjectives, em dashes, fake urgency, and generic AI-sounding phrasing.",
+    "Avoid formal transitions like additionally, furthermore, in today's landscape, unlock, leverage, seamless, robust, game-changing, and tailored solutions.",
     "Use short sections with useful H2/H3 headings, conversational explanations, and concrete checks or examples that can be supported by the supplied site context.",
     "Do not copy paragraphs from the samples; learn the cadence and point of view.",
     "Return only valid JSON with keys: title, description, body.",
@@ -539,7 +725,7 @@ async function generateArticle({ topic, siteContext, existingPosts, internalUrls
   return parseJsonOutput(extractResponseText(data));
 }
 
-function writeGeneratedPost({ article, topic, blogFolder, existingPosts, usedTopics, internalUrls }) {
+function writeGeneratedPost({ article, topic, blogFolder, existingPosts, usedTopics, internalUrls, approvedClaims }) {
   const timestamp = chicagoTimestamp();
   const title = String(article.title || topic.topic || "").trim();
   const description = String(article.description || "").trim();
@@ -551,16 +737,18 @@ function writeGeneratedPost({ article, topic, blogFolder, existingPosts, usedTop
     date: timestamp,
     updated: timestamp,
     image: imageName,
-    body: String(article.body || "").trim()
+    body: injectArticleVisuals(removeUnsupportedClaimSentences(String(article.body || "").trim(), approvedClaims), slug)
   });
 
-  const validation = validateDraft({ markdown, slug, blogFolder, existingPosts, usedTopics, internalUrls });
+  const validation = validateDraft({ markdown, slug, blogFolder, existingPosts, usedTopics, internalUrls, approvedClaims });
   if (!validation.ok) return { ok: false, validation, markdown, slug };
 
   const postDir = path.join(ROOT, blogFolder, slug);
   mkdirSync(postDir, { recursive: true });
   writeFileSync(path.join(postDir, "index.md"), markdown, "utf8");
   writeFileSync(path.join(postDir, imageName), renderHeroImage(title), "utf8");
+  writeFileSync(path.join(postDir, `${slug}-decision-framework.svg`), renderDecisionImage("SEO decision framework"), "utf8");
+  writeFileSync(path.join(postDir, `${slug}-signal-checklist.svg`), renderSignalImage("Local SEO signal checklist"), "utf8");
 
   return { ok: true, slug, title, description, wordCount: validation.wordCount };
 }
@@ -596,6 +784,9 @@ function saveQueueAndHistory({ queuePath, queue, topic, result }) {
     title: result.title,
     slug: result.slug,
     topic: topic.topic,
+    publishDate: topic.publishDate || null,
+    publishTimeCT: topic.publishTimeCT || null,
+    sourceId: topic.sourceId || null,
     publishedAt: chicagoTimestamp(),
     source: "automated-publisher"
   };
@@ -619,6 +810,7 @@ async function main() {
   const internalUrls = getInternalUrls(existingPosts);
   const { queuePath, queue } = readQueue();
   const usedTopics = readUsedTopics();
+  const approvedClaims = getApprovedClaimTokens();
 
   group("Repository inventory", () => {
     console.log(`Existing posts: ${existingPosts.length}`);
@@ -626,6 +818,7 @@ async function main() {
     console.log(`Pending topics: ${queue.pending.length}`);
     console.log(`Used topic records: ${usedTopics.length}`);
     console.log(`Minimum word count: ${MIN_WORDS}`);
+    console.log(`Approved site claim tokens: ${approvedClaims.size}`);
   });
 
   const topic = selectTopic(queue, existingPosts, usedTopics);
@@ -661,7 +854,8 @@ async function main() {
       blogFolder,
       existingPosts,
       usedTopics,
-      internalUrls
+      internalUrls,
+      approvedClaims
     });
 
     if (!result.ok) {

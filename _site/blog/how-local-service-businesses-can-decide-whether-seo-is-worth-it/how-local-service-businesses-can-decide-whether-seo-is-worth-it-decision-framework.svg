@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">SEO decision framework</title>
+  <desc id="desc">A clean decision framework for evaluating SEO readiness.</desc>
+  <rect width="1200" height="720" fill="#f8fafc"/>
+  <rect x="96" y="82" width="1008" height="556" rx="34" fill="#ffffff"/>
+  <rect x="132" y="122" width="936" height="10" rx="5" fill="#ff5a1f"/>
+  <text x="160" y="194" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900">SEO is worth it when the signals line up</text>
+  <text x="160" y="242" fill="#5f6b7c" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Demand, visibility, conversion, and capacity all have to make sense.</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="800">
+    <rect x="160" y="314" width="196" height="142" rx="22" fill="#fff7ed"/>
+    <text x="258" y="374" text-anchor="middle" fill="#111827" font-size="26">Demand</text>
+    <text x="258" y="413" text-anchor="middle" fill="#ff5a1f" font-size="46">01</text>
+    <rect x="386" y="314" width="196" height="142" rx="22" fill="#ecfeff"/>
+    <text x="484" y="374" text-anchor="middle" fill="#111827" font-size="26">Visibility</text>
+    <text x="484" y="413" text-anchor="middle" fill="#0fba9f" font-size="46">02</text>
+    <rect x="612" y="314" width="196" height="142" rx="22" fill="#fefce8"/>
+    <text x="710" y="374" text-anchor="middle" fill="#111827" font-size="26">Conversion</text>
+    <text x="710" y="413" text-anchor="middle" fill="#d99b00" font-size="46">03</text>
+    <rect x="838" y="314" width="196" height="142" rx="22" fill="#f1f5f9"/>
+    <text x="936" y="374" text-anchor="middle" fill="#111827" font-size="26">Follow-up</text>
+    <text x="936" y="413" text-anchor="middle" fill="#334155" font-size="46">04</text>
+  </g>
+  <path d="M204 536 H996" stroke="#d7dee8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M204 536 H742" stroke="#0fba9f" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="742" cy="536" r="22" fill="#0fba9f"/>
+  <text x="160" y="596" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">Do the boring checks before you buy the big strategy.</text>
+</svg>

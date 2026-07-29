@@ -18,12 +18,20 @@ permalink: /blog/
     </div>
 
     <section class="rd-blog-list-section">
-      <div class="rd-blog-grid">
+      <div class="rd-blog-grid" data-blog-grid>
         {% for post in collections.blog | reverse %}
-          <article class="rd-blog-card">
+          {% set postImage %}{% if post.data.image %}{{ post.url }}{{ post.data.image }}{% else %}/assets/blog-background-placeholder.png{% endif %}{% endset %}
+          <article class="rd-blog-card" data-blog-card{% if loop.index > 9 %} hidden{% endif %}>
             <a class="rd-blog-card-image-link" href="{{ post.url }}">
               <img
-                src="{% if post.data.image %}{{ post.url }}{{ post.data.image }}{% else %}/assets/blog-background-placeholder.png{% endif %}"
+                {% if loop.index <= 9 %}
+                  src="{{ postImage | trim }}"
+                  loading="{% if loop.index <= 3 %}eager{% else %}lazy{% endif %}"
+                {% else %}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3C/svg%3E"
+                  data-src="{{ postImage | trim }}"
+                  loading="lazy"
+                {% endif %}
                 alt="{{ post.data.title }}"
                 class="rd-blog-card-image">
             </a>
@@ -52,6 +60,52 @@ permalink: /blog/
           </article>
         {% endfor %}
       </div>
+
+      {% if collections.blog.length > 9 %}
+        <div class="rd-blog-load-more-wrap">
+          <button class="rd-blog-load-more" type="button" data-blog-load-more>
+            Load more articles
+          </button>
+        </div>
+      {% endif %}
     </section>
   </div>
 </section>
+
+<script>
+  (() => {
+    const cards = Array.from(document.querySelectorAll("[data-blog-card]"));
+    const button = document.querySelector("[data-blog-load-more]");
+    const batchSize = 9;
+    let visibleCount = 9;
+
+    if (!button || cards.length <= visibleCount) return;
+
+    const revealCard = (card) => {
+      card.hidden = false;
+      const image = card.querySelector("img[data-src]");
+      if (image) {
+        image.src = image.dataset.src;
+        image.removeAttribute("data-src");
+      }
+    };
+
+    const updateButton = () => {
+      const remaining = cards.length - visibleCount;
+      if (remaining <= 0) {
+        button.closest(".rd-blog-load-more-wrap").hidden = true;
+        return;
+      }
+      button.textContent = `Load ${Math.min(batchSize, remaining)} more articles`;
+    };
+
+    button.addEventListener("click", () => {
+      const nextVisibleCount = Math.min(visibleCount + batchSize, cards.length);
+      cards.slice(visibleCount, nextVisibleCount).forEach(revealCard);
+      visibleCount = nextVisibleCount;
+      updateButton();
+    });
+
+    updateButton();
+  })();
+</script>
