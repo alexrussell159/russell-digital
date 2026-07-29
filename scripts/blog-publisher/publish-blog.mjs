@@ -322,7 +322,7 @@ function countWords(markdown) {
 }
 
 function markdownLinks(markdown) {
-  return [...markdown.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)].map((match) => match[1].trim());
+  return [...markdown.matchAll(/(?<!!)\[[^\]]+\]\(([^)]+)\)/g)].map((match) => match[1].trim());
 }
 
 function extractResponseText(data) {
