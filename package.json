@@ -6,7 +6,9 @@
   "scripts": {
     "start": "npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy",
-    "decap-server": "npx decap-server"
+    "decap-server": "npx decap-server",
+    "blog:publish": "node scripts/blog-publisher/publish-blog.mjs",
+    "blog:dry-run": "node scripts/blog-publisher/publish-blog.mjs --dry-run --force"
   },
   "repository": {
     "type": "git",

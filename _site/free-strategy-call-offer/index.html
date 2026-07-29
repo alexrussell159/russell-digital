@@ -34,13 +34,16 @@
     }
 
     .lp .container {
-      max-width: 1100px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 32px;
     }
 
     /* Announcement bar */
     .lp-announce {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       background: #111;
       color: #fff;
       text-align: center;
@@ -48,9 +51,83 @@
       font-size: 14px;
     }
 
+    .lp-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1001;
+      background: #fff;
+      border-bottom: 1px solid #ece7e1;
+      padding: 14px 32px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      height: 74px;
+      display: flex;
+      align-items: center;
+    }
+
+    .lp-topbar .lp-topbar-inner {
+      max-width: 1800px;
+      width: min(100%, 1800px);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding: 0 24px;
+    }
+
+    .lp-topbar .lp-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #111;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .lp-topbar .lp-logo img {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .lp-topbar .lp-logo span {
+      display: none;
+    }
+
+    .lp-topbar .lp-topbar-actions {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .lp-topbar .lp-topbar-actions .lp-btn {
+      padding: 10px 18px;
+      font-size: 14px;
+      border-radius: 999px;
+      box-shadow: none;
+      white-space: nowrap;
+    }
+
+    .lp-topbar .lp-topbar-actions {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .lp-topbar .lp-topbar-actions .lp-btn {
+      padding: 10px 16px;
+      font-size: 12px;
+      border-radius: 999px;
+      box-shadow: none;
+    }
+
     .lp-announce .tag {
       display: inline-block;
-      background: #f25c1f;
+      background: #1a56f0;
       color: #fff;
       font-weight: 700;
       padding: 2px 8px;
@@ -67,10 +144,23 @@
 
     /* Hero */
     .lp-hero {
-      background: linear-gradient(180deg, #0b0b0b 0%, #1a1a1a 100%);
-      color: #fff;
-      padding: 70px 0 80px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f5ef 100%);
+      color: #111;
+      padding: 34px 0 26px;
       text-align: center;
+      min-height: calc(100vh - 74px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lp-hero .container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
     }
 
     .lp-hero .eyebrow {
@@ -78,7 +168,7 @@
       text-transform: uppercase;
       font-size: 13px;
       letter-spacing: 0.18em;
-      color: #f25c1f;
+      color: #1a56f0;
       font-weight: 600;
       margin-bottom: 18px;
     }
@@ -86,15 +176,15 @@
     .lp-hero h1 {
       font-size: clamp(34px, 5vw, 58px);
       max-width: 900px;
-      margin: 0 auto 18px;
+      margin: 0 auto 16px;
     }
 
     .lp-hero h2 {
       font-size: clamp(18px, 2vw, 24px);
       font-weight: 400;
-      color: #cfcfcf;
+      color: #5d5954;
       max-width: 780px;
-      margin: 0 auto 40px;
+      margin: 0 auto 24px;
       font-family: 'DM Sans', sans-serif;
     }
 
@@ -139,13 +229,13 @@
       width: 72px;
       height: 72px;
       border-radius: 50%;
-      background: #f25c1f;
+      background: #1a56f0;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 32px;
       margin: 0 auto 14px;
-      box-shadow: 0 10px 40px rgba(242, 92, 31, 0.5);
+      box-shadow: 0 10px 40px rgba(26, 86, 240, 0.35);
     }
 
     .unmute-text {
@@ -169,7 +259,7 @@
     /* Buttons */
     .lp-btn {
       display: inline-block;
-      background: #f25c1f;
+      background: #1a56f0;
       color: #fff;
       text-decoration: none;
       font-family: 'Syne', sans-serif;
@@ -182,29 +272,29 @@
       border: none;
       cursor: pointer;
       transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 8px 24px rgba(242, 92, 31, 0.3);
+      box-shadow: 0 8px 24px rgba(26, 86, 240, 0.25);
     }
 
 
     .lp-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(242, 92, 31, 0.4);
+      box-shadow: 0 12px 32px rgba(26, 86, 240, 0.3);
     }
 
     .lp-hero p.intro {
       max-width: 720px;
-      margin: 30px auto 28px;
-      color: #d8d8d8;
+      margin: 18px auto 20px;
+      color: #4b4843;
       font-size: 17px;
     }
 
     .lp-hero p.intro strong {
-      color: #fff;
+      color: #111;
     }
 
     /* Testimonials / Social proof strip */
     .lp-social {
-      background: #f6f5f2;
+      background: #fcfbf8;
       padding: 60px 0;
     }
 
@@ -225,7 +315,7 @@
       border-radius: 10px;
       padding: 28px;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-      border-left: 4px solid #f25c1f;
+      border-left: 4px solid #1a56f0;
     }
 
     .lp-quote p {
@@ -276,7 +366,7 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 36px;
       font-weight: 800;
-      color: #f25c1f;
+      color: #1a56f0;
       line-height: 1;
     }
 
@@ -297,7 +387,7 @@
 
     /* FAQ-style accordions */
     .lp-faq {
-      background: #f6f5f2;
+      background: #fcfbf8;
       padding: 80px 0;
     }
 
@@ -342,7 +432,7 @@
     .lp-faq summary::after {
       content: "+";
       font-size: 28px;
-      color: #f25c1f;
+      color: #1a56f0;
       font-weight: 400;
       transition: transform 0.2s;
     }
@@ -362,8 +452,8 @@
 
     /* Final CTA */
     .lp-final {
-      background: #0b0b0b;
-      color: #fff;
+      background: #fff;
+      color: #111;
       text-align: center;
       padding: 90px 0;
     }
@@ -375,7 +465,7 @@
     }
 
     .lp-final p {
-      color: #bfbfbf;
+      color: #5d5954;
       max-width: 640px;
       margin: 0 auto 36px;
       font-size: 17px;
@@ -396,19 +486,52 @@
       min-height: 680px;
     }
 
-    @media (max-width: 600px) {
-      .lp-cal-wrap {
-        padding: 10px;
-        min-height: 640px;
+    @media (max-width: 900px) {
+      .lp-topbar {
+        padding: 14px 16px;
+        height: auto;
+      }
+
+      .lp-topbar .lp-topbar-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0;
+      }
+
+      .lp-topbar .lp-topbar-actions {
+        margin-left: 0;
+      }
+
+      .lp-topbar .lp-btn {
+        width: auto;
+        padding: 12px 20px;
+      }
+
+      .lp-hero {
+        padding: 36px 16px 24px;
+        min-height: calc(100vh - 72px);
+      }
+
+      .lp-hero h1 {
+        font-size: clamp(30px, 7vw, 48px);
+      }
+
+      .lp-hero h2 {
+        max-width: 100%;
+        margin-bottom: 18px;
+      }
+
+      .lp-hero p.intro {
+        margin-bottom: 18px;
+      }
+
+      .lp-hero .hero-image {
+        max-height: 200px;
       }
 
       .lp-benefit {
         grid-template-columns: 1fr;
         text-align: center;
-      }
-
-      .lp-hero {
-        padding: 50px 0 60px;
       }
 
       .lp-benefits,
@@ -430,27 +553,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- THIS IS WHERE THE PAGE CONTENT BEGINS -->
   <main class="lp">
 
-    <!-- Announcement bar -->
-    <div class="lp-announce">
-      <span class="tag">NEW</span>
-      <strong>Local Business Owners:</strong> Limited free SEO audits available this month —
-      <a href="#book">see if you qualify</a>
+    <div class="lp-topbar">
+      <div class="lp-topbar-inner">
+        <a href="/" class="lp-logo" aria-label="Russell Digital home">
+          <img src="/assets/russell-digital-favicon.png" alt="Russell Digital logo">
+        </a>
+        <div class="lp-topbar-actions">
+          <a href="#book" class="lp-btn">Get my Free Proposal</a>
+        </div>
+      </div>
     </div>
 
     <!-- Hero -->
     <section class="lp-hero">
       <div class="container">
         <div class="eyebrow">SEO Marketing for Local Businesses</div>
-        <h1>Is your website invisible on Google?</h1>
-        <h2>We help Local businesses rank #1 locally — and turn search traffic into paying customers.</h2>
-        <img class="hero-image" src="/assets/africactn-search-impressions.png" alt="Search Impressions" style="max-width: 100%; height: auto; margin: 0 auto 24px; display: block; border-radius:12px;">
+        <h1>Outrank Your Competitors with High-Volume SEO Services</h1>
+        <h2>Join a limited group of local businesses who have grown their online visibility by <b>more than 500%</b>.</h2>
+        <img class="hero-image" src="/assets/africactn-search-impressions.png" alt="Search Impressions" style="max-width: 100%; max-height: 240px; height: auto; margin: 0 auto 24px; display: block; border-radius:12px;">
 
         <p class="intro">
-          It's a <strong>free 30-minute strategy call</strong> where you'll get a personalized SEO breakdown of your
-          website from the team that's ranked local businesses on page one of Google.
+          It's a <strong>free SEO proposal</strong> and customized roadmap for your
+          business from the team that's changed the industry with <b>high-volume SEO services</b>.
         </p>
 
-        <a href="#book" class="lp-btn">I'M READY TO RANK</a>
+        <a href="#book" class="lp-btn">Get my Free Proposal</a>
       </div>
     </section>
 
@@ -510,7 +637,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="lp-cta-center">
-          <a href="#book" class="lp-btn">I'M READY TO RANK</a>
+          <a href="#book" class="lp-btn">Get my Free Proposal</a>
         </div>
       </div>
     </section>
@@ -518,7 +645,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="lp-final" id="book">
       <div class="container">
         <h2>Ready to stop losing customers to your competitors?</h2>
-        <p>Book your free SEO strategy call below. Spots are limited each week so we can give every business the
+        <p>Claim your free SEO proposal below. Spots are limited each week so we can give every business the
           attention it deserves.</p>
 
 
@@ -584,7 +711,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="lp-cta-center">
-        <a href="#book" class="lp-btn">I'M READY TO RANK</a>
+        <a href="#book" class="lp-btn">Get my Free Proposal</a>
       </div>
     </section>
 
