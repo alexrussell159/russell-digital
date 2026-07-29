@@ -7,7 +7,7 @@ import zlib from "node:zlib";
 const ROOT = process.cwd();
 const TIME_ZONE = "America/Chicago";
 const SITE_URL = "https://russelldigitalads.com";
-const MIN_WORDS = Number(process.env.BLOG_MIN_WORDS || 900);
+const MIN_WORDS = Number(process.env.BLOG_MIN_WORDS || 650);
 const MODEL = process.env.OPENAI_MODEL || "gpt-5-mini";
 const args = new Set(process.argv.slice(2));
 const dryRun = args.has("--dry-run");

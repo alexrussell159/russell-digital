@@ -6,7 +6,7 @@ Use this as the controlling writing brief for Russell Digital blog posts, SEO pa
 
 The article should sound like a practical SEO operator explaining what matters to a business owner who wants more qualified leads from search. Keep it direct, useful, and grounded in what Russell Digital actually says on russelldigitalads.com.
 
-Do not write like a generic marketing agency. Do not write like an AI summary. Do not use AfricaCTN facts, shipping language, CTN terminology, port language, country pages, certificates, customs rules, or any logistics framing.
+Do not write like a generic marketing agency. Do not write long blog-prose sections. Do not use AfricaCTN facts, shipping language, CTN terminology, port language, country pages, certificates, customs rules, or any logistics framing.
 
 ## Source Rules
 
@@ -30,14 +30,16 @@ If a fact is not on Russell Digital or in the topic brief, leave it out.
 
 Write like a hands-on SEO consultant talking to a busy owner:
 
+- Structure the article like an AI Overview expanded into a practical guide
 - Start with the answer
+- Use a compact "Quick Answer" or answer-first section near the top
 - Be plain and specific
-- Use short and medium sentences
+- Use short sentences by default
 - Explain cause and effect
 - Say what to fix before explaining why
 - Use examples a local business would recognize
 - Sound confident without hype
-- Keep paragraphs tight
+- Keep paragraphs very tight
 - Let the article feel slightly uneven and human
 
 Do not use:
@@ -72,18 +74,59 @@ Assume they are smart but busy. Do not bury the answer.
 
 ## Article Shape
 
-Default target: 900 to 1,200 words.
+Default target: 650 to 900 words. Go longer only when every added section is useful.
 
 Use:
 
-- A direct opening of two or three short paragraphs
-- Five to seven useful H2 sections
+- A direct opening of three to five very short paragraphs
+- A "Quick Answer" section near the top when it fits
+- Six to nine useful H2 sections
 - H3s only when a subsection truly needs them
 - Bullets for checks, mistakes, deliverables, red flags, and examples
 - Numbered steps only when the order matters
 - A short CTA near the end that points to a valid Russell Digital internal URL
 
 Do not force a FAQ. Add one only when it answers useful search questions not already handled in the body.
+
+## AI Overview Shape
+
+Most articles should open like this:
+
+1. One short answer sentence.
+2. One or two short explanation paragraphs.
+3. A compact bullet list that answers the main query.
+4. Then move into short H2 sections.
+
+Example rhythm:
+
+```markdown
+Focused service pages help local businesses attract better leads because they match one specific search intent.
+
+That is the short answer.
+
+A homepage has to explain the whole business. A focused service page only has to explain one service, one customer need, and one next step.
+
+## Quick Answer
+
+A good service page should tell the visitor:
+
+- what the service is
+- where it is available
+- who it is for
+- what is included
+- what to do next
+```
+
+Do not open with a long introduction. Do not announce the article. Do not write "In this guide."
+
+## Paragraph Rules
+
+- Most paragraphs should be one or two sentences.
+- Three sentences is okay when the idea needs it.
+- Avoid long paragraphs unless there is a clear reason.
+- Put a heading before the reader starts wondering what the section is about.
+- Use bullets when a paragraph starts listing checks, mistakes, deliverables, or signals.
+- Never jam multiple numbered steps into one paragraph.
 
 ## Internal Links
 
