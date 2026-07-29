@@ -22,6 +22,7 @@ module.exports = function (eleventyConfig) {
 
 
   eleventyConfig.addPassthroughCopy({ "public_html/index.html": "index.html" });
+  eleventyConfig.addPassthroughCopy({ "public_html/robots.txt": "robots.txt" });
   eleventyConfig.addPassthroughCopy({ "admin": "admin" });
 
   eleventyConfig.addPassthroughCopy("public_html/src/blog/**/*.png");

@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import zlib from "node:zlib";
@@ -1200,6 +1200,15 @@ function saveQueueAndHistory({ queuePath, queue, topic, result, publishSlotCT })
   writeFileSync(historyPath, `${existing}${existing ? "\n" : ""}${JSON.stringify(entry)}\n`, "utf8");
 }
 
+function writeGitHubOutput(values) {
+  const outputPath = process.env.GITHUB_OUTPUT;
+  if (!outputPath) return;
+  const lines = Object.entries(values)
+    .filter(([, value]) => value !== undefined && value !== null)
+    .map(([key, value]) => `${key}=${String(value).replace(/\r?\n/g, " ")}`);
+  if (lines.length) appendFileSync(outputPath, `${lines.join("\n")}\n`, "utf8");
+}
+
 async function main() {
   if (!shouldRunNow()) {
     console.log("Skipping because this is not one of the configured America/Chicago publish times.");
@@ -1296,7 +1305,15 @@ async function main() {
 
   saveQueueAndHistory({ queuePath, queue, topic, result, publishSlotCT });
 
+  const postUrl = `${SITE_URL}/blog/${result.slug}/`;
+  writeGitHubOutput({
+    post_slug: result.slug,
+    post_url: postUrl,
+    sitemap_url: `${SITE_URL}/sitemap.xml`
+  });
+
   console.log(`Generated article: public_html/src/blog/${result.slug}/index.md`);
+  console.log(`URL: ${postUrl}`);
   console.log(`Title: ${result.title}`);
   console.log(`Word count: ${result.wordCount}`);
 }

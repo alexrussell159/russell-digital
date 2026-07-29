@@ -25,3 +25,23 @@ Add `OPENAI_API_KEY` as a GitHub Actions secret. Do not commit API keys.
 
 Optionally set repository variable `OPENAI_BLOG_MODEL`; otherwise the workflow
 uses `gpt-5-mini`.
+
+## Google Search Console notification
+
+After a generated post is committed, the workflow can resubmit
+`https://russelldigitalads.com/sitemap.xml` to Google Search Console. This is
+Google's supported API path for alerting Google to normal blog URLs at scale.
+
+Add these GitHub Actions secrets:
+
+```text
+GOOGLE_SEARCH_CONSOLE_CLIENT_EMAIL
+GOOGLE_SEARCH_CONSOLE_PRIVATE_KEY
+```
+
+Create them from a Google Cloud service account with the Search Console API
+enabled, then add that service account email as an owner or full user on the
+Search Console property. If the Search Console property is a domain property,
+set repository variable `GSC_SITE_URL` to the exact property ID, for example
+`sc-domain:russelldigitalads.com`. Otherwise the workflow uses the URL-prefix
+property `https://russelldigitalads.com/`.

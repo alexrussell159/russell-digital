@@ -36,6 +36,7 @@ jobs:
         run: npm ci
 
       - name: Generate and validate article
+        id: generate
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_BLOG_MODEL || 'gpt-5-mini' }}
@@ -53,3 +54,13 @@ jobs:
           fi
           git commit -m "Publish automated blog post"
           git push origin main
+
+      - name: Submit updated sitemap to Google Search Console
+        if: steps.generate.outputs.post_url != ''
+        env:
+          GOOGLE_SEARCH_CONSOLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_SEARCH_CONSOLE_CLIENT_EMAIL }}
+          GOOGLE_SEARCH_CONSOLE_PRIVATE_KEY: ${{ secrets.GOOGLE_SEARCH_CONSOLE_PRIVATE_KEY }}
+          GSC_SITE_URL: ${{ vars.GSC_SITE_URL || 'https://russelldigitalads.com/' }}
+          GSC_SITEMAP_URL: ${{ steps.generate.outputs.sitemap_url }}
+          POST_URL: ${{ steps.generate.outputs.post_url }}
+        run: npm run gsc:submit-sitemap

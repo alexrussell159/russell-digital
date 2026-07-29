@@ -8,7 +8,8 @@
     "build": "npx @11ty/eleventy",
     "decap-server": "npx decap-server",
     "blog:publish": "node scripts/blog-publisher/publish-blog.mjs",
-    "blog:dry-run": "node scripts/blog-publisher/publish-blog.mjs --dry-run --force"
+    "blog:dry-run": "node scripts/blog-publisher/publish-blog.mjs --dry-run --force",
+    "gsc:submit-sitemap": "node scripts/google-search-console/submit-sitemap.mjs"
   },
   "repository": {
     "type": "git",
