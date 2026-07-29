@@ -325,6 +325,29 @@ function markdownLinks(markdown) {
   return [...markdown.matchAll(/(?<!!)\[[^\]]+\]\(([^)]+)\)/g)].map((match) => match[1].trim());
 }
 
+function preferredInternalUrl(internalUrls) {
+  const preferred = [
+    "/free-strategy-call-offer/",
+    "/services/",
+    "/pricing/",
+    "/case-studies/africactn/",
+    "/blog/"
+  ];
+  return preferred.find((url) => internalUrls.includes(url)) || internalUrls.find((url) => url !== "/") || "/";
+}
+
+function ensureInternalLink(body, internalUrls) {
+  if (markdownLinks(body).length) return body;
+  const url = preferredInternalUrl(internalUrls);
+  return [
+    body.trim(),
+    "",
+    "## Next step",
+    "",
+    `If you want a second set of eyes on the opportunity, start with a [free strategy call](${url}) and use it to pressure-test the next move.`
+  ].join("\n");
+}
+
 function extractResponseText(data) {
   if (typeof data.output_text === "string") return data.output_text;
   const chunks = [];
@@ -1001,13 +1024,15 @@ async function writeGeneratedPost({ article, topic, blogFolder, existingPosts, u
   const description = String(article.description || "").trim();
   const slug = slugify(article.slug || title);
   const imageName = `${slug}.png`;
+  const cleanedBody = removeUnsupportedClaimSentences(String(article.body || "").trim(), approvedClaims);
+  const body = ensureInternalLink(injectArticleVisuals(cleanedBody, slug), internalUrls);
   const markdown = renderPost({
     title,
     description,
     date: timestamp,
     updated: timestamp,
     image: imageName,
-    body: injectArticleVisuals(removeUnsupportedClaimSentences(String(article.body || "").trim(), approvedClaims), slug)
+    body
   });
 
   const validation = validateDraft({ markdown, slug, blogFolder, existingPosts, usedTopics, internalUrls, approvedClaims });
