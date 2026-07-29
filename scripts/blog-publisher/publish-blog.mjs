@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import zlib from "node:zlib";
 
 const ROOT = process.cwd();
 const TIME_ZONE = "America/Chicago";
@@ -208,6 +209,27 @@ function getSiteContext(existingPosts, internalUrls) {
     postSamples,
     internalUrls: internalUrls.join("\n")
   };
+}
+
+function getWritingStyleGuide() {
+  return [
+    "Use the AfricaCTN circular style as the writing model, adapted to Russell Digital SEO content.",
+    "Do not use AfricaCTN shipping facts, terms, products, countries, ports, certificates, or CTN content. Style only.",
+    "Start with the answer. Do not open with broad background.",
+    "Use short and medium sentences. Long sentences are okay only when listing closely related practical details.",
+    "Keep most paragraphs one to three sentences.",
+    "Use direct cause and effect: weak service page -> fewer calls, missing tracking -> bad decisions, slow site -> lower trust, unclear offer -> weaker conversion.",
+    "Use specific SEO terms repeatedly when useful: service page, Google Business Profile, Search Console, call tracking, local intent, organic traffic, landing page.",
+    "Lead with the practical instruction. Add the explanation after it.",
+    "Use bold-label bullets for checks, requirements, red flags, and common mistakes.",
+    "Use numbered steps only for actions that must happen in order.",
+    "Use headings before the reader has to ask what the next section is about.",
+    "Let sections be slightly uneven. Do not make every section the same length.",
+    "Avoid formal transitions, perfect symmetry, neat three-part benefit sentences, inflated adjectives, and generic marketing language.",
+    "Avoid phrases like in today's digital landscape, unlock, leverage, seamless, robust, game-changing, tailored solutions, skyrocket, dominate, and revolutionary.",
+    "A slightly plain article is better than a polished article that sounds generated.",
+    "Do not intentionally add mistakes or typos."
+  ].join("\n");
 }
 
 function normalizeClaim(value) {
@@ -496,9 +518,271 @@ function renderSignalImage(title) {
 `;
 }
 
+function crc32(buffer) {
+  let crc = 0xffffffff;
+  for (const byte of buffer) {
+    crc ^= byte;
+    for (let bit = 0; bit < 8; bit += 1) {
+      crc = (crc >>> 1) ^ (0xedb88320 & -(crc & 1));
+    }
+  }
+  return (crc ^ 0xffffffff) >>> 0;
+}
+
+function pngChunk(type, data) {
+  const typeBuffer = Buffer.from(type);
+  const length = Buffer.alloc(4);
+  length.writeUInt32BE(data.length);
+  const crc = Buffer.alloc(4);
+  crc.writeUInt32BE(crc32(Buffer.concat([typeBuffer, data])));
+  return Buffer.concat([length, typeBuffer, data, crc]);
+}
+
+function clamp(value) {
+  return Math.max(0, Math.min(255, Math.round(value)));
+}
+
+function hexToRgb(hex) {
+  const value = hex.replace("#", "");
+  return {
+    r: parseInt(value.slice(0, 2), 16),
+    g: parseInt(value.slice(2, 4), 16),
+    b: parseInt(value.slice(4, 6), 16)
+  };
+}
+
+function mix(a, b, amount) {
+  return {
+    r: a.r + (b.r - a.r) * amount,
+    g: a.g + (b.g - a.g) * amount,
+    b: a.b + (b.b - a.b) * amount
+  };
+}
+
+function createCanvas(width, height, top = "#f8fafc", bottom = "#fff7ed") {
+  const pixels = new Uint8Array(width * height * 4);
+  const c1 = hexToRgb(top);
+  const c2 = hexToRgb(bottom);
+
+  for (let y = 0; y < height; y += 1) {
+    const t = y / Math.max(1, height - 1);
+    const base = mix(c1, c2, t);
+    for (let x = 0; x < width; x += 1) {
+      const i = (y * width + x) * 4;
+      const glow = Math.sin((x / width) * Math.PI) * 10;
+      pixels[i] = clamp(base.r + glow);
+      pixels[i + 1] = clamp(base.g + glow);
+      pixels[i + 2] = clamp(base.b + glow);
+      pixels[i + 3] = 255;
+    }
+  }
+
+  return { width, height, pixels };
+}
+
+function blendPixel(canvas, x, y, color, alpha = 1) {
+  if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) return;
+  const i = (Math.floor(y) * canvas.width + Math.floor(x)) * 4;
+  const amount = Math.max(0, Math.min(1, alpha * (color.a ?? 1)));
+  canvas.pixels[i] = clamp(canvas.pixels[i] * (1 - amount) + color.r * amount);
+  canvas.pixels[i + 1] = clamp(canvas.pixels[i + 1] * (1 - amount) + color.g * amount);
+  canvas.pixels[i + 2] = clamp(canvas.pixels[i + 2] * (1 - amount) + color.b * amount);
+  canvas.pixels[i + 3] = 255;
+}
+
+function drawRect(canvas, x, y, width, height, color, alpha = 1) {
+  for (let yy = Math.max(0, y); yy < Math.min(canvas.height, y + height); yy += 1) {
+    for (let xx = Math.max(0, x); xx < Math.min(canvas.width, x + width); xx += 1) {
+      blendPixel(canvas, xx, yy, color, alpha);
+    }
+  }
+}
+
+function drawCircle(canvas, cx, cy, radius, color, alpha = 1) {
+  const r2 = radius * radius;
+  for (let y = Math.max(0, cy - radius); y < Math.min(canvas.height, cy + radius); y += 1) {
+    for (let x = Math.max(0, cx - radius); x < Math.min(canvas.width, cx + radius); x += 1) {
+      const dx = x - cx;
+      const dy = y - cy;
+      const dist = dx * dx + dy * dy;
+      if (dist <= r2) {
+        const edge = Math.min(1, (r2 - dist) / (radius * 12));
+        blendPixel(canvas, x, y, color, alpha * Math.max(0.18, edge));
+      }
+    }
+  }
+}
+
+function drawLine(canvas, x1, y1, x2, y2, thickness, color, alpha = 1) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const steps = Math.max(Math.abs(dx), Math.abs(dy));
+  for (let i = 0; i <= steps; i += 1) {
+    const t = i / Math.max(1, steps);
+    drawCircle(canvas, x1 + dx * t, y1 + dy * t, thickness / 2, color, alpha);
+  }
+}
+
+function writePng(canvas) {
+  const raw = Buffer.alloc((canvas.width * 4 + 1) * canvas.height);
+  for (let y = 0; y < canvas.height; y += 1) {
+    const rawStart = y * (canvas.width * 4 + 1);
+    raw[rawStart] = 0;
+    Buffer.from(canvas.pixels.buffer, y * canvas.width * 4, canvas.width * 4).copy(raw, rawStart + 1);
+  }
+
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(canvas.width, 0);
+  ihdr.writeUInt32BE(canvas.height, 4);
+  ihdr[8] = 8;
+  ihdr[9] = 6;
+  ihdr[10] = 0;
+  ihdr[11] = 0;
+  ihdr[12] = 0;
+
+  return Buffer.concat([
+    Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
+    pngChunk("IHDR", ihdr),
+    pngChunk("IDAT", zlib.deflateSync(raw, { level: 9 })),
+    pngChunk("IEND", Buffer.alloc(0))
+  ]);
+}
+
+function renderBlogPng(variant = "hero") {
+  const canvas = createCanvas(1200, variant === "signal" ? 720 : 675);
+  const orange = { ...hexToRgb("#ff5a1f"), a: 1 };
+  const teal = { ...hexToRgb("#0fba9f"), a: 1 };
+  const yellow = { ...hexToRgb("#f8c32d"), a: 1 };
+  const ink = { ...hexToRgb("#111827"), a: 1 };
+  const slate = { ...hexToRgb("#64748b"), a: 1 };
+  const white = { ...hexToRgb("#ffffff"), a: 1 };
+
+  drawCircle(canvas, 170, 140, 160, orange, 0.18);
+  drawCircle(canvas, 1040, 160, 190, teal, 0.16);
+  drawCircle(canvas, 620, 580, 240, yellow, 0.11);
+
+  for (let x = 100; x < 1100; x += 52) drawLine(canvas, x, 70, x, canvas.height - 70, 1, slate, 0.12);
+  for (let y = 90; y < canvas.height - 70; y += 52) drawLine(canvas, 90, y, 1110, y, 1, slate, 0.12);
+
+  drawRect(canvas, 150, 110, 900, 430, white, 0.86);
+  drawRect(canvas, 150, 110, 900, 10, orange, 0.9);
+
+  if (variant === "decision") {
+    for (let i = 0; i < 4; i += 1) {
+      const x = 210 + i * 210;
+      drawRect(canvas, x, 245, 150, 150, white, 0.92);
+      drawCircle(canvas, x + 75, 320, 44, [orange, teal, yellow, ink][i], 0.9);
+      drawRect(canvas, x + 32, 430, 86, 12, slate, 0.35);
+    }
+    drawLine(canvas, 230, 535, 960, 535, 12, slate, 0.25);
+    drawLine(canvas, 230, 535, 720, 535, 12, teal, 0.9);
+    drawCircle(canvas, 720, 535, 24, teal, 1);
+  } else if (variant === "signal") {
+    for (let i = 0; i < 4; i += 1) {
+      const y = 205 + i * 92;
+      drawRect(canvas, 230, y, 720, 52, white, 0.95);
+      drawCircle(canvas, 265, y + 26, 14, [teal, yellow, orange, ink][i], 1);
+      drawRect(canvas, 306, y + 18, 360 + i * 35, 12, slate, 0.35);
+      drawRect(canvas, 306, y + 38, 190 + i * 28, 8, slate, 0.2);
+    }
+  } else {
+    drawRect(canvas, 230, 205, 420, 18, ink, 0.86);
+    drawRect(canvas, 230, 244, 620, 18, ink, 0.72);
+    drawRect(canvas, 230, 283, 520, 18, ink, 0.55);
+    drawLine(canvas, 700, 400, 760, 340, 12, teal, 0.9);
+    drawLine(canvas, 760, 340, 830, 365, 12, teal, 0.9);
+    drawLine(canvas, 830, 365, 920, 270, 12, teal, 0.9);
+    drawCircle(canvas, 920, 270, 22, orange, 1);
+    drawRect(canvas, 230, 420, 150, 18, orange, 0.85);
+    drawRect(canvas, 400, 420, 150, 18, yellow, 0.85);
+    drawRect(canvas, 570, 420, 150, 18, teal, 0.85);
+  }
+
+  return writePng(canvas);
+}
+
+function imagePromptForArticle({ title, topic, variant }) {
+  const base = [
+    "Create a polished modern PNG blog image for Russell Digital, a Houston SEO and digital marketing website.",
+    "Style: premium editorial tech illustration, clean composition, warm white background, black text-free UI elements, orange/yellow/teal accents, subtle depth, realistic browser/dashboard shapes, no fake logos, no readable text.",
+    "Avoid: cheesy stock-photo people, robot hands, neon cyberpunk, messy charts, blurry text, distorted typography, generic AI slop, screenshots of real websites.",
+    `Article title: ${title}`,
+    `Topic brief: ${topic.topic || title}`
+  ];
+
+  if (variant === "decision") {
+    base.push("Image concept: a clear decision framework for evaluating SEO readiness, using visual cards, checkmarks, and search/lead-flow cues.");
+  } else if (variant === "signal") {
+    base.push("Image concept: a local SEO signal checklist, with abstract Google Business Profile, service page, call, and analytics elements.");
+  } else {
+    base.push("Image concept: a hero image showing organic growth, search visibility, service pages, local map cues, and lead generation in one clean dashboard scene.");
+  }
+
+  return base.join("\n");
+}
+
+function extractGeneratedImageBase64(data) {
+  for (const item of data.output || []) {
+    if (item.type === "image_generation_call" && item.result) return item.result;
+    for (const content of item.content || []) {
+      if (content.type === "output_image" && content.image_base64) return content.image_base64;
+      if (content.b64_json) return content.b64_json;
+    }
+  }
+  return null;
+}
+
+async function generateImagePng({ title, topic, variant }) {
+  if (!process.env.OPENAI_API_KEY) return null;
+
+  const response = await fetch("https://api.openai.com/v1/responses", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: process.env.OPENAI_IMAGE_PROMPT_MODEL || MODEL,
+      input: imagePromptForArticle({ title, topic, variant }),
+      tools: [
+        {
+          type: "image_generation",
+          model: process.env.OPENAI_IMAGE_MODEL || "gpt-image-1",
+          size: variant === "hero" ? "1536x1024" : "1024x1024",
+          quality: "medium",
+          output_format: "png"
+        }
+      ]
+    })
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    console.log(`Image generation failed for ${variant}: ${response.status} ${JSON.stringify(data)}`);
+    return null;
+  }
+
+  const imageBase64 = extractGeneratedImageBase64(data);
+  return imageBase64 ? Buffer.from(imageBase64, "base64") : null;
+}
+
+async function writeArticleImages({ postDir, slug, title, topic }) {
+  const images = [
+    { file: `${slug}.png`, variant: "hero" },
+    { file: `${slug}-decision-framework.png`, variant: "decision" },
+    { file: `${slug}-signal-checklist.png`, variant: "signal" }
+  ];
+
+  for (const image of images) {
+    const generated = await generateImagePng({ title, topic, variant: image.variant });
+    writeFileSync(path.join(postDir, image.file), generated || renderBlogPng(image.variant));
+    console.log(`${generated ? "Generated" : "Rendered fallback"} image: ${image.file}`);
+  }
+}
+
 function injectArticleVisuals(body, slug) {
-  const firstImage = `![SEO decision framework](${slug}-decision-framework.svg)`;
-  const secondImage = `![Local SEO signal checklist](${slug}-signal-checklist.svg)`;
+  const firstImage = `![SEO decision framework](${slug}-decision-framework.png)`;
+  const secondImage = `![Local SEO signal checklist](${slug}-signal-checklist.png)`;
   let nextBody = body;
 
   if (!nextBody.includes(firstImage)) {
@@ -641,22 +925,8 @@ async function generateArticle({ topic, siteContext, existingPosts, internalUrls
     "Do not invent products, prices, statistics, locations, guarantees, customer stories, laws, deadlines, certifications, or company claims.",
     "Never use rankings like #1, guaranteed-result language, or unsupported numerical claims.",
     "You may use pricing, plan names, and numeric claims only when they are explicitly included in the supplied site facts or topic brief.",
-    "Match the direct, practical style of the existing Russell Digital blog samples.",
-    "Write like the current posts on russelldigitalads.com/blog: plainspoken, specific, direct, occasionally blunt, and focused on what business owners actually need to know.",
-    "Open with the problem in plain English, then give the honest answer quickly.",
-    "Use mostly short and medium sentences. Do not stack abstract ideas together.",
-    "Keep most paragraphs between one and three sentences. Avoid walls of text.",
-    "Lead with the practical instruction. Add the explanation after it.",
-    "Use bold-label bullets for checks, mistakes, red flags, document-style lists, or decision points.",
-    "Use numbered lists only when the actions must happen in order.",
-    "Do not put more than three normal paragraphs in a row without a useful heading, list, or numbered process.",
-    "Repeat the main term naturally when needed instead of overusing vague pronouns.",
-    "Use direct cause and effect for SEO topics: weak page -> fewer calls, missing tracking -> bad decisions, thin service pages -> weaker rankings.",
-    "Allow slightly uneven section lengths. A slightly uneven article is better than a perfectly symmetrical one.",
-    "Use plain observations like 'This is where businesses usually get stuck.' when they fit.",
-    "Use bolded takeaways, practical bullets, red flags, and FAQ sections when they fit the topic.",
-    "Avoid polished SaaS-marketing filler, inflated adjectives, em dashes, fake urgency, and generic AI-sounding phrasing.",
-    "Avoid formal transitions like additionally, furthermore, in today's landscape, unlock, leverage, seamless, robust, game-changing, and tailored solutions.",
+    getWritingStyleGuide(),
+    "Use the existing Russell Digital posts only for approved company facts, internal links, and offer context. Do not copy their more salesy cadence.",
     "Use short sections with useful H2/H3 headings, conversational explanations, and concrete checks or examples that can be supported by the supplied site context.",
     "Do not copy paragraphs from the samples; learn the cadence and point of view.",
     "Return only valid JSON with keys: title, description, body.",
@@ -725,12 +995,12 @@ async function generateArticle({ topic, siteContext, existingPosts, internalUrls
   return parseJsonOutput(extractResponseText(data));
 }
 
-function writeGeneratedPost({ article, topic, blogFolder, existingPosts, usedTopics, internalUrls, approvedClaims }) {
+async function writeGeneratedPost({ article, topic, blogFolder, existingPosts, usedTopics, internalUrls, approvedClaims }) {
   const timestamp = chicagoTimestamp();
   const title = String(article.title || topic.topic || "").trim();
   const description = String(article.description || "").trim();
   const slug = slugify(article.slug || title);
-  const imageName = `${slug}.svg`;
+  const imageName = `${slug}.png`;
   const markdown = renderPost({
     title,
     description,
@@ -746,9 +1016,7 @@ function writeGeneratedPost({ article, topic, blogFolder, existingPosts, usedTop
   const postDir = path.join(ROOT, blogFolder, slug);
   mkdirSync(postDir, { recursive: true });
   writeFileSync(path.join(postDir, "index.md"), markdown, "utf8");
-  writeFileSync(path.join(postDir, imageName), renderHeroImage(title), "utf8");
-  writeFileSync(path.join(postDir, `${slug}-decision-framework.svg`), renderDecisionImage("SEO decision framework"), "utf8");
-  writeFileSync(path.join(postDir, `${slug}-signal-checklist.svg`), renderSignalImage("Local SEO signal checklist"), "utf8");
+  await writeArticleImages({ postDir, slug, title, topic });
 
   return { ok: true, slug, title, description, wordCount: validation.wordCount };
 }
@@ -773,6 +1041,20 @@ function runBuild() {
   }
 
   execFileSync("npm", ["run", "build"], { cwd: ROOT, stdio: "inherit" });
+}
+
+async function renderImagesForExistingPost(slug) {
+  const blogFolder = getDecapBlogFolder();
+  const postDir = path.join(ROOT, blogFolder, slug);
+  if (!existsSync(postDir)) throw new Error(`Post folder does not exist: ${postDir}`);
+  const post = getExistingPosts(blogFolder).find((item) => item.slug === slug);
+  await writeArticleImages({
+    postDir,
+    slug,
+    title: post?.title || slug,
+    topic: { topic: post?.title || slug }
+  });
+  console.log(`Rendered PNG images for ${slug}`);
 }
 
 function saveQueueAndHistory({ queuePath, queue, topic, result }) {
@@ -848,7 +1130,7 @@ async function main() {
       previousFailure: lastFailure
     });
 
-    result = writeGeneratedPost({
+    result = await writeGeneratedPost({
       article,
       topic,
       blogFolder,
@@ -890,7 +1172,19 @@ async function main() {
   console.log(`Word count: ${result.wordCount}`);
 }
 
-main().catch((error) => {
-  console.error(error.stack || error.message || error);
-  process.exit(1);
-});
+if (args.has("--render-post-images")) {
+  const slug = process.argv[process.argv.indexOf("--render-post-images") + 1];
+  if (!slug) {
+    console.error("Missing slug after --render-post-images.");
+    process.exit(1);
+  }
+  renderImagesForExistingPost(slug).catch((error) => {
+    console.error(error.stack || error.message || error);
+    process.exit(1);
+  });
+} else {
+  main().catch((error) => {
+    console.error(error.stack || error.message || error);
+    process.exit(1);
+  });
+}
