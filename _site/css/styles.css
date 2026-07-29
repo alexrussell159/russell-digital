@@ -193,7 +193,7 @@ header {
 
 .rd-blog-card-image-link{
   display:block;
-  aspect-ratio:1/1;
+  aspect-ratio:16/9;
   overflow:hidden;
 }
 
@@ -362,7 +362,7 @@ header {
 
 .rd-blog-card-image-link{
   display:block;
-  aspect-ratio:1/1;
+  aspect-ratio:16/9;
   overflow:hidden;
 }
 
@@ -544,9 +544,7 @@ header {
 .rd-post-cover{
   display:block;
   width:min(100%,720px);
-  aspect-ratio:1/1;
   height:auto;
-  object-fit:cover;
   margin:30px auto 0;
   border-radius:18px;
 }
@@ -633,9 +631,7 @@ header {
   display:block;
   width:65%;
   max-width:100%;
-  aspect-ratio:1/1;
   height:auto;
-  object-fit:cover;
   margin:28px auto;
   border-radius:14px;
 }
@@ -1437,5 +1433,4 @@ footer {
     padding: 0 0.75rem 0.75rem;
   }
 }
-
 
