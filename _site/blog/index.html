@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="rd-fonts-pending">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -56,25 +56,25 @@
   <!-- Styles / Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,300;1,9..40,400&display=optional" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,300;1,9..40,400&display=block" rel="stylesheet" />
   <style>
-    .rd-fonts-pending .rd-blog-page,
-    .rd-fonts-pending .rd-post-page {
+    .rd-fonts-pending body {
       opacity: 0;
     }
   </style>
   <script>
+    const showPageContent = () => document.documentElement.classList.remove("rd-fonts-pending");
     if (location.pathname === "/blog/" || location.pathname.startsWith("/blog/")) {
-      document.documentElement.classList.add("rd-fonts-pending");
-      const showBlogContent = () => document.documentElement.classList.remove("rd-fonts-pending");
       if (document.fonts && document.fonts.ready) {
         Promise.race([
           document.fonts.ready,
-          new Promise((resolve) => setTimeout(resolve, 700))
-        ]).then(showBlogContent);
+          new Promise((resolve) => setTimeout(resolve, 2500))
+        ]).then(showPageContent);
       } else {
-        showBlogContent();
+        showPageContent();
       }
+    } else {
+      showPageContent();
     }
   </script>
   <link rel="stylesheet" href="/css/styles.css" />
@@ -107,7 +107,7 @@
             <a class="rd-blog-card-image-link" href="/blog/month-to-month-seo-what-to-insist-on-before-you-sign-up/">
               <img
 
-                  src="/blog/month-to-month-seo-what-to-insist-on-before-you-sign-up/month-to-month-seo-what-to-insist-on-before-you-sign-up.png"
+                  src="/blog/month-to-month-seo-what-to-insist-on-before-you-sign-up/month-to-month-seo.png"
                   loading="eager"
 
                 alt="Month-to-Month SEO: What to Insist On Before You Sign Up"
@@ -130,7 +130,7 @@
               </h2>
 
 
-                <p class="rd-blog-card-desc">Practical checklist for evaluating flexible, no-contract SEO. What deliverables, tracking, and onboarding steps must exist before you commit to a month-to-month engagement.</p>
+                <p class="rd-blog-card-desc">Month-to-month SEO should come with clear deliverables, tracking, and a first-month plan. Here is what to check before you pay.</p>
 
 
               <a class="rd-blog-card-link" href="/blog/month-to-month-seo-what-to-insist-on-before-you-sign-up/">Read article</a>

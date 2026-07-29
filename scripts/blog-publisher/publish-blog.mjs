@@ -365,14 +365,37 @@ function chicagoTimestamp(date = new Date()) {
   return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}.000${offset}`;
 }
 
+function currentPublishSlot(date = new Date()) {
+  const parts = chicagoParts(date);
+  const allowedHours = new Set(["08", "12", "16"]);
+  const allowedDays = new Set(["Mon", "Tue", "Wed", "Thu", "Fri"]);
+  const minute = Number(parts.minute);
+  if (!allowedDays.has(parts.weekday) || !allowedHours.has(parts.hour) || minute < 17 || minute > 47) {
+    return null;
+  }
+  return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:17`;
+}
+
 function shouldRunNow() {
   if (force || process.env.GITHUB_EVENT_NAME !== "schedule") return true;
   const parts = chicagoParts();
-  const allowedHours = new Set(["08", "12", "16"]);
-  const allowedDays = new Set(["Mon", "Tue", "Wed", "Thu", "Fri"]);
-  const allowed = allowedDays.has(parts.weekday) && allowedHours.has(parts.hour) && parts.minute === "17";
-  console.log(`Chicago gate: ${parts.weekday} ${parts.hour}:${parts.minute} ${TIME_ZONE}; allowed=${allowed}`);
+  const slot = currentPublishSlot();
+  const allowed = Boolean(slot);
+  console.log(`Chicago gate: ${parts.weekday} ${parts.hour}:${parts.minute} ${TIME_ZONE}; slot=${slot || "none"}; allowed=${allowed}`);
   return allowed;
+}
+
+function hasPublishedSlot(usedTopics, slot) {
+  if (!slot) return false;
+  const [slotDate, slotTime] = slot.split("T");
+  const slotHour = slotTime.slice(0, 2);
+  return usedTopics.some((item) => {
+    if (item.publishSlotCT === slot) return true;
+    const publishedAt = String(item.publishedAt || "");
+    if (!publishedAt.startsWith(`${slotDate}T${slotHour}:`)) return false;
+    const minute = Number(publishedAt.slice(14, 16));
+    return Number.isFinite(minute) && minute >= 17 && minute <= 47;
+  });
 }
 
 function yamlScalar(value) {
@@ -775,9 +798,9 @@ async function generateImagePng({ title, topic, variant }) {
 
 async function writeArticleImages({ postDir, slug, title, topic }) {
   const images = [
-    { file: `${slug}.png`, variant: "hero" },
-    { file: `${slug}-decision-framework.png`, variant: "decision" },
-    { file: `${slug}-signal-checklist.png`, variant: "signal" }
+    { file: "cover.png", variant: "hero" },
+    { file: "decision-framework.png", variant: "decision" },
+    { file: "signal-checklist.png", variant: "signal" }
   ];
 
   for (const image of images) {
@@ -788,8 +811,8 @@ async function writeArticleImages({ postDir, slug, title, topic }) {
 }
 
 function injectArticleVisuals(body, slug) {
-  const firstImage = `![SEO decision framework](${slug}-decision-framework.png)`;
-  const secondImage = `![Local SEO signal checklist](${slug}-signal-checklist.png)`;
+  const firstImage = "![SEO decision framework](decision-framework.png)";
+  const secondImage = "![Local SEO signal checklist](signal-checklist.png)";
   let nextBody = body;
 
   if (!nextBody.includes(firstImage)) {
@@ -1016,7 +1039,7 @@ async function writeGeneratedPost({ article, topic, blogFolder, existingPosts, u
   const title = String(article.title || topic.topic || "").trim();
   const description = String(article.description || "").trim();
   const slug = slugify(article.slug || title);
-  const imageName = `${slug}.png`;
+  const imageName = "cover.png";
   const cleanedBody = removeUnsupportedClaimSentences(String(article.body || "").trim(), approvedClaims);
   const body = ensureInternalLink(injectArticleVisuals(cleanedBody, slug), internalUrls);
   const markdown = renderPost({
@@ -1075,7 +1098,7 @@ async function renderImagesForExistingPost(slug) {
   console.log(`Rendered PNG images for ${slug}`);
 }
 
-function saveQueueAndHistory({ queuePath, queue, topic, result }) {
+function saveQueueAndHistory({ queuePath, queue, topic, result, publishSlotCT }) {
   queue.pending = queue.pending.filter((item) => item !== topic);
   writeFileSync(queuePath, `${JSON.stringify(queue, null, 2)}\n`, "utf8");
 
@@ -1086,6 +1109,7 @@ function saveQueueAndHistory({ queuePath, queue, topic, result }) {
     topic: topic.topic,
     publishDate: topic.publishDate || null,
     publishTimeCT: topic.publishTimeCT || null,
+    publishSlotCT: publishSlotCT || null,
     sourceId: topic.sourceId || null,
     publishedAt: chicagoTimestamp(),
     source: "automated-publisher"
@@ -1111,6 +1135,11 @@ async function main() {
   const { queuePath, queue } = readQueue();
   const usedTopics = readUsedTopics();
   const approvedClaims = getApprovedClaimTokens();
+  const publishSlotCT = process.env.GITHUB_EVENT_NAME === "schedule" ? currentPublishSlot() : null;
+  if (hasPublishedSlot(usedTopics, publishSlotCT)) {
+    console.log(`Skipping because the ${publishSlotCT} America/Chicago publish slot already has an automated post.`);
+    return;
+  }
 
   group("Repository inventory", () => {
     console.log(`Existing posts: ${existingPosts.length}`);
@@ -1183,7 +1212,7 @@ async function main() {
     throw new Error(`Article failed validation after rewrite attempt: ${JSON.stringify(lastFailure)}`);
   }
 
-  saveQueueAndHistory({ queuePath, queue, topic, result });
+  saveQueueAndHistory({ queuePath, queue, topic, result, publishSlotCT });
 
   console.log(`Generated article: public_html/src/blog/${result.slug}/index.md`);
   console.log(`Title: ${result.title}`);

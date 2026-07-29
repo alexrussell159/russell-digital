@@ -3,9 +3,10 @@ name: Publish automated blog post
 on:
   workflow_dispatch:
   schedule:
-    # America/Chicago has DST, so run the UTC candidates and let the script
-    # publish only when the local Chicago time is 8:17, 12:17, or 16:17.
-    - cron: "17 13,14,17,18,21,22 * * 1-5"
+    # America/Chicago has DST, so run UTC candidates and let the script
+    # publish once in each local 8:17, 12:17, and 16:17 window.
+    # Extra checks protect against delayed GitHub scheduled runs.
+    - cron: "17,27,37,47 13,14,17,18,21,22 * * 1-5"
 
 concurrency:
   group: automated-blog-publisher-main
