@@ -35,7 +35,8 @@
     body{
       margin:0;
       color:var(--rd-text);
-      background:linear-gradient(180deg,#dfeafb 0%,#f5f8ff 20%,#ffffff 100%);
+      background:var(--bg);
+      background-attachment:fixed;
     }
 
     .rd-pricing-page{
@@ -47,7 +48,7 @@
     }
 
     .rd-pricing-page::before{
-      content:"";
+      content:none;
       position:absolute;
       inset:0;
       background:

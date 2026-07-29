@@ -45,7 +45,8 @@ html{
 body{
   margin:0;
   color:var(--rd-text);
-  background:#fff;
+  background:var(--bg);
+  background-attachment:fixed;
 }
 
 .rd-home{
@@ -69,7 +70,7 @@ body{
 
 .rd-section-alt{
   padding:92px 0;
-  background:linear-gradient(180deg, #f7fafe 0%, #eef4fb 100%);
+  background:transparent;
 }
 
 .rd-eyebrow{
@@ -104,7 +105,6 @@ body{
 }
 
 .rd-section-head h2,
-.rd-why-grid h2,
 .rd-results-copy h2{
   margin:0 0 14px;
   font-size:clamp(2rem, 3vw, 3.2rem);
@@ -173,9 +173,7 @@ body{
   margin-left:calc(50% - 50vw);
   margin-right:calc(50% - 50vw);
   padding:96px 24px 74px;
-  background:
-    radial-gradient(circle at 78% 22%, rgba(11, 94, 215, 0.10), transparent 28%),
-    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  background:transparent;
 }
 
 .rd-hero::after{
@@ -291,104 +289,122 @@ body{
 .rd-hero-card-wrap{
   position:relative;
   width:100%;
-  min-height:410px;
-  max-width:710px;
+  min-height:430px;
+  max-width:690px;
   justify-self:end;
 }
 
 .rd-chart-stack{
   position:relative;
-  min-height:410px;
+  min-height:430px;
+  overflow:visible;
 }
 
 .rd-chart-card{
   position:absolute;
-  overflow:hidden;
-  border:8px solid rgba(255,255,255,0.94);
-  border-radius:18px;
-  background:#fff;
-  box-shadow:0 24px 70px rgba(15,23,42,.14);
+  overflow:visible;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  animation:rdHeroCarousel 12s cubic-bezier(.65,0,.35,1) infinite;
+  will-change:left, top, width, opacity;
 }
 
 .rd-chart-card img{
   display:block;
   width:100%;
-  height:100%;
-  object-fit:contain;
-  object-position:center;
-  background:#fff;
+  height:auto;
+  border-radius:18px;
+  filter:drop-shadow(0 18px 26px rgba(15,23,42,.12));
 }
 
 .rd-chart-card-main{
-  z-index:3;
-  top:44px;
-  left:88px;
-  width:500px;
+  width:76%;
   aspect-ratio:1320 / 454;
   height:auto;
+  top:34%;
+  left:12%;
+  animation-delay:4s;
 }
 
 .rd-chart-card-left{
-  z-index:1;
-  left:0;
-  top:2px;
-  width:360px;
+  width:46%;
   aspect-ratio:2076 / 836;
   height:auto;
+  top:5%;
+  left:52%;
+  animation-delay:0s;
 }
 
 .rd-chart-card-right{
-  z-index:1;
-  right:0;
-  top:218px;
-  width:320px;
+  width:46%;
   aspect-ratio:704 / 369;
   height:auto;
+  top:57%;
+  left:2%;
+  animation-delay:8s;
 }
 
-.rd-chart-float{
-  position:absolute;
-  z-index:4;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:13px 16px;
-  border:1px solid rgba(15,23,42,.08);
-  border-radius:13px;
-  background:rgba(255,255,255,.94);
-  box-shadow:0 14px 36px rgba(15,23,42,.14);
-  backdrop-filter:blur(10px);
+@keyframes rdHeroCarousel{
+  0%, 27%{
+    left:12%;
+    top:34%;
+    width:76%;
+    opacity:1;
+    z-index:3;
+  }
+  33.333%, 60%{
+    left:52%;
+    top:5%;
+    width:46%;
+    opacity:.82;
+    z-index:2;
+  }
+  66.666%, 94%{
+    left:2%;
+    top:57%;
+    width:46%;
+    opacity:.82;
+    z-index:1;
+  }
+  100%{
+    left:12%;
+    top:34%;
+    width:76%;
+    opacity:1;
+    z-index:3;
+  }
 }
 
-.rd-chart-float strong{
-  display:block;
-  color:#111827;
-  font-size:.9rem;
-}
+@media (prefers-reduced-motion: reduce){
+  .rd-chart-card{
+    animation:none;
+  }
 
-.rd-chart-float span{
-  display:block;
-  margin-top:3px;
-  color:#6b7280;
-  font-size:.78rem;
-}
+  .rd-chart-card-main{
+    left:12%;
+    top:34%;
+    width:76%;
+    z-index:3;
+    opacity:1;
+  }
 
-.rd-chart-dot{
-  width:34px;
-  height:34px;
-  border-radius:10px;
-  background:linear-gradient(135deg, #0b5ed7, #63d6bd);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.36);
-}
+  .rd-chart-card-left{
+    left:52%;
+    top:5%;
+    width:46%;
+    z-index:2;
+    opacity:.82;
+  }
 
-.rd-chart-float-top{
-  top:10px;
-  right:18px;
-}
-
-.rd-chart-float-bottom{
-  left:38px;
-  bottom:62px;
+  .rd-chart-card-right{
+    left:2%;
+    top:57%;
+    width:46%;
+    z-index:1;
+    opacity:.82;
+  }
 }
 
 .rd-card-top{
@@ -453,32 +469,82 @@ body{
 
 /* TRUST BAR */
 .rd-trustbar{
-  padding:22px 0;
-  border-top:1px solid #e6edf6;
-  border-bottom:1px solid #e6edf6;
-  background:#fff;
+  --rd-trust-gap:58px;
+  --rd-trust-half-gap:29px;
+  padding:24px 0 22px;
+  border:0;
+  background:transparent;
+  overflow:hidden;
 }
 
-.rd-trustbar-grid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:22px;
+.rd-trustbar-title{
+  margin:0 0 26px;
+  color:#111827;
+  font-size:1.05rem;
+  font-weight:500;
+  line-height:1.4;
+  text-align:center;
+}
+
+.rd-trust-scroller{
+  width:min(100% - 48px, 1120px);
+  margin:0 auto;
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+.rd-trust-track{
+  display:flex;
+  width:max-content;
+  align-items:center;
+  gap:var(--rd-trust-gap);
+  animation:rdStatsScroll 38s linear infinite;
+}
+
+.rd-trust-scroller:hover .rd-trust-track{
+  animation-play-state:paused;
 }
 
 .rd-trust-stat{
-  padding:10px 4px;
+  flex:0 0 auto;
+  min-width:190px;
+  text-align:center;
+  white-space:nowrap;
 }
 
 .rd-trust-stat strong{
   display:block;
-  margin-bottom:4px;
-  font-size:1rem;
+  color:#0f172a;
+  font-size:clamp(1.18rem, 1.7vw, 1.62rem);
+  font-weight:800;
+  line-height:1;
 }
 
 .rd-trust-stat span{
-  color:var(--rd-muted);
-  line-height:1.5;
-  font-size:.95rem;
+  display:block;
+  margin-top:7px;
+  color:#5a6475;
+  font-size:.78rem;
+  font-weight:600;
+  line-height:1.35;
+}
+
+@keyframes rdStatsScroll{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(calc(-50% - var(--rd-trust-half-gap)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .rd-trust-track{
+    animation:none;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
 }
 
 /* SERVICES */
@@ -530,116 +596,697 @@ body{
   line-height:1.75;
 }
 
-/* WHY US */
-.rd-why-grid{
-  display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:34px;
-  align-items:start;
+/* OUTCOMES */
+.rd-outcomes{
+  padding-top:96px;
+  padding-bottom:96px;
+  background:#f6f7fb !important;
 }
 
-.rd-feature-list{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:18px;
+.rd-outcomes-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:32px;
+  margin-bottom:48px;
 }
 
-.rd-feature{
-  padding:22px;
-  border-radius:20px;
-  background:#fff;
-  border:1px solid var(--rd-border);
-  box-shadow:var(--rd-shadow-soft);
-}
-
-.rd-feature h3{
-  margin:0 0 10px;
-  font-size:1.08rem;
-}
-
-.rd-feature p{
+.rd-outcomes-head h2{
+  max-width:440px;
   margin:0;
-  color:var(--rd-muted);
-  line-height:1.65;
+  color:#050505;
+  font-size:clamp(2.1rem, 3.2vw, 3.35rem);
+  font-weight:500;
+  line-height:1.03;
+  letter-spacing:0;
 }
 
-/* STEPS */
-.rd-steps{
+.rd-outcomes-head .rd-btn{
+  flex:0 0 auto;
+  margin-top:8px;
+  border-color:#111;
+  color:#111;
+}
+
+.rd-outcomes-shell{
+  position:relative;
+}
+
+.rd-outcomes-track{
+  display:flex;
+  gap:28px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  padding-bottom:8px;
+}
+
+.rd-outcomes-track::-webkit-scrollbar{
+  display:none;
+}
+
+.rd-outcome-card{
+  position:relative;
+  flex:0 0 min(740px, 78vw);
+  min-height:360px;
+  display:grid;
+  grid-template-columns:minmax(0, .9fr) minmax(280px, 1fr);
+  gap:28px;
+  align-items:stretch;
+  overflow:hidden;
+  scroll-snap-align:start;
+  border-radius:22px;
+}
+
+.rd-outcome-card-dark{
+  background:#020202;
+  color:#fff;
+}
+
+.rd-outcome-card-blue{
+  background:#dfeaff;
+  color:#050505;
+}
+
+.rd-outcome-card-green{
+  background:#dff7eb;
+  color:#050505;
+}
+
+.rd-outcome-copy{
+  display:flex;
+  min-height:100%;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:34px;
+}
+
+.rd-outcome-kicker{
+  align-self:flex-start;
+  margin-bottom:auto;
+  padding:8px 13px;
+  border-radius:6px;
+  background:rgba(255,255,255,.92);
+  color:#050505;
+  font-size:.85rem;
+  font-weight:600;
+}
+
+.rd-outcome-quote{
+  color:#ff6edc;
+  font-size:7rem;
+  font-weight:800;
+  line-height:.65;
+}
+
+.rd-outcome-metric{
+  display:block;
+  margin:22px 0 12px;
+  font-size:clamp(3.15rem, 5.8vw, 5.4rem);
+  font-weight:500;
+  line-height:.92;
+  letter-spacing:0;
+}
+
+.rd-outcome-card-dark .rd-outcome-metric{
+  color:#ff6edc;
+}
+
+.rd-outcome-text{
+  max-width:330px;
+  margin:0;
+  font-size:1.18rem;
+  line-height:1.32;
+}
+
+.rd-outcome-note{
+  display:block;
+  margin-top:20px;
+  font-size:.88rem;
+  font-weight:700;
+  opacity:.72;
+}
+
+.rd-outcome-visual{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100%;
+  padding:18px;
+}
+
+.rd-outcome-screen{
+  width:100%;
+  max-width:360px;
+  padding:22px;
+  border-radius:16px;
+  background:rgba(255,255,255,.74);
+  box-shadow:0 18px 38px rgba(15,23,42,.12);
+}
+
+.rd-outcome-screen-dark{
+  background:linear-gradient(180deg, #171717, #050505);
+  box-shadow:0 18px 38px rgba(0,0,0,.36);
+}
+
+.rd-outcome-line{
+  height:12px;
+  margin-bottom:12px;
+  border-radius:999px;
+  background:#dbe5f5;
+}
+
+.rd-outcome-screen-dark .rd-outcome-line{
+  background:#323232;
+}
+
+.rd-outcome-line-short{
+  width:58%;
+}
+
+.rd-outcome-bars{
+  display:flex;
+  align-items:end;
+  gap:10px;
+  height:160px;
+  margin-top:24px;
+}
+
+.rd-outcome-bars span{
+  flex:1;
+  min-width:20px;
+  border-radius:999px 999px 6px 6px;
+  background:linear-gradient(180deg, #0b5ed7, #63d6bd);
+}
+
+.rd-outcome-content-grid{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:22px;
+  gap:10px;
+  width:100%;
+  max-width:360px;
 }
 
-.rd-step{
-  position:relative;
-  padding:28px;
-  border-radius:24px;
-  background:linear-gradient(180deg, #fff 0%, #f8fbff 100%);
-  border:1px solid var(--rd-border);
-  box-shadow:var(--rd-shadow-soft);
+.rd-outcome-content-grid span{
+  aspect-ratio:1;
+  border-radius:14px;
+  background:rgba(255,255,255,.78);
+  box-shadow:inset 0 0 0 1px rgba(15,23,42,.07);
 }
 
-.rd-step-num{
-  display:inline-grid;
+.rd-outcome-controls{
+  display:flex;
+  justify-content:flex-end;
+  gap:14px;
+  margin-top:22px;
+}
+
+.rd-outcome-control{
+  width:48px;
+  height:48px;
+  display:grid;
   place-items:center;
-  width:44px;
-  height:44px;
-  margin-bottom:16px;
+  border:1px solid #111;
   border-radius:999px;
-  background:linear-gradient(135deg, var(--rd-blue) 0%, var(--rd-blue-dark) 100%);
+  background:transparent;
+  color:#111;
+  font-size:1.45rem;
+  line-height:1;
+  cursor:pointer;
+}
+
+.rd-outcome-control:hover{
+  background:#111;
   color:#fff;
-  font-weight:800;
 }
 
-.rd-step h3{
-  margin:0 0 10px;
-  font-size:1.25rem;
+/* SERVICE OFFER */
+.rd-service-offer{
+  padding:96px 0 88px;
 }
 
-.rd-step p{
+.rd-service-offer-head{
+  max-width:700px;
+  margin:0 auto 46px;
+  text-align:center;
+}
+
+.rd-service-offer-head h2{
   margin:0;
-  color:var(--rd-muted);
-  line-height:1.7;
+  color:#050505;
+  font-size:clamp(2rem, 3.1vw, 3.2rem);
+  font-weight:600;
+  line-height:1.12;
+  letter-spacing:0;
 }
 
-/* RESULTS */
-.rd-results-grid{
+.rd-service-offer-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:32px;
-  align-items:center;
-}
-
-.rd-results-panel{
-  display:grid;
+  grid-template-columns:2fr 1fr;
   gap:16px;
 }
 
-.rd-results-item{
-  padding:22px;
-  border-radius:20px;
-  border:1px solid var(--rd-border);
+.rd-offer-card{
+  min-height:410px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:30px;
+  border:1px solid rgba(15,23,42,.16);
+  border-radius:22px;
   background:#fff;
-  box-shadow:var(--rd-shadow-soft);
+  color:#050505;
+  box-shadow:none;
 }
 
-.rd-results-item strong{
+.rd-offer-card-feature{
+  background:#fff;
+}
+
+.rd-offer-card h3{
+  margin:0 0 22px;
+  font-size:clamp(1.35rem, 1.8vw, 2rem);
+  font-weight:600;
+  line-height:1.15;
+  letter-spacing:0;
+}
+
+.rd-offer-card p{
+  margin:0;
+  color:#151515;
+  font-size:.98rem;
+  line-height:1.58;
+}
+
+.rd-offer-main{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 260px;
+  gap:38px;
+  align-items:center;
+}
+
+.rd-offer-card-small{
+  text-align:center;
+}
+
+.rd-offer-card-small h3{
+  margin-top:38px;
+  font-size:1.05rem;
+  font-weight:600;
+}
+
+.rd-offer-ad-chart{
   display:block;
-  margin-bottom:6px;
+  width:100%;
+  max-width:275px;
+  margin:22px auto 0;
+  border-radius:14px;
+}
+
+.rd-offer-number{
+  display:block;
+  margin:38px 0 18px;
+  color:#050505;
+  font-size:clamp(2.8rem, 4.4vw, 4.25rem);
+  font-weight:500;
+  line-height:1;
+}
+
+.rd-offer-pill{
+  align-self:flex-start;
+  display:inline-flex;
+  align-items:center;
+  padding:8px 13px;
+  border-radius:7px;
+  background:#f7f8fb;
+  color:#0f172a;
+  font-size:.85rem;
+  font-weight:600;
+}
+
+.rd-offer-list{
+  display:grid;
+  grid-template-columns:repeat(2, 72px);
+  gap:20px 24px;
+  justify-content:center;
+  align-items:center;
+  margin:0;
+}
+
+.rd-offer-logo{
+  width:72px;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:18px;
+  background:#f7f8fb;
+  color:#111827;
+}
+
+.rd-offer-logo svg{
+  width:42px;
+  height:42px;
+  display:block;
+}
+
+.rd-offer-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  width:max-content;
+  color:#050505;
+  font-weight:700;
+  text-decoration:none;
+  border-bottom:1px solid rgba(5,5,5,.28);
+}
+
+.rd-offer-link:hover{
+  border-color:#050505;
+}
+
+/* WHY US */
+.rd-why-system{
+  padding:72px 0 76px;
+}
+
+.rd-why-heading{
+  margin:0 0 34px;
+  color:#050505;
+  font-size:clamp(2.2rem, 4.1vw, 4.05rem);
+  font-weight:500;
+  line-height:1.04;
+  letter-spacing:0;
+  text-align:center;
+}
+
+.rd-why-tabs{
+  width:min(100%, 760px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:0 auto 32px;
+  padding:8px;
+  border-radius:999px;
+  background:#fff;
+  box-shadow:0 12px 36px rgba(15,23,42,.08);
+}
+
+.rd-why-tab{
+  min-height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:#667085;
+  font-family:inherit;
+  font-size:.9rem;
+  font-weight:500;
+  text-align:center;
+  cursor:pointer;
+  transition:background .18s ease;
+  padding:0 20px;
+}
+
+.rd-why-tab-active{
+  background:#d9d4ff;
+  color:#151515;
+}
+
+.rd-why-tab:focus-visible{
+  outline:2px solid #0b5ed7;
+  outline-offset:3px;
+}
+
+.rd-why-panel{
+  display:grid;
+  grid-template-columns:.82fr 1fr;
+  gap:34px;
+  align-items:center;
+  padding:0;
+  border-radius:0;
+  background:transparent;
+}
+
+.rd-why-visual{
+  min-height:300px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  background:#f1f2f4;
+  overflow:hidden;
+  padding:22px;
+}
+
+.rd-why-image-frame{
+  width:min(100%, 540px);
+  padding:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+
+.rd-why-image-frame img{
+  display:block;
+  width:100%;
+  aspect-ratio:16 / 10;
+  object-fit:contain;
+  border-radius:14px;
+}
+
+.rd-why-card-stack{
+  position:relative;
+  width:min(78%, 390px);
+  min-height:285px;
+}
+
+.rd-why-card-stack::before,
+.rd-why-card-stack::after{
+  content:"";
+  position:absolute;
+  inset:28px -34px auto;
+  height:210px;
+  border:2px solid rgba(255,255,255,.86);
+  border-radius:18px;
+  background:rgba(255,255,255,.42);
+  transform:rotate(-4deg);
+}
+
+.rd-why-card-stack::after{
+  transform:rotate(4deg);
+}
+
+.rd-why-lead-card{
+  position:relative;
+  z-index:2;
+  min-height:285px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:30px;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 18px 48px rgba(15,23,42,.12);
+  text-align:center;
+}
+
+.rd-why-avatar{
+  width:70px;
+  height:70px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 18px;
+  border-radius:999px;
+  background:#c8f27a;
+  color:#111827;
+  font-size:1.45rem;
+  font-weight:800;
+}
+
+.rd-why-lead-card strong{
+  display:block;
+  margin-bottom:8px;
+  color:#111827;
+  font-size:1.25rem;
+}
+
+.rd-why-lead-card span{
+  color:#697386;
+  font-size:.92rem;
+}
+
+.rd-why-mini-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:24px;
+}
+
+.rd-why-mini-grid div{
+  padding:12px;
+  border-radius:9px;
+  background:#f3f5f9;
+  color:#1f2937;
+  font-size:.78rem;
+  font-weight:700;
+}
+
+.rd-why-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 0 0 38px;
+}
+
+.rd-why-copy h2{
+  max-width:350px;
+  margin:0 0 18px;
+  color:#050505;
+  font-size:clamp(1.85rem, 2.8vw, 3rem);
+  font-weight:500;
+  line-height:1.14;
+  letter-spacing:0;
+}
+
+.rd-why-kicker{
+  display:none;
+  margin-bottom:12px;
+  color:#334155;
+  font-size:.84rem;
+  font-weight:700;
+}
+
+.rd-why-copy p{
+  max-width:360px;
+  margin:0;
+  color:#050505;
+  font-size:.98rem;
+  line-height:1.55;
+}
+
+.rd-why-copy .rd-btn{
+  width:max-content;
+  margin-top:26px;
+}
+
+/* CLOSING */
+.rd-control{
+  padding:92px 0 104px;
+  background:#f6f7fb !important;
+}
+
+.rd-control h2{
+  max-width:620px;
+  margin:0 0 72px;
+  color:#050505;
+  font-size:clamp(4rem, 10vw, 8rem);
+  font-weight:500;
+  line-height:.82;
+  letter-spacing:0;
+}
+
+.rd-control-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:52px 84px;
+}
+
+.rd-control-item svg{
+  width:20px;
+  height:20px;
+  display:block;
+  margin-bottom:18px;
+  color:#7c4dff;
+  stroke-width:2.3;
+}
+
+.rd-control-item h3{
+  margin:0 0 13px;
+  color:#050505;
   font-size:1.02rem;
+  font-weight:700;
+  line-height:1.25;
 }
 
-.rd-results-item span{
+.rd-control-item p{
+  max-width:340px;
+  margin:0;
+  color:#121212;
+  font-size:1rem;
+  line-height:1.55;
+}
+
+/* FINAL CTA */
+.rd-final-cta{
+  padding:94px 0 108px;
+  background:#fff !important;
+}
+
+.rd-final-cta-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:72px;
+  align-items:center;
+}
+
+.rd-final-cta h2{
+  margin:0;
+  color:#050505;
+  font-size:clamp(4rem, 10vw, 8rem);
+  font-weight:500;
+  line-height:.82;
+  letter-spacing:0;
+}
+
+.rd-final-cta-copy{
+  max-width:470px;
+}
+
+.rd-final-cta-copy p{
+  margin:0 0 30px;
+  color:#050505;
+  font-size:1.08rem;
+  line-height:1.5;
+}
+
+.rd-final-cta-copy strong{
   display:block;
-  color:var(--rd-muted);
-  line-height:1.6;
+  margin-bottom:5px;
+  font-weight:800;
+}
+
+.rd-btn-black{
+  background:#050505;
+  border-color:#050505;
+  color:#fff;
+}
+
+.rd-btn-black:hover{
+  background:#1f1f1f;
+  border-color:#1f1f1f;
+}
+
+.rd-section-head h2,
+.rd-outcomes-head h2,
+.rd-service-offer-head h2,
+.rd-why-heading,
+.rd-why-copy h2,
+.rd-control h2,
+.rd-final-cta h2{
+  font-size:clamp(2rem, 3vw, 3rem);
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:0;
 }
 
 /* RESPONSIVE */
 @media (max-width: 1100px){
-  .rd-hero-grid,
-  .rd-why-grid,
-  .rd-results-grid{
+  .rd-hero-grid{
     grid-template-columns:1fr;
   }
 
@@ -663,14 +1310,61 @@ body{
     justify-self:center;
   }
 
-  .rd-card-grid-3,
-  .rd-steps,
-  .rd-trustbar-grid{
+  .rd-card-grid-3{
     grid-template-columns:1fr 1fr;
   }
 
   .rd-hero-proof{
     grid-template-columns:1fr;
+  }
+
+  .rd-outcomes-head{
+    align-items:center;
+  }
+
+  .rd-outcome-card{
+    flex-basis:min(680px, 86vw);
+    grid-template-columns:1fr;
+  }
+
+  .rd-outcome-visual{
+    min-height:210px;
+    padding-top:0;
+  }
+
+  .rd-service-offer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .rd-offer-card{
+    min-height:0;
+  }
+
+  .rd-offer-main{
+    grid-template-columns:1fr;
+  }
+
+  .rd-why-tabs{
+    flex-wrap:wrap;
+    border-radius:28px;
+  }
+
+  .rd-why-panel{
+    grid-template-columns:1fr;
+  }
+
+  .rd-why-copy{
+    padding:0;
+  }
+
+  .rd-control-grid{
+    grid-template-columns:repeat(2, 1fr);
+    gap:42px 48px;
+  }
+
+  .rd-final-cta-grid{
+    grid-template-columns:1fr;
+    gap:36px;
   }
 
 }
@@ -696,10 +1390,7 @@ body{
     padding:92px 16px 48px;
   }
 
-  .rd-card-grid-3,
-  .rd-feature-list,
-  .rd-steps,
-  .rd-trustbar-grid{
+  .rd-card-grid-3{
     grid-template-columns:1fr;
   }
 
@@ -714,73 +1405,196 @@ body{
   }
 
   .rd-chart-card{
-    border-width:6px;
+    border-radius:0;
+  }
+
+  .rd-chart-card img{
     border-radius:14px;
   }
 
   .rd-chart-card-main{
-    width:82%;
+    width:76%;
     aspect-ratio:1320 / 454;
     height:auto;
-    top:58px;
-    left:9%;
+    top:34%;
+    left:12%;
   }
 
   .rd-chart-card-left{
-    width:58%;
+    width:46%;
     aspect-ratio:2076 / 836;
     height:auto;
-    top:0;
-    left:0;
+    top:5%;
+    left:52%;
   }
 
   .rd-chart-card-right{
-    width:55%;
+    width:46%;
     aspect-ratio:704 / 369;
     height:auto;
-    top:164px;
-    right:0;
-  }
-
-  .rd-chart-float{
-    padding:10px 12px;
-    gap:9px;
-    max-width:82%;
-  }
-
-  .rd-chart-float strong{
-    font-size:.8rem;
-  }
-
-  .rd-chart-float span{
-    font-size:.7rem;
-  }
-
-  .rd-chart-dot{
-    width:28px;
-    height:28px;
-    border-radius:8px;
-  }
-
-  .rd-chart-float-top{
-    top:26px;
-    right:4px;
-  }
-
-  .rd-chart-float-bottom{
-    left:4px;
-    bottom:14px;
+    top:57%;
+    left:2%;
   }
 
   .rd-btn{
     width:100%;
   }
 
+  .rd-outcomes{
+    padding-top:76px;
+    padding-bottom:76px;
+  }
+
+  .rd-outcomes-head{
+    display:block;
+    margin-bottom:30px;
+  }
+
+  .rd-outcomes-head h2{
+    font-size:clamp(2rem, 8vw, 2.65rem);
+  }
+
+  .rd-outcomes-head .rd-btn{
+    width:auto;
+    margin-top:22px;
+  }
+
+  .rd-outcomes-track{
+    gap:18px;
+  }
+
+  .rd-outcome-card{
+    flex-basis:88vw;
+    min-height:0;
+    border-radius:18px;
+  }
+
+  .rd-outcome-copy{
+    padding:26px;
+  }
+
+  .rd-outcome-quote{
+    font-size:5.6rem;
+  }
+
+  .rd-outcome-metric{
+    font-size:clamp(2.7rem, 15vw, 4.2rem);
+  }
+
+  .rd-outcome-text{
+    font-size:1rem;
+  }
+
+  .rd-outcome-control{
+    width:44px;
+    height:44px;
+  }
+
+  .rd-service-offer{
+    padding:76px 0 72px;
+  }
+
+  .rd-service-offer-head{
+    margin-bottom:32px;
+  }
+
+  .rd-service-offer-head h2{
+    font-size:clamp(2rem, 8vw, 2.65rem);
+  }
+
+  .rd-offer-card{
+    padding:24px;
+    border-radius:18px;
+  }
+
+  .rd-offer-list{
+    justify-content:start;
+    margin:4px 0 0;
+  }
+
+  .rd-offer-logo{
+    width:64px;
+    height:64px;
+  }
+
+  .rd-why-system{
+    padding:64px 0;
+  }
+
+  .rd-why-heading{
+    margin-bottom:24px;
+    font-size:clamp(2rem, 8vw, 2.65rem);
+  }
+
+  .rd-why-tabs{
+    gap:8px;
+    justify-content:flex-start;
+    padding:8px;
+    border-radius:18px;
+  }
+
+  .rd-why-tab{
+    min-height:36px;
+    padding:0 12px;
+    font-size:.78rem;
+  }
+
+  .rd-why-panel{
+    gap:24px;
+    padding:0;
+    border-radius:0;
+  }
+
+  .rd-why-visual{
+    min-height:220px;
+    padding:14px;
+  }
+
+  .rd-why-copy{
+    padding:0;
+  }
+
+  .rd-why-copy h2{
+    font-size:clamp(2rem, 8vw, 2.65rem);
+  }
+
+  .rd-why-copy .rd-offer-link{
+    margin-top:30px;
+  }
+
+  .rd-why-copy .rd-btn{
+    width:max-content;
+    margin-top:22px;
+  }
+
+  .rd-control{
+    padding:72px 0 80px;
+  }
+
+  .rd-control h2{
+    margin-bottom:48px;
+    font-size:clamp(2rem, 8vw, 2.65rem);
+  }
+
+  .rd-control-grid{
+    grid-template-columns:1fr;
+    gap:34px;
+  }
+
+  .rd-final-cta{
+    padding:72px 0 84px;
+  }
+
+  .rd-final-cta h2{
+    font-size:clamp(2rem, 8vw, 2.65rem);
+  }
+
+  .rd-final-cta-copy p{
+    font-size:1rem;
+  }
+
   .rd-hero-card,
-  .rd-service-card,
-  .rd-step,
-  .rd-feature,
-  .rd-results-item{
+  .rd-service-card{
     padding:22px;
   }
 
@@ -807,8 +1621,7 @@ body{
         <div class="rd-hero-copy">
           <h1>Turn Google searches into booked calls</h1>
           <p class="rd-hero-text">
-            SEO, Google Ads, and conversion-focused websites for local businesses that need
-            more qualified leads.
+            SEO and Google Ads for local businesses that need more qualified leads from Google.
           </p>
 
 
@@ -830,20 +1643,6 @@ body{
             <div class="rd-chart-card rd-chart-card-right">
               <img src="/assets/revenue-increase-from-russell-digital.png" alt="Revenue increase chart">
             </div>
-            <div class="rd-chart-float rd-chart-float-top">
-              <span class="rd-chart-dot" aria-hidden="true"></span>
-              <div>
-                <strong>Search demand captured</strong>
-                <span>More impressions from better pages</span>
-              </div>
-            </div>
-            <div class="rd-chart-float rd-chart-float-bottom">
-              <span class="rd-chart-dot" aria-hidden="true"></span>
-              <div>
-                <strong>Lead paths improved</strong>
-                <span>Calls, forms, and revenue in focus</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -852,157 +1651,335 @@ body{
 
   <!-- TRUST BAR -->
   <section class="rd-trustbar">
-    <div class="rd-container rd-trustbar-grid">
-      <div class="rd-trust-stat">
-        <strong>Search-first</strong>
-        <span>Built for businesses that need qualified leads</span>
-      </div>
-      <div class="rd-trust-stat">
-        <strong>Conversion-minded</strong>
-        <span>Strategy tied to calls, forms, and revenue</span>
-      </div>
-      <div class="rd-trust-stat">
-        <strong>Simple execution</strong>
-        <span>No bloated retainers or vague reporting</span>
+    <div class="rd-container">
+      <p class="rd-trustbar-title">Growth metrics we build campaigns around</p>
+    </div>
+    <div class="rd-trust-scroller" aria-label="Growth metrics">
+      <div class="rd-trust-track">
+        <div class="rd-trust-stat">
+          <strong>+$146K</strong>
+          <span>Revenue influenced</span>
+        </div>
+        <div class="rd-trust-stat">
+          <strong>39+</strong>
+          <span>New customers per month</span>
+        </div>
+        <div class="rd-trust-stat">
+          <strong>200K+</strong>
+          <span>Google impressions</span>
+        </div>
+        <div class="rd-trust-stat">
+          <strong>62%</strong>
+          <span>More booked calls</span>
+        </div>
+        <div class="rd-trust-stat">
+          <strong>4.8x</strong>
+          <span>Return on ad spend</span>
+        </div>
+        <div class="rd-trust-stat">
+          <strong>31%</strong>
+          <span>Lower cost per lead</span>
+        </div>
+        <div class="rd-trust-stat">
+          <strong>74%</strong>
+          <span>More local actions</span>
+        </div>
+        <div class="rd-trust-stat">
+          <strong>18%</strong>
+          <span>Landing page lift</span>
+        </div>
+        <div class="rd-trust-stat">
+          <strong>12</strong>
+          <span>Weeks to early traction</span>
+        </div>
+        <div class="rd-trust-stat">
+          <strong>3.4x</strong>
+          <span>Lead quality increase</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>+$146K</strong>
+          <span>Revenue influenced</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>39+</strong>
+          <span>New customers per month</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>200K+</strong>
+          <span>Google impressions</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>62%</strong>
+          <span>More booked calls</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>4.8x</strong>
+          <span>Return on ad spend</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>31%</strong>
+          <span>Lower cost per lead</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>74%</strong>
+          <span>More local actions</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>18%</strong>
+          <span>Landing page lift</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>12</strong>
+          <span>Weeks to early traction</span>
+        </div>
+        <div class="rd-trust-stat" aria-hidden="true">
+          <strong>3.4x</strong>
+          <span>Lead quality increase</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="rd-section">
+  <!-- OUTCOMES -->
+  <section class="rd-section rd-outcomes">
     <div class="rd-container">
-      <div class="rd-section-head">
-        <span class="rd-eyebrow">What We Do</span>
-        <h2>Digital growth services built around actual business results.</h2>
-        <p>
-          You do not need more random traffic. You need the right traffic, landing on the right page,
-          with a clear path to becoming a lead.
-        </p>
+      <div class="rd-outcomes-head">
+        <h2>Our customers achieve more</h2>
+        <a href="/free-strategy-call-offer/" class="rd-btn rd-btn-secondary">Book a Strategy Call &rarr;</a>
       </div>
 
-      <div class="rd-card-grid rd-card-grid-3">
-        <article class="rd-service-card">
-          <div class="rd-service-icon">01</div>
-          <h3>SEO</h3>
-          <p>
-            Rank for the terms your customers are already typing into Google. We focus on local visibility,
-            service pages, technical fixes, and content that compounds over time.
-          </p>
-          <a href="/free-strategy-call-offer/" class="rd-text-link">Learn more</a>
+      <div class="rd-outcomes-shell">
+        <div class="rd-outcomes-track" id="rd-outcomes-track" aria-label="Customer outcome highlights">
+          <article class="rd-outcome-card rd-outcome-card-dark">
+            <div class="rd-outcome-copy">
+              <span class="rd-outcome-quote" aria-hidden="true">&ldquo;</span>
+              <strong class="rd-outcome-metric">+$146K</strong>
+              <p class="rd-outcome-text">Revenue generated from cleaner search strategy, stronger service pages, and better conversion paths.</p>
+              <span class="rd-outcome-note">Revenue influenced</span>
+            </div>
+            <div class="rd-outcome-visual">
+              <div class="rd-outcome-screen rd-outcome-screen-dark" aria-hidden="true">
+                <div class="rd-outcome-line"></div>
+                <div class="rd-outcome-line rd-outcome-line-short"></div>
+                <div class="rd-outcome-bars">
+                  <span style="height:42%;"></span>
+                  <span style="height:54%;"></span>
+                  <span style="height:71%;"></span>
+                  <span style="height:88%;"></span>
+                  <span style="height:100%;"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rd-outcome-card rd-outcome-card-blue">
+            <div class="rd-outcome-copy">
+              <span class="rd-outcome-kicker">Customer acquisition</span>
+              <strong class="rd-outcome-metric">$1,300</strong>
+              <p class="rd-outcome-text">Average weekly revenue received from new customers after improving traffic quality and call flow.</p>
+              <span class="rd-outcome-note">New customer revenue per week</span>
+            </div>
+            <div class="rd-outcome-visual">
+              <div class="rd-outcome-screen" aria-hidden="true">
+                <div class="rd-outcome-line"></div>
+                <div class="rd-outcome-line rd-outcome-line-short"></div>
+                <div class="rd-outcome-bars">
+                  <span style="height:38%;"></span>
+                  <span style="height:49%;"></span>
+                  <span style="height:63%;"></span>
+                  <span style="height:76%;"></span>
+                  <span style="height:92%;"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rd-outcome-card rd-outcome-card-green">
+            <div class="rd-outcome-copy">
+              <span class="rd-outcome-kicker">Content engine</span>
+              <strong class="rd-outcome-metric">170+</strong>
+              <p class="rd-outcome-text">Pieces of search-focused content created to build topical coverage and bring in higher-intent visitors.</p>
+              <span class="rd-outcome-note">Pages, posts, and local assets</span>
+            </div>
+            <div class="rd-outcome-visual">
+              <div class="rd-outcome-content-grid" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="rd-outcome-controls" aria-label="Outcome carousel controls">
+          <button class="rd-outcome-control" type="button" data-outcomes-prev aria-label="Previous outcome">&#8592;</button>
+          <button class="rd-outcome-control" type="button" data-outcomes-next aria-label="Next outcome">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE OFFER -->
+  <section class="rd-service-offer">
+    <div class="rd-container">
+      <div class="rd-service-offer-head">
+        <h2>SEO services first. Google Ads when speed matters.</h2>
+      </div>
+
+      <div class="rd-service-offer-grid">
+        <article class="rd-offer-card rd-offer-card-feature">
+          <div class="rd-offer-main">
+            <div>
+              <h3>SEO services</h3>
+              <p>
+                We help your business show up for the searches that matter. That includes improving your
+                website structure, fixing SEO issues, writing useful content, and building pages that target
+                the services and locations your customers are searching for.
+              </p>
+            </div>
+
+            <div class="rd-offer-list" aria-label="SEO tools and focus areas">
+              <span class="rd-offer-logo" title="Google Search Console">
+                <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                  <rect x="8" y="8" width="32" height="32" rx="8" fill="#4285f4"/>
+                  <rect x="15" y="28" width="4" height="6" rx="2" fill="#fff"/>
+                  <rect x="22" y="21" width="4" height="13" rx="2" fill="#fff"/>
+                  <rect x="29" y="15" width="4" height="19" rx="2" fill="#fff"/>
+                </svg>
+              </span>
+              <span class="rd-offer-logo" title="Google Business Profile">
+                <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                  <path d="M12 20h24v17H12z" fill="#34a853"/>
+                  <path d="M10 14h28l-3 8H13z" fill="#fbbc04"/>
+                  <path d="M14 14h6l-1 8h-7z" fill="#ea4335"/>
+                  <path d="M28 14h6l2 8h-7z" fill="#4285f4"/>
+                  <rect x="20" y="26" width="8" height="11" rx="2" fill="#fff"/>
+                </svg>
+              </span>
+              <span class="rd-offer-logo" title="Google Analytics">
+                <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                  <rect x="28" y="8" width="10" height="32" rx="5" fill="#f9ab00"/>
+                  <rect x="16" y="20" width="10" height="20" rx="5" fill="#e37400"/>
+                  <circle cx="11" cy="35" r="5" fill="#f9ab00"/>
+                </svg>
+              </span>
+              <span class="rd-offer-logo" title="Content strategy">
+                <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                  <rect x="12" y="8" width="24" height="32" rx="5" fill="#111827"/>
+                  <rect x="18" y="17" width="14" height="3" rx="1.5" fill="#fff"/>
+                  <rect x="18" y="24" width="11" height="3" rx="1.5" fill="#fff"/>
+                  <rect x="18" y="31" width="15" height="3" rx="1.5" fill="#63d6bd"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <a href="/free-strategy-call-offer/" class="rd-offer-link">Book a Strategy Call &rarr;</a>
         </article>
 
-        <article class="rd-service-card">
-          <div class="rd-service-icon">02</div>
-          <h3>Google Ads</h3>
-          <p>
-            Capture high-intent demand fast. We structure campaigns around profitable keywords,
-            clean landing experiences, and conversion tracking that actually tells the truth.
-          </p>
-          <a href="/free-strategy-call-offer/" class="rd-text-link">Learn more</a>
-        </article>
-
-        <article class="rd-service-card">
-          <div class="rd-service-icon" style="margin-top:auto;">03</div>
-          <h3>Web Design</h3>
-          <p>
-            Modern, fast-loading pages built to convert. No clutter, no confusion, just a clearer path
-            from visitor to booked call.
-          </p>
-          <a href="/free-strategy-call-offer/" class="rd-text-link">Learn more</a>
+        <article class="rd-offer-card rd-offer-card-small">
+          <div>
+            <strong class="rd-offer-number">02</strong>
+            <h3>Google Ads</h3>
+            <p>We run Google Ads campaigns for businesses that want more calls, forms, and quote requests from people actively looking for their services.</p>
+            <img class="rd-offer-ad-chart" src="/assets/google-ads-conversion-data.png" alt="Google Ads conversion data chart">
+          </div>
+          <a href="/free-strategy-call-offer/" class="rd-offer-link">Book a Strategy Call &rarr;</a>
         </article>
       </div>
     </div>
   </section>
 
   <!-- WHY US -->
-  <section class="rd-section rd-section-alt">
-    <div class="rd-container rd-why-grid">
-      <div>
-        <span class="rd-eyebrow">Why Russell Digital</span>
-        <h2>Clear strategy. Clean execution. High volume.</h2>
-        <p class="rd-lead">
-          Overwhelm your competition with high quality, high converting content that turns google searches into paying customers.
-        </p>
-      </div>
-
-      <div class="rd-feature-list">
-        <div class="rd-feature">
-          <h3>Built for local businesses</h3>
-          <p>Messaging, structure, and campaigns designed around calls, quote forms, and booked jobs.</p>
-        </div>
-        <div class="rd-feature">
-          <h3>Designed to look premium</h3>
-          <p>Your site should feel established and trustworthy the second someone lands on it.</p>
-        </div>
-        <div class="rd-feature">
-          <h3>Focused on decision-making</h3>
-          <p>Everything from the headline to the CTA should move the visitor one step closer to action.</p>
-        </div>
-        <div class="rd-feature">
-          <h3>No bloated agency experience</h3>
-          <p>Direct communication, faster execution, and work that stays grounded in business outcomes.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section class="rd-section">
+  <section class="rd-why-system">
     <div class="rd-container">
-      <div class="rd-section-head rd-section-head-center">
-        <span class="rd-eyebrow">How It Works</span>
-        <h2>A simple system for turning search traffic into leads.</h2>
+      <h2 class="rd-why-heading">Why Russell Digital</h2>
+
+      <div class="rd-why-tabs" role="tablist" aria-label="Why Russell Digital">
+        <button class="rd-why-tab rd-why-tab-active" type="button" role="tab" aria-selected="true" data-why-tab="0">Local SEO</button>
+        <button class="rd-why-tab" type="button" role="tab" aria-selected="false" data-why-tab="1">Trust</button>
+        <button class="rd-why-tab" type="button" role="tab" aria-selected="false" data-why-tab="2">Leads</button>
+        <button class="rd-why-tab" type="button" role="tab" aria-selected="false" data-why-tab="3">Simple</button>
       </div>
 
-      <div class="rd-steps">
-        <div class="rd-step">
-          <span class="rd-step-num">1</span>
-          <h3>Audit</h3>
-          <p>We review your site, visibility, offer, and current funnel to find the biggest growth opportunities.</p>
+      <div class="rd-why-panel">
+        <div class="rd-why-copy">
+          <h3 id="rd-why-title">Rank for searches that matter.</h3>
+          <p id="rd-why-text">SEO focused on your money pages, local searches, and buyer intent.</p>
+          <a href="/free-strategy-call-offer/" class="rd-btn rd-btn-primary">Book a Strategy Call &rarr;</a>
         </div>
-        <div class="rd-step">
-          <span class="rd-step-num">2</span>
-          <h3>Build</h3>
-          <p>We improve the pages, structure, messaging, and tracking so the foundation is conversion-ready.</p>
-        </div>
-        <div class="rd-step">
-          <span class="rd-step-num">3</span>
-          <h3>Scale</h3>
-          <p>We grow with SEO and landing page improvements based on what is driving real leads.</p>
+
+        <div class="rd-why-visual">
+          <div class="rd-why-image-frame">
+            <img id="rd-why-image" src="/assets/africactn-search-impressions.png" alt="Search visibility growth example">
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- RESULTS / POSITIONING -->
-  <section class="rd-section rd-section-alt">
-    <div class="rd-container rd-results-grid">
-      <div class="rd-results-copy">
-        <span class="rd-eyebrow">What Better Marketing Should Feel Like</span>
-        <h2>A homepage that looks credible, explains your value fast, and pushes people to act.</h2>
-        <p>
-          Your website is the best form of digital marketing in 2026.
-        </p>
-        <a href="/free-strategy-call-offer/" class="rd-btn rd-btn-primary" style="margin-top:16px;">Let’s Build Yours</a>
-      </div>
+  <!-- CONTROL -->
+  <section class="rd-control">
+    <div class="rd-container">
+      <h2>Full control</h2>
 
-      <div class="rd-results-panel">
-        <div class="rd-results-item">
-          <strong>Sharper positioning</strong>
-          <span>Tell people exactly what you do and who it is for</span>
+      <div class="rd-control-grid">
+        <div class="rd-control-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3>Clear priorities</h3>
+          <p>Know what matters first: rankings, content, tracking, ads, or conversion issues.</p>
         </div>
-        <div class="rd-results-item">
-          <strong>Better lead flow</strong>
-          <span>Use structure and CTA placement to increase action</span>
+
+        <div class="rd-control-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m8 15 3-4 3 2 5-7"/></svg>
+          <h3>Lead tracking</h3>
+          <p>See which searches, pages, and campaigns are producing calls and quote requests.</p>
         </div>
-        <div class="rd-results-item">
-          <strong>More trust instantly</strong>
-          <span>Modern visual hierarchy that feels established</span>
+
+        <div class="rd-control-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 3v18"/><path d="M4 8h16"/><path d="M4 16h16"/></svg>
+          <h3>SEO execution</h3>
+          <p>Improve the pages, content, and local signals that help customers find you.</p>
         </div>
-        <div class="rd-results-item">
-          <strong>Faster decisions</strong>
-          <span>Less friction, less confusion, more qualified inquiries</span>
+
+        <div class="rd-control-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <h3>Google Ads</h3>
+          <p>Use paid search when you need speed, testing, or more immediate lead flow.</p>
         </div>
+
+        <div class="rd-control-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h10"/><path d="M4 17h7"/></svg>
+          <h3>Simple reporting</h3>
+          <p>No bloated dashboards. Just the numbers that explain what changed.</p>
+        </div>
+
+        <div class="rd-control-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <h3>Direct communication</h3>
+          <p>Work with someone who can explain the plan, the work, and the tradeoffs plainly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="rd-final-cta">
+    <div class="rd-container rd-final-cta-grid">
+      <h2>Know what to fix next</h2>
+
+      <div class="rd-final-cta-copy">
+        <p>
+          <strong>Get a clear SEO and Google Ads plan before you spend another month guessing.</strong>
+          We will review your site, search visibility, tracking, and biggest lead opportunities.
+        </p>
+        <a href="/free-strategy-call-offer/" class="rd-btn rd-btn-black">Book a Strategy Call &rarr;</a>
       </div>
     </div>
   </section>
@@ -1012,6 +1989,85 @@ body{
   <div id="rd-footer"></div>
 
   <script src="js/loadComponents.js"></script>
+  <script>
+    (() => {
+      const track = document.querySelector('#rd-outcomes-track');
+      const prev = document.querySelector('[data-outcomes-prev]');
+      const next = document.querySelector('[data-outcomes-next]');
+
+      if (!track || !prev || !next) return;
+
+      const scrollOneCard = (direction) => {
+        const card = track.querySelector('.rd-outcome-card');
+        if (!card) return;
+
+        const gap = parseFloat(getComputedStyle(track).columnGap || '0');
+        track.scrollBy({
+          left: direction * (card.getBoundingClientRect().width + gap),
+          behavior: 'smooth'
+        });
+      };
+
+      prev.addEventListener('click', () => scrollOneCard(-1));
+      next.addEventListener('click', () => scrollOneCard(1));
+    })();
+
+    (() => {
+      const tabs = [...document.querySelectorAll('[data-why-tab]')];
+      const title = document.querySelector('#rd-why-title');
+      const text = document.querySelector('#rd-why-text');
+      const image = document.querySelector('#rd-why-image');
+
+      if (!tabs.length || !title || !text || !image) return;
+
+      const cards = [
+        {
+          title: 'Rank for searches that matter.',
+          text: 'SEO focused on your money pages, local searches, and buyer intent.',
+          image: '/assets/africactn-search-impressions.png',
+          alt: 'Search visibility growth example'
+        },
+        {
+          title: 'Look credible on Google.',
+          text: 'Cleaner search results and local signals help buyers trust you faster.',
+          image: '/assets/revenue-increase-from-russell-digital.png',
+          alt: 'Revenue growth chart example'
+        },
+        {
+          title: 'Turn traffic into leads.',
+          text: 'We focus on calls, forms, quote requests, and clear next steps.',
+          image: '/assets/africactn-semrush-results.png',
+          alt: 'Organic keyword growth example'
+        },
+        {
+          title: 'Keep the work simple.',
+          text: 'Clear priorities, direct communication, and reporting you can understand.',
+          image: '/assets/google-ads-conversion-data.png',
+          alt: 'Google Ads conversion data chart'
+        }
+      ];
+
+      const activate = (index) => {
+        const card = cards[index];
+        if (!card) return;
+
+        tabs.forEach((tab, tabIndex) => {
+          const isActive = tabIndex === index;
+          tab.classList.toggle('rd-why-tab-active', isActive);
+          tab.setAttribute('aria-selected', String(isActive));
+        });
+
+        title.textContent = card.title;
+        text.textContent = card.text;
+        image.src = card.image;
+        image.alt = card.alt;
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => activate(Number(tab.dataset.whyTab)));
+      });
+    })();
+  </script>
 
 </body>
 </html>

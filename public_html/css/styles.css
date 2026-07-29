@@ -10,7 +10,10 @@
 /* ── Design tokens ────────────────────────────────────────── */
 :root {
   --rd-font:        'Poppins', sans-serif;
-  --bg:             #f5f4f0;
+  --bg:
+    radial-gradient(circle at 18% 0%, rgba(26, 86, 240, 0.012), transparent 32rem),
+    radial-gradient(circle at 86% 18%, rgba(15, 186, 159, 0.01), transparent 28rem),
+    linear-gradient(180deg, #ffffff 0%, #ffffff 58%, #fefefe 100%);
   --surface:        rgba(255, 255, 255, 0.88);
   --border:         rgba(0, 0, 0, 0.08);
   --text:           #0f0f0e;
@@ -31,10 +34,22 @@ html {
 body {
   font-family: var(--rd-font);
   background: var(--bg);
+  background-attachment: fixed;
   color: var(--text);
   overflow-x: hidden;
   /* Push content below fixed header */
   padding-top: 0px;
+}
+
+main > section,
+.lp > section,
+.rd-section,
+.rd-section-alt,
+.rd-blog-page,
+.rd-post-page,
+.rd-case-study,
+.rd-pricing-page{
+  background:transparent !important;
 }
 
 body * {
@@ -100,7 +115,7 @@ select {
 
 .rd-blog-page{
   padding:120px 16px 72px;
-  background:linear-gradient(180deg,#eef4ff 0%,#ffffff 100%);
+  background:transparent;
 }
 
 .rd-container{
@@ -134,7 +149,7 @@ select {
 
 .rd-blog-page{
   padding:120px 16px 72px;
-  background:linear-gradient(180deg,#eef4ff 0%,#ffffff 100%);
+  background:transparent;
 }
 
 .rd-blog-wrap{
@@ -522,7 +537,7 @@ select {
    ========================================= */
 
 .rd-post-page{
-  background:#fff;
+  background:transparent;
   padding:170px 20px 80px;
 }
 
@@ -790,14 +805,15 @@ select {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: .8rem;
-  letter-spacing: -0.03em;
+    letter-spacing: 0.03em;
+
   color: var(--text);
 }
 
 .logo-tagline {
   font-size: 0.62rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   padding-top:1px;
   color: var(--accent);
@@ -1198,7 +1214,7 @@ select {
 footer {
   width: 100%;
   padding: 0 1.5rem 1.5rem;
-  background: #eef4fb;
+  background: transparent;
 }
 
 .footer-wrap {
@@ -1214,7 +1230,8 @@ footer {
 .footer-cta-band {
   min-height: 220px;
   background:
-    linear-gradient(135deg, #07111f 0%, #0b2f6f 56%, #0b5ed7 100%);
+    linear-gradient(105deg, rgba(4,10,24,0.92) 0%, rgba(4,10,24,0.84) 48%, rgba(4,10,24,0.68) 100%),
+    url("/assets/africactn-search-impressions.png") center/cover no-repeat;
   padding: 34px 42px;
   display: flex;
   align-items: center;
@@ -1418,7 +1435,9 @@ footer {
     align-items: flex-start;
     padding: 32px 28px;
     gap: 24px;
-    background:linear-gradient(135deg, #07111f 0%, #0b2f6f 58%, #0b5ed7 100%);
+    background:
+      linear-gradient(180deg, rgba(4,10,24,0.92) 0%, rgba(4,10,24,0.78) 100%),
+      url("/assets/africactn-search-impressions.png") center/cover no-repeat;
   }
 
   .cta-band-actions {
