@@ -170,6 +170,10 @@ function getInternalUrls(existingPosts) {
   return [...urls].sort();
 }
 
+function allowedArticleInternalUrls(internalUrls) {
+  return internalUrls.filter((url) => !url.toLowerCase().includes("africactn"));
+}
+
 function routeExists(urlPath) {
   if (urlPath === "/") return true;
   const clean = urlPath.replace(/^\/+|\/+$/g, "");
@@ -187,8 +191,7 @@ function getSiteContext(existingPosts, internalUrls) {
     "public_html/about/index.html",
     "public_html/services/index.html",
     "public_html/pricing/index.html",
-    "public_html/free-strategy-call-offer/index.html",
-    "public_html/case-studies/africactn/index.html"
+    "public_html/free-strategy-call-offer/index.html"
   ];
 
   const pageText = files
@@ -212,24 +215,7 @@ function getSiteContext(existingPosts, internalUrls) {
 }
 
 function getWritingStyleGuide() {
-  return [
-    "Use the AfricaCTN circular style as the writing model, adapted to Russell Digital SEO content.",
-    "Do not use AfricaCTN shipping facts, terms, products, countries, ports, certificates, or CTN content. Style only.",
-    "Start with the answer. Do not open with broad background.",
-    "Use short and medium sentences. Long sentences are okay only when listing closely related practical details.",
-    "Keep most paragraphs one to three sentences.",
-    "Use direct cause and effect: weak service page -> fewer calls, missing tracking -> bad decisions, slow site -> lower trust, unclear offer -> weaker conversion.",
-    "Use specific SEO terms repeatedly when useful: service page, Google Business Profile, Search Console, call tracking, local intent, organic traffic, landing page.",
-    "Lead with the practical instruction. Add the explanation after it.",
-    "Use bold-label bullets for checks, requirements, red flags, and common mistakes.",
-    "Use numbered steps only for actions that must happen in order.",
-    "Use headings before the reader has to ask what the next section is about.",
-    "Let sections be slightly uneven. Do not make every section the same length.",
-    "Avoid formal transitions, perfect symmetry, neat three-part benefit sentences, inflated adjectives, and generic marketing language.",
-    "Avoid phrases like in today's digital landscape, unlock, leverage, seamless, robust, game-changing, tailored solutions, skyrocket, dominate, and revolutionary.",
-    "A slightly plain article is better than a polished article that sounds generated.",
-    "Do not intentionally add mistakes or typos."
-  ].join("\n");
+  return read("blog-automation/russell-digital-article-instructions.md");
 }
 
 function normalizeClaim(value) {
@@ -246,8 +232,7 @@ function getApprovedClaimTokens() {
     "public_html/about/index.html",
     "public_html/services/index.html",
     "public_html/pricing/index.html",
-    "public_html/free-strategy-call-offer/index.html",
-    "public_html/case-studies/africactn/index.html"
+    "public_html/free-strategy-call-offer/index.html"
   ].filter((file) => existsSync(path.join(ROOT, file)));
 
   const claims = new Set();
@@ -330,7 +315,6 @@ function preferredInternalUrl(internalUrls) {
     "/free-strategy-call-offer/",
     "/services/",
     "/pricing/",
-    "/case-studies/africactn/",
     "/blog/"
   ];
   return preferred.find((url) => internalUrls.includes(url)) || internalUrls.find((url) => url !== "/") || "/";
@@ -907,6 +891,12 @@ function validateDraft({ markdown, slug, blogFolder, existingPosts, usedTopics, 
     return validationError("Draft contains placeholder text.");
   }
 
+  const forbiddenResidue = markdown.match(/\b(AfricaCTN|CTN|ECTN|BESC|BSC|FERI|BIETC|CNCA|ARCCLA|ACD|SPN|cargo tracking note|bill of lading|customs clearance|destination port|discharge port|vessel arrival|shipper|freight forwarder)\b/i);
+  if (forbiddenResidue) return validationError("Draft contains AfricaCTN, shipping, or logistics residue.", { match: forbiddenResidue[0] });
+
+  const externalDomainMention = markdown.match(/\b(?!russelldigitalads\.com\b)([a-z0-9-]+\.)+(com|net|org|io|co|ai|edu|gov)\b/i);
+  if (externalDomainMention) return validationError("Draft contains an external domain mention.", { match: externalDomainMention[0] });
+
   const paragraphs = parsed.body
     .split(/\n{2,}/)
     .map((paragraph) => normalize(paragraph))
@@ -945,6 +935,9 @@ async function generateArticle({ topic, siteContext, existingPosts, internalUrls
   const developerPrompt = [
     "You write blog posts for Russell Digital.",
     "Use only the company and website facts supplied in the prompt.",
+    "Use only russelldigitalads.com facts, supplied topic details, and existing Russell Digital article context. Ignore competitors and external websites entirely.",
+    "Do not mention, cite, link to, quote, paraphrase, or rely on competitors or external sources.",
+    "Do not use AfricaCTN shipping facts, CTN language, port language, customs language, certificate names, country-page logic, or logistics compliance framing.",
     "Do not invent products, prices, statistics, locations, guarantees, customer stories, laws, deadlines, certifications, or company claims.",
     "Never use rankings like #1, guaranteed-result language, or unsupported numerical claims.",
     "You may use pricing, plan names, and numeric claims only when they are explicitly included in the supplied site facts or topic brief.",
@@ -1114,7 +1107,7 @@ async function main() {
   });
 
   const existingPosts = getExistingPosts(blogFolder);
-  const internalUrls = getInternalUrls(existingPosts);
+  const internalUrls = allowedArticleInternalUrls(getInternalUrls(existingPosts));
   const { queuePath, queue } = readQueue();
   const usedTopics = readUsedTopics();
   const approvedClaims = getApprovedClaimTokens();
