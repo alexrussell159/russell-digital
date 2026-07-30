@@ -27,7 +27,7 @@ permissions:
 
 jobs:
   publish:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'github-actions[bot]' && github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -52,7 +52,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_BLOG_MODEL || 'gpt-5-mini' }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
-          BLOG_SCHEDULED_TOPICS_ONLY: ${{ github.event_name != 'workflow_dispatch' }}
+          BLOG_SCHEDULED_TOPICS_ONLY: ${{ github.event_name == 'schedule' }}
           BLOG_ONE_OFF_SLOT_CT: "2026-07-30T14:20"
         run: npm run blog:publish
 
