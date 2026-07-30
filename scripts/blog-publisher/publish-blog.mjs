@@ -340,6 +340,26 @@ function ensureInternalLink(body, internalUrls) {
   ].join("\n");
 }
 
+function repairInternalMarkdownLinks(markdown, internalUrls) {
+  const urlSet = new Set(internalUrls);
+  const fallbackUrl = preferredInternalUrl(internalUrls);
+
+  return String(markdown || "").replace(/(?<!!)\[([^\]]+)\]\(([^)]+)\)/g, (match, label, link) => {
+    const rawLink = String(link || "").trim();
+    if (!rawLink) return match;
+    if (/^https?:\/\//i.test(rawLink) && !rawLink.startsWith(SITE_URL)) return match;
+
+    const internalPath = rawLink.startsWith(SITE_URL) ? rawLink.slice(SITE_URL.length) : rawLink;
+    if (!internalPath.startsWith("/")) return match;
+
+    const cleanPath = internalPath.split("#")[0].split("?")[0];
+    const normalizedPath = cleanPath.endsWith("/") ? cleanPath : `${cleanPath}/`;
+    if (urlSet.has(normalizedPath)) return match;
+
+    return `[${label}](${fallbackUrl})`;
+  });
+}
+
 function extractResponseText(data) {
   if (typeof data.output_text === "string") return data.output_text;
   const chunks = [];
@@ -1126,6 +1146,7 @@ async function generateArticle({ topic, siteContext, existingPosts, internalUrls
     "Do not copy paragraphs from the samples; learn the cadence and point of view.",
     "Return only valid JSON with keys: title, description, body.",
     "The body must be clean Markdown and must include useful internal links from the supplied URL inventory.",
+    "Do not invent internal URLs. Use only exact URLs from requiredInternalUrls.",
     "Every internal URL must be part of a Markdown link, such as [free strategy call](/free-strategy-call-offer/). Never write bare paths like (/pricing/) or Useful links: - /services/ - /pricing/.",
     "Every bullet or numbered item must be on its own line. Never jam several list items into one paragraph. A list with four bullets must occupy four separate Markdown lines.",
     "Do not include broken image syntax, stray filenames, repeated paragraphs, repeated CTA sections, or orphaned fragments.",
@@ -1200,7 +1221,7 @@ async function writeGeneratedPost({ article, topic, blogFolder, existingPosts, u
   const slug = slugify(article.slug || title);
   const imageName = "cover.png";
   const cleanedBody = normalizeJammedListLines(removeUnsupportedClaimSentences(String(article.body || "").trim(), approvedClaims));
-  const body = ensureInternalLink(injectArticleVisuals(cleanedBody, slug), internalUrls);
+  const body = ensureInternalLink(repairInternalMarkdownLinks(injectArticleVisuals(cleanedBody, slug), internalUrls), internalUrls);
   const markdown = renderPost({
     title,
     description,

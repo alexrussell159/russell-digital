@@ -18,6 +18,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "public_html/case-studies": "case-studies" });
   eleventyConfig.addPassthroughCopy({ "public_html/free-strategy-call": "free-strategy-call" });
   eleventyConfig.addPassthroughCopy({ "public_html/free-strategy-call-offer": "free-strategy-call-offer" });
+  eleventyConfig.addPassthroughCopy({ "public_html/thank-you-seo-report": "thank-you-seo-report" });
 
 
 
