@@ -2,6 +2,13 @@ name: Publish automated blog post
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/publish-blog.yml"
+      - "scripts/blog-publisher/**"
+      - "blog-automation/**"
   schedule:
     # America/Chicago has DST, so run UTC candidates and let the script
     # publish once in each local 8:17, 12:17, and 16:17 window.
@@ -17,6 +24,7 @@ permissions:
 
 jobs:
   publish:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -41,6 +49,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_BLOG_MODEL || 'gpt-5-mini' }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
+          BLOG_SCHEDULED_TOPICS_ONLY: ${{ github.event_name != 'workflow_dispatch' }}
         run: npm run blog:publish
 
       - name: Commit generated article

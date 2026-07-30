@@ -12,6 +12,7 @@ const MODEL = process.env.OPENAI_MODEL || "gpt-5-mini";
 const args = new Set(process.argv.slice(2));
 const dryRun = args.has("--dry-run");
 const force = args.has("--force");
+const scheduledTopicsOnly = process.env.BLOG_SCHEDULED_TOPICS_ONLY === "true" || process.env.GITHUB_EVENT_NAME === "schedule";
 
 function group(name, fn) {
   console.log(`::group::${name}`);
@@ -278,22 +279,22 @@ function chicagoParts(date = new Date()) {
   return Object.fromEntries(formatter.formatToParts(date).map((part) => [part.type, part.value]));
 }
 
-function isTopicDue(topic) {
-  if (!topic.publishDate || !topic.publishTimeCT) return true;
+function isTopicDue(topic, { scheduledRun = false } = {}) {
+  if (!topic.publishDate || !topic.publishTimeCT) return !scheduledRun;
   const now = chicagoParts();
   const nowKey = `${now.year}-${now.month}-${now.day}T${now.hour}:${now.minute}`;
   const topicKey = `${topic.publishDate}T${topic.publishTimeCT}`;
   return topicKey <= nowKey;
 }
 
-function selectTopic(queue, existingPosts, usedTopics) {
+function selectTopic(queue, existingPosts, usedTopics, { scheduledRun = false } = {}) {
   const usedTitles = [
     ...existingPosts.map((post) => post.title),
     ...usedTopics.map((item) => item.title || item.topic)
   ].filter(Boolean);
 
   for (const topic of queue.pending) {
-    if (!isTopicDue(topic)) continue;
+    if (!isTopicDue(topic, { scheduledRun })) continue;
     const candidate = `${topic.topic} ${topic.angle || ""}`;
     const duplicate = usedTitles.some((used) => normalize(used) === normalize(topic.topic) || jaccard(used, candidate) >= 0.62);
     if (!duplicate) return topic;
@@ -1268,7 +1269,9 @@ async function main() {
     console.log(`Approved site claim tokens: ${approvedClaims.size}`);
   });
 
-  const topic = selectTopic(queue, existingPosts, usedTopics);
+  const topic = selectTopic(queue, existingPosts, usedTopics, {
+    scheduledRun: scheduledTopicsOnly
+  });
   console.log(`Selected topic: ${topic.topic}`);
 
   if (dryRun) {

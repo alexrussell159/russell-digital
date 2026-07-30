@@ -33,6 +33,29 @@
 
   /* ── Highlight current page nav link ────────────────────── */
   const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+  const isProtectedCopyRoute = currentPath === '/' || currentPath === '/blog' || currentPath.startsWith('/blog/');
+  if (!isProtectedCopyRoute) {
+    document.querySelectorAll('a[href="/free-strategy-call-offer/"]').forEach(link => {
+      const text = link.textContent.trim().toLowerCase();
+      if (
+        text.includes('strategy call') ||
+        text.includes('free audit') ||
+        text.includes('free seo') ||
+        text.includes('get more leads')
+      ) {
+        link.textContent = 'Get my free report';
+      }
+    });
+
+    const footerTitle = document.querySelector('.cta-band-title');
+    if (footerTitle) footerTitle.textContent = 'See what competitors are ranking for.';
+
+    const footerSubtitle = document.querySelector('.cta-band-subtitle');
+    if (footerSubtitle) {
+      footerSubtitle.textContent = 'Request a free competitor and keyword report for your home-service company.';
+    }
+  }
+
   document.querySelectorAll('.nav-link[href], .m-link[href]').forEach(link => {
     const linkPath = link.getAttribute('href').replace(/\/$/, '') || '/';
     if (linkPath === currentPath) {
