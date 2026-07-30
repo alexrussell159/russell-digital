@@ -963,6 +963,33 @@ function removeUnsupportedClaimSentences(markdown, approvedClaims) {
     .join("\n\n");
 }
 
+function normalizeJammedListLines(markdown) {
+  return String(markdown || "")
+    .split(/\r?\n/)
+    .map((line) => {
+      const bulletMatch = line.match(/^(\s*)[-*]\s+(.+)$/);
+      if (bulletMatch) {
+        const [, indent, content] = bulletMatch;
+        const items = content.split(/\s+[-*]\s+(?=\S)/).map((item) => item.trim()).filter(Boolean);
+        if (items.length > 1) return items.map((item) => `${indent}- ${item}`).join("\n");
+        return line;
+      }
+
+      const numberedMatch = line.match(/^(\s*)(\d+)\.\s+(.+)$/);
+      if (numberedMatch) {
+        const [, indent, firstNumber, content] = numberedMatch;
+        const items = content.split(/\s+\d+\.\s+(?=\S)/).map((item) => item.trim()).filter(Boolean);
+        if (items.length > 1) {
+          const start = Number(firstNumber);
+          return items.map((item, index) => `${indent}${start + index}. ${item}`).join("\n");
+        }
+      }
+
+      return line;
+    })
+    .join("\n");
+}
+
 function validationError(message, details = {}) {
   return { ok: false, message, details };
 }
@@ -1078,7 +1105,7 @@ async function generateArticle({ topic, siteContext, existingPosts, internalUrls
     "Return only valid JSON with keys: title, description, body.",
     "The body must be clean Markdown and must include useful internal links from the supplied URL inventory.",
     "Every internal URL must be part of a Markdown link, such as [free strategy call](/free-strategy-call-offer/). Never write bare paths like (/pricing/) or Useful links: - /services/ - /pricing/.",
-    "Every bullet or numbered item must be on its own line. Never jam several list items into one paragraph.",
+    "Every bullet or numbered item must be on its own line. Never jam several list items into one paragraph. A list with four bullets must occupy four separate Markdown lines.",
     "Do not include broken image syntax, stray filenames, repeated paragraphs, repeated CTA sections, or orphaned fragments.",
     "Include a natural CTA based on existing site CTAs, especially booking a strategy call.",
     `Write at least ${MIN_WORDS + 100} words.`
@@ -1150,7 +1177,7 @@ async function writeGeneratedPost({ article, topic, blogFolder, existingPosts, u
   const description = String(article.description || "").trim();
   const slug = slugify(article.slug || title);
   const imageName = "cover.png";
-  const cleanedBody = removeUnsupportedClaimSentences(String(article.body || "").trim(), approvedClaims);
+  const cleanedBody = normalizeJammedListLines(removeUnsupportedClaimSentences(String(article.body || "").trim(), approvedClaims));
   const body = ensureInternalLink(injectArticleVisuals(cleanedBody, slug), internalUrls);
   const markdown = renderPost({
     title,
