@@ -1038,12 +1038,12 @@ function validateDraft({ markdown, slug, blogFolder, existingPosts, usedTopics, 
     return validationError("Draft contains bare internal URL paths. Use Markdown links instead.", { paths: barePaths });
   }
 
-  const jammedBullet = parsed.body.match(/(^|\n)\s*[-*]\s+[^\n]+?\s[-*]\s+\S/);
+  const jammedBullet = parsed.body.match(/(^|\n)[^\S\r\n]*[-*][^\S\r\n]+[^\n]+?[^\S\r\n]+[-*][^\S\r\n]+\S/);
   if (jammedBullet) {
     return validationError("Draft contains multiple bullets jammed onto one line.", { match: jammedBullet[0].trim() });
   }
 
-  const jammedNumberedStep = parsed.body.match(/(^|\n)\s*\d+\.\s+[^\n]+?\s\d+\.\s+\S/);
+  const jammedNumberedStep = parsed.body.match(/(^|\n)[^\S\r\n]*\d+\.[^\S\r\n]+[^\n]+?[^\S\r\n]+\d+\.[^\S\r\n]+\S/);
   if (jammedNumberedStep) {
     return validationError("Draft contains multiple numbered steps jammed onto one line.", { match: jammedNumberedStep[0].trim() });
   }
