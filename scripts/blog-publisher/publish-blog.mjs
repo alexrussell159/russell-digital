@@ -388,9 +388,13 @@ function shouldRunNow() {
   if (force || process.env.GITHUB_EVENT_NAME !== "schedule") return true;
   const parts = chicagoParts();
   const slot = currentPublishSlot();
-  const allowed = Boolean(slot);
-  console.log(`Chicago gate: ${parts.weekday} ${parts.hour}:${parts.minute} ${TIME_ZONE}; slot=${slot || "none"}; allowed=${allowed}`);
-  return allowed;
+  console.log(`Scheduled run started at ${parts.weekday} ${parts.hour}:${parts.minute} ${TIME_ZONE}; current slot=${slot || "delayed/outside publish window"}`);
+  return true;
+}
+
+function scheduledSlotForTopic(topic) {
+  if (!topic.publishDate || !topic.publishTimeCT) return null;
+  return `${topic.publishDate}T${topic.publishTimeCT}`;
 }
 
 function hasPublishedSlot(usedTopics, slot) {
@@ -1281,11 +1285,6 @@ async function main() {
   const { queuePath, queue } = readQueue();
   const usedTopics = readUsedTopics();
   const approvedClaims = getApprovedClaimTokens();
-  const publishSlotCT = process.env.GITHUB_EVENT_NAME === "schedule" ? currentPublishSlot() : null;
-  if (hasPublishedSlot(usedTopics, publishSlotCT)) {
-    console.log(`Skipping because the ${publishSlotCT} America/Chicago publish slot already has an automated post.`);
-    return;
-  }
 
   group("Repository inventory", () => {
     console.log(`Existing posts: ${existingPosts.length}`);
@@ -1300,6 +1299,12 @@ async function main() {
     scheduledRun: scheduledTopicsOnly
   });
   console.log(`Selected topic: ${topic.topic}`);
+
+  const publishSlotCT = scheduledTopicsOnly ? scheduledSlotForTopic(topic) : null;
+  if (hasPublishedSlot(usedTopics, publishSlotCT)) {
+    console.log(`Skipping because the ${publishSlotCT} America/Chicago publish slot already has an automated post.`);
+    return;
+  }
 
   if (dryRun) {
     group("Dry run build", () => runBuild());
