@@ -4,23 +4,6 @@
   "rule": "The first five unscheduled topics are reserved for July 29, 2026 testing and remaining same-day posts. Beginning July 30, 2026, use the spreadsheet-derived scheduled rows in order.",
   "pending": [
     {
-      "source": "one-off-scheduled-test",
-      "sourceId": "one-off-2026-07-30-1420",
-      "publishDate": "2026-07-30",
-      "publishTimeCT": "14:20",
-      "topic": "Why Local Businesses Should Track Calls Before Judging SEO",
-      "primaryKeyword": "track calls from seo",
-      "location": "Houston",
-      "vertical": "All local services",
-      "cluster": "SEO Measurement",
-      "intent": "Problem/Solution",
-      "angle": "Explain why rankings and traffic are incomplete without call and form tracking, and show what a local business should check first.",
-      "proofRequirement": "Use a simple tracking checklist and keep the article tied to qualified inquiries, not vanity metrics.",
-      "cta": "Book a Strategy Call",
-      "status": "One-off test",
-      "notes": "Temporary one-off scheduled test for 2026-07-30 14:20 America/Chicago. Use only Russell Digital-supported claims and the approved writing style guide."
-    },
-    {
       "topic": "Why a slow local business website makes SEO harder",
       "angle": "Explain the basic connection between site speed, user trust, conversions, and organic performance without technical overkill.",
       "notes": "Use today for testing. Keep it practical and site-safe."
