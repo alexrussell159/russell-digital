@@ -14,6 +14,9 @@ on:
     # publish once in each local 8:17, 12:17, and 16:17 window.
     # Extra checks protect against delayed GitHub scheduled runs.
     - cron: "17,27,37,47 13,14,17,18,21,22 * * 1-5"
+    # Temporary one-off test for 2026-07-30 14:20 America/Chicago.
+    # Remove after confirming the scheduled publisher ran unattended.
+    - cron: "20,30,40,50 19 30 7 *"
 
 concurrency:
   group: automated-blog-publisher-main
@@ -50,6 +53,7 @@ jobs:
           OPENAI_MODEL: ${{ vars.OPENAI_BLOG_MODEL || 'gpt-5-mini' }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           BLOG_SCHEDULED_TOPICS_ONLY: ${{ github.event_name != 'workflow_dispatch' }}
+          BLOG_ONE_OFF_SLOT_CT: "2026-07-30T14:20"
         run: npm run blog:publish
 
       - name: Commit generated article

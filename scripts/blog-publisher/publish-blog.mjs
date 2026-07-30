@@ -216,7 +216,7 @@ function getSiteContext(existingPosts, internalUrls) {
 }
 
 function getWritingStyleGuide() {
-  return read("blog-automation/russell-digital-article-instructions.md");
+  return read("blog-automation/russelldigitalads-writing-style-only.md");
 }
 
 function normalizeClaim(value) {
@@ -373,7 +373,25 @@ function chicagoTimestamp(date = new Date()) {
   return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}.000${offset}`;
 }
 
+function oneOffPublishSlot(date = new Date()) {
+  const slot = String(process.env.BLOG_ONE_OFF_SLOT_CT || "").trim();
+  const match = slot.match(/^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2})$/);
+  if (!match) return null;
+
+  const parts = chicagoParts(date);
+  const currentDate = `${parts.year}-${parts.month}-${parts.day}`;
+  if (currentDate !== match[1]) return null;
+
+  const slotMinutes = Number(match[2]) * 60 + Number(match[3]);
+  const currentMinutes = Number(parts.hour) * 60 + Number(parts.minute);
+  const minutesAfterSlot = currentMinutes - slotMinutes;
+  return minutesAfterSlot >= 0 && minutesAfterSlot <= 90 ? slot : null;
+}
+
 function currentPublishSlot(date = new Date()) {
+  const oneOffSlot = oneOffPublishSlot(date);
+  if (oneOffSlot) return oneOffSlot;
+
   const parts = chicagoParts(date);
   const allowedHours = new Set(["08", "12", "16"]);
   const allowedDays = new Set(["Mon", "Tue", "Wed", "Thu", "Fri"]);
@@ -389,7 +407,7 @@ function shouldRunNow() {
   const parts = chicagoParts();
   const slot = currentPublishSlot();
   console.log(`Scheduled run started at ${parts.weekday} ${parts.hour}:${parts.minute} ${TIME_ZONE}; current slot=${slot || "delayed/outside publish window"}`);
-  return true;
+  return Boolean(slot);
 }
 
 function scheduledSlotForTopic(topic) {
