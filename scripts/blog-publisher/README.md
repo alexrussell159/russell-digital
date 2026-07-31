@@ -15,9 +15,9 @@ npm run blog:publish
 `blog:dry-run` checks the repository shape, topic queue, internal URL inventory,
 and production Eleventy build without calling OpenAI or writing a post.
 
-`blog:publish` is used by GitHub Actions. Scheduled runs are gated by the
-America/Chicago timezone so publishing happens only at 8:17 AM, 12:17 PM, and
-4:17 PM on weekdays.
+`blog:publish` is used by GitHub Actions. Scheduled runs start around 3:00 AM,
+8:00 AM, and 2:00 PM America/Chicago on weekdays. If GitHub Actions starts late,
+the publisher still runs and publishes the next due queued topic.
 
 ## GitHub Settings
 

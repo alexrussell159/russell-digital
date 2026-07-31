@@ -13,6 +13,7 @@ const args = new Set(process.argv.slice(2));
 const dryRun = args.has("--dry-run");
 const force = args.has("--force");
 const scheduledTopicsOnly = process.env.BLOG_SCHEDULED_TOPICS_ONLY === "true" || process.env.GITHUB_EVENT_NAME === "schedule";
+const requestedTopicSourceId = String(process.env.BLOG_TOPIC_SOURCE_ID || "").trim();
 
 function group(name, fn) {
   console.log(`::group::${name}`);
@@ -294,12 +295,16 @@ function selectTopic(queue, existingPosts, usedTopics, { scheduledRun = false } 
   ].filter(Boolean);
 
   for (const topic of queue.pending) {
+    if (requestedTopicSourceId && topic.sourceId !== requestedTopicSourceId) continue;
     if (!isTopicDue(topic, { scheduledRun })) continue;
     const candidate = `${topic.topic} ${topic.angle || ""}`;
     const duplicate = usedTitles.some((used) => normalize(used) === normalize(topic.topic) || jaccard(used, candidate) >= 0.62);
     if (!duplicate) return topic;
   }
 
+  if (requestedTopicSourceId) {
+    throw new Error(`No safe due topic found for BLOG_TOPIC_SOURCE_ID=${requestedTopicSourceId}.`);
+  }
   throw new Error("No safe due topics remain in blog-automation/topic-queue.json.");
 }
 
@@ -413,21 +418,17 @@ function currentPublishSlot(date = new Date()) {
   if (oneOffSlot) return oneOffSlot;
 
   const parts = chicagoParts(date);
-  const allowedHours = new Set(["08", "12", "16"]);
   const allowedDays = new Set(["Mon", "Tue", "Wed", "Thu", "Fri"]);
-  const minute = Number(parts.minute);
-  if (!allowedDays.has(parts.weekday) || !allowedHours.has(parts.hour) || minute < 17 || minute > 47) {
-    return null;
-  }
-  return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:17`;
+  if (!allowedDays.has(parts.weekday)) return null;
+  return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}`;
 }
 
 function shouldRunNow() {
   if (force || process.env.GITHUB_EVENT_NAME !== "schedule") return true;
   const parts = chicagoParts();
   const slot = currentPublishSlot();
-  console.log(`Scheduled run started at ${parts.weekday} ${parts.hour}:${parts.minute} ${TIME_ZONE}; current slot=${slot || "delayed/outside publish window"}`);
-  return Boolean(slot);
+  console.log(`Scheduled run started at ${parts.weekday} ${parts.hour}:${parts.minute} ${TIME_ZONE}; current slot=${slot || "weekend"}`);
+  return true;
 }
 
 function scheduledSlotForTopic(topic) {
