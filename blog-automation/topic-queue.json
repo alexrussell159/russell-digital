@@ -4,11 +4,6 @@
   "rule": "The first five unscheduled topics are reserved for July 29, 2026 testing and remaining same-day posts. Beginning July 30, 2026, use the spreadsheet-derived scheduled rows in order.",
   "pending": [
     {
-      "topic": "Why a slow local business website makes SEO harder",
-      "angle": "Explain the basic connection between site speed, user trust, conversions, and organic performance without technical overkill.",
-      "notes": "Use today for testing. Keep it practical and site-safe."
-    },
-    {
       "topic": "How to tell if your local SEO content is too thin",
       "angle": "Show simple signs that service pages and blog posts are not useful enough to rank or convert.",
       "notes": "Use today for testing. Avoid invented examples, guarantees, or statistics."
